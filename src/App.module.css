@@ -1,11 +1,34 @@
 .App {
   font-family: "montserrat", sans-serif;
-  background-color: #f8f8f8;
+  background-color: #dfdfdf;
   min-height: 100vh;
+}
+
+h1 {
+  font-size: 1.5rem;
 }
 
 .Main {
   padding-top: 81px;
+}
+
+.Content {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #dadadf;
+}
+
+.FillerImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 * {
@@ -13,18 +36,18 @@
 }
 
 a {
-  color: #414141;
+  color: #555555;
   transition: color ease-in-out 0.3s;
 }
 
 a:hover {
   text-decoration: none;
-  color: #dbbf09;
+  /* color: #dbbf09; */
 }
 
 a:hover i {
-  color: #dbbf09;
-  transition: color ease-in-out 0.2s;
+  color: #2142b2;
+  transition: color ease-in-out 0.3s;
 }
 
 input[type="file"] {
@@ -41,7 +64,7 @@ i {
 i:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: #dbbf09;
+  color: #2142b2;
 }
 
 figure {
