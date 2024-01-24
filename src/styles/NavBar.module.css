@@ -4,13 +4,14 @@
 }
 
 .NavLink {
-  padding: 5px;
+  padding: 15px 5px 0 5px;
+  font-weight: 500;
 }
 
-.Active i {
-  color: #dbbf09;
+.NavLink:hover {
+  color: #b0b000;
 }
 
 .Active {
-  color: #dbbf09;
+  color: #b0b000;
 }

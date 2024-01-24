@@ -37,7 +37,7 @@ h1 {
 
 a {
   color: #555555;
-  transition: color ease-in-out 0.3s;
+  transition: color ease-in-out 0.2s;
 }
 
 a:hover {
@@ -45,26 +45,8 @@ a:hover {
   /* color: #dbbf09; */
 }
 
-a:hover i {
-  color: #2142b2;
-  transition: color ease-in-out 0.3s;
-}
-
 input[type="file"] {
   display: none;
-}
-
-i {
-  color: #cfced3;
-  font-size: 1.6rem;
-  padding: 7px;
-  vertical-align: middle;
-}
-
-i:hover {
-  cursor: pointer;
-  transition: color ease-in-out 0.3s;
-  color: #2142b2;
 }
 
 figure {
