@@ -16,9 +16,11 @@ import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function ListingCreateForm() {
-  const [postData, setPostData] = useState({
+  useRedirect("loggedOut");
+  const [listingData, setListingData] = useState({
     type: "apartment",
     sale_type: "rent",
     description: "",
@@ -63,7 +65,7 @@ function ListingCreateForm() {
     construction_year,
     availability,
     image,
-  } = postData;
+  } = listingData;
   const [errors, setErrors] = useState({});
 
   const imageInput = useRef(null);
@@ -71,8 +73,8 @@ function ListingCreateForm() {
   const history = useHistory();
 
   const handleChange = (e) => {
-    setPostData({
-      ...postData,
+    setListingData({
+      ...listingData,
       [e.target.name]: e.target.value,
     });
   };
@@ -80,8 +82,8 @@ function ListingCreateForm() {
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
       URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
+      setListingData({
+        ...listingData,
         image: URL.createObjectURL(e.target.files[0]),
       });
     }
