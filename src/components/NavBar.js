@@ -37,19 +37,12 @@ const NavBar = () => {
     <>
       <NavLink
         className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/listings"
-      >
-        Listings
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
         <Avatar
           className={styles.NavLink}
           src={currentUser?.profile_image}
-          text="Profile"
+          text={currentUser?.username}
           height={40}
         />
       </NavLink>
@@ -105,7 +98,15 @@ const NavBar = () => {
               Home
             </NavLink>
 
-            {addListing}
+            {currentUser ? (
+              addListing
+            ) : (
+              <>
+                <NavLink className={styles.NavLink} to="/signin">
+                  Add your listing
+                </NavLink>
+              </>
+            )}
 
             <NavLink
               className={styles.NavLink}
@@ -120,6 +121,13 @@ const NavBar = () => {
               to="/contact"
             >
               Contact
+            </NavLink>
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/listings"
+            >
+              Listings
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
