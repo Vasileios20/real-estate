@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 
 import { Link } from "react-router-dom";
+import ListingImages from "./ListingImages";
 
 const Listing = (props) => {
   const {
@@ -44,6 +45,7 @@ const Listing = (props) => {
 
   return (
     <Row className={styles.Listing}>
+      <ListingImages images={images} id={id} />
       <Col md={8}>
         <h4 style={{ textTransform: "capitalize" }}>
           {type} to {sale_type}
