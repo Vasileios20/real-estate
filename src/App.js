@@ -6,11 +6,9 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ListingCreateForm from "./pages/listings/ListingCreateForm";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
+import ListingPage from "./pages/listings/ListingPage";
 
 function App() {
-  const currentUser = useCurrentUser();
-  console.log(currentUser);
   return (
     <div className={styles.App}>
       <NavBar />
@@ -26,6 +24,7 @@ function App() {
             path="/listings/create"
             render={() => <ListingCreateForm />}
           />
+          <Route exact path="/listings/:id" render={() => <ListingPage />} />
           <Route render={() => <h1>Not Found</h1>} />
         </Switch>
       </Container>
