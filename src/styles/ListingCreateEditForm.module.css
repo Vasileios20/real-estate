@@ -1,0 +1,10 @@
+.Container {
+  min-height: 343px;
+}
+
+.Image {
+  max-height: 15vh;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 2px 5px;
+}

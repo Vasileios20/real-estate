@@ -28,7 +28,7 @@ const NavBar = () => {
   };
 
   const addListing = (
-    <NavLink className={styles.NavLink} to="/posts/create">
+    <NavLink className={styles.NavLink} to="/listings/create">
       Add your listing
     </NavLink>
   );
@@ -38,7 +38,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/feed"
+        to="/listings"
       >
         Listings
       </NavLink>
