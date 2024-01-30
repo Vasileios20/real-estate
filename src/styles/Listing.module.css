@@ -1,0 +1,40 @@
+.Listing {
+  margin: 0 25px 16px;
+}
+
+/* Font awsome div */
+.Listing__fontawsome {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.Listing__fontawsome i {
+  margin-right: 10px;
+}
+
+/* Features table */
+
+.Listing__table {
+  border: 1px solid #b0b000;
+}
+
+.Listing__table td {
+  border: 1px solid rgba(176, 176, 0, 0.5);
+  padding: 5px;
+}
+
+.Listing__table td:first-child {
+  background-color: #ececec;
+}
+
+.Listing__table td:nth-child(2) {
+  font-weight: 500;
+}
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+  .Listing__table {
+    width: 100%;
+  }
+}

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import Listing from "./Listing";
 
 function ListingPage() {
   const { id } = useParams();
@@ -16,7 +14,6 @@ function ListingPage() {
           axiosReq.get(`/listings/${id}/`),
         ]);
         setListing({ results: [listing] });
-        console.log(listing);
       } catch (error) {
         console.log(error);
       }
@@ -25,11 +22,9 @@ function ListingPage() {
   }, [id]);
 
   return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2">
-        <h1>Listing</h1>
-      </Col>
-    </Row>
+    <>
+      <Listing {...listing.results[0]} setListings={setListing} listingPage />
+    </>
   );
 }
 
