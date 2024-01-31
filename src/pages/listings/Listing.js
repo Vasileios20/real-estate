@@ -54,13 +54,13 @@ const Listing = (props) => {
         </h4>
         <div className={styles.Listing__fontawsome}>
           <p>
-            <i class="fa-solid fa-bed"> {bedrooms}</i>
+            <i className="fa-solid fa-bed"> {bedrooms}</i>
           </p>
           <p>
-            <i class="fa-solid fa-bath"> {bathrooms}</i>
+            <i className="fa-solid fa-bath"> {bathrooms}</i>
           </p>
           <p>
-            <i class="fa-solid fa-stairs"> {floor}</i>
+            <i className="fa-solid fa-stairs"> {floor}</i>
           </p>
         </div>
         <h5>Description</h5>
