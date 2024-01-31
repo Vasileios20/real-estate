@@ -2,6 +2,7 @@ import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import styles from "../../styles/Listing.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -42,6 +43,7 @@ const Listing = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const loggedOut = currentUser === null;
 
   return (
     <Row className={styles.Listing}>
@@ -68,6 +70,7 @@ const Listing = (props) => {
           {address_number}, {address_street}, {postcode}, {city}
         </p>
       </Col>
+
       <Col md={5}>
         <h5>Features</h5>
         <Table className={styles.Listing__table}>
@@ -143,16 +146,40 @@ const Listing = (props) => {
             </tr>
           </tbody>
         </Table>
-        {is_owner && listingPage && (
-          <>
-            <Button className="mr-2" variant="danger" onClick={() => {}}>
-              Delete
+        <Row className="mx-auto">
+          {is_owner && listingPage ? (
+            <>
+              <Button
+                className={`${btnStyles.Delete} ${btnStyles.Button} ${btnStyles.Medium} mr-auto`}
+                onClick={() => {}}
+              >
+                Delete
+              </Button>
+              <Button
+                className={`${btnStyles.Edit} ${btnStyles.Button} ${btnStyles.Medium}`}
+                onClick={() => {}}
+              >
+                Edit
+              </Button>
+            </>
+          ) : loggedOut ? (
+            <>
+              <Link
+                to="/signin"
+                className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto btn`}
+              >
+                Add to list
+              </Link>
+            </>
+          ) : (
+            <Button
+              className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto`}
+              onClick={() => {}}
+            >
+              Add to list
             </Button>
-            <Button variant="info" onClick={() => {}}>
-              Edit
-            </Button>
-          </>
-        )}
+          )}
+        </Row>
       </Col>
     </Row>
   );

@@ -1,7 +1,7 @@
 .Button {
   font-size: 0.8rem;
   align-self: center;
-  border-radius: 100px;
+  border-radius: 50px;
   border-color: transparent;
   padding: 4px 10px;
   margin-left: 2px;
@@ -16,15 +16,15 @@
 }
 
 .Button:hover:active {
-  background-color: #2142b2 !important;
+  background-color: #b0b000 !important;
 }
 
 .Button:active {
-  background-color: #2142b2 !important;
+  background-color: #b0b000 !important;
 }
 
 .Button:focus {
-  background-color: #2142b2;
+  background-color: #b0b000;
 }
 
 .Wide {
@@ -32,18 +32,23 @@
   width: 100%;
 }
 
-.Blue,
-.BlueOutline:hover,
+.Medium {
+  width: 40%;
+  font-size: 1rem;
+}
+
+.Olive,
+.OliveOutline:hover,
 .Bright:hover {
   background-color: #606000;
   color: #ffffff;
 }
 
-.BlueOutline,
-.Blue:hover {
+.OliveOutline,
+.Olive:hover {
   /* border: 1px solid #2142b2; */
-  background-color: #ffffff;
-  color: #606000;
+  background-color: #b0b000;
+  color: #000;
 }
 
 .Black,
@@ -66,4 +71,37 @@
 .Bright {
   background-color: #b0b000;
   color: #000;
+}
+
+.Delete {
+  background-color: #b00000;
+  color: #fff;
+  border: transparent;
+}
+
+.Delete:hover {
+  background-color: #db0000;
+  color: #fff;
+}
+
+.Edit {
+  background-color: #00a0a0;
+  color: #fff;
+  border: transparent;
+}
+
+.Edit:hover {
+  background-color: #00c4c4;
+  color: #fff;
+}
+
+.Add {
+  background-color: #5c9600;
+  color: #fff;
+  border: transparent;
+}
+
+.Add:hover {
+  background-color: #00ad00;
+  color: #fff;
 }

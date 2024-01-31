@@ -528,12 +528,15 @@ function ListingCreateForm() {
       </Row>
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Olive}`}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Olive}`}
+        type="submit"
+      >
         Create
       </Button>
     </div>
@@ -561,7 +564,7 @@ function ListingCreateForm() {
 
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
