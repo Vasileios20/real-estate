@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import styles from "../../styles/Listing.module.css";
@@ -7,9 +7,11 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
+import Alert from "react-bootstrap/Alert";
 
 import { Link } from "react-router-dom";
 import ListingImages from "./ListingImages";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Listing = (props) => {
   const {
@@ -39,15 +41,94 @@ const Listing = (props) => {
     updated_at,
     listingPage,
     images,
+    setListings,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const loggedOut = currentUser === null;
+  const [errors, setErrors] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [addedToList, setAddedToList] = useState(null);
+  const [wishlistId, setWishlistId] = useState(null);
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      try {
+        const { data } = await axiosRes.get("/wishlist/");
+
+        const wishlist = data.results.find(
+          (result) =>
+            result.listings === id && result.owner === currentUser?.username
+        );
+
+        if (wishlist) {
+          setWishlistId(wishlist.id);
+        }
+        if (wishlist && wishlist.owner === currentUser?.username) {
+          setAddedToList(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchWishlist();
+  }, [id, currentUser, addedToList]);
+
+  const handleAddToWishlist = async () => {
+    try {
+      const { data } = await axiosRes.post("/wishlist/", { listings: id });
+      setListings((prevListings) => ({
+        ...prevListings,
+        results: prevListings.results.map((listing) => {
+          return listing.id === id
+            ? {
+                ...listing,
+                listing_id: data.id,
+              }
+            : listing;
+        }),
+      }));
+
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        setAddedToList(true);
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+      setErrors(error.response?.data);
+    }
+  };
+
+  const handleRemoveFromWishlist = async () => {
+    try {
+      await axiosRes.delete(`/wishlist/${wishlistId}/`);
+      setListings((prevListings) => ({
+        ...prevListings,
+        results: prevListings.results.map((listing) => {
+          return listing.id === id
+            ? {
+                ...listing,
+                listing_id: null,
+              }
+            : listing;
+        }),
+      }));
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        setAddedToList(false);
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Row className={styles.Listing}>
       <ListingImages images={images} id={id} />
+
       <Col md={8}>
         <h4 style={{ textTransform: "capitalize" }}>
           {type} to {sale_type}
@@ -146,40 +227,65 @@ const Listing = (props) => {
             </tr>
           </tbody>
         </Table>
-        <Row className="mx-auto">
-          {is_owner && listingPage ? (
-            <>
-              <Button
-                className={`${btnStyles.Delete} ${btnStyles.Button} ${btnStyles.Medium} mr-auto`}
-                onClick={() => {}}
-              >
-                Delete
-              </Button>
-              <Button
-                className={`${btnStyles.Edit} ${btnStyles.Button} ${btnStyles.Medium}`}
-                onClick={() => {}}
-              >
-                Edit
-              </Button>
-            </>
-          ) : loggedOut ? (
-            <>
-              <Link
-                to="/signin"
-                className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto btn`}
-              >
-                Add to list
-              </Link>
-            </>
-          ) : (
+      </Col>
+      <Col md={12}>
+        {is_owner && listingPage ? (
+          <>
             <Button
-              className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto`}
+              className={`${btnStyles.Delete} ${btnStyles.Button} ${btnStyles.Medium} mr-auto`}
               onClick={() => {}}
             >
-              Add to list
+              Delete
             </Button>
-          )}
-        </Row>
+            <Button
+              className={`${btnStyles.Edit} ${btnStyles.Button} ${btnStyles.Medium}`}
+              onClick={() => {}}
+            >
+              Edit
+            </Button>
+          </>
+        ) : loggedOut ? (
+          <>
+            <Link
+              to="/signin"
+              className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto btn`}
+            >
+              Add to list
+            </Link>
+          </>
+        ) : addedToList ? (
+          <>
+            {success && (
+              <Alert variant="danger" className={btnStyles.Medium}>
+                Removed from wishlist
+              </Alert>
+            )}
+            {errors?.detail && <p className="text-danger">{errors.detail}</p>}
+
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Remove} ${btnStyles.Medium} my-2`}
+              onClick={handleRemoveFromWishlist}
+            >
+              Remove from wishlist
+            </Button>
+          </>
+        ) : (
+          <>
+            {success && (
+              <Alert variant="success" className={btnStyles.Medium}>
+                Successfully added to wishlist
+              </Alert>
+            )}
+            {errors?.detail && <p className="text-danger">{errors.detail}</p>}
+
+            <Button
+              className={`${btnStyles.Add} ${btnStyles.Button} ${btnStyles.Medium} my-2`}
+              onClick={handleAddToWishlist}
+            >
+              Add to wishlist
+            </Button>
+          </>
+        )}
       </Col>
     </Row>
   );

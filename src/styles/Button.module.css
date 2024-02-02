@@ -74,7 +74,7 @@
 }
 
 .Delete {
-  background-color: #b00000;
+  background-color: #b90707;
   color: #fff;
   border: transparent;
 }
@@ -104,4 +104,31 @@
 .Add:hover {
   background-color: #00ad00;
   color: #fff;
+}
+
+.Remove {
+  background-color: #920000;
+  color: #fff;
+  border: transparent;
+}
+
+.Remove:hover {
+  background-color: #a00000;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .Add {
+    background-color: #5c9600;
+    color: #fff;
+    border: transparent;
+    width: 100%;
+  }
+
+  .Remove {
+    background-color: #680000;
+    color: #fff;
+    border: transparent;
+    width: 100%;
+  }
 }
