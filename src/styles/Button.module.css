@@ -73,28 +73,6 @@
   color: #000;
 }
 
-.Delete {
-  background-color: #b90707;
-  color: #fff;
-  border: transparent;
-}
-
-.Delete:hover {
-  background-color: #db0000;
-  color: #fff;
-}
-
-.Edit {
-  background-color: #00a0a0;
-  color: #fff;
-  border: transparent;
-}
-
-.Edit:hover {
-  background-color: #00c4c4;
-  color: #fff;
-}
-
 .Add {
   background-color: #5c9600;
   color: #fff;
@@ -110,12 +88,26 @@
   background-color: #920000;
   color: #fff;
   border: transparent;
+  font-size: 1rem;
 }
 
 .Remove:hover {
   background-color: #a00000;
   color: #fff;
 }
+
+/* Alert message */
+
+.MessageNone {
+  display: none;
+}
+
+.Message {
+  width: 100%;
+  text-align: center;
+}
+
+/* Responsive */
 
 @media screen and (max-width: 768px) {
   .Add {
@@ -130,5 +122,13 @@
     color: #fff;
     border: transparent;
     width: 100%;
+  }
+
+  .Message {
+    width: 100%;
+  }
+
+  .EditDeleteSmall {
+    justify-content: space-evenly;
   }
 }

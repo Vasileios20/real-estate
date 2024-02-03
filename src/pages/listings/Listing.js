@@ -12,6 +12,7 @@ import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import ListingImages from "./ListingImages";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropDown";
 
 const Listing = (props) => {
   const {
@@ -130,7 +131,7 @@ const Listing = (props) => {
       <ListingImages images={images} id={id} />
 
       <Col md={8}>
-        <h4 style={{ textTransform: "capitalize" }}>
+        <h4 style={{ textTransform: "capitalize" }} className="d-flex">
           {type} to {sale_type}
         </h4>
         <div className={styles.Listing__fontawsome}>
@@ -151,8 +152,11 @@ const Listing = (props) => {
           {address_number}, {address_street}, {postcode}, {city}
         </p>
       </Col>
+      <Col md={4} className="d-flex">
+        {is_owner && <MoreDropdown />}
+      </Col>
 
-      <Col md={5}>
+      <Col className="col-md-8 col-lg-5">
         <h5>Features</h5>
         <Table className={styles.Listing__table}>
           <tbody>
@@ -227,66 +231,62 @@ const Listing = (props) => {
             </tr>
           </tbody>
         </Table>
-      </Col>
-      <Col md={12}>
-        {is_owner && listingPage ? (
-          <>
-            <Button
-              className={`${btnStyles.Delete} ${btnStyles.Button} ${btnStyles.Medium} mr-auto`}
-              onClick={() => {}}
-            >
-              Delete
-            </Button>
-            <Button
-              className={`${btnStyles.Edit} ${btnStyles.Button} ${btnStyles.Medium}`}
-              onClick={() => {}}
-            >
-              Edit
-            </Button>
-          </>
-        ) : loggedOut ? (
+        {loggedOut ? (
           <>
             <Link
               to="/signin"
-              className={`${btnStyles.Olive} ${btnStyles.Button} ${btnStyles.Medium} mx-auto btn`}
+              className={`${btnStyles.Add} ${btnStyles.Button} ${btnStyles.Wide} mx-auto btn`}
             >
               Add to list
             </Link>
           </>
-        ) : addedToList ? (
-          <>
-            {success && (
-              <Alert variant="danger" className={btnStyles.Medium}>
-                Removed from wishlist
-              </Alert>
-            )}
-            {errors?.detail && <p className="text-danger">{errors.detail}</p>}
+        ) : !is_owner && listingPage ? (
+          addedToList ? (
+            <>
+              {success && (
+                <Alert
+                  variant="danger"
+                  className={`${btnStyles.Wide} ${btnStyles.Message}`}
+                >
+                  Removed from wishlist
+                </Alert>
+              )}
+              {errors?.detail && <p className="text-danger">{errors.detail}</p>}
 
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Remove} ${btnStyles.Medium} my-2`}
-              onClick={handleRemoveFromWishlist}
-            >
-              Remove from wishlist
-            </Button>
-          </>
-        ) : (
-          <>
-            {success && (
-              <Alert variant="success" className={btnStyles.Medium}>
-                Successfully added to wishlist
-              </Alert>
-            )}
-            {errors?.detail && <p className="text-danger">{errors.detail}</p>}
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Remove} ${
+                  btnStyles.Wide
+                } ${success ? btnStyles.MessageNone : null} my-2`}
+                onClick={handleRemoveFromWishlist}
+              >
+                Remove from wishlist
+              </Button>
+            </>
+          ) : (
+            <>
+              {success && (
+                <Alert
+                  variant="success"
+                  className={`${btnStyles.Wide} ${btnStyles.Message}`}
+                >
+                  Added to wishlist
+                </Alert>
+              )}
+              {errors?.detail && <p className="text-danger">{errors.detail}</p>}
 
-            <Button
-              className={`${btnStyles.Add} ${btnStyles.Button} ${btnStyles.Medium} my-2`}
-              onClick={handleAddToWishlist}
-            >
-              Add to wishlist
-            </Button>
-          </>
-        )}
+              <Button
+                className={`${btnStyles.Add} ${btnStyles.Button} ${
+                  btnStyles.Wide
+                } ${success ? btnStyles.MessageNone : null} my-2 `}
+                onClick={handleAddToWishlist}
+              >
+                Add to wishlist
+              </Button>
+            </>
+          )
+        ) : null}
       </Col>
+      <Col md={8} className="d-flex"></Col>
     </Row>
   );
 };
