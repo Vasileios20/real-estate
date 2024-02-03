@@ -136,6 +136,10 @@ const Listing = (props) => {
     }
   };
 
+  const handleEdit = () => {
+    history.push(`/listings/${id}/edit`);
+  };
+
   return (
     <Row className={styles.Listing}>
       <ListingImages images={images} id={id} />
@@ -163,7 +167,9 @@ const Listing = (props) => {
         </p>
       </Col>
       <Col md={4} className="d-flex">
-        {is_owner && <MoreDropdown handleDelete={handleDelete} />}
+        {is_owner && (
+          <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
+        )}
       </Col>
 
       <Col className="col-md-8 col-lg-5">

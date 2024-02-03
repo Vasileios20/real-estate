@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ListingCreateForm from "./pages/listings/ListingCreateForm";
 import ListingPage from "./pages/listings/ListingPage";
+import ListingEditForm from "./pages/listings/ListingEditForm";
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
             render={() => <ListingCreateForm />}
           />
           <Route exact path="/listings/:id" render={() => <ListingPage />} />
+          <Route
+            exact
+            path="/listings/:id/edit"
+            render={() => <ListingEditForm />}
+          />
           <Route render={() => <h1>Not Found</h1>} />
         </Switch>
       </Container>

@@ -15,7 +15,7 @@ const CaretDown = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const MoreDropdown = ({ handleDelete }) => {
+export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={CaretDown} />
@@ -26,7 +26,7 @@ export const MoreDropdown = ({ handleDelete }) => {
       >
         <Dropdown.Item
           className={styles.DropdownItem}
-          onClick={() => {}}
+          onClick={handleEdit}
           aria-label="edit"
         >
           <i className="fas fa-edit" />

@@ -464,9 +464,6 @@ function ListingCreateForm() {
               value={construction_year}
               onChange={handleChange}
             >
-              {/* {year_array.map((year) => (
-                <option key={year}>{year}</option>
-              ))} */}
               {Array.from(
                 { length: new Date().getFullYear() - 1899 },
                 (_, i) => i + 1900
