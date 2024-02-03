@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 import Alert from "react-bootstrap/Alert";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ListingImages from "./ListingImages";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropDown";
@@ -52,6 +52,7 @@ const Listing = (props) => {
   const [success, setSuccess] = useState(false);
   const [addedToList, setAddedToList] = useState(null);
   const [wishlistId, setWishlistId] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -126,6 +127,15 @@ const Listing = (props) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/listings/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Row className={styles.Listing}>
       <ListingImages images={images} id={id} />
@@ -153,7 +163,7 @@ const Listing = (props) => {
         </p>
       </Col>
       <Col md={4} className="d-flex">
-        {is_owner && <MoreDropdown />}
+        {is_owner && <MoreDropdown handleDelete={handleDelete} />}
       </Col>
 
       <Col className="col-md-8 col-lg-5">
