@@ -42,7 +42,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  /* color: #dbbf09; */
+  color: #555555;
 }
 
 input[type="file"] {

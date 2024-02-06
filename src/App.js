@@ -8,6 +8,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import ListingCreateForm from "./pages/listings/ListingCreateForm";
 import ListingPage from "./pages/listings/ListingPage";
 import ListingEditForm from "./pages/listings/ListingEditForm";
+import ListingsPage from "./pages/listings/ListingsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/about" render={() => <h1>About</h1>} />
           <Route exact path="/contact" render={() => <h1>Contact</h1>} />
+          <Route exact path="/listings" render={() => <ListingsPage />} />
           <Route
             exact
             path="/listings/create"
