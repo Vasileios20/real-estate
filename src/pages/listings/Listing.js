@@ -13,19 +13,13 @@ import { Link, useHistory } from "react-router-dom";
 import ListingImages from "./ListingImages";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropDown";
+import ListingHeader from "../../components/ListingHeader";
 
 const Listing = (props) => {
   const {
     id,
     owner,
     profile_id,
-    type,
-    sale_type,
-    description,
-    address_number,
-    address_street,
-    postcode,
-    city,
     price,
     surface,
     levels,
@@ -145,27 +139,9 @@ const Listing = (props) => {
       <ListingImages images={images} />
 
       <Col md={8}>
-        <h4 style={{ textTransform: "capitalize" }} className="d-flex">
-          {type} to {sale_type}
-        </h4>
-        <div className={styles.Listing__fontawsome}>
-          <p>
-            <i className="fa-solid fa-bed"> {bedrooms}</i>
-          </p>
-          <p>
-            <i className="fa-solid fa-bath"> {bathrooms}</i>
-          </p>
-          <p>
-            <i className="fa-solid fa-stairs"> {floor}</i>
-          </p>
-        </div>
-        <h5>Description</h5>
-        <p>{description}</p>
-        <h6>Address: </h6>
-        <p>
-          {address_number}, {address_street}, {postcode}, {city}
-        </p>
+        <ListingHeader {...props} listingPage={listingPage} />
       </Col>
+
       <Col md={4} className="d-flex">
         {is_owner && (
           <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
