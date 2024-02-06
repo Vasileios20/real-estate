@@ -1,0 +1,29 @@
+.ImageLeft {
+  max-width: 100%;
+  margin-top: 5px;
+}
+
+.ImageLeft:hover {
+  cursor: pointer;
+}
+
+.ImageRight {
+  max-width: 100%;
+  margin: 5px 0;
+}
+
+.ImageRight:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 576px) {
+  .Modal {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ImageRight {
+    display: none;
+  }
+}

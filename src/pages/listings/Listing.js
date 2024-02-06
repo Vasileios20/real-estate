@@ -142,7 +142,7 @@ const Listing = (props) => {
 
   return (
     <Row className={styles.Listing}>
-      <ListingImages images={images} id={id} />
+      <ListingImages images={images} />
 
       <Col md={8}>
         <h4 style={{ textTransform: "capitalize" }} className="d-flex">
@@ -161,7 +161,7 @@ const Listing = (props) => {
         </div>
         <h5>Description</h5>
         <p>{description}</p>
-        <h6>Address: </h6>{" "}
+        <h6>Address: </h6>
         <p>
           {address_number}, {address_street}, {postcode}, {city}
         </p>

@@ -2,16 +2,6 @@
   margin: 0 25px 16px;
 }
 
-.ImageLeft {
-  max-width: 100%;
-  margin-top: 5px;
-}
-
-.ImageRight {
-  max-width: 100%;
-  margin: 5px 0;
-}
-
 /* Font awsome div */
 .Listing__fontawsome {
   display: flex;
