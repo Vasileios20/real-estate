@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,18 +8,15 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
-import upload from "../../assets/upload.png";
-
 import styles from "../../styles/ListingCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import Asset from "../../components/Asset";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function ListingCreateForm() {
+function ListingEditForm() {
   useRedirect("loggedOut");
   const [listingData, setListingData] = useState({
     type: "apartment",
@@ -67,11 +64,72 @@ function ListingCreateForm() {
     availability,
     images,
   } = listingData;
+
   const [errors, setErrors] = useState({});
-
   const imageInput = useRef(null);
-
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/listings/${id}/`);
+        const {
+          type,
+          sale_type,
+          description,
+          address_number,
+          address_street,
+          postcode,
+          city,
+          price,
+          surface,
+          levels,
+          bedrooms,
+          floor,
+          kitchens,
+          bathrooms,
+          living_rooms,
+          heating_system,
+          energy_class,
+          construction_year,
+          availability,
+          images,
+          uploaded_images,
+          is_owner,
+        } = data;
+
+        is_owner
+          ? setListingData({
+              type,
+              sale_type,
+              description,
+              address_number,
+              address_street,
+              postcode,
+              city,
+              price,
+              surface,
+              levels,
+              bedrooms,
+              floor,
+              kitchens,
+              bathrooms,
+              living_rooms,
+              heating_system,
+              energy_class,
+              construction_year,
+              availability,
+              images,
+              uploaded_images,
+            })
+          : history.push(`/listings/${id}/`);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleMount();
+  }, [id, history]);
 
   const handleChange = (e) => {
     setListingData({
@@ -85,7 +143,7 @@ function ListingCreateForm() {
       URL.revokeObjectURL(images);
       setListingData({
         ...listingData,
-        images: URL.createObjectURL(e.target.files[0]),
+        image: URL.createObjectURL(e.target.files[0]),
       });
     }
   };
@@ -116,10 +174,9 @@ function ListingCreateForm() {
     Array.from(imageInput.current.files).forEach((file) => {
       formData.append("uploaded_images", file);
     });
-    console.log(formData.get("image"));
 
     try {
-      const { data } = await axiosReq.post("/listings/", formData);
+      const { data } = await axiosReq.put(`/listings/${id}/`, formData);
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
@@ -536,7 +593,7 @@ function ListingCreateForm() {
         className={`${btnStyles.Button} ${btnStyles.Olive}`}
         type="submit"
       >
-        Create
+        Update
       </Button>
     </div>
   );
@@ -549,38 +606,45 @@ function ListingCreateForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center justify-content-between">
-              {images ? (
-                <>
-                  {Array.from(imageInput.current.files).map((file, idx) => (
-                    <figure key={idx}>
-                      <Image
-                        className={`"my-2 px-2" ${styles.Image}`}
-                        src={URL.createObjectURL(file)}
-                        rounded
-                      />
-                    </figure>
-                  ))}
-
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
+              <>
+                <Alert
+                  variant="danger"
+                  className={`${btnStyles.Medium} mx-auto`}
                 >
-                  <Asset
-                    src={upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
-              )}
+                  All the old images will be deleted
+                </Alert>
+                {Array.from(images).map((image, idx) => (
+                  <figure key={idx}>
+                    <Image
+                      className={`"my-2 px-2" ${styles.Image}`}
+                      src={image.url}
+                      rounded
+                    />
+                  </figure>
+                ))}
+              </>
+              <>
+                {images
+                  ? Array.from(imageInput.current.files).map((file, idx) => (
+                      <figure key={idx}>
+                        <Image
+                          className={`"my-2 px-2" ${styles.Image}`}
+                          src={URL.createObjectURL(file)}
+                          rounded
+                        />
+                      </figure>
+                    ))
+                  : null}
+
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+              </>
 
               <Form.File
                 multiple
@@ -615,4 +679,4 @@ function ListingCreateForm() {
   );
 }
 
-export default ListingCreateForm;
+export default ListingEditForm;
