@@ -527,13 +527,13 @@ function ListingCreateForm() {
       </Row>
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Olive}`}
+        className={`${btnStyles.Button} ${btnStyles.Bright} mr-3`}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Olive}`}
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
         type="submit"
       >
         Create

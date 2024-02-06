@@ -246,9 +246,9 @@ const Listing = (props) => {
               {errors?.detail && <p className="text-danger">{errors.detail}</p>}
 
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Remove} ${
-                  btnStyles.Wide
-                } ${success ? btnStyles.MessageNone : null} my-2`}
+                className={`${btnStyles.Button} ${btnStyles.Remove}  ${
+                  success ? btnStyles.MessageNone : null
+                } my-2`}
                 onClick={handleRemoveFromWishlist}
               >
                 Remove from wishlist
@@ -268,8 +268,8 @@ const Listing = (props) => {
 
               <Button
                 className={`${btnStyles.Add} ${btnStyles.Button} ${
-                  btnStyles.Wide
-                } ${success ? btnStyles.MessageNone : null} my-2 `}
+                  success ? btnStyles.MessageNone : null
+                } my-2 `}
                 onClick={handleAddToWishlist}
               >
                 Add to wishlist
