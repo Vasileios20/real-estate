@@ -1,24 +1,51 @@
+import React, { useEffect, useState } from "react";
+
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import styles from "../../styles/Listing.module.css";
-
+import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ListingHeader from "../../components/ListingHeader";
 
 import Card from "react-bootstrap/Card";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import useFetchListings from "../../hooks/useFetchListings";
 
-function ListingsPage() {
+function Wishlist(props) {
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === props.owner;
+  const { pathname } = useLocation();
+  const [listingId, setListingId] = useState([]);
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      try {
+        const { data } = await axiosReq.get(`/wishlist/`);
+        const wishlistId = data.results.map(
+          (result) => result.owner === currentUser?.username && result.listings
+        );
+        setListingId(wishlistId);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchWishlist();
+  }, [pathname, is_owner, currentUser?.username]);
+
   const { listings, setListings, hasLoaded } = useFetchListings();
+
+  const wishlistArray = listings.results.filter((listing) =>
+    listingId.includes(listing.id)
+  );
 
   return (
     <Row className={styles.Listing}>
       {hasLoaded ? (
         <>
-          {listings.results.length ? (
-            listings.results.map((listing) => (
+          {wishlistArray.length ? (
+            wishlistArray.map((listing) => (
               <Card key={listing.id} style={{ width: "18rem" }} className="m-1">
                 <Link to={`/listings/${listing.id}`}>
                   <Card.Img
@@ -53,4 +80,4 @@ function ListingsPage() {
   );
 }
 
-export default ListingsPage;
+export default Wishlist;

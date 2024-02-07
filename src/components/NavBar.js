@@ -35,6 +35,9 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
+      <NavLink className={styles.NavLink} to="/wishlist">
+        Wishlist
+      </NavLink>
       <NavLink
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}

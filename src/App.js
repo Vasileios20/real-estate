@@ -9,6 +9,8 @@ import ListingCreateForm from "./pages/listings/ListingCreateForm";
 import ListingPage from "./pages/listings/ListingPage";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import ListingsPage from "./pages/listings/ListingsPage";
+import ContactForm from "./pages/contact/ContactForm";
+import Wishlist from "./pages/wishlist/Wishlist";
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/about" render={() => <h1>About</h1>} />
-          <Route exact path="/contact" render={() => <h1>Contact</h1>} />
+          <Route exact path="/contact" render={() => <ContactForm />} />
           <Route exact path="/listings" render={() => <ListingsPage />} />
           <Route
             exact
@@ -33,6 +35,7 @@ function App() {
             path="/listings/:id/edit"
             render={() => <ListingEditForm />}
           />
+          <Route exact path="/wishlist" render={() => <Wishlist />} />
           <Route render={() => <h1>Not Found</h1>} />
         </Switch>
       </Container>
