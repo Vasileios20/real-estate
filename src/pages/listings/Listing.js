@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import styles from "../../styles/Listing.module.css";
@@ -40,21 +40,14 @@ const Listing = (props) => {
     setListings,
   } = props;
 
+  const { addedToList, setAddedToList, wishlistId } = useFetchWishlist(props);
+
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const loggedOut = currentUser === null;
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [addedToList, setAddedToList] = useState(null);
   const history = useHistory();
-
-  const { wishlistId, listingId } = useFetchWishlist(props);
-
-  useEffect(() => {
-    if (listingId.includes(id)) {
-      setAddedToList(true);
-    }
-  }, [listingId, id]);
 
   const handleAddToWishlist = async () => {
     try {

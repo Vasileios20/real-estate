@@ -9,6 +9,7 @@ const useFetchWishlist = (props) => {
   const { pathname } = useLocation();
   const [listingId, setListingId] = useState([]);
   const [wishlistId, setWishlistId] = useState(null);
+  const [addedToList, setAddedToList] = useState(null);
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -22,14 +23,19 @@ const useFetchWishlist = (props) => {
             result.listings === props.id &&
             result.owner === currentUser?.username
         );
+        if (wishlistId) {
+          setWishlistId(wishlistId?.id);
+        }
+        if (wishlistId && wishlistId.owner === currentUser?.username) {
+          setAddedToList(true);
+        }
         setListingId(wishlist);
-        setWishlistId(wishlistId?.id);
       } catch (err) {
         console.log(err);
       }
     };
     fetchWishlist();
-  }, [pathname, is_owner, currentUser?.username, props.id]);
+  }, [pathname, is_owner, currentUser?.username, props.id, addedToList]);
   return {
     listingId,
     setListingId,
@@ -38,6 +44,8 @@ const useFetchWishlist = (props) => {
     pathname,
     is_owner,
     currentUser,
+    addedToList,
+    setAddedToList,
   };
 };
 
