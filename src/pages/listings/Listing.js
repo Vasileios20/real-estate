@@ -14,6 +14,7 @@ import ListingImages from "./ListingImages";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropDown";
 import ListingHeader from "../../components/ListingHeader";
+import useFetchWishlist from "../../hooks/useFetchWishlist";
 
 const Listing = (props) => {
   const {
@@ -45,31 +46,15 @@ const Listing = (props) => {
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(false);
   const [addedToList, setAddedToList] = useState(null);
-  const [wishlistId, setWishlistId] = useState(null);
   const history = useHistory();
 
+  const { wishlistId, listingId } = useFetchWishlist(props);
+
   useEffect(() => {
-    const fetchWishlist = async () => {
-      try {
-        const { data } = await axiosRes.get("/wishlist/");
-
-        const wishlist = data.results.find(
-          (result) =>
-            result.listings === id && result.owner === currentUser?.username
-        );
-
-        if (wishlist) {
-          setWishlistId(wishlist.id);
-        }
-        if (wishlist && wishlist.owner === currentUser?.username) {
-          setAddedToList(true);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchWishlist();
-  }, [id, currentUser, addedToList]);
+    if (listingId.includes(id)) {
+      setAddedToList(true);
+    }
+  }, [listingId, id]);
 
   const handleAddToWishlist = async () => {
     try {

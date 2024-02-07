@@ -1,39 +1,16 @@
-import React, { useEffect, useState } from "react";
-
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import Card from "react-bootstrap/Card";
 import styles from "../../styles/Listing.module.css";
-import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ListingHeader from "../../components/ListingHeader";
 
-import Card from "react-bootstrap/Card";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import useFetchListings from "../../hooks/useFetchListings";
+import useFetchWishlist from "../../hooks/useFetchWishlist";
 
 function Wishlist(props) {
-  const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === props.owner;
-  const { pathname } = useLocation();
-  const [listingId, setListingId] = useState([]);
-
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      try {
-        const { data } = await axiosReq.get(`/wishlist/`);
-        const wishlistId = data.results.map(
-          (result) => result.owner === currentUser?.username && result.listings
-        );
-        setListingId(wishlistId);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchWishlist();
-  }, [pathname, is_owner, currentUser?.username]);
-
+  const { listingId } = useFetchWishlist(props);
   const { listings, setListings, hasLoaded } = useFetchListings();
 
   const wishlistArray = listings.results.filter((listing) =>
