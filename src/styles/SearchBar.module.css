@@ -1,0 +1,20 @@
+.SearchBar {
+  color: #242a3d;
+  /* padding-left: 40px;
+  margin-bottom: 16px; */
+}
+
+.SearchBarLabel {
+  position: absolute;
+  top: -25px;
+  left: 1rem;
+}
+
+.SearchIcon:hover {
+  cursor: default;
+  color: #cfced3;
+}
+
+/* Responsive design */
+
+/* Small devices (landscape phones, up to 576px) */

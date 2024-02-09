@@ -11,6 +11,7 @@ import ListingEditForm from "./pages/listings/ListingEditForm";
 import ListingsPage from "./pages/listings/ListingsPage";
 import ContactForm from "./pages/contact/ContactForm";
 import Wishlist from "./pages/wishlist/Wishlist";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/about" render={() => <h1>About</h1>} />
