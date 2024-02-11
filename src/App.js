@@ -12,8 +12,10 @@ import ListingsPage from "./pages/listings/ListingsPage";
 import ContactForm from "./pages/contact/ContactForm";
 import Wishlist from "./pages/wishlist/Wishlist";
 import HomePage from "./pages/home/HomePage";
+import useUserStatus from "./hooks/useUserStatus";
 
 function App() {
+  useUserStatus();
   return (
     <div className={styles.App}>
       <NavBar />
