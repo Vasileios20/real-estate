@@ -84,14 +84,8 @@ const SearchBar = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   type="text"
-                  placeholder="Search"
+                  placeholder="City, postcode, address"
                 />
-                <Button
-                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
-                  type="submit"
-                >
-                  Search
-                </Button>
               </Col>
               <Col sm={3} className="my-2 m-sm-0">
                 <Form.Control
@@ -148,6 +142,14 @@ const SearchBar = () => {
                     setSurface({ ...surface, max: e.target.value })
                   }
                 />
+              </Col>
+              <Col className="col-12">
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
+                  type="submit"
+                >
+                  Search
+                </Button>
               </Col>
             </Row>
           </Form>

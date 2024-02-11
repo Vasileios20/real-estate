@@ -9,93 +9,104 @@ import ListingHeader from "./ListingHeader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import { fetchMoreData } from "../utils/utils";
+import SearchBar from "./SearchBar";
 
-const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
+const ListingsWishlistPage = ({
+  array,
+  hasLoaded,
+  setListings,
+  listings,
+  message,
+}) => {
   return (
-    <Row className="mt-3">
-      {listings ? (
-        hasLoaded ? (
+    <>
+      <SearchBar />
+      <Row className="mt-3">
+        {listings ? (
+          hasLoaded ? (
+            <>
+              {array.length ? (
+                <InfiniteScroll
+                  dataLength={array.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!listings.next}
+                  next={() => fetchMoreData(listings, setListings)}
+                >
+                  {array.map((listing) => (
+                    <Row key={listing.id} className="mx-0 align-items-center">
+                      <Col xs={12} md={6} lg={5} xl={4} className="p-0">
+                        <Link to={`/listings/${listing.id}`}>
+                          <Image
+                            src={listing.images[0].url}
+                            alt={listing.images[0].id}
+                            className={`img-fluid ${styles.Listingswishlist__Image}`}
+                            style={{ aspectRatio: "16/9" }}
+                          ></Image>
+                        </Link>
+                      </Col>
+                      <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
+                        <Link to={`/listings/${listing.id}`}>
+                          <div>
+                            <ListingHeader
+                              {...listing}
+                              listingPage={true}
+                              setListings={setListings}
+                            />
+                          </div>
+                        </Link>
+                      </Col>
+                    </Row>
+                  ))}
+                </InfiniteScroll>
+              ) : (
+                <Container>
+                  <Row className="justify-content-center">{message}</Row>
+                  <Asset text="No results" />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container>
+              <Asset spinner />
+            </Container>
+          )
+        ) : (
           <>
             {array.length ? (
-              <InfiniteScroll
-                dataLength={array.length}
-                loader={<Asset spinner />}
-                hasMore={!!listings.next}
-                next={() => fetchMoreData(listings, setListings)}
-              >
-                {array.map((listing) => (
-                  <Row key={listing.id} className="mx-0 align-items-center">
-                    <Col xs={12} md={6} lg={5} xl={4} className="p-0">
-                      <Link to={`/listings/${listing.id}`}>
-                        <Image
-                          src={listing.images[0].url}
-                          alt={listing.images[0].id}
-                          className={`img-fluid ${styles.Listingswishlist__Image}`}
-                          style={{ aspectRatio: "16/9" }}
-                        ></Image>
-                      </Link>
-                    </Col>
-                    <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
-                      <Link to={`/listings/${listing.id}`}>
-                        <div>
-                          <ListingHeader
-                            {...listing}
-                            listingPage={true}
-                            setListings={setListings}
-                          />
-                        </div>
-                      </Link>
-                    </Col>
-                  </Row>
-                ))}
-              </InfiniteScroll>
+              array.map((listing) => (
+                <Row key={listing.id} className="mx-0 align-items-center">
+                  <Col xs={12} md={6} lg={5} xl={4} className="p-0">
+                    <Link to={`/listings/${listing.id}`}>
+                      <Image
+                        src={listing.images[0].url}
+                        alt={listing.images[0].id}
+                        className="img-fluid"
+                        style={{ aspectRatio: "16/9" }}
+                      ></Image>
+                    </Link>
+                  </Col>
+                  <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
+                    <Link to={`/listings/${listing.id}`}>
+                      <div>
+                        <ListingHeader
+                          {...listing}
+                          listingPage={true}
+                          setListings={setListings}
+                        />
+                      </div>
+                    </Link>
+                  </Col>
+                </Row>
+              ))
             ) : (
               <Container>
                 <Asset text="No results" />
               </Container>
             )}
           </>
-        ) : (
-          <Container>
-            <Asset spinner />
-          </Container>
-        )
-      ) : (
-        <>
-          {array.length ? (
-            array.map((listing) => (
-              <Row key={listing.id} className="mx-0 align-items-center">
-                <Col xs={12} md={6} lg={5} xl={4} className="p-0">
-                  <Link to={`/listings/${listing.id}`}>
-                    <Image
-                      src={listing.images[0].url}
-                      alt={listing.images[0].id}
-                      className="img-fluid"
-                      style={{ aspectRatio: "16/9" }}
-                    ></Image>
-                  </Link>
-                </Col>
-                <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
-                  <Link to={`/listings/${listing.id}`}>
-                    <div>
-                      <ListingHeader
-                        {...listing}
-                        listingPage={true}
-                        setListings={setListings}
-                      />
-                    </div>
-                  </Link>
-                </Col>
-              </Row>
-            ))
-          ) : (
-            <Container>
-              <Asset text="No results" />
-            </Container>
-          )}
-        </>
-      )}
-    </Row>
+        )}
+      </Row>
+    </>
   );
 };
 

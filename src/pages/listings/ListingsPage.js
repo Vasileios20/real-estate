@@ -6,10 +6,14 @@ import { useLocation } from "react-router-dom";
 function ListingsPage() {
   const { listings, setListings, hasLoaded } = useFetchListings();
   const { state } = useLocation();
+  const message = "No results";
 
   useEffect(() => {
     if (state && state.data) {
-      setListings(state.data);
+      console.log(state.data);
+      if (state.data.results.length === 0) {
+        setListings({ results: [], message });
+      } else setListings(state.data);
     }
   }, [setListings, state]);
 
@@ -22,6 +26,7 @@ function ListingsPage() {
         hasLoaded={hasLoaded}
         setListings={setListings}
         listings={listings}
+        message={message}
       />
     </>
   );
