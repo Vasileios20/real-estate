@@ -12,10 +12,12 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
+import useUserStatus from "../hooks/useUserStatus";
+
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
+  const userStatus = useUserStatus();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
@@ -101,15 +103,7 @@ const NavBar = () => {
               Home
             </NavLink>
 
-            {currentUser ? (
-              addListing
-            ) : (
-              <>
-                <NavLink className={styles.NavLink} to="/signin">
-                  Add your listing
-                </NavLink>
-              </>
-            )}
+            {userStatus ? addListing : null}
 
             <NavLink
               className={styles.NavLink}
