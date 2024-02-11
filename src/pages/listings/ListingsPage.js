@@ -16,11 +16,14 @@ function ListingsPage() {
   const displayListings = state ? state.data : listings;
 
   return (
-    <ListingsWishlistPage
-      array={displayListings.results}
-      hasLoaded={hasLoaded}
-      setListings={setListings}
-    />
+    <>
+      <ListingsWishlistPage
+        array={displayListings.results}
+        hasLoaded={hasLoaded}
+        setListings={setListings}
+        listings={listings}
+      />
+    </>
   );
 }
 

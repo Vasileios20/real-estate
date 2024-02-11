@@ -1,7 +1,3 @@
-.Listing {
-  margin: 0 25px 16px;
-}
-
 /* Font awsome div */
 .Listing__fontawsome {
   display: flex;
@@ -11,6 +7,11 @@
 
 .Listing__fontawsome i {
   margin-right: 10px;
+}
+
+/* Listing Header */
+.Listing__header {
+  padding: 10px 0;
 }
 
 /* Features table */
@@ -30,6 +31,11 @@
 
 .Listing__table td:nth-child(2) {
   font-weight: 500;
+}
+
+/* ListingsWishlistPage Image */
+.Listingswishlist__Image {
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
 /* Responsive */
