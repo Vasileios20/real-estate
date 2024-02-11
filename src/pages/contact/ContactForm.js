@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -32,15 +32,10 @@ function ContactForm() {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (currentUser) {
-      setContactData({
-        ...contactData,
-        name: currentUser.username,
-        email: currentUser.email,
-      });
-    }
-  }, [contactData, currentUser]);
+  if (currentUser) {
+    contactData.name = currentUser.username;
+    contactData.email = currentUser.email;
+  }
 
   const handleChange = (e) => {
     setContactData({
