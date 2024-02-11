@@ -13,6 +13,7 @@ import ContactForm from "./pages/contact/ContactForm";
 import Wishlist from "./pages/wishlist/Wishlist";
 import HomePage from "./pages/home/HomePage";
 import useUserStatus from "./hooks/useUserStatus";
+import NotFound from "./components/NotFounds";
 
 function App() {
   useUserStatus();
@@ -39,7 +40,8 @@ function App() {
             render={() => <ListingEditForm />}
           />
           <Route exact path="/wishlist" render={() => <Wishlist />} />
-          <Route render={() => <h1>Not Found</h1>} />
+          <Route exact path="/notfound" render={() => <NotFound />} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>

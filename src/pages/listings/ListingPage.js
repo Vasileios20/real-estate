@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Listing from "./Listing";
+import NotFound from "../../components/NotFounds";
 
 function ListingPage() {
   const { id } = useParams();
   const [listing, setListing] = useState({ results: [] });
+  const history = useHistory();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -15,6 +17,9 @@ function ListingPage() {
         ]);
         setListing({ results: [listing] });
       } catch (error) {
+        if (error.response.status === 404) {
+          history.push("/notfound");
+        }
         console.log(error);
       }
     };
