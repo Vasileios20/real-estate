@@ -12,7 +12,7 @@ import { fetchMoreData } from "../utils/utils";
 
 const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
   return (
-    <Row className="justify-content-evenly">
+    <Row className="mt-3">
       {listings ? (
         hasLoaded ? (
           <>
@@ -24,8 +24,8 @@ const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
                 next={() => fetchMoreData(listings, setListings)}
               >
                 {array.map((listing) => (
-                  <Row key={listing.id} className="border rounded my-2">
-                    <Col xs={12} sm={8} md={6} lg={4} className="">
+                  <Row key={listing.id} className="mx-0 align-items-center">
+                    <Col xs={12} md={6} lg={5} xl={4} className="p-0">
                       <Link to={`/listings/${listing.id}`}>
                         <Image
                           src={listing.images[0].url}
@@ -35,7 +35,7 @@ const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
                         ></Image>
                       </Link>
                     </Col>
-                    <Col xs={12} sm={4} md={6} lg={4}>
+                    <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
                       <Link to={`/listings/${listing.id}`}>
                         <div>
                           <ListingHeader
@@ -64,8 +64,8 @@ const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
         <>
           {array.length ? (
             array.map((listing) => (
-              <Row key={listing.id} className="border rounded my-2">
-                <Col xs={12} sm={8} md={6} lg={4} className="px-0">
+              <Row key={listing.id} className="mx-0 align-items-center">
+                <Col xs={12} md={6} lg={5} xl={4} className="p-0">
                   <Link to={`/listings/${listing.id}`}>
                     <Image
                       src={listing.images[0].url}
@@ -75,7 +75,7 @@ const ListingsWishlistPage = ({ array, hasLoaded, setListings, listings }) => {
                     ></Image>
                   </Link>
                 </Col>
-                <Col xs={12} md={4}>
+                <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
                   <Link to={`/listings/${listing.id}`}>
                     <div>
                       <ListingHeader
