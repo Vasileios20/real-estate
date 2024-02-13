@@ -16,7 +16,7 @@ export const useRedirect = (useAuthStatus) => {
       } catch (err) {
         // if the user is logged out, redirect to the login page
         if (useAuthStatus === "loggedOut") {
-          history.push("/");
+          history.push("/signin");
         }
       }
     };
