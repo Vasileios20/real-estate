@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 
 const ContactMessage = () => {
   const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState({});
   const history = useHistory();
   const { id } = useParams();
 
@@ -19,7 +18,6 @@ const ContactMessage = () => {
         console.log(err);
         if (err.response.status === 403) {
           history.push("/forbidden");
-          setErrors({ message: "You are not authorized to view this page" });
         }
       }
     };

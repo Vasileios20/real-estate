@@ -12,7 +12,6 @@ import { Table } from "react-bootstrap";
 
 const ContactMessagesList = () => {
   const [contactList, setContactList] = useState([]);
-  const [errors, setErrors] = useState({});
   const [query, setQuery] = useState("");
   const [created_at, setCreated_at] = useState({ min: "", max: "" });
   const history = useHistory();
@@ -26,7 +25,6 @@ const ContactMessagesList = () => {
         console.log(err);
         if (err.response.status === 403) {
           history.push("/forbidden");
-          setErrors({ message: "You are not authorized to view this page" });
         }
       }
     };
@@ -52,7 +50,6 @@ const ContactMessagesList = () => {
       console.log(err);
       if (err.response.status === 403) {
         history.push("/forbidden");
-        setErrors({ message: "You are not authorized to view this page" });
       }
     }
   };
