@@ -16,6 +16,7 @@ import useUserStatus from "./hooks/useUserStatus";
 import NotFound from "./components/NotFounds";
 import Forbidden403 from "./components/Forbidden403";
 import ContactMessagesList from "./pages/contact/ContactMessagesList";
+import ContactMessage from "./pages/contact/ContactMessage";
 
 function App() {
   useUserStatus();
@@ -33,6 +34,11 @@ function App() {
             exact
             path="/contact_list"
             render={() => <ContactMessagesList />}
+          />
+          <Route
+            exact
+            path="/contact_list/:id"
+            render={() => <ContactMessage />}
           />
           <Route exact path="/listings" render={() => <ListingsPage />} />
           <Route
