@@ -15,6 +15,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import ListingTextFields from "../../components/ListingTextFields";
+import useUserStatus from "../../hooks/useUserStatus";
+import Forbidden403 from "../../components/Forbidden403";
 
 function ListingEditForm() {
   useRedirect("loggedOut");
@@ -69,6 +71,7 @@ function ListingEditForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
+  const userStatus = useUserStatus();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -124,8 +127,11 @@ function ListingEditForm() {
               uploaded_images,
             })
           : history.push(`/listings/${id}/`);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        if (err.response.status === 403) {
+          <Forbidden403 />;
+        }
+        console.log(err);
       }
     };
     handleMount();
@@ -180,104 +186,112 @@ function ListingEditForm() {
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
-      if (err.response?.status !== 401) {
+      if (err.response?.status === 403) {
         setErrors(err.response?.data);
       }
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0">
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center justify-content-between">
-              <>
-                <Alert
-                  variant="danger"
-                  className={`${btnStyles.Medium} mx-auto`}
-                >
-                  All the old images will be deleted
-                </Alert>
-                {Array.from(images).map((image, idx) => (
-                  <figure key={idx}>
-                    <Image
-                      className={`"my-2 px-2" ${styles.Image}`}
-                      src={image.url}
-                      rounded
-                    />
-                  </figure>
-                ))}
-              </>
-              <>
-                {images
-                  ? Array.from(imageInput.current.files).map((file, idx) => (
+    <>
+      {userStatus === false ? (
+        <Forbidden403 />
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Col className="py-2 p-0">
+              <Container
+                className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+              >
+                <Form.Group className="text-center justify-content-between">
+                  <>
+                    <Alert
+                      variant="danger"
+                      className={`${btnStyles.Medium} mx-auto`}
+                    >
+                      All the old images will be deleted
+                    </Alert>
+                    {Array.from(images).map((image, idx) => (
                       <figure key={idx}>
                         <Image
                           className={`"my-2 px-2" ${styles.Image}`}
-                          src={URL.createObjectURL(file)}
+                          src={image.url}
                           rounded
                         />
                       </figure>
-                    ))
-                  : null}
+                    ))}
+                  </>
+                  <>
+                    {images
+                      ? Array.from(imageInput.current.files).map(
+                          (file, idx) => (
+                            <figure key={idx}>
+                              <Image
+                                className={`"my-2 px-2" ${styles.Image}`}
+                                src={URL.createObjectURL(file)}
+                                rounded
+                              />
+                            </figure>
+                          )
+                        )
+                      : null}
 
-                <div>
-                  <Form.Label
-                    className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
-                    htmlFor="image-upload"
-                  >
-                    Change the image
-                  </Form.Label>
+                    <div>
+                      <Form.Label
+                        className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
+                        htmlFor="image-upload"
+                      >
+                        Change the image
+                      </Form.Label>
+                    </div>
+                  </>
+
+                  <Form.File
+                    multiple
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    ref={imageInput}
+                  />
+                </Form.Group>
+                {errors?.images?.map((message, idx) => (
+                  <Alert variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
+
+                {errors?.uploaded_images?.map((message, idx) => (
+                  <Alert variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
+
+                <div className="d-md-none">
+                  <ListingTextFields
+                    listingData={listingData}
+                    handleChange={handleChange}
+                    history={history}
+                    errors={errors}
+                  />
                 </div>
-              </>
-
-              <Form.File
-                multiple
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
-            </Form.Group>
-            {errors?.images?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-            {errors?.uploaded_images?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-            <div className="d-md-none">
-              <ListingTextFields
-                listingData={listingData}
-                handleChange={handleChange}
-                history={history}
-                errors={errors}
-              />
-            </div>
-          </Container>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={12} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>
-            <ListingTextFields
-              listingData={listingData}
-              handleChange={handleChange}
-              history={history}
-              errors={errors}
-            />
-          </Container>
-        </Col>
-      </Row>
-    </Form>
+              </Container>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className="d-none d-md-block p-0 p-md-2">
+              <Container className={appStyles.Content}>
+                <ListingTextFields
+                  listingData={listingData}
+                  handleChange={handleChange}
+                  history={history}
+                  errors={errors}
+                />
+              </Container>
+            </Col>
+          </Row>
+        </Form>
+      )}
+    </>
   );
 }
 

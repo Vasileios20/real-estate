@@ -15,6 +15,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropDown";
 import ListingHeader from "../../components/ListingHeader";
 import useFetchWishlist from "../../hooks/useFetchWishlist";
+import useUserStatus from "../../hooks/useUserStatus";
 
 const Listing = (props) => {
   const {
@@ -48,6 +49,7 @@ const Listing = (props) => {
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(false);
   const history = useHistory();
+  const userStatus = useUserStatus();
 
   const handleAddToWishlist = async () => {
     try {
@@ -121,7 +123,7 @@ const Listing = (props) => {
       </Col>
 
       <Col md={4} className="d-flex">
-        {is_owner && (
+        {is_owner && userStatus && (
           <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
         )}
       </Col>
