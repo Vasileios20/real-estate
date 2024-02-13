@@ -126,7 +126,7 @@ function ContactForm() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.subject?.map((message, idx) => (
+            {errors.message?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
