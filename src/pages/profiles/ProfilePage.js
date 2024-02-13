@@ -44,45 +44,49 @@ function ProfilePage() {
   }, [id]);
 
   return (
-    currentUser && (
-      <Container>
-        <Row>
-          <Col className="my-2">
-            <Card className="my-2">
-              <Card.Header>
-                <h1>{profileData.owner}'s Profile Page</h1>
-              </Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col md={4}>
-                    <Image
-                      src={profileData.image}
-                      alt={profileData.owner}
-                      rounded
-                      fluid
-                    />
-                  </Col>
-                  <Col md={8}>
-                    <Card.Title>
-                      {profileData.first_name} {profileData.last_name}
-                    </Card.Title>
-                    <Card.Text>
-                      <p>Email: {profileData.email_address}</p>
-                      <p>Phone: {profileData.phone}</p>
-                      <p>Joined at: {profileData.created_at}</p>
-                      <p>Updated at: {profileData.updated_at}</p>
-                    </Card.Text>
-                  </Col>
-                </Row>
-              </Card.Body>
-              {currentUser.username === profileData.owner && (
-                <ProfileEditDropdown />
-              )}
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    )
+    <>
+      {currentUser && (
+        <Container>
+          <Row>
+            <Col className="my-2">
+              <Card className="my-2">
+                <Card.Header>
+                  <>{profileData?.owner && <ProfileEditDropdown />}</>
+                  <h1>{profileData.owner}'s Profile Page</h1>
+                </Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col md={4}>
+                      <Image
+                        src={profileData.image}
+                        alt={profileData.owner}
+                        rounded
+                        fluid
+                      />
+                    </Col>
+                    <Col md={8}>
+                      <Card.Title>
+                        {profileData.first_name} {profileData.last_name}
+                      </Card.Title>
+                      <Card.Text>
+                        Email: {profileData.email_address}
+                        <br />
+                        Phone: {profileData.phone}
+                        <br />
+                        Joined at: {profileData.created_at}
+                        <br />
+                        Updated at: {profileData.updated_at}
+                        <br />
+                      </Card.Text>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      )}
+    </>
   );
 }
 
