@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -32,10 +32,18 @@ function ContactForm() {
 
   const history = useHistory();
 
-  if (currentUser) {
-    contactData.name = currentUser.username;
-    contactData.email = currentUser.email;
-  }
+  useEffect(() => {
+    if (currentUser) {
+      setContactData({
+        ...contactData,
+        name: currentUser.username,
+        email: currentUser.email,
+      });
+    }
+    // if contactData is included in the dependency array,
+    // the useEffect hook will run indefinitely
+    // eslint-disable-next-line
+  }, [currentUser, history]);
 
   const handleChange = (e) => {
     setContactData({
