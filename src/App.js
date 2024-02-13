@@ -18,6 +18,7 @@ import Forbidden403 from "./components/Forbidden403";
 import ContactMessagesList from "./pages/contact/ContactMessagesList";
 import ContactMessage from "./pages/contact/ContactMessage";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 
 function App() {
   useUserStatus();
@@ -55,6 +56,11 @@ function App() {
           />
           <Route exact path="/wishlist" render={() => <Wishlist />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
           <Route exact path="/forbidden" render={() => <Forbidden403 />} />
           <Route exact path="/notfound" render={() => <NotFound />} />
           <Route render={() => <NotFound />} />

@@ -51,7 +51,11 @@ function ProfilePage() {
             <Col className="my-2">
               <Card className="my-2">
                 <Card.Header>
-                  <>{profileData?.owner && <ProfileEditDropdown />}</>
+                  <>
+                    {profileData?.owner && (
+                      <ProfileEditDropdown id={profileData.id} />
+                    )}
+                  </>
                   <h1>{profileData.owner}'s Profile Page</h1>
                 </Card.Header>
                 <Card.Body>
