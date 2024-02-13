@@ -29,15 +29,32 @@ const NavBar = () => {
     }
   };
 
-  const addListing = (
-    <NavLink className={styles.NavLink} to="/listings/create">
-      Add your listing
-    </NavLink>
+  const staffIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/listings/create"
+      >
+        Add your listing
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/contact_list"
+      >
+        Messages
+      </NavLink>
+    </>
   );
 
   const loggedInIcons = (
     <>
-      <NavLink className={styles.NavLink} to="/wishlist">
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/wishlist"
+      >
         Wishlist
       </NavLink>
       <NavLink
@@ -103,7 +120,7 @@ const NavBar = () => {
               Home
             </NavLink>
 
-            {userStatus ? addListing : null}
+            {userStatus ? staffIcons : null}
 
             <NavLink
               className={styles.NavLink}

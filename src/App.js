@@ -15,6 +15,7 @@ import HomePage from "./pages/home/HomePage";
 import useUserStatus from "./hooks/useUserStatus";
 import NotFound from "./components/NotFounds";
 import Forbidden403 from "./components/Forbidden403";
+import ContactMessagesList from "./pages/contact/ContactMessagesList";
 
 function App() {
   useUserStatus();
@@ -28,6 +29,11 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/about" render={() => <h1>About</h1>} />
           <Route exact path="/contact" render={() => <ContactForm />} />
+          <Route
+            exact
+            path="/contact_list"
+            render={() => <ContactMessagesList />}
+          />
           <Route exact path="/listings" render={() => <ListingsPage />} />
           <Route
             exact
