@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Listing from "./Listing";
-import NotFound from "../../components/NotFounds";
 
 function ListingPage() {
   const { id } = useParams();
@@ -24,7 +23,7 @@ function ListingPage() {
       }
     };
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   return (
     <>
