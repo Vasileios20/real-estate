@@ -9,7 +9,7 @@ h1 {
 }
 
 .Main {
-  padding-top: 81px;
+  padding-top: 100px;
 }
 
 .Content {
@@ -66,4 +66,11 @@ figure {
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .Main {
+    padding-top: 75px;
+  }
 }

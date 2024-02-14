@@ -21,6 +21,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import AboutPage from "./pages/home/AboutPage";
 
 function App() {
   useUserStatus();
@@ -32,7 +33,7 @@ function App() {
           <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/about" render={() => <h1>About</h1>} />
+          <Route exact path="/about" render={() => <AboutPage />} />
           <Route exact path="/contact" render={() => <ContactForm />} />
           <Route
             exact
