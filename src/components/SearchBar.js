@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,13 +12,30 @@ import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
-  const [listings, setListings] = useState({ results: [] });
-  const history = useHistory();
   const [saleType, setSaleType] = useState("rent");
   const [type, setType] = useState("");
-
   const [price, setPrice] = useState({ min: "", max: "" });
   const [surface, setSurface] = useState({ min: "", max: "" });
+  const history = useHistory();
+  const [update, setUpdate] = useState(false);
+  const location = history.location;
+
+  useMemo(() => {
+    const search = history.location.search;
+    const params = new URLSearchParams(search);
+    const saleType = params.get("sale_type");
+    const type = params.get("type");
+    const minPrice = params.get("min_price");
+    const maxPrice = params.get("max_price");
+    const minSurface = params.get("min_surface");
+    const maxSurface = params.get("max_surface");
+    const searchQuery = params.get("search");
+    setSaleType(saleType);
+    setType(type);
+    setPrice({ min: minPrice, max: maxPrice });
+    setSurface({ min: minSurface, max: maxSurface });
+    setQuery(searchQuery);
+  }, [history.location.search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,12 +60,39 @@ const SearchBar = () => {
     }
     try {
       const { data } = await axiosReq.get(`${path}`);
-      setListings(data);
       history.push(`${path}`, { data: data });
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setUpdate(false);
+    const updateButtonLabel = () => {
+      if (
+        location.pathname === "/listings/" &&
+        (saleType ||
+          query ||
+          type ||
+          price.min ||
+          price.max ||
+          surface.min ||
+          surface.max)
+      ) {
+        setUpdate(true);
+      }
+    };
+    updateButtonLabel();
+  }, [
+    update,
+    query,
+    type,
+    price,
+    surface,
+    saleType,
+    location.pathname,
+    location.search,
+  ]);
 
   return (
     <Container>
@@ -81,7 +125,7 @@ const SearchBar = () => {
               </Col>
               <Col sm={3}>
                 <Form.Control
-                  value={query}
+                  value={query ? query : ""}
                   onChange={(e) => setQuery(e.target.value)}
                   type="text"
                   placeholder="City, postcode, address"
@@ -91,7 +135,7 @@ const SearchBar = () => {
                 <Form.Control
                   as="select"
                   name="type"
-                  value={type}
+                  value={type ? type : ""}
                   onChange={(e) => setType(e.target.value)}
                 >
                   <option value="">Type</option>
@@ -109,14 +153,14 @@ const SearchBar = () => {
                   type="number"
                   placeholder="Min"
                   min="0"
-                  value={price.min}
+                  value={price.min ? price.min : ""}
                   onChange={(e) => setPrice({ ...price, min: e.target.value })}
                 />
                 <Form.Control
                   type="number"
                   placeholder="Max"
                   max="10000000"
-                  value={price.max}
+                  value={price.max ? price.max : ""}
                   onChange={(e) => setPrice({ ...price, max: e.target.value })}
                 />
               </Col>
@@ -128,7 +172,7 @@ const SearchBar = () => {
                   type="number"
                   placeholder="Min"
                   min="0"
-                  value={surface.min}
+                  value={surface.min ? surface.min : ""}
                   onChange={(e) =>
                     setSurface({ ...surface, min: e.target.value })
                   }
@@ -137,7 +181,7 @@ const SearchBar = () => {
                   type="number"
                   placeholder="Max"
                   max="10000000"
-                  value={surface.max}
+                  value={surface.max ? surface.max : ""}
                   onChange={(e) =>
                     setSurface({ ...surface, max: e.target.value })
                   }
@@ -148,7 +192,7 @@ const SearchBar = () => {
                   className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
                   type="submit"
                 >
-                  Search
+                  {update ? "Update" : "Search"}
                 </Button>
               </Col>
             </Row>
