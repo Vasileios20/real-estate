@@ -2,11 +2,11 @@
   color: #242a3d;
 }
 
-.SearchBarLabel {
+/* .SearchBarLabel {
   position: absolute;
   top: -25px;
   left: 1rem;
-}
+} */
 
 .SearchIcon:hover {
   cursor: default;
@@ -18,6 +18,10 @@
   margin-right: auto;
   margin-bottom: 0;
   padding: 0 5px;
+}
+
+.MinWidth {
+  min-width: 100%;
 }
 
 /* Responsive design */

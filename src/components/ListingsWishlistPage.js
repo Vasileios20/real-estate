@@ -46,13 +46,11 @@ const ListingsWishlistPage = ({
                       </Col>
                       <Col xs={12} md={6} lg={5} xl={4} className="mt-2">
                         <Link to={`/listings/${listing.id}`}>
-                          <div>
-                            <ListingHeader
-                              {...listing}
-                              listingPage={true}
-                              setListings={setListings}
-                            />
-                          </div>
+                          <ListingHeader
+                            {...listing}
+                            listingPage={true}
+                            setListings={setListings}
+                          />
                         </Link>
                       </Col>
                     </Row>

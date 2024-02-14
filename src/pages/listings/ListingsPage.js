@@ -10,7 +10,6 @@ function ListingsPage() {
 
   useEffect(() => {
     if (state && state.data) {
-      console.log(state.data);
       if (state.data.results.length === 0) {
         setListings({ results: [], message });
       } else setListings(state.data);

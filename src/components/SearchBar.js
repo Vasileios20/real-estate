@@ -104,52 +104,53 @@ const SearchBar = () => {
     <Container>
       <Row>
         <Col>
-          <Form
-            className={`d-flex flex-row justify-content-between align-items-center border p-3 bg-light`}
-            onSubmit={handleSubmit}
-          >
-            <Row>
-              <Col md={12} className="mb-3">
-                {errors && (
-                  <Alert className={styles.ErrorWidth} variant="warning">
-                    {errors}
-                  </Alert>
-                )}
+          <Form className={`border p-3 bg-light`} onSubmit={handleSubmit}>
+            <Row className="align-items-center">
+              <Row className="w-100">
+                <Col className="ml-3">
+                  {errors && (
+                    <Alert className={styles.ErrorWidth} variant="warning">
+                      {errors}
+                    </Alert>
+                  )}
 
-                <Form.Check
-                  inline
-                  label="rent"
-                  name="sale_type"
-                  type="radio"
-                  id="rent"
-                  onChange={() => setSaleType("rent")}
-                  checked={saleType === "rent"}
-                />
-                <Form.Check
-                  inline
-                  label="buy"
-                  name="sale_type"
-                  type="radio"
-                  id="sale"
-                  onChange={() => setSaleType("sale")}
-                  checked={saleType === "sale"}
-                />
-              </Col>
+                  <Form.Check
+                    inline
+                    label="rent"
+                    name="sale_type"
+                    type="radio"
+                    id="rent"
+                    onChange={() => setSaleType("rent")}
+                    checked={saleType === "rent"}
+                  />
+                  <Form.Check
+                    inline
+                    label="buy"
+                    name="sale_type"
+                    type="radio"
+                    id="sale"
+                    onChange={() => setSaleType("sale")}
+                    checked={saleType === "sale"}
+                  />
+                </Col>
+              </Row>
 
-              <Col sm={3}>
+              <Col sm={6} md={3} className="mb-3">
                 <Form.Control
                   value={query ? query : ""}
                   onChange={(e) => setQuery(e.target.value)}
                   type="text"
                   placeholder="City, postcode, address"
+                  className="w-100"
                 />
               </Col>
-              <Col sm={3} className="my-2 m-sm-0">
+              <Col md={3} sm={6} className="mb-3">
                 <Form.Control
                   as="select"
                   name="type"
                   value={type ? type : ""}
                   onChange={(e) => setType(e.target.value)}
+                  className="w-100"
                 >
                   <option value="">Type</option>
                   <option value="apartment">Apartment</option>
@@ -158,32 +159,26 @@ const SearchBar = () => {
                   <option value="commercial">Commercial</option>
                 </Form.Control>
               </Col>
-              <Col className="d-flex col-md-3 mt-4 mt-sm-0">
-                <Form.Label className={`${styles.SearchBarLabel} `}>
-                  Price
-                </Form.Label>
+              <Col lg={2} md={3} sm={6} className="mb-3">
                 <Form.Control
                   type="number"
-                  placeholder="Min"
+                  placeholder="Min Price"
                   min="0"
                   value={price.min ? price.min : ""}
                   onChange={(e) => setPrice({ ...price, min: e.target.value })}
                 />
                 <Form.Control
                   type="number"
-                  placeholder="Max"
+                  placeholder="Max Price"
                   max="10000000"
                   value={price.max ? price.max : ""}
                   onChange={(e) => setPrice({ ...price, max: e.target.value })}
                 />
               </Col>
-              <Col className="d-flex col-md-3 mt-4 mt-sm-0">
-                <Form.Label className={`${styles.SearchBarLabel} `}>
-                  Surface
-                </Form.Label>
+              <Col lg={2} md={3} sm={6} className="mb-3">
                 <Form.Control
                   type="number"
-                  placeholder="Min"
+                  placeholder="Min Surface"
                   min="0"
                   value={surface.min ? surface.min : ""}
                   onChange={(e) =>
@@ -192,7 +187,7 @@ const SearchBar = () => {
                 />
                 <Form.Control
                   type="number"
-                  placeholder="Max"
+                  placeholder="Max Surface"
                   max="10000000"
                   value={surface.max ? surface.max : ""}
                   onChange={(e) =>
@@ -200,9 +195,9 @@ const SearchBar = () => {
                   }
                 />
               </Col>
-              <Col className="col-12">
+              <Col lg={2} className="d-flex mb-3">
                 <Button
-                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
+                  className={`${btnStyles.Button} ${btnStyles.Bright} m-lg-auto ml-auto`}
                   type="submit"
                 >
                   {update ? "Update" : "Search"}
