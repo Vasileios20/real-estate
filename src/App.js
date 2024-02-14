@@ -20,6 +20,7 @@ import ContactMessage from "./pages/contact/ContactMessage";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   useUserStatus();
@@ -57,6 +58,11 @@ function App() {
           />
           <Route exact path="/wishlist" render={() => <Wishlist />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
           <Route
             exact
             path="/profiles/:id/edit/username"
