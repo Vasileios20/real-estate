@@ -92,6 +92,7 @@ const ListingTextFields = ({
           <Form.Group controlId="address_number">
             <Form.Label>Address number</Form.Label>
             <Form.Control
+              type="number"
               className={styles.Input}
               name="address_number"
               value={listingData.address_number}
@@ -172,7 +173,7 @@ const ListingTextFields = ({
             <Form.Label>Price</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="price"
               value={listingData.price}
               onChange={handleChange}
@@ -188,7 +189,7 @@ const ListingTextFields = ({
             <Form.Label>Surface</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="surface"
               value={listingData.surface}
               onChange={handleChange}
@@ -208,7 +209,7 @@ const ListingTextFields = ({
             <Form.Label>Levels</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="levels"
               value={listingData.levels}
               onChange={handleChange}
@@ -228,7 +229,7 @@ const ListingTextFields = ({
             <Form.Label>Bedrooms</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="bedrooms"
               value={listingData.bedrooms}
               onChange={handleChange}
@@ -248,7 +249,7 @@ const ListingTextFields = ({
             <Form.Label>Floor</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="floor"
               value={listingData.floor}
               onChange={handleChange}
@@ -268,7 +269,7 @@ const ListingTextFields = ({
             <Form.Label>Kitchens</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="kitchens"
               value={listingData.kitchens}
               onChange={handleChange}
@@ -288,7 +289,7 @@ const ListingTextFields = ({
             <Form.Label>Bathrooms</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="bathrooms"
               value={listingData.bathrooms}
               onChange={handleChange}
@@ -308,7 +309,7 @@ const ListingTextFields = ({
             <Form.Label>Living Rooms</Form.Label>
             <Form.Control
               className={styles.Input}
-              type="text"
+              type="number"
               name="living_rooms"
               value={listingData.living_rooms}
               onChange={handleChange}
