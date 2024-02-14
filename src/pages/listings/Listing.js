@@ -104,7 +104,7 @@ const Listing = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/listings/${id}/`);
-      history.goBack();
+      history.push("/listings");
     } catch (err) {
       console.log(err);
     }
