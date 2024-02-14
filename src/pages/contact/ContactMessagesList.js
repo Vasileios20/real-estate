@@ -9,8 +9,11 @@ import Button from "react-bootstrap/Button";
 import btnStyles from "../../styles/Button.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { Table } from "react-bootstrap";
+import useUserStatus from "../../hooks/useUserStatus";
+import Forbidden403 from "../../components/Forbidden403";
 
 const ContactMessagesList = () => {
+  const status = useUserStatus();
   const [contactList, setContactList] = useState([]);
   const [query, setQuery] = useState("");
   const [created_at, setCreated_at] = useState({ min: "", max: "" });
@@ -56,108 +59,114 @@ const ContactMessagesList = () => {
 
   return (
     <>
-      <Form
-        className={`d-flex flex-row justify-content-around align-items-center border p-4 bg-light mt-5`}
-        onSubmit={handleSubmit}
-      >
-        <Row>
-          <Col className="col-sm-12 col-md-6 mt-auto">
-            <Form.Control
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              type="text"
-              placeholder="name, email or subject"
-            />
-          </Col>
+      {status ? (
+        <>
+          <Form
+            className={`d-flex flex-row justify-content-around align-items-center border p-4 bg-light mt-5`}
+            onSubmit={handleSubmit}
+          >
+            <Row>
+              <Col className="col-sm-12 col-md-6 mt-auto">
+                <Form.Control
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  type="text"
+                  placeholder="name, email or subject"
+                />
+              </Col>
 
-          <Col className="col-12 col-md-3">
-            <Form.Label>Date from</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Min"
-              min="0"
-              value={created_at.min}
-              onChange={(e) =>
-                setCreated_at({ ...created_at, min: e.target.value })
-              }
-            />
-          </Col>
+              <Col className="col-12 col-md-3">
+                <Form.Label>Date from</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="Min"
+                  min="0"
+                  value={created_at.min}
+                  onChange={(e) =>
+                    setCreated_at({ ...created_at, min: e.target.value })
+                  }
+                />
+              </Col>
 
-          <Col className="col-12 col-md-3">
-            <Form.Label>Date to</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Max"
-              max="10000000"
-              value={created_at.max}
-              onChange={(e) =>
-                setCreated_at({ ...created_at, max: e.target.value })
-              }
-            />
-          </Col>
+              <Col className="col-12 col-md-3">
+                <Form.Label>Date to</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="Max"
+                  max="10000000"
+                  value={created_at.max}
+                  onChange={(e) =>
+                    setCreated_at({ ...created_at, max: e.target.value })
+                  }
+                />
+              </Col>
 
-          <Col className="col-12">
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
-              type="submit"
-            >
-              Search
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+              <Col className="col-12">
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
+                  type="submit"
+                >
+                  Search
+                </Button>
+              </Col>
+            </Row>
+          </Form>
 
-      <Row>
-        <Col className="text-center mt-2">
-          <h1>Messages</h1>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col>
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Sender</th>
-                <th>Email</th>
-                <th>Subject</th>
-                <th>Message</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contactList.map((contact, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <Link to={`/contact_list/${contact.id}`}>
-                      {contact.name}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link to={`/contact_list/${contact.id}`}>
-                      {contact.email}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link to={`/contact_list/${contact.id}`}>
-                      {contact.subject.slice(0, 30)}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link to={`/contact_list/${contact.id}`}>
-                      {contact.message.slice(0, 30)}...
-                    </Link>
-                  </td>
-                  <td>
-                    <Link to={`/contact_list/${contact.id}`}>
-                      {contact.created_at}
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
+          <Row>
+            <Col className="text-center mt-2">
+              <h1>Messages</h1>
+            </Col>
+          </Row>
+          <Row className="mt-2">
+            <Col>
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th>Sender</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contactList.map((contact, idx) => (
+                    <tr key={idx}>
+                      <td>
+                        <Link to={`/contact_list/${contact.id}`}>
+                          {contact.name}
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/contact_list/${contact.id}`}>
+                          {contact.email}
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/contact_list/${contact.id}`}>
+                          {contact.subject.slice(0, 30)}
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/contact_list/${contact.id}`}>
+                          {contact.message.slice(0, 30)}...
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/contact_list/${contact.id}`}>
+                          {contact.created_at}
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <Forbidden403 />
+      )}
     </>
   );
 };
