@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import styles from "../styles/SearchBar.module.css";
 import btnStyles from "../styles/Button.module.css";
 
@@ -19,6 +20,7 @@ const SearchBar = () => {
   const history = useHistory();
   const [update, setUpdate] = useState(false);
   const location = history.location;
+  const [errors, setErrors] = useState("");
 
   useMemo(() => {
     const search = history.location.search;
@@ -35,6 +37,7 @@ const SearchBar = () => {
     setPrice({ min: minPrice, max: maxPrice });
     setSurface({ min: minSurface, max: maxSurface });
     setQuery(searchQuery);
+    setUpdate(false);
   }, [history.location.search]);
 
   const handleSubmit = async (e) => {
@@ -63,6 +66,9 @@ const SearchBar = () => {
       history.push(`${path}`, { data: data });
     } catch (err) {
       console.log(err);
+      if (err.response.status === 400) {
+        setErrors("Please select one option");
+      }
     }
   };
 
@@ -103,7 +109,13 @@ const SearchBar = () => {
             onSubmit={handleSubmit}
           >
             <Row>
-              <Col md={12}>
+              <Col md={12} className="mb-3">
+                {errors && (
+                  <Alert className={styles.ErrorWidth} variant="warning">
+                    {errors}
+                  </Alert>
+                )}
+
                 <Form.Check
                   inline
                   label="rent"
@@ -123,6 +135,7 @@ const SearchBar = () => {
                   checked={saleType === "sale"}
                 />
               </Col>
+
               <Col sm={3}>
                 <Form.Control
                   value={query ? query : ""}
