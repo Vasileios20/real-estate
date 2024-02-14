@@ -66,7 +66,7 @@ function ContactForm() {
   };
 
   return (
-    <Row className={styles.Row}>
+    <Row className="mt-4">
       <Col className="m-auto" md={8}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>contact form</h1>

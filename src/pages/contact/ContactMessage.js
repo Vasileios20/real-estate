@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Card } from "react-bootstrap";
 
 const ContactMessage = () => {
   const [message, setMessage] = useState("");
@@ -28,12 +29,19 @@ const ContactMessage = () => {
   return (
     <Row>
       <Col>
-        <h1>Contact Message</h1>
-        <p>From: {message.name}</p>
-        <p>Email address: {message.email}</p>
-        <p>Subject: {message.subject}</p>
-        <p>Message:</p>
-        <p>{message.message}</p>
+        <Card>
+          <Card.Header>
+            <h1 className="pb-2">
+              Message from: <strong>{message.name}</strong>
+            </h1>
+          </Card.Header>
+          <Card.Body>
+            <Card.Title>Email address: {message.email}</Card.Title>
+            <Card.Title>Subject: {message.subject}</Card.Title>
+            <Card.Title>Message:</Card.Title>
+            <Card.Text>{message.message}</Card.Text>
+          </Card.Body>
+        </Card>
       </Col>
     </Row>
   );

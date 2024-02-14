@@ -5,10 +5,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import btnStyles from "../../styles/Button.module.css";
 import { Link, useHistory } from "react-router-dom";
-import { Table } from "react-bootstrap";
 import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../../components/Forbidden403";
 
@@ -18,6 +20,13 @@ const ContactMessagesList = () => {
   const [query, setQuery] = useState("");
   const [created_at, setCreated_at] = useState({ min: "", max: "" });
   const history = useHistory();
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      To search for a specific day, such as 01/01/2024, include the 'date to'
+      field with the following day, for example, 02/01/2024, in order to refine
+      your search results.
+    </Tooltip>
+  );
 
   useEffect(() => {
     const fetchContactList = async () => {
@@ -62,11 +71,11 @@ const ContactMessagesList = () => {
       {status ? (
         <>
           <Form
-            className={`d-flex flex-row justify-content-around align-items-center border p-4 bg-light mt-5`}
+            className={`d-flex justify-content-center border p-4 p-md-2 bg-light mt-2`}
             onSubmit={handleSubmit}
           >
             <Row>
-              <Col className="col-sm-12 col-md-6 mt-auto">
+              <Col md={4} className="mt-auto">
                 <Form.Control
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
@@ -75,8 +84,17 @@ const ContactMessagesList = () => {
                 />
               </Col>
 
-              <Col className="col-12 col-md-3">
-                <Form.Label>Date from</Form.Label>
+              <Col md={4}>
+                <Form.Label>
+                  Date from
+                  <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltip}
+                  >
+                    <span style={{ cursor: "pointer" }}> *</span>
+                  </OverlayTrigger>
+                </Form.Label>
                 <Form.Control
                   type="date"
                   placeholder="Min"
@@ -88,7 +106,7 @@ const ContactMessagesList = () => {
                 />
               </Col>
 
-              <Col className="col-12 col-md-3">
+              <Col md={4}>
                 <Form.Label>Date to</Form.Label>
                 <Form.Control
                   type="date"
@@ -101,9 +119,9 @@ const ContactMessagesList = () => {
                 />
               </Col>
 
-              <Col className="col-12">
+              <Col className="d-flex">
                 <Button
-                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2`}
+                  className={`${btnStyles.Button} ${btnStyles.Bright} mt-2 ml-auto`}
                   type="submit"
                 >
                   Search
@@ -113,7 +131,7 @@ const ContactMessagesList = () => {
           </Form>
 
           <Row>
-            <Col className="text-center mt-2">
+            <Col className="text-center mt-3">
               <h1>Messages</h1>
             </Col>
           </Row>
