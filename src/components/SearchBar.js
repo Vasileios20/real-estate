@@ -108,11 +108,13 @@ const SearchBar = () => {
             <Row className="align-items-center">
               <Row className="w-100">
                 <Col className="ml-3">
-                  {errors && (
-                    <Alert className={styles.ErrorWidth} variant="warning">
-                      {errors}
-                    </Alert>
-                  )}
+                  {errors &&
+                    (setTimeout(() => setErrors(""), 3000),
+                    (
+                      <Alert className={styles.ErrorWidth} variant="warning">
+                        {errors}
+                      </Alert>
+                    ))}
 
                   <Form.Check
                     inline
