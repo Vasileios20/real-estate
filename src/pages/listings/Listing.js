@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 import Alert from "react-bootstrap/Alert";
+import Card from "react-bootstrap/Card";
 
 import { Link, useHistory } from "react-router-dom";
 import ListingImages from "./ListingImages";
@@ -114,21 +115,34 @@ const Listing = (props) => {
     history.push(`/listings/${id}/edit`);
   };
 
+  const staffCard = (
+    <>
+      <Card.Body>
+        <Card.Text>
+          <Link to={`/profiles/${profile_id}`}>Owner: {owner}</Link>
+        </Card.Text>
+
+        <Card.Text>Created at: {created_at}</Card.Text>
+        <Card.Text>Updated at: {updated_at}</Card.Text>
+      </Card.Body>
+    </>
+  );
+
   return (
     <Row className={styles.Listing}>
       <ListingImages images={images} />
 
-      <Col md={8}>
+      <Col md={4}>
         <ListingHeader {...props} listingPage={listingPage} />
       </Col>
-
-      <Col md={4} className="d-flex">
-        {is_owner && userStatus && (
+      <Col md={4}>{userStatus && staffCard}</Col>
+      <Col md={4} className="d-flex mt-4">
+        {userStatus && (
           <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
         )}
       </Col>
 
-      <Col className="col-md-8 col-lg-5">
+      <Col md={8} lg={5}>
         <h5>Features</h5>
         <Table className={styles.Listing__table}>
           <tbody>
@@ -187,27 +201,13 @@ const Listing = (props) => {
               <td>Listing id</td>
               <td>{id}</td>
             </tr>
-            <tr>
-              <td>Owner</td>
-              <td>
-                <Link to={`/profile/${profile_id}`}>{owner}</Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Created at</td>
-              <td>{created_at}</td>
-            </tr>
-            <tr>
-              <td>Updated at</td>
-              <td>{updated_at}</td>
-            </tr>
           </tbody>
         </Table>
         {loggedOut ? (
           <>
             <Link
               to="/signin"
-              className={`${btnStyles.Add} ${btnStyles.Button} ${btnStyles.Wide} mx-auto btn`}
+              className={`${btnStyles.Add} ${btnStyles.Button} mx-auto btn`}
             >
               Add to list
             </Link>
@@ -258,7 +258,6 @@ const Listing = (props) => {
           )
         ) : null}
       </Col>
-      <Col md={8} className="d-flex"></Col>
     </Row>
   );
 };
