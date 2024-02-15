@@ -21,6 +21,7 @@ const ListingImages = ({ images = [{}] }) => {
             alt={images[0].id}
             onClick={handleShow}
             rounded
+            style={{ aspectRatio: "16/9" }}
           />
         </Col>
         <Col md={6} className="p-0">
@@ -33,6 +34,7 @@ const ListingImages = ({ images = [{}] }) => {
                   className={styles.ImageRight}
                   onClick={handleShow}
                   rounded
+                  style={{ aspectRatio: "16/9" }}
                 />
               </Col>
             ))}
@@ -43,19 +45,18 @@ const ListingImages = ({ images = [{}] }) => {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <>
-            <Row>
+            <Row className="justify-content-center px-3">
               {images.map((image, id) => (
-                <Col
-                  md={3}
+                <Image
                   key={id}
-                  className="d-flex justify-content-between p-1"
-                >
-                  <Image src={image.url} alt={image.id} fluid />
-                </Col>
+                  src={image.url}
+                  alt={image.id}
+                  fluid
+                  className={styles.ImagesModal}
+                />
               ))}
             </Row>
           </>
-          <Image src={images.url} alt={images.id} />
         </Modal.Body>
       </Modal>
     </Container>

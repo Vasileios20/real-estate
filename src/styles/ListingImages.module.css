@@ -16,6 +16,13 @@
   cursor: pointer;
 }
 
+.ImagesModal {
+  max-height: 600px;
+  margin: 10px;
+  aspect-ratio: 16/9;
+  border-radius: 5px;
+}
+
 @media screen and (min-width: 576px) {
   .Modal {
     max-width: 90%;
