@@ -72,6 +72,7 @@ function ListingEditForm() {
   const history = useHistory();
   const { id } = useParams();
   const userStatus = useUserStatus();
+  const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -99,34 +100,31 @@ function ListingEditForm() {
           availability,
           images,
           uploaded_images,
-          is_owner,
         } = data;
 
-        is_owner
-          ? setListingData({
-              type,
-              sale_type,
-              description,
-              address_number,
-              address_street,
-              postcode,
-              city,
-              price,
-              surface,
-              levels,
-              bedrooms,
-              floor,
-              kitchens,
-              bathrooms,
-              living_rooms,
-              heating_system,
-              energy_class,
-              construction_year,
-              availability,
-              images,
-              uploaded_images,
-            })
-          : history.push(`/listings/${id}/`);
+        setListingData({
+          type,
+          sale_type,
+          description,
+          address_number,
+          address_street,
+          postcode,
+          city,
+          price,
+          surface,
+          levels,
+          bedrooms,
+          floor,
+          kitchens,
+          bathrooms,
+          living_rooms,
+          heating_system,
+          energy_class,
+          construction_year,
+          availability,
+          images,
+          uploaded_images,
+        });
       } catch (err) {
         if (err.response.status === 403) {
           <Forbidden403 />;
@@ -152,6 +150,17 @@ function ListingEditForm() {
         image: URL.createObjectURL(e.target.files[0]),
       });
     }
+  };
+
+  const handleSelectedImages = (e) => {
+    const selectedImage = e.target.value;
+    setSelectedImages((prevSelectedImages) => {
+      if (e.target.checked) {
+        return [...prevSelectedImages, selectedImage];
+      } else {
+        return prevSelectedImages.filter((image) => image !== selectedImage);
+      }
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -183,6 +192,9 @@ function ListingEditForm() {
 
     try {
       const { data } = await axiosReq.put(`/listings/${id}/`, formData);
+      selectedImages.map((image) => {
+        return axiosReq.delete(`listings/${id}/images/${image}/`);
+      });
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
@@ -209,10 +221,17 @@ function ListingEditForm() {
                       variant="danger"
                       className={`${btnStyles.Medium} mx-auto`}
                     >
-                      All the old images will be deleted
+                      Choose the images you would like to delete
                     </Alert>
                     {Array.from(images).map((image, idx) => (
                       <figure key={idx}>
+                        <input
+                          type="checkbox"
+                          name="images"
+                          value={image.id}
+                          id={image.url}
+                          onChange={handleSelectedImages}
+                        />
                         <Image
                           className={`"my-2 px-2" ${styles.Image}`}
                           src={image.url}
