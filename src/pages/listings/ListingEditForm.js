@@ -195,6 +195,8 @@ function ListingEditForm() {
       selectedImages.map((image) => {
         return axiosReq.delete(`listings/${id}/images/${image}/`);
       });
+      window.scrollTo(0, 0);
+      window.localStorage.setItem("edited", true);
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);

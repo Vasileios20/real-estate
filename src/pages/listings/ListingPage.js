@@ -8,6 +8,11 @@ function ListingPage() {
   const [listing, setListing] = useState({ results: [] });
   const history = useHistory();
 
+  if (window.localStorage.getItem("edited") === "true") {
+    window.location.reload();
+    localStorage.removeItem("edited");
+  }
+
   useEffect(() => {
     const handleMount = async () => {
       try {
