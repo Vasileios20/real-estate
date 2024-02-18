@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
+import ScrollToTop from "./hooks/ScrollToTop";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <CurrentUserProvider>
-        <App />
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
       </CurrentUserProvider>
     </Router>
   </React.StrictMode>,
