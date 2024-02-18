@@ -11,8 +11,8 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-
 import useUserStatus from "../hooks/useUserStatus";
+import logo from "../assets/logo.png";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -36,7 +36,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/listings/create"
       >
-        Add your listing
+        Add listing
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -101,7 +101,14 @@ const NavBar = () => {
     >
       <Container>
         <NavLink to="/">
-          <Navbar.Brand>Logo</Navbar.Brand>
+          <Navbar.Brand>
+            <img
+              src={logo}
+              alt="logo"
+              height={45}
+              style={{ borderRadius: "50%" }}
+            ></img>
+          </Navbar.Brand>
         </NavLink>
 
         <Navbar.Toggle
