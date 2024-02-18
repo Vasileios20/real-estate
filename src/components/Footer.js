@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
 
 const Footer = () => {
+  /**
+   * The Footer component is a functional component that renders the footer of the application.
+   */
   return (
     <Container fluid className="mt-5">
       <Row

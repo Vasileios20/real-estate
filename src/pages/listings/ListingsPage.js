@@ -4,6 +4,14 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function ListingsPage() {
+  /**
+   * The ListingsPage component is a functional component that renders the listings page of the application.
+   * It uses the useFetchListings hook to fetch the listings from the API.
+   * It also uses the useLocation hook to get the state from the location object.
+   * If the state is present, it sets the listings to the state data.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const { listings, setListings, hasLoaded } = useFetchListings();
   const { state } = useLocation();
   const message = "No results";

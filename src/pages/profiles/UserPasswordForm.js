@@ -15,6 +15,11 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const UserPasswordForm = () => {
+  /**
+   * The UserPasswordForm component is a functional component that renders a form for editing the user's password.
+   * It fetches the user's password from the API and updates the user's password.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
   const history = useHistory();
   const { id } = useParams();
   const currentUser = useCurrentUser();

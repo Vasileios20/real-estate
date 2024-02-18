@@ -15,6 +15,13 @@ import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../errors/Forbidden403";
 
 const ContactMessagesList = () => {
+  /**
+   * The ContactMessagesList component is a functional component that renders a list of messages from the contact form.
+   * It fetches the messages from the API and displays them in a table.
+   * It also contains a search form to filter the messages by name, email, subject, and date.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const status = useUserStatus();
   const [contactList, setContactList] = useState([]);
   const [query, setQuery] = useState("");

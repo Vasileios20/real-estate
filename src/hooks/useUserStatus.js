@@ -3,6 +3,11 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefaults";
 
 const useUserStatus = () => {
+  /**
+   * The useUserStatus hook is a custom hook that fetches the user status from the API.
+   * @returns {String} - The user status.
+   */
+
   const user = useCurrentUser();
   const [userStatus, setUserStatus] = useState("");
 

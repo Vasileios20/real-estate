@@ -12,6 +12,13 @@ import { axiosReq } from "../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
+  /**
+   * The SearchBar component is a functional component that renders a search bar for the listings page.
+   * It contains a form with input fields for the search query, the sale type, the type, the price, and the surface.
+   * It also contains a submit button that sends a request to the API with the search parameters.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const [query, setQuery] = useState("");
   const [saleType, setSaleType] = useState("rent");
   const [type, setType] = useState("");

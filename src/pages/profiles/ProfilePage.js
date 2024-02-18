@@ -13,6 +13,16 @@ import { ProfileEditDropdown } from "../../components/MoreDropDown";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function ProfilePage() {
+  /**
+   * The ProfilePage component is a functional component that renders the profile page for a user.
+   * It fetches the profile data from the API using the profile id from the URL.
+   * @returns {JSX.Element} - The JSX for the component.
+   * @param {Object} profileData - The profile data.
+   * @param {Object} currentUser - The current user data.
+   * @param {Function} setProfileData - A function to set the profile data state.
+   * @param {Function} useRedirect - A function to redirect the user to the login page.
+   */
+
   useRedirect("loggedOut");
   const { id } = useParams();
   const currentUser = useCurrentUser();

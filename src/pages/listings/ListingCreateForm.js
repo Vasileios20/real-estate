@@ -22,6 +22,13 @@ import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../errors/Forbidden403";
 
 function ListingCreateForm() {
+  /**
+   * The ListingCreateForm component is a functional component that renders a form for creating a new listing.
+   * Imports the ListingTextFields component to render the input fields for the listing data.
+   * It a form for uploading images of the listing.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   useRedirect("loggedOut");
   const userStatus = useUserStatus();
   const [listingData, setListingData] = useState({

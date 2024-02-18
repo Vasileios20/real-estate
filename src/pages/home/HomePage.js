@@ -1,8 +1,15 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar";
-import { Col, Container, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function HomePage() {
+  /**
+   * The HomePage component is a functional component that renders the home page.
+   * It contains a search bar and a welcome message.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
   return (
     <>
       <SearchBar />

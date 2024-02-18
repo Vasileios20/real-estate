@@ -19,6 +19,32 @@ import useFetchWishlist from "../../hooks/useFetchWishlist";
 import useUserStatus from "../../hooks/useUserStatus";
 
 const Listing = (props) => {
+  /**
+   * The Listing component is a functional component that renders the details of a listing.
+   * It receives the following props:
+   * - id: number
+   * - owner: string
+   * - profile_id: number
+   * - price: number
+   * - surface: number
+   * - levels: number
+   * - bedrooms: number
+   * - floor: number
+   * - kitchens: number
+   * - bathrooms: number
+   * - living_rooms: number
+   * - heating_system: string
+   * - energy_class: string
+   * - construction_year: number
+   * - availability: string
+   * - created_at: string
+   * - updated_at: string
+   * - listingPage: boolean
+   * - images: array
+   * - setListings: function
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const {
     id,
     owner,
@@ -102,6 +128,7 @@ const Listing = (props) => {
     }
   };
 
+  // Delete listing
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/listings/${id}/`);
@@ -111,6 +138,7 @@ const Listing = (props) => {
     }
   };
 
+  // Edit listing
   const handleEdit = () => {
     history.push(`/listings/${id}/edit`);
   };

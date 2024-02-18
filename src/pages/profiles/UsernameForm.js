@@ -18,6 +18,12 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const UsernameForm = () => {
+  /**
+   * The UsernameForm component is a functional component that renders a form for editing the user's username.
+   * It fetches the user's username from the API and updates the user's username.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
 

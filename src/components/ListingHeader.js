@@ -3,6 +3,17 @@ import React from "react";
 import styles from "../styles/Listing.module.css";
 
 const ListingHeader = (props) => {
+  /**
+   * This component is used to display the header of a listing.
+   * It receives the following props:
+   * - type: string
+   * - sale_type: string
+   * - description: string
+   * - address_number: string
+   * - address_street: string
+   * - postcode: string
+   * - city: string
+   */
   const saleType = props.sale_type === "rent" ? "rent" : "buy";
   return (
     <div className={styles.Listing__header}>

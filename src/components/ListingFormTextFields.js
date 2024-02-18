@@ -9,13 +9,18 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../styles/ListingCreateEditForm.module.css";
 import btnStyles from "../styles/Button.module.css";
 
-const ListingTextFields = ({
-  listingData,
-  handleChange,
-  history,
-  errors,
-  create,
-}) => {
+const ListingTextFields = (
+  /**
+   * This component is used to render the text fields of the listing form.
+   * It receives the following props:
+   * - listingData: object
+   * - handleChange: function
+   * - history: object
+   * - errors: object
+   * - create: boolean
+   */
+  { listingData, handleChange, history, errors, create }
+) => {
   return (
     <div className="text-center">
       <Row className="justify-content-center">

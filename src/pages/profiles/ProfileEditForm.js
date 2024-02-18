@@ -19,6 +19,12 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const ProfileEditForm = () => {
+  /**
+   * The ProfileEditForm component is a functional component that renders a form for editing the user's profile.
+   * It fetches the user's profile data from the API and updates the user's profile data.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -39,10 +45,12 @@ const ProfileEditForm = () => {
 
   useEffect(() => {
     const handleMount = async () => {
+      // redirect user if they are not the owner of this profile
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { first_name, last_name, email_address, image, phone } = data;
+          // set the profile data state if it has not been set
           if (!profileDataSet.current) {
             setProfileData({
               first_name,

@@ -3,8 +3,12 @@ import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
 import { useHistory } from "react-router-dom";
 
-// The forwardRef is important!!
-// Dropdown needs access to the DOM node in order to position the Menu
+/**
+ * The CaretDown component is a functional component that renders a caret down icon for a dropdown.
+ * @param {function} onClick - The function to handle the click event.
+ * @returns {JSX.Element} - The JSX for the component.
+ */
+
 const CaretDown = React.forwardRef(({ onClick }, ref) => (
   <i
     className={`fas fa-square-caret-down ${styles.DropdownCaret}`}
@@ -15,6 +19,13 @@ const CaretDown = React.forwardRef(({ onClick }, ref) => (
     }}
   />
 ));
+
+/**
+ * The MoreDropdown component is a functional component that renders a dropdown for editing or deleting a listing.
+ * @param {function} handleEdit - The function to handle editing the listing.
+ * @param {function} handleDelete - The function to handle deleting the listing.
+ * @returns {JSX.Element} - The JSX for the component.
+ */
 
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
@@ -43,6 +54,12 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     </Dropdown>
   );
 };
+
+/**
+ * The ProfileEditDropdown component is a functional component that renders a dropdown for editing the user's profile.
+ * @param {number} id - The id of the user's profile.
+ * @returns {JSX.Element} - The JSX for the component.
+ */
 
 export function ProfileEditDropdown({ id }) {
   const history = useHistory();

@@ -16,6 +16,11 @@ import logo from "../assets/logo.png";
 import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
+  /**
+   * The NavBar component is a functional component that renders the navigation bar of the application.
+   * It contains links to the home page, the listings page, the about page, the contact page,
+   * the sign in page, the sign up page, the user's profile page, and the sign out page.
+   */
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const userStatus = useUserStatus();

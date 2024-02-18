@@ -19,6 +19,14 @@ import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../errors/Forbidden403";
 
 function ListingEditForm() {
+  /**
+   * The ListingEditForm component is a functional component that renders a form for editing a listing.
+   * Imports the ListingTextFields component to render the input fields for the listing data.
+   * It contains images of the listing that can be deleted, and a form for uploading new images.
+   * It also contains a submit button that sends a request to the API to edit the listing.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   useRedirect("loggedOut");
   const [listingData, setListingData] = useState({
     type: "apartment",
@@ -152,6 +160,7 @@ function ListingEditForm() {
     }
   };
 
+  // Function to handle the selected images to delete
   const handleSelectedImages = (e) => {
     const selectedImage = e.target.value;
     setSelectedImages((prevSelectedImages) => {

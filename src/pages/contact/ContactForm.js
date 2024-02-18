@@ -18,6 +18,13 @@ import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ContactForm() {
+  /**
+   * The ContactForm component is a functional component that renders a form for sending a message to the site admin.
+   * It contains input fields for the name, email, subject, and message of the contact form.
+   * It also contains a submit button that sends a request to the API to send the message.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const currentUser = useCurrentUser();
 
   const [contactData, setContactData] = useState({

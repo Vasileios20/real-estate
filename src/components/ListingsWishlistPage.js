@@ -11,13 +11,20 @@ import { Link } from "react-router-dom";
 import { fetchMoreData } from "../utils/utils";
 import SearchBar from "./SearchBar";
 
-const ListingsWishlistPage = ({
-  array,
-  hasLoaded,
-  setListings,
-  listings,
-  message,
-}) => {
+const ListingsWishlistPage = (
+  /**
+   * This component is used to display the listings that are in the user's wishlist.
+   * It is used in the Wishlist component.
+   * @param {Array} array - The array of listings to be displayed.
+   * @param {Boolean} hasLoaded - A boolean to check if the listings have been loaded.
+   * @param {Function} setListings - A function to set the listings.
+   * @param {Object} listings - The listings object.
+   * @param {String} message - The message to be displayed if there are no results.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
+  { array, hasLoaded, setListings, listings, message }
+) => {
   return (
     <>
       <SearchBar />

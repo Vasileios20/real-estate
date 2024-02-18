@@ -6,6 +6,12 @@ import Col from "react-bootstrap/Col";
 import { Card } from "react-bootstrap";
 
 const ContactMessage = () => {
+  /**
+   * The ContactMessage component is a functional component that renders a single message from the contact list.
+   * It fetches the message from the API using the id from the URL.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const [message, setMessage] = useState("");
   const history = useHistory();
   const { id } = useParams();

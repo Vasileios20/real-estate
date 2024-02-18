@@ -7,6 +7,14 @@ import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 
 const ListingImages = ({ images = [{}] }) => {
+  /**
+   * The ListingImages component is a functional component that renders the images of a listing.
+   * It contains a main image and four smaller images.
+   * It also contains a modal that shows all the images of the listing.
+   * @param {Object} images - The images of the listing.
+   * @returns {JSX.Element} - The JSX for the component.
+   */
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

@@ -3,6 +3,12 @@ import SearchBar from "../../components/SearchBar";
 import { Col, Container, Row } from "react-bootstrap";
 
 export default function AboutPage() {
+  /**
+   * The AboutPage component is a functional component that renders the about page.
+   * It contains information about the company and its values.
+   * @returns {JSX.Element}
+   */
+
   return (
     <>
       <SearchBar />
