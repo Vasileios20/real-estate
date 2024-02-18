@@ -17,9 +17,9 @@ import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { useRedirect } from "../../hooks/useRedirect";
-import ListingTextFields from "../../components/ListingTextFields";
+import ListingTextFields from "../../components/ListingFormTextFields";
 import useUserStatus from "../../hooks/useUserStatus";
-import Forbidden403 from "../../components/Forbidden403";
+import Forbidden403 from "../errors/Forbidden403";
 
 function ListingCreateForm() {
   useRedirect("loggedOut");

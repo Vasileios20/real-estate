@@ -12,7 +12,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import btnStyles from "../../styles/Button.module.css";
 import { Link, useHistory } from "react-router-dom";
 import useUserStatus from "../../hooks/useUserStatus";
-import Forbidden403 from "../../components/Forbidden403";
+import Forbidden403 from "../errors/Forbidden403";
 
 const ContactMessagesList = () => {
   const status = useUserStatus();

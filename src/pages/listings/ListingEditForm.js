@@ -14,9 +14,9 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
-import ListingTextFields from "../../components/ListingTextFields";
+import ListingTextFields from "../../components/ListingFormTextFields";
 import useUserStatus from "../../hooks/useUserStatus";
-import Forbidden403 from "../../components/Forbidden403";
+import Forbidden403 from "../errors/Forbidden403";
 
 function ListingEditForm() {
   useRedirect("loggedOut");
