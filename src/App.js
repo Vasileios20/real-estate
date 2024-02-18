@@ -22,6 +22,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import AboutPage from "./pages/home/AboutPage";
+import Footer from "./components/Footer";
 
 function App() {
   useUserStatus();
@@ -79,6 +80,7 @@ function App() {
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>
+      <Footer />
     </div>
   );
 }
