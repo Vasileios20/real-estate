@@ -128,6 +128,19 @@ const Listing = (props) => {
     </>
   );
 
+  const floorValue =
+    floor < 0
+      ? "Basement"
+      : floor === 0
+      ? "Ground floor"
+      : floor === 1
+      ? `${floor}st `
+      : floor === 2
+      ? `${floor}nd `
+      : floor === 3
+      ? `${floor}rd `
+      : `${floor}th `;
+
   return (
     <Row className={styles.Listing}>
       <ListingImages images={images} />
@@ -166,7 +179,7 @@ const Listing = (props) => {
             </tr>
             <tr>
               <td>Floor</td>
-              <td>{floor}</td>
+              <td>{floorValue}</td>
             </tr>
             <tr>
               <td>Kitchens</td>
