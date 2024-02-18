@@ -14,7 +14,7 @@ const ListingImages = ({ images = [{}] }) => {
   return (
     <Container>
       <Row>
-        <Col md={6} className="p-0 pr-1">
+        <Col md={6} className="pr-md-1">
           <Image
             className={styles.ImageLeft}
             src={images[0].url}
@@ -27,7 +27,7 @@ const ListingImages = ({ images = [{}] }) => {
         <Col md={6} className="p-0">
           <Row>
             {images.slice(1, 5).map((image) => (
-              <Col md={6} key={image.id}>
+              <Col md={6} key={image.id} className="pr-1">
                 <Image
                   src={image.url}
                   alt={image.id}

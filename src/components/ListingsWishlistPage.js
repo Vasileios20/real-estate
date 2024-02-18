@@ -40,7 +40,6 @@ const ListingsWishlistPage = ({
                             src={listing.images[0].url}
                             alt={listing.images[0].id}
                             className={`img-fluid ${styles.Listingswishlist__Image}`}
-                            style={{ aspectRatio: "16/9" }}
                           ></Image>
                         </Link>
                       </Col>
@@ -73,13 +72,12 @@ const ListingsWishlistPage = ({
             {array.length ? (
               array.map((listing) => (
                 <Row key={listing.id} className="mx-0 align-items-center">
-                  <Col xs={12} md={6} lg={5} xl={4} className="p-0">
+                  <Col xs={12} md={6} lg={5} xl={4} className="px-0">
                     <Link to={`/listings/${listing.id}`}>
                       <Image
                         src={listing.images[0].url}
                         alt={listing.images[0].id}
-                        className="img-fluid"
-                        style={{ aspectRatio: "16/9" }}
+                        className={`img-fluid ${styles.Listingswishlist__Image}`}
                       ></Image>
                     </Link>
                   </Col>
