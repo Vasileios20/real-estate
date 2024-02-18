@@ -153,7 +153,7 @@ const SearchBar = () => {
                   className="w-100"
                 />
               </Col>
-              <Col md={3} sm={6} className="mb-3">
+              <Col md={2} sm={6} className="mb-3">
                 <Form.Control
                   as="select"
                   name="type"
@@ -169,6 +169,7 @@ const SearchBar = () => {
                 </Form.Control>
               </Col>
               <Col lg={2} md={3} sm={6} className="mb-3">
+                <Form.Label>Price</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="Min Price"
@@ -179,15 +180,19 @@ const SearchBar = () => {
                 <Form.Control
                   type="number"
                   placeholder="Max Price"
+                  min={price.min ? price.min : "0"}
                   max="10000000"
                   value={price.max ? price.max : ""}
                   onChange={(e) => setPrice({ ...price, max: e.target.value })}
                 />
               </Col>
-              <Col lg={2} md={3} sm={6} className="mb-3">
+              <Col lg={3} md={4} sm={6} className="mb-3">
+                <Form.Label>
+                  {type === "land" ? "Land Area" : "Floor Area"}
+                </Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Min Surface"
+                  placeholder="Min m²"
                   min="0"
                   value={surface.min ? surface.min : ""}
                   onChange={(e) =>
@@ -196,7 +201,8 @@ const SearchBar = () => {
                 />
                 <Form.Control
                   type="number"
-                  placeholder="Max Surface"
+                  placeholder="Max m²"
+                  min={surface.min ? surface.min : "0"}
                   max="10000000"
                   value={surface.max ? surface.max : ""}
                   onChange={(e) =>

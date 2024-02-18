@@ -118,6 +118,7 @@ const ContactMessagesList = () => {
                 <Form.Control
                   type="date"
                   placeholder="Max"
+                  min={created_at.min}
                   max="10000000"
                   value={created_at.max}
                   onChange={(e) =>
