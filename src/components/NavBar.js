@@ -147,7 +147,7 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/contact"
             >
-              Contact
+              Contact us
             </NavLink>
             <NavLink
               className={styles.NavLink}
