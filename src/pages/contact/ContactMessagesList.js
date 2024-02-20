@@ -13,6 +13,9 @@ import btnStyles from "../../styles/Button.module.css";
 import { Link, useHistory } from "react-router-dom";
 import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../errors/Forbidden403";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 const ContactMessagesList = () => {
   /**
@@ -23,7 +26,7 @@ const ContactMessagesList = () => {
    */
 
   const status = useUserStatus();
-  const [contactList, setContactList] = useState([]);
+  const [contactList, setContactList] = useState({ results: [] });
   const [query, setQuery] = useState("");
   const [created_at, setCreated_at] = useState({ min: "", max: "" });
   const history = useHistory();
@@ -39,7 +42,7 @@ const ContactMessagesList = () => {
     const fetchContactList = async () => {
       try {
         const { data } = await axiosReq.get("/contact_list");
-        setContactList(data.results);
+        setContactList(data);
       } catch (err) {
         console.log(err);
         if (err.response.status === 403) {
@@ -64,7 +67,7 @@ const ContactMessagesList = () => {
     }
     try {
       const { data } = await axiosReq.get(`${path}`);
-      setContactList(data.results);
+      setContactList(data);
     } catch (err) {
       console.log(err);
       if (err.response.status === 403) {
@@ -145,48 +148,55 @@ const ContactMessagesList = () => {
           </Row>
           <Row className="mt-2">
             <Col>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>Sender</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {contactList.map((contact, idx) => (
-                    <tr key={idx}>
-                      <td>
-                        <Link to={`/contact_list/${contact.id}`}>
-                          {contact.name}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link to={`/contact_list/${contact.id}`}>
-                          {contact.email}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link to={`/contact_list/${contact.id}`}>
-                          {contact.subject.slice(0, 30)}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link to={`/contact_list/${contact.id}`}>
-                          {contact.message.slice(0, 30)}...
-                        </Link>
-                      </td>
-                      <td>
-                        <Link to={`/contact_list/${contact.id}`}>
-                          {contact.created_at}
-                        </Link>
-                      </td>
+              <InfiniteScroll
+                dataLength={contactList.results.length}
+                next={() => fetchMoreData(contactList, setContactList)}
+                hasMore={contactList.next}
+                loader={<Asset spinner />}
+              >
+                <Table responsive>
+                  <thead>
+                    <tr>
+                      <th>Sender</th>
+                      <th>Email</th>
+                      <th>Subject</th>
+                      <th>Message</th>
+                      <th>Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </Table>
+                  </thead>
+                  <tbody>
+                    {contactList.results.map((contact, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <Link to={`/contact_list/${contact.id}`}>
+                            {contact.name}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link to={`/contact_list/${contact.id}`}>
+                            {contact.email}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link to={`/contact_list/${contact.id}`}>
+                            {contact.subject.slice(0, 30)}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link to={`/contact_list/${contact.id}`}>
+                            {contact.message.slice(0, 30)}...
+                          </Link>
+                        </td>
+                        <td>
+                          <Link to={`/contact_list/${contact.id}`}>
+                            {contact.created_at}
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </InfiniteScroll>
             </Col>
           </Row>
         </>
