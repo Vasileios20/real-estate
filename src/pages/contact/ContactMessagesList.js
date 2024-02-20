@@ -150,13 +150,22 @@ const ContactMessagesList = () => {
               <h1>Messages</h1>
             </Col>
           </Row>
-          <Row className="mt-2">
+          <Row
+            className="mt-2"
+            id="scrollableDiv"
+            style={{
+              height: 500,
+              overflow: "auto",
+              marginTop: "20px",
+            }}
+          >
             <Col>
               <InfiniteScroll
                 dataLength={contactList.results.length}
                 next={() => fetchMoreData(contactList, setContactList)}
                 hasMore={contactList.next}
                 loader={<Asset spinner />}
+                scrollableTarget="scrollableDiv"
               >
                 <Table responsive>
                   <thead>
