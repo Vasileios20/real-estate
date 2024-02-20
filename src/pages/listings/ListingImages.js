@@ -32,7 +32,7 @@ const ListingImages = ({ images = [{}] }) => {
             style={{ aspectRatio: "16/9" }}
           />
         </Col>
-        <Col md={6} className="p-0">
+        <Col md={6} className="">
           <Row>
             {images.slice(1, 5).map((image) => (
               <Col md={6} key={image.id} className="pr-1">
