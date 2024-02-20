@@ -32,9 +32,7 @@ const ContactMessagesList = () => {
   const history = useHistory();
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      To search for a specific day, such as 01/01/2024, include the 'date to'
-      field with the following day, for example, 02/01/2024, in order to refine
-      your search results.
+      To search for a specific day, select only the "Date from" field.
     </Tooltip>
   );
 
@@ -64,6 +62,12 @@ const ContactMessagesList = () => {
     }
     if (created_at.max) {
       path += `&max_created_at=${created_at.max}`;
+    }
+    if (created_at.min && !created_at.max) {
+      const date = new Date(created_at.min);
+      date.setDate(date.getDate() + 1);
+      const nextDay = date.toISOString().split("T")[0];
+      path += `&max_created_at=${nextDay}`;
     }
     try {
       const { data } = await axiosReq.get(`${path}`);
