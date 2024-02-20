@@ -160,7 +160,8 @@ const ProfileEditForm = () => {
       </Form.Group>
       {errors?.phone?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          {message}. The format should be +CC MMMM MMMM. For example, +44 1234
+          567890.
         </Alert>
       ))}
 
