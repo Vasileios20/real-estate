@@ -14,7 +14,56 @@ Frontend Github [Repository](https://github.com/Vasileios20/real-estate)
 
 ![GitHub contributors](https://img.shields.io/badge/CONTRIBUTORS-1-<RED>)
 
+## Contents
 
+* [Design](#design)
+  * [Colour Scheme](#colour-scheme)
+  * [Typography](#typography)
+  * [Wireframes](#wireframes)
+* [User Experience (UX)](#user-experience-ux)
+  * [Site Purpose](#site-purpose)
+  * [Site Goal](#site-goal)
+  * [Audience](#audience)
+  * [Communication](#communication)
+  * [Current User Goals](#current-user-goals)
+  * [New User Goals](#new-user-goals)
+  * [Future Goals](#future-goals)
+* [User Stories](#user-stories)
+* [Features](#features)
+  * [Navigation Bar](#navigation-bar)
+    * [Navigation Bar (logged in)](#navigation-bar-logged-in)
+    * [Navigation Bar (Admin)](#navigation-bar-admin-user)
+  * [Footer](#footer)
+  * [Home Page](#home-page)
+  * [About Page](#about-page)
+  * [Contact us Page](#contact-page)
+  * [Listings Page](#listings-page)
+  * [Listing Page](#listing-page)
+    * [Images modal](#images-modal)
+  * [Add Listing Page](#add-listing-page)
+  * [Edit Listing Page](#edit-listing-page)
+  * [Messages Page](#messages-page)
+    * [Message Page](#message-page)
+  * [Sign in Page](#sign-in-page)
+  * [Signup Page](#sign-up-page)
+  * [Wishlist Page](#wishlist-page)
+  * [Profile Page](#profile-page)
+    * [Edit Profile](#edit-profile-page)
+    * [Change username](#change-username-page)
+    * [Change password](#change-password-page)
+  * [403 error Page](#403-error-page)
+  * [404 error Page](#404-error-page)
+* [Reusable Components](#reusable-components)
+* [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
+* [Deployment and Local Development](#deployment-and-local-development)
+  * [Local Development](#local-development)
+    * [How to fork](#how-to-fork)
+    * [How to clone](#how-to-clone)
+    * [Deployment](#deployment)
+* [Testing](#testing)
+* [Credits](#credits)
 
 ## Design
 
@@ -290,9 +339,91 @@ HTML, CSS, JS
 * [Coolors](https://coolors.co/) - To create palette image to README.
 * [Canva](https://www.canva.com/) - To create the logo
 
+## Deployment and Local Development
 
+### Local Development
+
+When in development:
+run first ```nvn use 16.20.2``` to use this version of Node
+run ```npm start``` to start the app
+
+#### How to fork
+
+To fork the repository :
+
+1. Log in (sign up) to GitHub.
+2. Go to the repository for this project [real-estate](https://github.com/Vasileios20/real-estate)
+3. Click the fork button in the top right corner.
+
+#### How to clone
+
+To clone the repository :
+
+1. Log in (sign up) to GitHub.
+2. Go to the repository for this project [real-estate](https://github.com/Vasileios20/real-estate)
+3. Click on the code button, select one of the HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
+### Deployment
+
+The site has been deployed using Heroku. Deployed site [CB Real Estate](https://re-real-estate-ecc213881132.herokuapp.com/). Follow these steps:
+
+#### Connect to the API
+
+Navigate to the Heroku app of the project DRF-API, and under the Settings tab, add the following configvars:
+
+|KEY|VALUE|
+|--|--|
+|CLIENT_ORIGIN | <https://your-react-app-name.herokuapp.com>*|
+|CLIENT_ORIGIN_DEV | <https://gitpod-browser-link.ws-eu54.gitpod.io>*|
+
+*Check that the trailing slash \ at the end of both links has been removed.
+
+#### Heroku App
+
+If you don't already have an account to Heroku, create one [here](https://www.heroku.com/).
+
+* Create Heroku app
+  * Go to the Heroku dashboard and click the "Create new app" button.
+  * Name the app. Each app name on Heroku has to be unique.
+  * Then select your region.
+  * And then click "Create app".
+
+* In heroku app
+  * Go to the deploy tab.
+  * Choose the deployment method.
+  * Select Github, and confirm to connect to Github.
+  * Search for the Github repository name.
+  * Then click "connect".
+  * Scroll down and click "Deploy Branch".
 
 ## Testing
 
 Please see [Testing](TESTING.md)
 
+## Credits
+
+### Code Used
+
+[Code Institute's](https://codeinstitute.net/) - Walkthrough project Moments
+
+[React docs](https://legacy.reactjs.org/docs/getting-started.html)
+
+[Stackoverflow](https://stackoverflow.com/) - For varius enquries I had
+
+### Media
+
+403 and 404 error pages images [drlinkcheck](https://www.drlinkcheck.com/blog/free-http-error-images)
+
+[Image placeholder](https://commons.wikimedia.org/wiki/File:No-Image-Placeholder.svg) - To use it as a placeholder when user creates a profile
+
+[upload image](https://codeinstitute.s3.amazonaws.com/AdvancedReact/upload.png) - To use it to the ListinCreateForm and ListinEditForm
+
+### Aknowledgments
+
+My mentor [Lauren-Nicole](https://github.com/CluelessBiker) for guidance, support and feedback during the project.
+
+[Kera Cudmore](https://github.com/kera-cudmore) for feedback and support during the project. Also for providing an excellent guide how to write the README.
+
+And the tutors from Code Institute that helped me overcome the issues that I faced with the project.
