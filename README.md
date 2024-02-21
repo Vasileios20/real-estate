@@ -228,6 +228,70 @@ The [403 page](/documentation/features/403.png) displays an image with a text er
 The [404 page](/documentation/features/404.png) displays an image with a text error 404: Not found.
 
 ## Reusable Components
+
+[SearchBar.js](/documentation/features/Searchbar.png) that exists in the home page, the about page, the listings page and
+if logged in user, in the wishlist page.
+
+Dropdown menu: exists in the [Listing.js](/documentation/features/DropdownMenu.png) (only for admins) and in the [ProfilePage.js](/documentation/features/DropdownMenuProfile.png)
+
+ListingFormTextFields.js: displays the input fields for the ListingCreateForm and ListingEditForm.
+
+ListingHeader.js: displays basic info for a property(listing) and it exists in the Listing, ListingsWishlistPage.
+
+ListingsWishlistPage.js : to display all the listings, results of listings after a search and the user's wishlist
+
+axiosDefault.js : for ease of communication with the backend API.
+
+Asset.js : to supply the loading spinner & user avatar throughout the site.
+
+CurrentUserContext.js : confirm users logged-in status to determine what functionality is available to that user.
+
+useRedirect.js : redirects a user to another page if they are not authorised to be on the page they are trying to access.
+
+utils.js : supplies functionality to all of the components that utilise the Infinite Scroll.
+
+ScrolltoTop.js: scrolls the page to top when user change page.
+
+useFetchListings.js: to fetch listings from the API
+
+useFetchWishlist.js: to fetch user's wishlist from the API
+
+useUserStatus.js: to get user status to determine what functionality is available to that user.
+
+## Technologies Used
+
+### Languages Used
+
+HTML, CSS, JS
+
+### Frameworks, Libraries & Programs Used
+
+* [React](https://legacy.reactjs.org/docs/getting-started.html) Javascript library for building the component based UI and avoiding having to refresh to display dynamic content
+* [ESLint](https://eslint.org/) Linter for error checking and syntax analysis
+* [React Bootstrap](https://react-bootstrap-v4.netlify.app/) CSS framework for styled components
+* [Axios](https://axios-http.com/) Promise based http client for making http requests to the backend API
+* [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) Used to easily load extra content rather than paginating pages, for a better UX
+* [React Router](https://v5.reactrouter.com/web/guides/quick-start) Used to dynamically load pages and aid site navigation for the user.
+* [jwt-decode](https://www.npmjs.com/package/jwt-decode) A browser library that helps decoding JWT's token
+* [Cloudinary](https://cloudinary.com/) - To host images
+
+#### Programs Used
+
+* [GitHub](https://github.com/) - To save and store files for the website.
+* [VSCode](https://code.visualstudio.com/) - Code editor used for local development.
+* [GitPod](https://gitpod.io/) - IDE used to create the site.
+* [Balsamiq](https://balsamiq.com/) - Used to create wireframes.
+* [Techsini](https://techsini.com/multi-mockup/index.php) - To display the web image in various devices.
+* [Google Developer Tools](https://developer.chrome.com/docs/) - To test features, resposiveness and stylilng.
+* [TinyPNG](https://tinypng.com/) - To reduce size of the images.
+* [Favicon](https://favicon.io/) - To create favicon.
+* [Shields IO](https://shields.io/) - To add badges to README.
+* [Obsidian](https://code.visualstudio.com/) - To keep notes.
+* [Coolors](https://coolors.co/) - To create palette image to README.
+* [Canva](https://www.canva.com/) - To create the logo
+
+
+
 ## Testing
 
 Please see [Testing](TESTING.md)
