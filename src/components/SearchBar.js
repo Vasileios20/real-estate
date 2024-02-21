@@ -155,6 +155,7 @@ const SearchBar = () => {
               </Col>
               <Col md={2} sm={6} className="mb-3">
                 <Form.Control
+                  aria-label="type"
                   as="select"
                   name="type"
                   value={type ? type : ""}
