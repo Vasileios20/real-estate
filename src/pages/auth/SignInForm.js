@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
+import sigIn from "../../assets/signIn.png";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -117,7 +118,8 @@ function SignInForm() {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero.jpg"}
+          src={sigIn}
+          alt="Hand presenting model house"
         />
       </Col>
     </Row>

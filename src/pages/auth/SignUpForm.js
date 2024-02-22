@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
+import signUp from "../../assets/signUp.png";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -129,7 +130,8 @@ const SignUpForm = () => {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
+          src={signUp}
+          alt="Woman showing with hands a mini house"
         />
       </Col>
     </Row>
