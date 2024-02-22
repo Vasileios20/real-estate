@@ -1,8 +1,59 @@
 # Contents
 
+* [CSS](#css)
+* [ESlint](#eslint)
+* [Lighthouse]
 * [User Stories](#user-stories)
 * [Manual Testing](#manual-testing)
 * [Bugs](#bugs)
+
+## CSS
+
+All files has been checked and gave no errors.
+
+![CSS](/documentation/CSS_validation.png)
+
+## ESlint
+
+[ESlint](https://eslint.org/) - Has been used during developement and had no errors.
+
+![ESlint](/documentation/Eslint.png)
+
+In the ContactForm.js and in the useEffect hook dependencies array I had to disable-next-line. If contactData is included in the dependency array,
+the useEffect hook will run indefinitely, so I had to remove it.
+
+```javascript
+ useEffect(() => {
+    if (currentUser) {
+      // If the current user exists, fetch the user profile data.
+      const fetchProfileData = async () => {
+        try {
+          const { data } = await axiosReq.get(`/profiles/${id}/`);
+          // Set the contactData state with the user's name and email address.
+          setContactData({
+            ...contactData,
+            name: currentUser.username,
+            email: data.email_address,
+          });
+        } catch (err) {
+          // console.log(err);
+        }
+      };
+      fetchProfileData();
+    }
+    // if contactData is included in the dependency array,
+    // the useEffect hook will run indefinitely
+    // eslint-disable-next-line
+  }, [id, history]);
+
+```
+
+## Lighthouse
+
+![Lighthouse](/documentation/Lighthouse.png)
+
+Lighthouse testing has been performed on all pages. No significants dropdowns other than the listings page
+performance that contain large images (user's uploads).
 
 ## User Stories
 
@@ -44,8 +95,8 @@
 | | Navbar (Logged out user) | | | |
 | 5 | Navbar - Sign in | Redirect to sign in page | click button | ✅ |
 | 6 | Navbar - Sign up | Redirect to sign up page | click button | ✅ |
-| 7 | Navbar - Wishlist | Redirect to wishlist page | click button | ✅ |
 | | Navbar (Logged in user) | | | |
+| 7 | Navbar - Wishlist | Redirect to wishlist page | click button | ✅ |
 | 8 | Navbar - Avatar/username | redirect to profile page | click button | ✅ |
 | 9 | Navbar - Sign out | Sign out and redirect to home page | click button | ✅ |
 | | Navbar (Staff member) | | | |
