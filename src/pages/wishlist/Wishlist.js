@@ -10,9 +10,12 @@ function Wishlist(props) {
    * @returns {JSX.Element} - The JSX for the component.
    */
 
+  // Fetch the wishlist from the API.
   const { listingId } = useFetchWishlist(props);
+  // Fetch the listings from the API.
   const { listings, setListings, hasLoaded } = useFetchListings();
 
+  // Filter the listings array to only include the listings that are in the user's wishlist.
   const wishlistArray = listings.results.filter((listing) =>
     listingId.includes(listing.id)
   );

@@ -83,6 +83,7 @@ function ListingEditForm() {
   const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {
+    // Fetch the listing data from the API.
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/${id}/`);
@@ -110,6 +111,7 @@ function ListingEditForm() {
           uploaded_images,
         } = data;
 
+        // Set the listing data state to the fetched data.
         setListingData({
           type,
           sale_type,
@@ -143,6 +145,7 @@ function ListingEditForm() {
     handleMount();
   }, [id, history]);
 
+  // Function to handle the change event for the input fields.
   const handleChange = (e) => {
     setListingData({
       ...listingData,
@@ -150,6 +153,7 @@ function ListingEditForm() {
     });
   };
 
+  // Function to handle the change event for the image input field.
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
       URL.revokeObjectURL(images);
@@ -172,6 +176,7 @@ function ListingEditForm() {
     });
   };
 
+  // Function to handle the submit event for the form.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -195,15 +200,18 @@ function ListingEditForm() {
     formData.append("construction_year", construction_year);
     formData.append("availability", availability);
     formData.append("images", imageInput.current.files[0]);
+    // Append the selected images to delete to the form data.
     Array.from(imageInput.current.files).forEach((file) => {
       formData.append("uploaded_images", file);
     });
 
     try {
+      // Send a PUT request to the API to edit the listing.
       const { data } = await axiosReq.put(`/listings/${id}/`, formData);
       selectedImages.map((image) => {
         return axiosReq.delete(`listings/${id}/images/${image}/`);
       });
+      // Redirect to the listing page for the edited listing.
       window.scrollTo(0, 0);
       window.localStorage.setItem("edited", true);
       history.push(`/listings/${data.id}`);

@@ -14,6 +14,7 @@ const useUserStatus = () => {
   const userId = user?.pk;
 
   useEffect(() => {
+    // Fetch the user status from the API.
     const getUserStatus = async () => {
       try {
         const { data } = await axiosReq.get(`user_status/`);

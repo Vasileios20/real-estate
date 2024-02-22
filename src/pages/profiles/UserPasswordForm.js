@@ -46,6 +46,7 @@ const UserPasswordForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Update the user's password and redirect to the previous page.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

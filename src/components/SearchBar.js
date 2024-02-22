@@ -29,6 +29,7 @@ const SearchBar = () => {
   const location = history.location;
   const [errors, setErrors] = useState("");
 
+  // Fetch the search parameters from the URL and set the state.
   useMemo(() => {
     const search = history.location.search;
     const params = new URLSearchParams(search);
@@ -47,8 +48,10 @@ const SearchBar = () => {
     setUpdate(false);
   }, [history.location.search]);
 
+  // Submit the search form.
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Fetch the listings from the API using the search parameters.
     let path = `/listings/?sale_type=${saleType}`;
     if (query) {
       path += `&search=${query}`;
@@ -79,6 +82,7 @@ const SearchBar = () => {
     }
   };
 
+  // Update the button label if the search parameters are not empty.
   useEffect(() => {
     setUpdate(false);
     const updateButtonLabel = () => {

@@ -25,6 +25,7 @@ const useFetchWishlist = (props) => {
   const [addedToList, setAddedToList] = useState(null);
 
   useEffect(() => {
+    // Fetch the wishlist from the API.
     const fetchWishlist = async () => {
       try {
         const { data } = await axiosReq.get(`/wishlist/`);

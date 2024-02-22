@@ -37,6 +37,7 @@ const ContactMessagesList = () => {
   );
 
   useEffect(() => {
+    // Fetch the messages from the API.
     const fetchContactList = async () => {
       try {
         const { data } = await axiosReq.get("/contact_list");
@@ -51,8 +52,10 @@ const ContactMessagesList = () => {
     fetchContactList();
   }, [history]);
 
+  // Submit the search form.
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Fetch the messages from the API using the search parameters.
     let path = `/contact_list/?`;
     if (query) {
       path += `&search=${query}`;

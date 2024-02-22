@@ -20,6 +20,11 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 
+/**
+ * Represents a sign-in form component.
+ *
+ * @component
+ */
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
   useRedirect("loggedIn");
@@ -35,6 +40,7 @@ function SignInForm() {
   const history = useHistory();
 
   const handleChange = (e) => {
+    // Update the signInData state with the input values.
     setSignInData({
       ...signInData,
       [e.target.name]: e.target.value,
@@ -42,6 +48,7 @@ function SignInForm() {
   };
 
   const handleSubmit = async (e) => {
+    // Submit the sign in form.
     e.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);

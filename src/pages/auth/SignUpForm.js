@@ -17,6 +17,11 @@ import signUp from "../../assets/signUp.png";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
+/**
+ * Represents a sign-up form component.
+ *
+ * @component
+ */
 const SignUpForm = () => {
   useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({

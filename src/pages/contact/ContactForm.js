@@ -44,9 +44,11 @@ function ContactForm() {
 
   useEffect(() => {
     if (currentUser) {
+      // If the current user exists, fetch the user profile data.
       const fetchProfileData = async () => {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
+          // Set the contactData state with the user's name and email address.
           setContactData({
             ...contactData,
             name: currentUser.username,

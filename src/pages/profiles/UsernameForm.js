@@ -33,6 +33,7 @@ const UsernameForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  // Gets the user's username from the API and sets the username state.
   useEffect(() => {
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
@@ -41,6 +42,7 @@ const UsernameForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Updates the user's username in the API and sets the current user state.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

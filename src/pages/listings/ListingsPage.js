@@ -12,10 +12,13 @@ function ListingsPage() {
    * @returns {JSX.Element} - The JSX for the component.
    */
 
+  // Fetch the listings from the API.
   const { listings, setListings, hasLoaded } = useFetchListings();
+  // Get the state from the location object.
   const { state } = useLocation();
   const message = "No results";
 
+  // If the state is present, set the listings to the state data.
   useEffect(() => {
     if (state && state.data) {
       if (state.data.results.length === 0) {
@@ -24,6 +27,7 @@ function ListingsPage() {
     }
   }, [setListings, state]);
 
+  // If the state is present, display the state data, otherwise display the listings.
   const displayListings = state ? state.data : listings;
 
   return (

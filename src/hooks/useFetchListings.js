@@ -16,6 +16,7 @@ const useFetchListings = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    // Fetch the listings from the API.
     const fetchListings = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/`);
@@ -25,6 +26,7 @@ const useFetchListings = () => {
         // console.log(err);
       }
     };
+    // If the pathname changes, fetch the listings again.
     setHasLoaded(false);
     fetchListings();
   }, [pathname]);

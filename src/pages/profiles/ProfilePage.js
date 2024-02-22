@@ -39,6 +39,7 @@ function ProfilePage() {
     updated_at: "",
   });
 
+  // Fetch the profile data from the API.
   useEffect(() => {
     const fetchProfileData = async () => {
       try {

@@ -68,6 +68,7 @@ const Listing = (props) => {
     setListings,
   } = props;
 
+  // Fetch the wishlist from the API, using the useFetchWishlist hook.
   const { addedToList, setAddedToList, wishlistId } = useFetchWishlist(props);
 
   const currentUser = useCurrentUser();
@@ -78,6 +79,7 @@ const Listing = (props) => {
   const history = useHistory();
   const userStatus = useUserStatus();
 
+  // Add listing to wishlist
   const handleAddToWishlist = async () => {
     try {
       const { data } = await axiosRes.post("/wishlist/", { listings: id });
@@ -104,6 +106,7 @@ const Listing = (props) => {
     }
   };
 
+  // Remove listing from wishlist
   const handleRemoveFromWishlist = async () => {
     try {
       await axiosRes.delete(`/wishlist/${wishlistId}/`);

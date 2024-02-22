@@ -14,6 +14,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
+  // Fetch the current user data from the API.
   const handleMount = async () => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
@@ -23,10 +24,12 @@ export const CurrentUserProvider = ({ children }) => {
     }
   };
 
+  // If the component mounts, fetch the current user data.
   useEffect(() => {
     handleMount();
   }, []);
 
+  // If the token is expired, refresh the token.
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {

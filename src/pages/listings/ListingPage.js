@@ -16,12 +16,14 @@ function ListingPage() {
   const [listing, setListing] = useState({ results: [] });
   const history = useHistory();
 
+  // If the listing has been edited, reload the page.
   if (window.localStorage.getItem("edited") === "true") {
     window.location.reload();
     localStorage.removeItem("edited");
   }
 
   useEffect(() => {
+    // Fetch the listing from the API.
     const handleMount = async () => {
       try {
         const [{ data: listing }] = await Promise.all([

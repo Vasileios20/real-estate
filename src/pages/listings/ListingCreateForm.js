@@ -77,12 +77,16 @@ function ListingCreateForm() {
     availability,
     images,
   } = listingData;
+  // Set the errors state to an empty object.
   const [errors, setErrors] = useState({});
 
+  // Create a ref for the image input field.
   const imageInput = useRef(null);
 
+  // Get the history object from the useHistory hook.
   const history = useHistory();
 
+  // Handle the change event for the input fields.
   const handleChange = (e) => {
     setListingData({
       ...listingData,
@@ -90,6 +94,7 @@ function ListingCreateForm() {
     });
   };
 
+  // Handle the change event for the image input field.
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
       URL.revokeObjectURL(images);
@@ -100,6 +105,7 @@ function ListingCreateForm() {
     }
   };
 
+  // Handle the submit event for the form.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -123,11 +129,13 @@ function ListingCreateForm() {
     formData.append("construction_year", construction_year);
     formData.append("availability", availability);
     formData.append("images", imageInput.current.files[0]);
+    // Loop through the files in the image input field and append them to the formData object.
     Array.from(imageInput.current.files).forEach((file) => {
       formData.append("uploaded_images", file);
     });
 
     try {
+      // Send a POST request to the API to create a new listing.
       const { data } = await axiosReq.post("/listings/", formData);
       history.push(`/listings/${data.id}`);
     } catch (err) {

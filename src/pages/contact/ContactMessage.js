@@ -16,6 +16,7 @@ const ContactMessage = () => {
   const history = useHistory();
   const { id } = useParams();
 
+  // Fetch the message from the API.
   useEffect(() => {
     const fetchMessage = async () => {
       try {

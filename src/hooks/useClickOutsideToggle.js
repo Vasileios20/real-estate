@@ -11,6 +11,7 @@ const useClickOutsideToggle = () => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef(null);
   useEffect(() => {
+    // Close the component when the user clicks outside of it.
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setExpanded(false);

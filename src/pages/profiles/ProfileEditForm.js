@@ -48,6 +48,7 @@ const ProfileEditForm = () => {
       // redirect user if they are not the owner of this profile
       if (currentUser?.profile_id?.toString() === id) {
         try {
+          // fetch the user's profile data from the API
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { first_name, last_name, email_address, image, phone } = data;
           // set the profile data state if it has not been set
