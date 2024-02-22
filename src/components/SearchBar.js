@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import styles from "../styles/SearchBar.module.css";
 import btnStyles from "../styles/Button.module.css";
 
@@ -28,6 +30,11 @@ const SearchBar = () => {
   const [update, setUpdate] = useState(false);
   const location = history.location;
   const [errors, setErrors] = useState("");
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      To search please choose rent or buy.
+    </Tooltip>
+  );
 
   // Fetch the search parameters from the URL and set the state.
   useMemo(() => {
@@ -221,12 +228,20 @@ const SearchBar = () => {
                 />
               </Col>
               <Col lg={2} className="d-flex mb-3">
-                <Button
-                  className={`${btnStyles.Button} ${btnStyles.Bright} m-lg-auto ml-auto`}
-                  type="submit"
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 50, hide: 300 }}
+                  overlay={renderTooltip}
                 >
-                  {update ? "Update" : "Search"}
-                </Button>
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Bright} m-lg-auto ml-auto`}
+                    type="submit"
+                    variant="dark"
+                    disabled={saleType ? false : true}
+                  >
+                    {update ? "Update" : "Search"}
+                  </Button>
+                </OverlayTrigger>
               </Col>
             </Row>
           </Form>
