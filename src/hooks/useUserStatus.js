@@ -19,7 +19,7 @@ const useUserStatus = () => {
         const { data } = await axiosReq.get(`user_status/`);
         setUserStatus(data.staff_status.is_staff);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     getUserStatus();

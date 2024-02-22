@@ -98,9 +98,9 @@ const Listing = (props) => {
         setSuccess(false);
         setAddedToList(true);
       }, 3000);
-    } catch (error) {
-      console.log(error);
-      setErrors(error.response?.data);
+    } catch (err) {
+      // console.log(err);
+      setErrors(err.response?.data);
     }
   };
 
@@ -123,8 +123,8 @@ const Listing = (props) => {
         setSuccess(false);
         setAddedToList(false);
       }, 3000);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      // console.log(err);
     }
   };
 
@@ -134,7 +134,7 @@ const Listing = (props) => {
       await axiosRes.delete(`/listings/${id}/`);
       history.push("/listings");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

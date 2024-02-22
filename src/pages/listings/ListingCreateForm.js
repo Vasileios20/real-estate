@@ -126,7 +126,6 @@ function ListingCreateForm() {
     Array.from(imageInput.current.files).forEach((file) => {
       formData.append("uploaded_images", file);
     });
-    console.log(formData.get("image"));
 
     try {
       const { data } = await axiosReq.post("/listings/", formData);

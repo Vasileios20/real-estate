@@ -22,7 +22,7 @@ const ContactMessage = () => {
         const { data } = await axiosReq.get(`/contact_list/${id}/`);
         setMessage(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response.status === 403) {
           history.push("/forbidden");
         }

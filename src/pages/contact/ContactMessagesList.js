@@ -42,7 +42,7 @@ const ContactMessagesList = () => {
         const { data } = await axiosReq.get("/contact_list");
         setContactList(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response.status === 403) {
           history.push("/forbidden");
         }
@@ -73,7 +73,7 @@ const ContactMessagesList = () => {
       const { data } = await axiosReq.get(`${path}`);
       setContactList(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response.status === 403) {
         history.push("/forbidden");
       }

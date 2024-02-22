@@ -53,10 +53,7 @@ function ContactForm() {
             email: data.email_address,
           });
         } catch (err) {
-          console.log(err);
-          if (err.response.status === 401) {
-            console.log("Unauthorized");
-          }
+          // console.log(err);
         }
       };
       fetchProfileData();

@@ -48,7 +48,7 @@ const useFetchWishlist = (props) => {
         }
         setListingId(wishlist);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     fetchWishlist();

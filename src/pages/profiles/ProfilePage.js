@@ -11,6 +11,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import { ProfileEditDropdown } from "../../components/MoreDropDown";
 import { useRedirect } from "../../hooks/useRedirect";
+import Forbidden403 from "../errors/Forbidden403";
 
 function ProfilePage() {
   /**
@@ -44,9 +45,9 @@ function ProfilePage() {
         const { data } = await axiosReq.get(`/profiles/${id}/`);
         setProfileData(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response.status === 401) {
-          console.log("Unauthorized");
+          <Forbidden403 />;
         }
       }
     };

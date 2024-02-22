@@ -28,11 +28,11 @@ function ListingPage() {
           axiosReq.get(`/listings/${id}/`),
         ]);
         setListing({ results: [listing] });
-      } catch (error) {
-        if (error.response.status === 404) {
+      } catch (err) {
+        if (err.response.status === 404) {
           history.push("/notfound");
         }
-        console.log(error);
+        // console.log(err);
       }
     };
     handleMount();
