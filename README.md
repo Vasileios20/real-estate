@@ -169,6 +169,8 @@ I have included links to the [GitHub Issues](https://github.com/Vasileios20/real
 
 ## Features
 
+* [Favicon](/documentation/features/favicon.png)
+
 All pages on the site are responsive and have :
 
 * ### Navigation Bar
@@ -176,56 +178,58 @@ All pages on the site are responsive and have :
 Site user [navbar](/documentation/features/Navbar.png) contains the logo (acts as home button), Home, About, Contact us,
 Listings, Sign in and Sign up
 
-#### Navigation Bar (logged in)
+* #### Navigation Bar (logged in)
 
-Registered user [navbar](/documentation/features/Navbar(logged%20in).png) contains the logo (acts as home button), Home, About, Top 15 Movies, Logout and the searh form.
+Logged in user [navbar](/documentation/features/Navbar(logged_in).png) contains the logo (acts as home button), Home, About, Contact us,
+Listings, Wishlist and Sign out .
 
-#### Navigation Bar (Admin user)
+* #### Navigation Bar (Admin user)
 
-Admin user [navbar](/documentation/features/Navbar(Admin).png)
+Admin user [navbar](/documentation/features/Navbar(Admin).png) contains the logged in icons plus the Add listing and Messages.
 
-* [Favicon](/documentation/features/favicon.png)
-
-### Footer
+* ### Footer
 
 The [Footer](/documentation/features/Footer.png) displays links for the About us, Contact and Listings. It also displays Github and Linkedin icons.
 
+___
+
 ### Home Page
 
-The [Home Page](/documentation/features/Home_Page.png) displays the top 3 rated movies.
+The [Home Page](/documentation/features/Home_Page.png) displays the search bar and information about the website.
 
 ### About Page
 
-The [About Page](/documentation/features/About_Page.png) gives information about the website.
+The [About Page](/documentation/features/About_Page.png) displays the search bar and about CB Real Estate's mission and values.
 
 ### Contact Page
 
-The [Contact Page](/documentation/features/Contact_us_Page.png) contains a contact form.
+The [Contact Page](/documentation/features/Contact_us_Page.png) displays a contact form.
 
 ### Listings Page
 
-The [Listings Page](/documentation/features/Listings_Page.png) displays the listings in a container with infinite scroll.
+The [Listings Page](/documentation/features/Listings_Page.png) displays the search bar and the listings in a container with infinite scroll.
 
 ### Listing Page
 
-  The Listing Page displays the listing's images [on top of the page](/documentation/features/Listing_Page(1).png) and the
-  [listing's features bellow](/documentation/features/Listing_Page(2).png)
+  The Listing Page displays the listing's images [on top of the page](/documentation/features/Listing_Page(1).png), the
+  [listing's features bellow](/documentation/features/Listing_Page(2).png) and a button to add to or remove from wishlist.
+  If user is not logged in will and try to add to list will be redirected to sign in page.
   
 #### Images Modal
 
-  When click on an image, the [modal](/documentation/features/Images_modal.png) will pop up and display all the images
+  When click on an image, the [modal](/documentation/features/Images_modal.png) will pop up and display all the images.
 
 ### Add Listing Page
 
   The Add Listing Page ([1](/documentation/features/Add_listing(1).png), [2](/documentation/features/Add_listing(2).png),
   [3](/documentation/features/Add_listing(3).png)) contains a form with fields to upload images, type, sale_type, description,
   address_number,address_street, postcode, city, price, surface, levels, bedrooms, floor, kitchens, bathrooms,
-  living_rooms, heating_system, energy_class, construction_year, availability
+  living_rooms, heating_system, energy_class, construction_year, availability.
 
 ### Edit Listing Page
 
   The [Edit Listing Page](/documentation/features/Listing_Edit.png) contains the existed images with a checkbox next to eac and all fields
-  from the Add Listing Page filled with the existed values
+  from the Add Listing Page filled with the existed values.
 
 ### Messages Page
 
@@ -235,11 +239,11 @@ The [Listings Page](/documentation/features/Listings_Page.png) displays the list
 #### Message page
 
   The [Message Page](/documentation/features/Message_Page.png) displays the message in a card with the fields of name, email, subject and
-    message
+    message.
 
 ### Sign in Page
 
-The [Sign in Page](/documentation/features/Sign_in.png) displays the Sign in form, an image on the right and a link to sign up page
+The [Sign in Page](/documentation/features/Sign_in.png) displays the Sign in form, an image on the right and a link to sign up page.
 
 ### Sign up Page
 
@@ -249,7 +253,7 @@ The [Signup Page](/documentation/features/Sign_up.png) displays the sign up form
 
 Only registered users can visit the wishlist page.
 
-The [Wishlist Page](/documentation/features/Wishlist_Page.png) displays a list of user's list of properties added.
+The [Wishlist Page](/documentation/features/Wishlist_Page.png) displays the search bar and a list of the user's list of properties added.
 
 ### Profile Page
 
@@ -379,6 +383,18 @@ Navigate to the Heroku app of the project DRF-API, and under the Settings tab, a
 |CLIENT_ORIGIN_DEV | <https://gitpod-browser-link.ws-eu54.gitpod.io>*|
 
 *Check that the trailing slash \ at the end of both links has been removed.
+
+#### Add the Herolu deployment commands
+
+In package.json file, in the “scripts” section, add the following prebuild command:
+
+```"heroku-prebuild": "npm install -g serve",```
+
+This will install a package needed to serve our single page application on heroku
+
+Add a Procfile at the root of the project with the following web command:
+
+```web: serve -s build```
 
 #### Heroku App
 
