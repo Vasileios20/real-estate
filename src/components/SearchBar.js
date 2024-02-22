@@ -151,6 +151,7 @@ const SearchBar = () => {
                   type="text"
                   placeholder="City, postcode, address"
                   className="w-100"
+                  aria-label="search"
                 />
               </Col>
               <Col md={2} sm={6} className="mb-3">
@@ -172,6 +173,7 @@ const SearchBar = () => {
               <Col lg={2} md={3} sm={6} className="mb-3">
                 <Form.Label>Price</Form.Label>
                 <Form.Control
+                  aria-label="min price"
                   type="number"
                   placeholder="Min Price"
                   min="0"
@@ -179,6 +181,7 @@ const SearchBar = () => {
                   onChange={(e) => setPrice({ ...price, min: e.target.value })}
                 />
                 <Form.Control
+                  aria-label="mac price"
                   type="number"
                   placeholder="Max Price"
                   min={price.min ? price.min : "0"}
@@ -192,6 +195,7 @@ const SearchBar = () => {
                   {type === "land" ? "Land Area" : "Floor Area"}
                 </Form.Label>
                 <Form.Control
+                  aria-label="min surface"
                   type="number"
                   placeholder="Min m²"
                   min="0"
@@ -201,6 +205,7 @@ const SearchBar = () => {
                   }
                 />
                 <Form.Control
+                  aria-label="max surface"
                   type="number"
                   placeholder="Max m²"
                   min={surface.min ? surface.min : "0"}
