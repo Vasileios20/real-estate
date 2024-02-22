@@ -426,15 +426,21 @@ Please see [Testing](TESTING.md)
 
 [React docs](https://legacy.reactjs.org/docs/getting-started.html)
 
+[ScrollToTop](https://www.geeksforgeeks.org/how-to-create-a-scroll-to-top-button-in-react-js/)$^1$
+
+[ScrollToTop](https://dev.to/kunalukey/scroll-to-top-when-route-changes-reactjs-react-router-3bgn)$^2$
+
 [Stackoverflow](https://stackoverflow.com/) - For varius enquries I had
 
 ### Media
 
 403 and 404 error pages images [drlinkcheck](https://www.drlinkcheck.com/blog/free-http-error-images)
 
-[Image placeholder](https://commons.wikimedia.org/wiki/File:No-Image-Placeholder.svg) - To use it as a placeholder when user creates a profile
-
 [upload image](https://codeinstitute.s3.amazonaws.com/AdvancedReact/upload.png) - To use it to the ListinCreateForm and ListinEditForm
+
+[signIn image](https://www.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_15667726.htm#fromView=search&page=1&position=1&uuid=5b4895ad-3e02-4d5e-82b7-75a26ce1959) - Image by rawpixel.com on Freepik
+
+[signUp image](https://www.freepik.com/free-photo/woman-showing-with-one-hand-mini-house-real-state-concept-ai-generative_41954006.htm#fromView=search&page=1&position=51&uuid=e3c74710-bc46-413c-992b-e1187508f5fc) - Image by chandlervid85 on Freepik
 
 ### Aknowledgments
 
