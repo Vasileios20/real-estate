@@ -201,15 +201,19 @@ function ListingEditForm() {
     formData.append("availability", availability);
     formData.append("images", imageInput.current.files[0]);
     // Append the selected images to delete to the form data.
-    Array.from(imageInput.current.files).forEach((file) => {
-      formData.append("uploaded_images", file);
-    });
+    if (imageInput.current.files.length > 0) {
+      Array.from(imageInput.current.files).forEach((file) => {
+        formData.append("uploaded_images", file);
+      });
+    } else {
+      formData.append("uploaded_images", []);
+    }
 
     try {
       // Send a PUT request to the API to edit the listing.
       const { data } = await axiosReq.put(`/listings/${id}/`, formData);
-      selectedImages.map((image) => {
-        return axiosReq.delete(`listings/${id}/images/${image}/`);
+      selectedImages.forEach((image) => {
+        axiosReq.delete(`/listings/${id}/images/${image}/`);
       });
       // Redirect to the listing page for the edited listing.
       window.scrollTo(0, 0);
@@ -298,11 +302,12 @@ function ListingEditForm() {
                   </Alert>
                 ))}
 
-                {errors?.uploaded_images?.map((message, idx) => (
-                  <Alert variant="warning" key={idx}>
-                    {message}
-                  </Alert>
-                ))}
+                {Array.isArray(errors?.uploaded_images) &&
+                  errors?.uploaded_images.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                      {message}
+                    </Alert>
+                  ))}
 
                 <div className="d-md-none">
                   <ListingTextFields
