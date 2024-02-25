@@ -24,8 +24,14 @@ const ListingImages = ({ images = [{}] }) => {
   const prevIcon = (
     <i className={`fa-solid fa-arrow-left ${styles.PrevIcon}`}> </i>
   );
+  const windowWidth = window.innerWidth;
+
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip
+      id="button-tooltip"
+      {...props}
+      className={windowWidth < 769 ? "d-none" : "d-block"}
+    >
       Click for larger view
     </Tooltip>
   );
@@ -40,9 +46,10 @@ const ListingImages = ({ images = [{}] }) => {
                 {images.map((image, id) => (
                   <Carousel.Item key={id}>
                     <OverlayTrigger
-                      placement="right-start"
+                      placement="auto"
                       delay={{ show: 250, hide: 400 }}
                       overlay={renderTooltip}
+                      trigger={["hover", "focus"]}
                     >
                       <Image
                         src={image.url}
