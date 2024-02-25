@@ -166,14 +166,43 @@ function ListingEditForm() {
 
   // Function to handle the selected images to delete
   const handleSelectedImages = (e) => {
-    const selectedImage = e.target.value;
-    setSelectedImages((prevSelectedImages) => {
-      if (e.target.checked) {
-        return [...prevSelectedImages, selectedImage];
-      } else {
-        return prevSelectedImages.filter((image) => image !== selectedImage);
-      }
-    });
+    // Get the checked checkboxes.
+    const checkedBoxes = document.querySelectorAll(
+      "input[name=images]:checked"
+    );
+    // If there are checked checkboxes, get their values and add them to the selected images state.
+    if (checkedBoxes.length > 0) {
+      const checkedValues = Array.from(checkedBoxes).map(
+        (checkbox) => checkbox.value
+      );
+
+      setSelectedImages((prevSelectedImages) => {
+        if (e.target.checked) {
+          return [...prevSelectedImages, ...checkedValues];
+        } else {
+          return prevSelectedImages.filter(
+            (image) => !checkedValues.includes(image)
+          );
+        }
+      });
+    } else {
+      setSelectedImages([]);
+    }
+  };
+
+  // Function to handle the delete image event.
+  const handleDeleteImage = async (e) => {
+    e.preventDefault();
+    try {
+      selectedImages.forEach(async (image) => {
+        await axiosReq.delete(`/listings/${id}/images/${image}/`);
+
+        setSelectedImages([]);
+        window.location.reload();
+      });
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
   };
 
   // Function to handle the submit event for the form.
@@ -206,21 +235,19 @@ function ListingEditForm() {
         formData.append("uploaded_images", file);
       });
     } else {
-      formData.append("uploaded_images", []);
+      setErrors({ images: ["Please add an image"] });
     }
 
     try {
       // Send a PUT request to the API to edit the listing.
       const { data } = await axiosReq.put(`/listings/${id}/`, formData);
-      selectedImages.forEach((image) => {
-        axiosReq.delete(`/listings/${id}/images/${image}/`);
-      });
       // Redirect to the listing page for the edited listing.
       window.scrollTo(0, 0);
       window.localStorage.setItem("edited", true);
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
+      window.scrollTo(0, 0);
       if (err.response?.status === 403) {
         setErrors(err.response?.data);
       }
@@ -242,12 +269,17 @@ function ListingEditForm() {
                   <>
                     <Alert
                       variant="danger"
-                      className={`${btnStyles.Medium} mx-auto`}
+                      className={`${btnStyles.Wide} mx-auto`}
                     >
-                      Choose the images you would like to delete
+                      To delete images choose the ones you would like to delete
+                      and press the button below
                     </Alert>
-                    {Array.from(images).map((image, idx) => (
-                      <figure key={idx}>
+                    {/* Map through the images and display them.
+                      The images are displayed in a grid and can be selected to delete them
+                      by checking the checkbox next to them. */}
+
+                    {Array.from(images).map((image) => (
+                      <figure key={image.id}>
                         <input
                           type="checkbox"
                           name="images"
@@ -263,13 +295,22 @@ function ListingEditForm() {
                       </figure>
                     ))}
                   </>
+                  <div>
+                    <button
+                      className={`${btnStyles.Button} ${btnStyles.Remove} btn mb-1`}
+                      onClick={handleDeleteImage}
+                    >
+                      Delete selected image(s)
+                    </button>
+                  </div>
                   <>
+                    {/* Map through the selected images and display them. */}
                     {images
                       ? Array.from(imageInput.current.files).map(
                           (file, idx) => (
                             <figure key={idx}>
                               <Image
-                                className={`"my-2 px-2" ${styles.Image}`}
+                                className={`my-2 px-2 ${styles.Image}`}
                                 src={URL.createObjectURL(file)}
                                 rounded
                               />
@@ -283,7 +324,7 @@ function ListingEditForm() {
                         className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
                         htmlFor="image-upload"
                       >
-                        Change the image
+                        Add image(s)
                       </Form.Label>
                     </div>
                   </>
