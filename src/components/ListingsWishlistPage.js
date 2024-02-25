@@ -56,8 +56,8 @@ const ListingsWishlistPage = ({
                         <Col xs={12} md={6} lg={5} xl={4} className="p-0">
                           <Link to={`/listings/${listing.id}`}>
                             <Image
-                              src={listing.images[0].url}
-                              alt={listing.images[0].id}
+                              src={listing.images[0]?.url}
+                              alt={listing.images[0]?.id}
                               className={`img-fluid ${styles.Listingswishlist__Image}`}
                             ></Image>
                           </Link>
@@ -98,8 +98,8 @@ const ListingsWishlistPage = ({
                     <Col xs={12} md={6} lg={5} xl={4} className="px-0">
                       <Link to={`/listings/${listing.id}`}>
                         <Image
-                          src={listing.images[0].url}
-                          alt={listing.images[0].id}
+                          src={listing.images[0]?.url}
+                          alt={listing.images[0]?.id}
                           className={`img-fluid ${styles.Listingswishlist__Image}`}
                         ></Image>
                       </Link>

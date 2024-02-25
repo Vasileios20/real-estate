@@ -1,26 +1,36 @@
-.ImageLeft {
+.Image,
+.ImagesModal {
   max-width: 100%;
-  margin-top: 5px;
+  border-radius: 5px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ImageLeft:hover {
+.Image {
+  max-height: 20vh;
+}
+
+.NextIcon,
+.PrevIcon {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  padding: 10px;
+  color: white;
+  transform: translateY(-50%);
+  z-index: 1;
+  position: absolute;
+  top: 50%;
   cursor: pointer;
 }
 
-.ImageRight {
-  max-width: 100%;
-  margin: 5px 0;
-}
-
-.ImageRight:hover {
+.Image:hover {
   cursor: pointer;
 }
 
 .ImagesModal {
-  max-height: 600px;
-  margin: 10px;
-  aspect-ratio: 16/9;
-  border-radius: 5px;
+  max-height: 80vh;
 }
 
 @media screen and (min-width: 576px) {

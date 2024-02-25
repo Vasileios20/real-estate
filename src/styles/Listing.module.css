@@ -38,7 +38,7 @@
 .Listingswishlist__Image {
   border-radius: 0.25rem 0 0 0.25rem;
   padding: 0 10px;
-  aspect-ratio: 16/9;
+  max-height: 25vh;
 }
 
 /* Responsive */

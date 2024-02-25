@@ -5,66 +5,79 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
+import { Carousel, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ListingImages = ({ images = [{}] }) => {
-  /**
-   * The ListingImages component is a functional component that renders the images of a listing.
-   * It contains a main image and four smaller images.
-   * It also contains a modal that shows all the images of the listing.
-   * @param {Object} images - The images of the listing.
-   * @returns {JSX.Element} - The JSX for the component.
-   */
+  // The ListingImages component is a functional component that renders the images of a listing.
+  // It uses the Carousel component from react-bootstrap to display the images in a carousel.
+  // The component also uses the Modal component from react-bootstrap to display the images in a modal when clicked.
+  // The component takes an array of images as a prop and maps through the array to display the images in the carousel.
+  // When an image is clicked, the modal is displayed with the images in a carousel.
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const nextIcon = (
+    <i className={`fa-solid fa-arrow-right ${styles.NextIcon}`}> </i>
+  );
+  const prevIcon = (
+    <i className={`fa-solid fa-arrow-left ${styles.PrevIcon}`}> </i>
+  );
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Click for larger view
+    </Tooltip>
+  );
+
   return (
     <Container>
       <Row>
-        <Col md={6} className="pr-md-1">
-          <Image
-            className={styles.ImageLeft}
-            src={images[0].url}
-            alt={images[0].id}
-            onClick={handleShow}
-            rounded
-            style={{ aspectRatio: "16/9" }}
-          />
-        </Col>
-        <Col md={6} className="">
+        <Container>
           <Row>
-            {images.slice(1, 5).map((image) => (
-              <Col md={6} key={image.id} className="pr-1">
-                <Image
-                  src={image.url}
-                  alt={image.id}
-                  className={styles.ImageRight}
-                  onClick={handleShow}
-                  rounded
-                  style={{ aspectRatio: "16/9" }}
-                />
-              </Col>
-            ))}
+            <Col xs={12} md={6} lg={4} className="p-0">
+              <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
+                {images.map((image, id) => (
+                  <Carousel.Item key={id}>
+                    <OverlayTrigger
+                      placement="right-start"
+                      delay={{ show: 250, hide: 400 }}
+                      overlay={renderTooltip}
+                    >
+                      <Image
+                        src={image.url}
+                        alt={image.id}
+                        fluid
+                        className={styles.Image}
+                        onClick={handleShow}
+                      />
+                    </OverlayTrigger>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </Col>
           </Row>
-        </Col>
+        </Container>
       </Row>
       <Modal show={show} onHide={handleClose} dialogClassName={styles.Modal}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <>
-            <Row className="justify-content-center px-3">
-              {images.map((image, id) => (
-                <Image
-                  key={id}
-                  src={image.url}
-                  alt={image.id}
-                  fluid
-                  className={styles.ImagesModal}
-                />
-              ))}
-            </Row>
-          </>
+          <Row>
+            <Container>
+              <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
+                {images.map((image, id) => (
+                  <Carousel.Item key={id}>
+                    <Image
+                      src={image.url}
+                      alt={image.id}
+                      fluid
+                      className={styles.ImagesModal}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </Container>
+          </Row>
         </Modal.Body>
       </Modal>
     </Container>
