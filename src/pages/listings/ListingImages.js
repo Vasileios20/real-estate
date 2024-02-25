@@ -66,11 +66,17 @@ const ListingImages = ({ images = [{}] }) => {
           </Row>
         </Container>
       </Row>
-      <Modal show={show} onHide={handleClose} dialogClassName={styles.Modal}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        dialogClassName={styles.Modal}
+        centered
+        variant="dark"
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Row>
-            <Container>
+            <Container style={{ height: "80vh" }}>
               <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
                 {images.map((image, id) => (
                   <Carousel.Item key={id}>

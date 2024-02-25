@@ -33,14 +33,12 @@
   max-height: 80vh;
 }
 
+.Modal {
+  height: 100vh;
+}
+
 @media screen and (min-width: 576px) {
   .Modal {
     max-width: 90%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ImageRight {
-    display: none;
   }
 }
