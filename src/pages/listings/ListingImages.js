@@ -41,9 +41,9 @@ const ListingImages = ({ images = [{}] }) => {
   return (
     <Container>
       <Row>
-        <Container>
+        <Container style={{ height: "20vh" }}>
           <Row>
-            <Col xs={12} md={6} lg={4} className="p-0">
+            <Col xs={12} md={6} lg={4} className="p-1 py-md-3 py-lg-0">
               <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
                 {images.map((image, id) => (
                   <Carousel.Item key={id}>
