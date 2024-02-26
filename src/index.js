@@ -8,15 +8,13 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import ScrollToTop from "./hooks/ScrollToTop";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <CurrentUserProvider>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </CurrentUserProvider>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <CurrentUserProvider>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </CurrentUserProvider>
+  </Router>,
   document.getElementById("root")
 );
 
