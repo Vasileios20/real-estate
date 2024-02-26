@@ -211,13 +211,12 @@ The [Listings Page](/documentation/features/Listings_Page.png) displays the sear
 
 ### Listing Page
 
-  The Listing Page displays the listing's images [on top of the page](/documentation/features/Listing_Page(1).png), the
-  [listing's features bellow](/documentation/features/Listing_Page(2).png) and a button to add to or remove from wishlist.
+  The Listing Page displays the listing's images [on top of the page](/documentation/features/Listing_Page(1).png) in a carusel, when hovered over image a tooltip with a message to click on image for larger view, the [listing's features bellow](/documentation/features/Listing_Page(2).png) and a button to add to or remove from wishlist.
   If user is not logged in will and try to add to list will be redirected to sign in page.
   
 #### Images Modal
 
-  When click on an image, the [modal](/documentation/features/Images_modal.png) will pop up and display all the images.
+  When click on an image, the [modal](/documentation/features/Images_modal.png) will pop up and display the images in a carusel.
 
 ### Add Listing Page
 
@@ -228,8 +227,7 @@ The [Listings Page](/documentation/features/Listings_Page.png) displays the sear
 
 ### Edit Listing Page
 
-  The [Edit Listing Page](/documentation/features/Listing_Edit.png) contains the existed images with a checkbox next to eac and all fields
-  from the Add Listing Page filled with the existed values.
+  The [Edit Listing Page](/documentation/features/Listing_Edit.png) contains the existed images with a checkbox next to each, a button to delete images, a button to add images and all fields from the Add Listing Page filled with the existed values.
 
 ### Messages Page
 
@@ -253,7 +251,8 @@ The [Signup Page](/documentation/features/Sign_up.png) displays the sign up form
 
 Only registered users can visit the wishlist page.
 
-The [Wishlist Page](/documentation/features/Wishlist_Page.png) displays the search bar and a list of the user's list of properties added.
+The [Wishlist Page](/documentation/features/Wishlist_Page.png) displays the search bar and a list of the user's list of properties added
+or a message "Your list is empty".
 
 ### Profile Page
 
@@ -441,6 +440,8 @@ Please see [Testing](TESTING.md)
 [signIn image](https://www.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_15667726.htm#fromView=search&page=1&position=1&uuid=5b4895ad-3e02-4d5e-82b7-75a26ce1959) - Image by rawpixel.com on Freepik
 
 [signUp image](https://www.freepik.com/free-photo/woman-showing-with-one-hand-mini-house-real-state-concept-ai-generative_41954006.htm#fromView=search&page=1&position=51&uuid=e3c74710-bc46-413c-992b-e1187508f5fc) - Image by chandlervid85 on Freepik
+
+[delete images](https://stackoverflow.com/a/61987030/21953029) - This answer helped me to find another solution to delete images as my initial implementation wouldn't work as expected.
 
 ### Aknowledgments
 
