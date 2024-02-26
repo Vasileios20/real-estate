@@ -2,7 +2,7 @@
 
 * [CSS](#css)
 * [ESlint](#eslint)
-* [Lighthouse]
+* [Lighthouse](#lighthouse)
 * [User Stories](#user-stories)
 * [Manual Testing](#manual-testing)
 * [Bugs](#bugs)
@@ -165,7 +165,7 @@ performance that contain large images (user's uploads).
 | 58 | ** Fields Address number, price, surface, levels, bedrooms, floor, kitchens, bathrooms and living rooms are number only fields | Display error message: a valid integer is required | Left blank one of each fields and press create | ✅ |
 | 59 | ** Fields Address number, price, surface, levels, bedrooms, floor, kitchens, bathrooms and living rooms are number only fields | Display error message: This field must be a positive number | Typed negative value on one of each fields and press create | ✅ |
 | | Edit listing | | | |
-| 61 | Existing images checkbox | Delete selected image | Checked an image and click update | ✅ |
+| 61 | Existing images checkbox | Delete selected image | Checked an image and click delete button | ✅ |
 | 62 | Submit button | Button text: Update | Navigate to the edit listing page | ✅ |
 | 63 | * The rest of the fields same as Add listing | | | ✅ |
 | | SearchBar | | | |
