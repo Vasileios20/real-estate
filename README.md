@@ -431,6 +431,10 @@ Please see [Testing](TESTING.md)
 
 [Stackoverflow](https://stackoverflow.com/) - For varius enquries I had
 
+[delete images](https://stackoverflow.com/a/61987030/21953029) - This answer helped me to find another solution to delete images as my initial implementation wouldn't work as expected.
+
+[stackoverflow](https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component) - To fix warning for unmounted component.
+
 ### Media
 
 403 and 404 error pages images [drlinkcheck](https://www.drlinkcheck.com/blog/free-http-error-images)
@@ -441,7 +445,13 @@ Please see [Testing](TESTING.md)
 
 [signUp image](https://www.freepik.com/free-photo/woman-showing-with-one-hand-mini-house-real-state-concept-ai-generative_41954006.htm#fromView=search&page=1&position=51&uuid=e3c74710-bc46-413c-992b-e1187508f5fc) - Image by chandlervid85 on Freepik
 
-[delete images](https://stackoverflow.com/a/61987030/21953029) - This answer helped me to find another solution to delete images as my initial implementation wouldn't work as expected.
+[listing image 1](https://www.freepik.com/free-photo/modern-kitchen-interior-bright-colors_31023435.htm#fromView=search&page=1&position=15&uuid=28c86659-c683-4859-bb88-ebc92f29cc57) - Image by wirestock on Freepik
+
+[listing image 2](https://www.freepik.com/free-photo/modern-empty-room_94962432.htm#fromView=search&page=1&position=24&uuid=28c86659-c683-4859-bb88-ebc92f29cc57) -Image by Freepik
+
+[listing image 3](https://www.freepik.com/free-photo/room-interior-design_13195305.htm#fromView=search&page=1&position=2&uuid=28c86659-c683-4859-bb88-ebc92f29cc57) - Image by Freepik
+
+[listing image 4](https://www.freepik.com/free-photo/room-interior-design_13195299.htm#fromView=search&page=1&position=1&uuid=28c86659-c683-4859-bb88-ebc92f29cc57) - Image by Freepik
 
 ### Aknowledgments
 
