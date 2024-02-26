@@ -94,7 +94,7 @@ const ListingsWishlistPage = ({
               {array.length ? (
                 // If there are listings, display them in a grid. If not, display a message.
                 array.map((listing) => (
-                  <Row key={listing.id} className="mx-0 align-items-center">
+                  <Row key={listing.id} className="mx-0 align-items-center w-100">
                     <Col xs={12} md={6} lg={5} xl={4} className="px-0">
                       <Link to={`/listings/${listing.id}`}>
                         <Image
