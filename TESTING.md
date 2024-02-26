@@ -2,7 +2,7 @@
 
 * [CSS](#css)
 * [ESlint](#eslint)
-* [Lighthouse]
+* [Lighthouse](#lighthouse)
 * [User Stories](#user-stories)
 * [Manual Testing](#manual-testing)
 * [Bugs](#bugs)
@@ -165,7 +165,7 @@ performance that contain large images (user's uploads).
 | 58 | ** Fields Address number, price, surface, levels, bedrooms, floor, kitchens, bathrooms and living rooms are number only fields | Display error message: a valid integer is required | Left blank one of each fields and press create | ✅ |
 | 59 | ** Fields Address number, price, surface, levels, bedrooms, floor, kitchens, bathrooms and living rooms are number only fields | Display error message: This field must be a positive number | Typed negative value on one of each fields and press create | ✅ |
 | | Edit listing | | | |
-| 61 | Existing images checkbox | Delete selected image | Checked an image and click update | ✅ |
+| 61 | Existing images checkbox | Delete selected image | Checked an image and click delete button | ✅ |
 | 62 | Submit button | Button text: Update | Navigate to the edit listing page | ✅ |
 | 63 | * The rest of the fields same as Add listing | | | ✅ |
 | | SearchBar | | | |
@@ -312,3 +312,13 @@ FIX: Had to set
 ```
 
 to package.json to be able to deploy the app
+
+BUG: When adding or removing listings to the wishlist and navigate within 3 seconds to Wishlist it would raise the following warning:
+
+```text
+Listing.js:123 Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+    at Listing (https://re-real-estate-ecc213881132.herokuapp.com/static/js/main.chunk.js:8125:5)
+    at ListingPage (https://re-real-estate-ecc213881132.herokuapp.com/static/js/main.chunk.js:9934:73)
+```
+
+FIX: I added to the useFetchWishlist hook to check if component is mounted and then perform any state update. Solution found at [stackoverflow](https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component)
