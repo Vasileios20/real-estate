@@ -1,6 +1,7 @@
 import React from "react";
-import SearchBar from "../../components/SearchBar";
-import { Col, Container, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function AboutPage() {
   /**
@@ -11,7 +12,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <SearchBar />
       <Container>
         <Row className="mt-3 flex-column">
           <Col className="mt-4 mb-2">

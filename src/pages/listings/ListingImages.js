@@ -5,7 +5,9 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
-import { Carousel, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 const ListingImages = ({ images = [{}] }) => {
   // The ListingImages component is a functional component that renders the images of a listing.
