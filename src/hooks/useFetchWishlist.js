@@ -23,8 +23,10 @@ const useFetchWishlist = (props) => {
   const [listingId, setListingId] = useState([]);
   const [wishlistId, setWishlistId] = useState(null);
   const [addedToList, setAddedToList] = useState(null);
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
+    // let mounted = true;
     // Fetch the wishlist from the API.
     const fetchWishlist = async () => {
       try {
@@ -39,21 +41,33 @@ const useFetchWishlist = (props) => {
             result.listings === props.id &&
             result.owner === currentUser?.username
         );
-        // If the wishlist id exists, set the wishlist id state.
-        if (wishlistId) {
-          setWishlistId(wishlistId?.id);
+        if (mounted) {
+          // If the wishlist id exists, set the wishlist id state.
+          if (wishlistId) {
+            setWishlistId(wishlistId?.id);
+          }
+          // If the wishlist id exists and the owner matches the current user's username, set the added to list state to true.
+          if (wishlistId && wishlistId.owner === currentUser?.username) {
+            setAddedToList(true);
+          }
+          setListingId(wishlist);
         }
-        // If the wishlist id exists and the owner matches the current user's username, set the added to list state to true.
-        if (wishlistId && wishlistId.owner === currentUser?.username) {
-          setAddedToList(true);
-        }
-        setListingId(wishlist);
       } catch (err) {
         // console.log(err);
       }
     };
     fetchWishlist();
-  }, [pathname, is_owner, currentUser?.username, props.id, addedToList]);
+    return () => {
+      setMounted(false);
+    };
+  }, [
+    pathname,
+    is_owner,
+    currentUser?.username,
+    props.id,
+    addedToList,
+    mounted,
+  ]);
   return {
     listingId,
     setListingId,
