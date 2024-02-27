@@ -372,16 +372,14 @@ To clone the repository :
 
 The site has been deployed using Heroku. Deployed site [CB Real Estate](https://re-real-estate-ecc213881132.herokuapp.com/). Follow these steps:
 
-#### Connect to the API
+I have used VSCode with [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) for developement so I'll describe the steps I took.
 
-Navigate to the Heroku app of the project DRF-API, and under the Settings tab, add the following configvars:
-
-|KEY|VALUE|
-|--|--|
-|CLIENT_ORIGIN | <https://your-react-app-name.herokuapp.com>*|
-|CLIENT_ORIGIN_DEV | <https://gitpod-browser-link.ws-eu54.gitpod.io>*|
-
-*Check that the trailing slash \ at the end of both links has been removed.
+* Create the repository.
+* On VScode connect to WSL.
+  * Clone the repository
+* Run the command ```npx create-react-app . --use-npm```
+* After it has finished run the command ```npm start``` to check if the app is working.
+* Git add, commit and push.
 
 #### Add the Herolu deployment commands
 
@@ -394,6 +392,17 @@ This will install a package needed to serve our single page application on herok
 Add a Procfile at the root of the project with the following web command:
 
 ```web: serve -s build```
+
+#### Connect to the API
+
+Navigate to the Heroku app of the project DRF-API, and under the Settings tab, add the following configvars:
+
+|KEY|VALUE|
+|--|--|
+|CLIENT_ORIGIN | <https://your-react-app-name.herokuapp.com>*|
+|CLIENT_ORIGIN_DEV | <https://gitpod-browser-link.ws-eu54.gitpod.io>*|
+
+*Check that the trailing slash \ at the end of both links has been removed.
 
 #### Heroku App
 
