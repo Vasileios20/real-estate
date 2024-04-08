@@ -312,3 +312,13 @@ FIX: Had to set
 ```
 
 to package.json to be able to deploy the app
+
+BUG: When adding or removing listings to the wishlist and navigate within 3 seconds to Wishlist it would raise the following warning:
+
+```text
+Listing.js:123 Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+    at Listing (https://re-real-estate-ecc213881132.herokuapp.com/static/js/main.chunk.js:8125:5)
+    at ListingPage (https://re-real-estate-ecc213881132.herokuapp.com/static/js/main.chunk.js:9934:73)
+```
+
+FIX: I added to the useFetchWishlist hook to check if component is mounted and then perform any state update. Solution found at [stackoverflow](https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component)
