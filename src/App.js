@@ -23,7 +23,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import AboutPage from "./pages/home/AboutPage";
 import FinancialAdvicePage from "./pages/home/FinancialAdvicePage";
-import PropertyMgm from "./pages/home/PropertyMangementPage";
+import PropertyMgm from "./pages/home/PropertyManagementPage";
 import TransacionsPage from "./pages/home/TransactionsPage";
 import EvaluationPage from "./pages/home/EvaluationPage";
 import Footer from "./components/Footer";
