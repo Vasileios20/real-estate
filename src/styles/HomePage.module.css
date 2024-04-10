@@ -1,0 +1,33 @@
+.HeroImage {
+  background-image: url("../assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Welcome {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  top: 350px;
+  left: 20px;
+  position: absolute;
+  animation-name: hero-zoom;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+/* creates the level of zoom for hero image */
+@keyframes hero-zoom {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
