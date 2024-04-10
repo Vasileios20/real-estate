@@ -7,6 +7,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import ScrollToTop from "./hooks/ScrollToTop";
 
+// import i18n (needs to be bundled ;))
+import "./i18n";
+
 ReactDOM.render(
   <Router>
     <CurrentUserProvider>
