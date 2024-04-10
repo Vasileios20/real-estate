@@ -4,14 +4,21 @@
 }
 
 .NavLink {
-  padding: 15px 5px 0 5px;
+  padding: 8px 5px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.Navdropdown {
+  padding: 1px;
   font-weight: 500;
 }
 
 .NavLink:hover {
-  color: #b0b000;
+  color: #797742;
 }
 
 .Active {
-  color: #b0b000;
+  color: #797742;
+  font-weight: 700;
 }
