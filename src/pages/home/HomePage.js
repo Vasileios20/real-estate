@@ -1,8 +1,13 @@
-import React from "react";
-import SearchBar from "../../components/SearchBar";
+import React, { useEffect } from "react";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import styles from "../../styles/HomePage.module.css";
+import Card from "react-bootstrap/Card";
+import property_management from "../../assets/logo.png";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function HomePage() {
   /**
@@ -10,49 +15,92 @@ export default function HomePage() {
    * It contains a search bar and a welcome message.
    * @returns {JSX.Element} - The JSX for the component.
    */
+
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language || navigator.userLanguage;
+    i18n.changeLanguage(lng);
+  }, [i18n]);
+  // const lng = navigator.language || navigator.userLanguage;
   return (
     <>
-      <SearchBar />
+      <div className={styles.HeroImage}>
+        <h1 className={styles.Welcome}>Welcome to the Acropolis Estates</h1>
+      </div>
+
       <Container>
-        <Row className="mt-3 flex-column">
+        <Row className="mt-3">
           <Col className="my-4">
-            Welcome to CB Real Estate, where your real estate dreams find their
-            perfect match. Our comprehensive platform offers an extensive range
-            of properties, carefully curated to cater to diverse preferences and
-            budgets. Whether you're in the market to rent or sell apartments,
-            houses, land, or commercial spaces, we're your ultimate destination.
+            <p style={{ fontSize: "1.8rem" }}>
+              {t("homePage.description")}
+            </p>
           </Col>
-          <Col>
-            At CB Real Estate, we understand that real estate transactions can
-            be both exciting and challenging. That's why our team of seasoned
-            real estate experts is here to provide professional guidance at
-            every step. From understanding market trends to navigating the
-            complexities of property transactions, we're committed to ensuring a
-            smooth and informed experience for our clients.
+        </Row>
+        <Row>
+          <h2 className="my-4 text-center w-100">Our Services</h2>
+          <Col xs={12} md={6} className="mt-1">
+            <Card className="h-100">
+              <img src={property_management} alt="Property Management" />
+
+              <Card.Body>
+                <Card.Title>
+                  <Link to="/propertyManagement">Property Management</Link>
+                </Card.Title>
+                {/* <Card.Text>
+                  Our property management services are designed to help you
+                  maximize your property's potential. From marketing your
+                  property to handling tenant requests, we've got you covered.
+                </Card.Text> */}
+              </Card.Body>
+            </Card>
           </Col>
-          <Col className="my-4">
-            In addition to our vast listings and expert guidance, CB Real Estate
-            takes pride in offering financial advice tailored to your unique
-            needs. Our financial advisory services are designed to empower you
-            with the knowledge needed to make sound real estate investments.
-            Whether you're a first-time homebuyer or a seasoned investor, our
-            personalized consultations will help you make informed decisions.
+          <Col xs={12} md={6} className="mt-1">
+            <Card className="h-100">
+              <img src={property_management} alt="Property Management" />
+
+              <Card.Body>
+                <Card.Title>
+                  <Link to="/advisory">Financial Advise</Link>
+                </Card.Title>
+                {/* <Card.Text>
+                  Our team of real estate experts is here to provide you with
+                  the best advice on buying, selling, and renting properties.
+                  Let us help you make informed decisions.
+                </Card.Text> */}
+              </Card.Body>
+            </Card>
           </Col>
-          <Col>
-            Navigating our user-friendly platform is a breeze, saving you time
-            and effort in your property search. We've designed our website for
-            seamless navigation, ensuring that you can easily find the property
-            that aligns with your requirements. Your real estate journey begins
-            here, and we're dedicated to making it as straightforward as
-            possible.
+          {/* Evaluation */}
+          <Col xs={12} md={6} className="mt-1">
+            <Card className="h-100">
+              <img src={property_management} alt="Property Management" />
+              <Card.Body>
+                <Card.Title>
+                  <Link to="/evaluation">Evaluation</Link>
+                </Card.Title>
+                {/* <Card.Text>
+                  Our team of experts will evaluate your property and provide
+                  you with an accurate valuation. Get in touch with us today.
+                </Card.Text> */}
+              </Card.Body>
+            </Card>
           </Col>
-          <Col className="my-4">
-            Transparency is the cornerstone of our approach at CB Real Estate.
-            Trust us to provide accurate information and guide you through each
-            transaction with openness and honesty. Whether you're looking for a
-            place to call home or seeking a lucrative commercial investment, CB
-            Real Estate is your partner in turning real estate aspirations into
-            reality. Start your journey with us today!
+
+          <Col xs={12} md={6} className="mt-1">
+            <Card className="h-100">
+              <img src={property_management} alt="Property Management" />
+              <Card.Body>
+                <Card.Title>
+                  <Link to="/transactions">Transactions</Link>
+                </Card.Title>
+                {/* <Card.Text>
+                  Our analytics services help you make data-driven decisions
+                  about your real estate investments. Get in touch with us to
+                  learn more.
+                </Card.Text> */}
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
