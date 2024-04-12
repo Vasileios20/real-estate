@@ -5,9 +5,10 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+
 import Container from "react-bootstrap/Container";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import styles from "../../styles/ContactForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -16,8 +17,9 @@ import axios from "axios";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
+import { use } from "i18next";
 
-function ContactForm() {
+function ContactForm({ listing_id }) {
   /**
    * The ContactForm component is a functional component that renders a form for sending a message to the site admin.
    * It contains input fields for the name, email, subject, and message of the contact form.
@@ -38,8 +40,17 @@ function ContactForm() {
 
   const { name, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
+  const [messageDeleted, setMessageDeleted] = useState(false);
 
   const history = useHistory();
+
+  const message_form = `I am interested in the listing with id ${listing_id}`;
+  const path = useLocation().pathname;
+
+  contactData.message =
+    path === `/listings/${listing_id}` && !messageDeleted
+      ? message_form
+      : contactData.message;
 
   useEffect(() => {
     if (currentUser) {
@@ -69,6 +80,9 @@ function ContactForm() {
       ...contactData,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name === "message") {
+      setMessageDeleted(true);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -78,25 +92,35 @@ function ContactForm() {
       setSuccess(true);
 
       setTimeout(() => {
-        history.push("/");
+        path === `/listings/${listing_id}`
+          ? window.location.reload()
+          : history.push("/");
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
+      setTimeout(() => {
+        setErrors({});
+      }, 2500);
     }
   };
 
   return (
     <Row className="mt-4">
-      <Col className="m-auto" md={8}>
-        <Container className={`${appStyles.Content} p-4 `}>
+      <Col
+        className={path === `/listings/${listing_id}` ? "m-auto" : "m-auto"}
+        md={path === `/listings/${listing_id}` ? 12 : 8}
+      >
+        <Container className={`${appStyles.Content} p-4 rounded shadow`}>
           <h1 className={styles.Header}>contact form</h1>
           <Form onSubmit={handleSubmit} className="d-flex flex-column">
-            <Form.Group controlId="name">
-              <Form.Label className="d-none">name</Form.Label>
+            <Form.Group controlId="name" className="">
+              <Form.Label className={styles.FormLabel}>
+                Name<span>*</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="text"
-                placeholder={"Name"}
+                placeholder={"Your full name"}
                 name="name"
                 value={name}
                 onChange={handleChange}
@@ -110,11 +134,13 @@ function ContactForm() {
             ))}
 
             <Form.Group controlId="email">
-              <Form.Label className="d-none">email address</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Email<span>*</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="email"
-                placeholder={"Email"}
+                placeholder={"Your email"}
                 name="email"
                 value={email}
                 onChange={handleChange}
@@ -128,9 +154,11 @@ function ContactForm() {
             ))}
 
             <Form.Group controlId="subject">
-              <Form.Label className="d-none">subject</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Subject<span>*</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="text"
                 placeholder="Subject"
                 name="subject"
@@ -146,12 +174,18 @@ function ContactForm() {
             ))}
 
             <Form.Group controlId="message">
-              <Form.Label className="d-none">message</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Message<span>*</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 as="textarea"
                 rows={6}
-                placeholder="Message"
+                placeholder={
+                  path === `/listings/${listing_id}` && !messageDeleted
+                    ? message_form
+                    : "Your message"
+                }
                 name="message"
                 value={message}
                 onChange={handleChange}
@@ -165,7 +199,7 @@ function ContactForm() {
             ))}
 
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Black}`}
+              className={`${btnStyles.Button} ${btnStyles.Black} mt-3`}
               type="submit"
             >
               Send
