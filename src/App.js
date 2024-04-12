@@ -10,7 +10,6 @@ import ListingPage from "./pages/listings/ListingPage";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import ListingsPage from "./pages/listings/ListingsPage";
 import ContactForm from "./pages/contact/ContactForm";
-import Wishlist from "./pages/wishlist/Wishlist";
 import HomePage from "./pages/home/HomePage";
 import useUserStatus from "./hooks/useUserStatus";
 import NotFound from "./pages/errors/NotFound";
@@ -89,7 +88,6 @@ function App() {
               path="/listings/:id/edit"
               render={() => <ListingEditForm />}
             />
-            <Route exact path="/wishlist" render={() => <Wishlist />} />
             <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
             <Route
               exact

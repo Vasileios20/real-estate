@@ -1,5 +1,5 @@
 import useFetchListings from "../../hooks/useFetchListings";
-import ListingsWishlistPage from "../../components/ListingsWishlistPage";
+import ListingsComponent from "../../components/Listings";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -32,7 +32,7 @@ function ListingsPage() {
 
   return (
     <>
-      <ListingsWishlistPage
+      <ListingsComponent
         array={displayListings.results}
         hasLoaded={hasLoaded}
         setListings={setListings}
