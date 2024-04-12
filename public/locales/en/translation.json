@@ -10,9 +10,9 @@
     },
     "services": {
         "title": "Services",
-        "evaluation": "Property Evaluation",
+        "evaluation": "Evaluation",
         "financialAdvice": "Financial Advice",
-        "propertyManagement": "Property Management",
+        "assetManagement": "Asset Management",
         "properties": "Properties"
     },
     "homePage": {

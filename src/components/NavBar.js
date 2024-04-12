@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -14,7 +14,8 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import useUserStatus from "../hooks/useUserStatus";
 import logo from "../assets/logo.png";
 import { removeTokenTimestamp } from "../utils/utils";
-import { NavDropdown } from "react-bootstrap";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
   /**
@@ -27,6 +28,23 @@ const NavBar = () => {
   const userStatus = useUserStatus();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
   const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language || navigator.userLanguage;
+    i18n.changeLanguage(lng);
+    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
+    setIsMobile(isMobileDevice);
+  }, [i18n]);
+
+  const hanleServicesClick = () => {
+    if (isMobile) {
+      setServicesExpanded(!servicesExpanded);
+      setExpanded(true);
+    }
+  };
 
   const handleSignOut = async () => {
     try {
@@ -38,6 +56,31 @@ const NavBar = () => {
     }
   };
 
+  const servicesDropdown = (
+    <NavDropdown
+      className={`${styles.Navdropdown}`}
+      title={t("services.title")}
+      id="basic-nav-dropdown"
+      show={servicesExpanded}
+      onMouseEnter={() => setServicesExpanded(true)}
+      onMouseLeave={() => setServicesExpanded(false)}
+      onClick={hanleServicesClick}
+    >
+      <NavDropdown.Item href="/propertyManagement">
+        {t("services.assetManagement")}
+      </NavDropdown.Item>
+      <NavDropdown.Item href="/advisory">
+        {t("services.financialAdvice")}
+      </NavDropdown.Item>
+      <NavDropdown.Item href="/evaluation">
+        {t("services.evaluation")}
+      </NavDropdown.Item>
+      <NavDropdown.Item href="/listings">
+        {t("services.properties")}
+      </NavDropdown.Item>
+    </NavDropdown>
+  );
+
   const userIcons = (
     <>
       <NavLink
@@ -45,29 +88,15 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/about"
       >
-        About
+        {t("nav.about")}
       </NavLink>
-      <NavDropdown
-        className={`${styles.Navdropdown} ${styles.NavLink}`}
-        title="Services"
-        id="basic-nav-dropdown"
-        show={servicesExpanded}
-        onMouseEnter={() => setServicesExpanded(true)}
-        onMouseLeave={() => setServicesExpanded(false)}
-      >
-        <NavDropdown.Item href="/advisory">Financial Advice</NavDropdown.Item>
-        <NavDropdown.Item href="/propertyManagement">
-          Property Management
-        </NavDropdown.Item>
-        <NavDropdown.Item href="/evaluation">Evaluation</NavDropdown.Item>
-        <NavDropdown.Item href="/listings">Properties</NavDropdown.Item>
-      </NavDropdown>
+      {servicesDropdown}
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/contact"
       >
-        Contact us
+        {t("nav.contact")}
       </NavLink>
     </>
   );
@@ -79,20 +108,16 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/listings/create"
       >
-        Add listing
+        {t("nav.addListing")}
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/contact_list"
       >
-        Messages
+        {t("nav.messages")}
       </NavLink>
-    </>
-  );
-
-  const loggedInIcons = (
-    <>
+      {servicesDropdown}
       <NavLink
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
@@ -133,7 +158,7 @@ const NavBar = () => {
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav"
         />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className={styles.flecGrow}>
           <Nav className="ml-auto text-left">
             <NavLink
               exact
@@ -141,12 +166,10 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              Home
+              {t("nav.home")}
             </NavLink>
 
             {userStatus ? staffIcons : userIcons}
-
-            {currentUser ? loggedInIcons : null}
           </Nav>
         </Navbar.Collapse>
       </Container>
