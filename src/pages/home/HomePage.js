@@ -45,7 +45,7 @@ export default function HomePage() {
 
               <Card.Body>
                 <Card.Title>
-                  <Link to="/propertyManagement">Property Management</Link>
+                  <Link to="/propertyManagement"> {t("services.assetManagement")}</Link>
                 </Card.Title>
                 {/* <Card.Text>
                   Our property management services are designed to help you
@@ -61,7 +61,7 @@ export default function HomePage() {
 
               <Card.Body>
                 <Card.Title>
-                  <Link to="/advisory">Financial Advise</Link>
+                  <Link to="/advisory">{t("services.financialAdvice")}</Link>
                 </Card.Title>
                 {/* <Card.Text>
                   Our team of real estate experts is here to provide you with
@@ -77,7 +77,7 @@ export default function HomePage() {
               <img src={property_management} alt="Property Management" />
               <Card.Body>
                 <Card.Title>
-                  <Link to="/evaluation">Evaluation</Link>
+                  <Link to="/evaluation">{t("services.evaluation")}</Link>
                 </Card.Title>
                 {/* <Card.Text>
                   Our team of experts will evaluate your property and provide
@@ -92,7 +92,7 @@ export default function HomePage() {
               <img src={property_management} alt="Property Management" />
               <Card.Body>
                 <Card.Title>
-                  <Link to="/transactions">Transactions</Link>
+                  <Link to="/listings">{t("services.properties")}</Link>
                 </Card.Title>
                 {/* <Card.Text>
                   Our analytics services help you make data-driven decisions
