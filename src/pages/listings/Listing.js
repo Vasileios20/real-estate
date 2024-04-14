@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Listing.module.css";
 import Col from "react-bootstrap/Col";
@@ -14,12 +14,7 @@ import ListingHeader from "../../components/ListingHeader";
 import useUserStatus from "../../hooks/useUserStatus";
 import ContactForm from "../contact/ContactForm";
 import { useTranslation } from "react-i18next";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-} from "@vis.gl/react-google-maps";
+import MapMarker from "../../components/MapMarker";
 
 const Listing = (props) => {
   /**
@@ -45,6 +40,8 @@ const Listing = (props) => {
    * - listingPage: boolean
    * - images: array
    * - setListings: function
+   * - longitude: number
+   * - latitude: number
    * @returns {JSX.Element} - The JSX for the component.
    */
 
@@ -78,7 +75,15 @@ const Listing = (props) => {
     longitude,
     latitude,
   } = props;
-  console.log("lat:" + latitude);
+
+  const [mapReady, setMapReady] = useState(false);
+
+  useEffect(() => {
+    // Check if latitude and longitude are defined
+    if (latitude !== undefined && longitude !== undefined) {
+      setMapReady(true);
+    }
+  }, [latitude, longitude]);
 
   const history = useHistory();
   const userStatus = useUserStatus();
@@ -123,9 +128,6 @@ const Listing = (props) => {
       : floor === 3
       ? `${floor}rd `
       : `${floor}th `;
-
-  // Gets the API key from the environment variables
-  const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   return (
     <>
@@ -207,33 +209,7 @@ const Listing = (props) => {
               </tr>
             </tbody>
           </Table>
-          <APIProvider apiKey={API_KEY} libraries={["marker"]}>
-            <Map
-              mapId={"bf51a910020fa25a"}
-              defaultZoom={14}
-              defaultCenter={{
-                lat: 51.642875538451285,
-                lng: -0.16415720378776286,
-              }}
-              gestureHandling={"greedy"}
-              // disableDefaultUI
-              className={styles.Map}
-            >
-              <AdvancedMarker
-                position={{
-                  lat: 51.642875538451285,
-                  lng: -0.16415720378776286,
-                }}
-                title={"AdvancedMarker with customized pin."}
-              >
-                <Pin
-                  background={"#22ccff"}
-                  borderColor={"#1e89a1"}
-                  glyphColor={"#0f677a"}
-                ></Pin>
-              </AdvancedMarker>
-            </Map>
-          </APIProvider>
+          {mapReady && <MapMarker {...props} />}
         </Col>
         <Col md={6} lg={3} className="my-4 py-2"></Col>
         <Col md={6} lg={4}>
