@@ -8,6 +8,7 @@ import Card from "react-bootstrap/Card";
 import property_management from "../../assets/hero.jpg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import SearchBar from "../../components/SearchBar";
 
 export default function HomePage() {
   /**
@@ -26,70 +27,76 @@ export default function HomePage() {
   return (
     <>
       <div className={styles.HeroImage}>
-        <h1 className={styles.Welcome}>Welcome to the Acropolis Estates</h1>
+        <SearchBar />
       </div>
 
       <Container>
         <Row className="mt-3">
           <Col className="my-4">
-            <p style={{ fontSize: "1.4rem" }}>
-              {t("homePage.description")}
-            </p>
+            <p style={{ fontSize: "1.4rem" }}>{t("homePage.description")}</p>
           </Col>
         </Row>
         <Row>
           <h2 className="my-4 text-center w-100">Our Services</h2>
           <Col xs={12} md={3} className="mt-1">
             <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
+              <img
+                src={property_management}
+                alt="Property Management"
+                className={styles.ServiceImage}
+              />
 
               <Card.Body>
                 <Card.Title>
-                  <Link to="/propertyManagement"> {t("services.assetManagement")}</Link>
+                  <Link to="/propertyManagement">
+                    {" "}
+                    {t("services.assetManagement")}
+                  </Link>
                 </Card.Title>
-                {/* <Card.Text>
-                  Our property management services are designed to help you
-                  maximize your property's potential. From marketing your
-                  property to handling tenant requests, we've got you covered.
-                </Card.Text> */}
+
               </Card.Body>
             </Card>
           </Col>
           <Col xs={12} md={3} className="mt-1">
             <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
+              <img
+                src={property_management}
+                alt="Property Management"
+                className={styles.ServiceImage}
+              />
 
               <Card.Body>
                 <Card.Title>
                   <Link to="/advisory">{t("services.financialAdvice")}</Link>
                 </Card.Title>
-                {/* <Card.Text>
-                  Our team of real estate experts is here to provide you with
-                  the best advice on buying, selling, and renting properties.
-                  Let us help you make informed decisions.
-                </Card.Text> */}
+
               </Card.Body>
             </Card>
           </Col>
-          {/* Evaluation */}
+          {/* Valuation */}
           <Col xs={12} md={3} className="mt-1">
             <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
+              <img
+                src={property_management}
+                alt="Property Management"
+                className={styles.ServiceImage}
+              />
               <Card.Body>
                 <Card.Title>
-                  <Link to="/evaluation">{t("services.evaluation")}</Link>
+                  <Link to="/valuation">{t("services.valuation")}</Link>
                 </Card.Title>
-                {/* <Card.Text>
-                  Our team of experts will evaluate your property and provide
-                  you with an accurate valuation. Get in touch with us today.
-                </Card.Text> */}
+
               </Card.Body>
             </Card>
           </Col>
 
           <Col xs={12} md={3} className="mt-1">
             <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
+              <img
+                src={property_management}
+                alt="Property Management"
+                className={styles.ServiceImage}
+              />
               <Card.Body>
                 <Card.Title>
                   <Link to="/listings">{t("services.properties")}</Link>

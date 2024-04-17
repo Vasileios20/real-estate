@@ -9,7 +9,6 @@ import ListingCreateForm from "./pages/listings/ListingCreateForm";
 import ListingPage from "./pages/listings/ListingPage";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import ListingsPage from "./pages/listings/ListingsPage";
-import ContactForm from "./pages/contact/ContactForm";
 import HomePage from "./pages/home/HomePage";
 import useUserStatus from "./hooks/useUserStatus";
 import NotFound from "./pages/errors/NotFound";
@@ -24,17 +23,25 @@ import AboutPage from "./pages/home/AboutPage";
 import FinancialAdvicePage from "./pages/home/FinancialAdvicePage";
 import PropertyMgm from "./pages/home/PropertyManagementPage";
 import TransacionsPage from "./pages/home/TransactionsPage";
-import EvaluationPage from "./pages/home/EvaluationPage";
+import ValuationPage from "./pages/home/ValuationPage";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
   useUserStatus();
   const location = useLocation();
   const path = location.pathname;
 
-  console.log(path);
-  if (path === "/") {
+  if (
+    path === "/" ||
+    path === "/contact" ||
+    path === "/about   " ||
+    path === "/advisory" ||
+    path === "/propertyManagement" ||
+    path === "/transactions" ||
+    path === "/evaluation"
+  ) {
     styles.Main = styles.MainHome;
   } else {
     styles.Main = styles.MainListings;
@@ -64,8 +71,8 @@ function App() {
               path="/transactions"
               render={() => <TransacionsPage />}
             />
-            <Route exact path="/evaluation" render={() => <EvaluationPage />} />
-            <Route exact path="/contact" render={() => <ContactForm />} />
+            <Route exact path="/evaluation" render={() => <ValuationPage />} />
+            <Route exact path="/contact" render={() => <ContactPage />} />
             <Route
               exact
               path="/contact_list"

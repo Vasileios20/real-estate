@@ -73,7 +73,7 @@ const NavBar = () => {
         {t("services.financialAdvice")}
       </NavDropdown.Item>
       <NavDropdown.Item href="/evaluation">
-        {t("services.evaluation")}
+        {t("services.valuation")}
       </NavDropdown.Item>
       <NavDropdown.Item href="/listings">
         {t("services.properties")}

@@ -10,8 +10,8 @@
     },
     "services": {
         "title": "Services",
-        "evaluation": "Evaluation",
-        "financialAdvice": "Financial Advice",
+        "valuation": "Valuation",
+        "financialAdvice": "Advisory",
         "assetManagement": "Asset Management",
         "properties": "Properties"
     },
@@ -34,12 +34,12 @@
         "description": ""
     },
     "financialAdvicePage": {
-        "title": "Financial Advice",
+        "title": "Advisory",
         "description": ""
     },
     "propertyManagementPage": {
         "title": "Property Management",
-        "description": ""
+        "description": "Regular monitoring to ensure properties meet financial goals and operational standards."
     },
     "transactionsPage": {
         "title": "Transactions",
@@ -58,7 +58,7 @@
         "apartment": "Apartment"
     },
     "searchBar": {
-        "rene": "Rent",
+        "rent": "Rent",
         "buy": "Buy",
         "search": "City, postcode, address",
         "type": "Type",
