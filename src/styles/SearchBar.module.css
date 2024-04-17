@@ -2,12 +2,6 @@
   color: #242a3d;
 }
 
-/* .SearchBarLabel {
-  position: absolute;
-  top: -25px;
-  left: 1rem;
-} */
-
 .SearchIcon:hover {
   cursor: default;
   color: #cfced3;
@@ -22,6 +16,16 @@
 
 .MinWidth {
   min-width: 100%;
+}
+.HomeBar {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(27, 27, 27, 0.7);
+}
+
+.SearchInput {
+  border: 1px solid rgba(27, 27, 27, 0.7);
 }
 
 /* Responsive design */

@@ -15,7 +15,7 @@
   transform: scale(1.05);
 }
 
-.Button:hover:active {
+/* .Button:hover:active {
   background-color: #b0b000 !important;
 }
 
@@ -25,7 +25,7 @@
 
 .Button:focus {
   background-color: #b0b000;
-}
+} */
 
 .Wide {
   padding: 10px 50px;
@@ -58,8 +58,33 @@
 
 .Black:hover,
 .BlackOutline {
-  background-color: aliceblue;
+  background-color: transparent;
   color: #242a3d;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.Black:active,
+.BlackOutline:active {
+  background-color: #242a3d !important;
+  color: aliceblue;
+}
+
+.Black:focus {
+  background-color: #242a3d !important;
+  color: aliceblue;
+}
+
+.BlackSearch {
+  background-color: #242a3d;
+  color: aliceblue;
+  border: 1px solid rgb(0, 0, 0);
+
+}
+
+.BlackSearch:hover {
+  background-color: #242a3d;
+  color: aliceblue;
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .Bright {
