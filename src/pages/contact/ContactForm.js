@@ -31,14 +31,15 @@ function ContactForm({ listing_id }) {
   const id = currentUser?.profile_id;
 
   const [contactData, setContactData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     subject: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
 
-  const { name, email, subject, message } = contactData;
+  const { first_name, last_name, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
   const [messageDeleted, setMessageDeleted] = useState(false);
 
@@ -52,28 +53,28 @@ function ContactForm({ listing_id }) {
       ? message_form
       : contactData.message;
 
-  useEffect(() => {
-    if (currentUser) {
-      // If the current user exists, fetch the user profile data.
-      const fetchProfileData = async () => {
-        try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
-          // Set the contactData state with the user's name and email address.
-          setContactData({
-            ...contactData,
-            name: currentUser.username,
-            email: data.email_address,
-          });
-        } catch (err) {
-          // console.log(err);
-        }
-      };
-      fetchProfileData();
-    }
-    // if contactData is included in the dependency array,
-    // the useEffect hook will run indefinitely
-    // eslint-disable-next-line
-  }, [id, history]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     // If the current user exists, fetch the user profile data.
+  //     const fetchProfileData = async () => {
+  //       try {
+  //         const { data } = await axiosReq.get(`/profiles/${id}/`);
+  //         // Set the contactData state with the user's name and email address.
+  //         setContactData({
+  //           ...contactData,
+  //           first_name: currentUser.username,
+  //           email: data.email_address,
+  //         });
+  //       } catch (err) {
+  //         // console.log(err);
+  //       }
+  //     };
+  //     fetchProfileData();
+  //   }
+  //   // if contactData is included in the dependency array,
+  //   // the useEffect hook will run indefinitely
+  //   // eslint-disable-next-line
+  // }, [id, history]);
 
   const handleChange = (e) => {
     setContactData({
@@ -107,27 +108,52 @@ function ContactForm({ listing_id }) {
   return (
     <Row className="mt-4">
       <Col
-        className={path === `/listings/${listing_id}` ? "m-auto" : "m-auto"}
-        md={path === `/listings/${listing_id}` ? 12 : 8}
+        className={
+          path === `/listings/${listing_id}` ? "m-auto pt-2" : `m-auto`
+        }
+        md={path === `/listings/${listing_id}` ? 12 : 5}
       >
         <Container className={`${appStyles.Content} p-4 rounded shadow`}>
           <h1 className={styles.Header}>contact form</h1>
-          <Form onSubmit={handleSubmit} className="d-flex flex-column">
-            <Form.Group controlId="name" className="">
+          <Form
+            onSubmit={handleSubmit}
+            className={`d-flex flex-column ${styles.ContactForm}`}
+          >
+            <Form.Group controlId="first_name" className="">
               <Form.Label className={styles.FormLabel}>
-                Name<span>*</span>
+                First Name<span>*</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
                 type="text"
-                placeholder={"Your full name"}
-                name="name"
-                value={name}
+                placeholder={"Your first name"}
+                name="first_name"
+                value={first_name}
                 onChange={handleChange}
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.name?.map((message, idx) => (
+            {errors.first_name?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="last_name">
+              <Form.Label className={styles.FormLabel}>
+                Last Name<span>*</span>
+              </Form.Label>
+              <Form.Control
+                className={`${styles.Input} text-start`}
+                type="text"
+                placeholder={"Your last name"}
+                name="last_name"
+                value={last_name}
+                onChange={handleChange}
+                disabled={success ? true : false}
+              />
+            </Form.Group>
+            {errors.last_name?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
