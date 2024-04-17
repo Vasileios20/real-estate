@@ -39,75 +39,71 @@ export default function HomePage() {
         <Row>
           <h2 className="my-4 text-center w-100">Our Services</h2>
           <Col xs={12} md={3} className="mt-1">
-            <Card className="h-100">
-              <img
-                src={property_management}
-                alt="Property Management"
-                className={styles.ServiceImage}
-              />
-
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/propertyManagement">
-                    {" "}
+            <Link to="/propertyManagement">
+              <Card className="h-100">
+                <img
+                  src={property_management}
+                  alt="Property Management"
+                  className={styles.ServiceImage}
+                />
+                <Card.Body>
+                  <Card.Title>
                     {t("services.assetManagement")}
-                  </Link>
-                </Card.Title>
-
-              </Card.Body>
-            </Card>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
           <Col xs={12} md={3} className="mt-1">
-            <Card className="h-100">
-              <img
-                src={property_management}
-                alt="Property Management"
-                className={styles.ServiceImage}
-              />
-
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/advisory">{t("services.financialAdvice")}</Link>
-                </Card.Title>
-
-              </Card.Body>
-            </Card>
+            <Link to="/advisory">
+              <Card className="h-100">
+                <img
+                  src={property_management}
+                  alt="Property Management"
+                  className={styles.ServiceImage}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.financialAdvice")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
           {/* Valuation */}
           <Col xs={12} md={3} className="mt-1">
-            <Card className="h-100">
-              <img
-                src={property_management}
-                alt="Property Management"
-                className={styles.ServiceImage}
-              />
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/valuation">{t("services.valuation")}</Link>
-                </Card.Title>
+            <Link to="/valuation">
+              <Card className="h-100">
+                <img
+                  src={property_management}
+                  alt="Property Management"
+                  className={styles.ServiceImage}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.valuation")}
+                  </Card.Title>
 
-              </Card.Body>
-            </Card>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
 
           <Col xs={12} md={3} className="mt-1">
-            <Card className="h-100">
-              <img
-                src={property_management}
-                alt="Property Management"
-                className={styles.ServiceImage}
-              />
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/listings">{t("services.properties")}</Link>
-                </Card.Title>
-                {/* <Card.Text>
-                  Our analytics services help you make data-driven decisions
-                  about your real estate investments. Get in touch with us to
-                  learn more.
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
+            <Link to="/listings">
+              <Card className="h-100">
+                <img
+                  src={property_management}
+                  alt="Property Management"
+                  className={styles.ServiceImage}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.properties")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         </Row>
       </Container>

@@ -71,7 +71,7 @@ function App() {
               path="/transactions"
               render={() => <TransacionsPage />}
             />
-            <Route exact path="/evaluation" render={() => <ValuationPage />} />
+            <Route exact path="/valuation" render={() => <ValuationPage />} />
             <Route exact path="/contact" render={() => <ContactPage />} />
             <Route
               exact
