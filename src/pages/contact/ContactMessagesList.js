@@ -185,7 +185,7 @@ const ContactMessagesList = () => {
                       <tr key={idx}>
                         <td>
                           <Link to={`/contact_list/${contact.id}`}>
-                            {contact.name}
+                            {contact.first_name} {contact.last_name}
                           </Link>
                         </td>
                         <td>

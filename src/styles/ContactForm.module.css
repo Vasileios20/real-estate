@@ -5,7 +5,7 @@
   background: #ffffff;
   border: 1px solid #aeaeb9;
   box-sizing: border-box;
-  border-radius: 2px;
+  border-radius: 5px;
   color: #5c5f72;
   padding: 10px;
 }
@@ -55,4 +55,12 @@
   line-height: 12px;
   padding-left: 3px;
   padding-top: 20px;
+}
+
+.ErrorMessage {
+  color: rgb(201, 0, 0);
+  font-size: 0.8rem;
+  padding: 2px;
+  background-color: rgba(174, 174, 185, 0.5);
+  border-radius: 5px;
 }

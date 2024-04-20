@@ -18,6 +18,8 @@ import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import { use } from "i18next";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 
 function ContactForm({ listing_id }) {
   /**
@@ -34,12 +36,13 @@ function ContactForm({ listing_id }) {
     first_name: "",
     last_name: "",
     email: "",
+    phone_number: "",
     subject: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
 
-  const { first_name, last_name, email, subject, message } = contactData;
+  const { first_name, last_name, phone_number, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
   const [messageDeleted, setMessageDeleted] = useState(false);
 
@@ -47,6 +50,14 @@ function ContactForm({ listing_id }) {
 
   const message_form = `I am interested in the listing with id ${listing_id}`;
   const path = useLocation().pathname;
+
+  const [value, setValue] = useState();
+
+
+
+  // Phone number gets the value to pass it to contactData
+
+
 
   contactData.message =
     path === `/listings/${listing_id}` && !messageDeleted
@@ -88,6 +99,7 @@ function ContactForm({ listing_id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    contactData.phone_number = value;
     try {
       await axios.post("/contact/", contactData);
       setSuccess(true);
@@ -99,6 +111,7 @@ function ContactForm({ listing_id }) {
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
+      console.log(err.response?.data);
       setTimeout(() => {
         setErrors({});
       }, 2500);
@@ -106,10 +119,10 @@ function ContactForm({ listing_id }) {
   };
 
   return (
-    <Row className="mt-4">
+    <Row>
       <Col
         className={
-          path === `/listings/${listing_id}` ? "m-auto pt-2" : `m-auto`
+          path === `/listings/${listing_id}` ? "m-auto pt-0 mt-0" : `m-auto`
         }
         md={path === `/listings/${listing_id}` ? 12 : 5}
       >
@@ -121,7 +134,11 @@ function ContactForm({ listing_id }) {
           >
             <Form.Group controlId="first_name" className="">
               <Form.Label className={styles.FormLabel}>
-                First Name<span>*</span>
+                First Name<span>* {errors.first_name?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
@@ -133,15 +150,15 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.first_name?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
 
             <Form.Group controlId="last_name">
               <Form.Label className={styles.FormLabel}>
-                Last Name<span>*</span>
+                Last Name<span>* {errors.last_name?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
@@ -153,15 +170,15 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.last_name?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
 
             <Form.Group controlId="email">
               <Form.Label className={styles.FormLabel}>
-                Email<span>*</span>
+                Email<span>* {errors.email?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
@@ -173,15 +190,43 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.email?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
+            <Form.Group controlId="phone_number">
+              <Form.Label className={styles.FormLabel}>Phone Number<span>* {errors.phone_number?.map((message, idx) => (
+                <span className={styles.ErrorMessage} key={idx}>
+                  {message}
+                </span>
+              ))}</span></Form.Label>
+              {/* <Form.Control
+                className={`${styles.Input} text-start`}
+                type="text"
+                placeholder={"Your phone number"}
+                name="phone_number"
+                value={phone_number}
+                onChange={handleChange}
+                disabled={success ? true : false}
+              /> */}
+              <PhoneInput
+                style={{ paddingLeft: "0.3rem"}}
+                className={`${styles.Input} text-start`}
+                international
+                defaultCountry="GR"
+                placeholder="Enter phone number"
+                value={value}
+                onChange={setValue}
+                inputComponent={Form.Control}
+                containerComponent={Form.Group}
+                disabled={success ? true : false} />
+            </Form.Group>
+
 
             <Form.Group controlId="subject">
               <Form.Label className={styles.FormLabel}>
-                Subject<span>*</span>
+                Subject<span>* {errors.subject?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
@@ -193,15 +238,15 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.subject?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
 
             <Form.Group controlId="message">
               <Form.Label className={styles.FormLabel}>
-                Message<span>*</span>
+                Message<span>* {errors.message?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
               </Form.Label>
               <Form.Control
                 className={`${styles.Input} text-start`}
@@ -218,11 +263,7 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.message?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black} mt-3`}
