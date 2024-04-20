@@ -36,8 +36,8 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
       const cardsInRow = array.slice(i, i + 2).map((listing) => (
         <Col key={listing.id} className="my-2 px-0 mx-0">
           <Card
-            style={{ width: "18rem", height: "100%" }}
-            className="mx-auto rounded p-0"
+            // style={{ width: "18rem", height: "100%" }}
+            className={`rounded p-0 ${styles.Listings__Card}`}
           >
             <Link to={`/listings/${listing.id}`}>
               <Carousel indicators={false}>
@@ -66,7 +66,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
         </Col>
       ));
       cardRow.push(
-        <Row key={i} className="justify-content-between mx-0">
+        <Row key={i} className="justify-content-start mx-0">
           {cardsInRow}
         </Row>
       );
@@ -74,6 +74,11 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
 
     return cardRow;
   };
+  console.log("array", array);
+  const oddArray = array.length % 2 === 0;
+  console.log("oddArray", oddArray);
+  const lastRow = array.length - 2;
+  console.log("lastRow", lastRow);
 
 
   const listingMapMarkers = latLng.map((listing, index) => (
@@ -119,7 +124,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
             </Container>
             <hr className="" />
           </Col>
-          <Col sm={12} lg={5}>
+          <Col sm={12} lg={5} className="d-none d-lg-block">
             <APIProvider apiKey={API_KEY}>
               <Map
                 mapId={"bf51a910020fa25a"}
