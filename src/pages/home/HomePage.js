@@ -30,7 +30,7 @@ export default function HomePage() {
         <SearchBar />
       </div>
 
-      <Container>
+      <Container className="mb-4">
         <Row className="mt-3">
           <Col className="my-4">
             <p style={{ fontSize: "1.4rem" }}>{t("homePage.description")}</p>
@@ -39,7 +39,7 @@ export default function HomePage() {
         <Row>
           <h2 className="my-4 text-center w-100">Our Services</h2>
           <Col xs={12} md={3} className="mt-1">
-            <Link to="/propertyManagement">
+            <Link to="/assetManagement">
               <Card className="h-100">
                 <img
                   src={property_management}

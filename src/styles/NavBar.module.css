@@ -14,11 +14,11 @@
 }
 
 .NavLink:hover {
-  color: #797742;
+  color: #847c3d;
 }
 
 .Active {
-  color: #797742;
+  color: #847c3d;
   font-weight: 700;
 }
 
