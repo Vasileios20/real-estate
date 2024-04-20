@@ -25,7 +25,7 @@ const ListingHeader = (props) => {
     i18n.changeLanguage(lng);
   }, [i18n]);
   return (
-    <Card.Body style={{paddingLeft:"1rem"}}>
+    <Card.Body>
       <div className={styles.Listing__header}>
         <h5 style={{ textTransform: "capitalize" }}>
           {/* {props.id} */}

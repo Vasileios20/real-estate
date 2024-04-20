@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../../styles/ListingImages.module.css";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
@@ -89,12 +88,6 @@ const ListingImages = ({ images = [{}], listing_id }) => {
                       className={styles.ImagesModal}
                     />
                   </div>
-                  {/* <Image
-                      src={image.url}
-                      alt={image.id}
-                      fluid
-                      className={styles.ImagesModal}
-                    /> */}
                 </Carousel.Item>
               ))}
             </Carousel>

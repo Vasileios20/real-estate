@@ -131,100 +131,96 @@ const Listing = (props) => {
 
   return (
     <>
-      <Row className="align-items-center">
+      <Row className="justify-content-start">
         <Col lg={8}>
+
           <ListingImages images={images} listing_id={id} />
+          <Col md={4} className="d-flex mt-4">
+            {userStatus && staffCard}
+            {userStatus && (
+              <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
+            )}
+          </Col>
+
+          <ListingHeader {...props} listingPage={listingPage} />
+          <h5>{t("propertyDetails.description")}</h5>
+          <p>
+            {props.description}
+          </p>
+
+          <h5>Features</h5>
+          <Col md={8} lg={6}>
+            <Table className={styles.Listing__table}>
+              <tbody>
+                <tr>
+                  <td className={styles.tdWidth}>
+                    {t("propertyDetails.price")}{" "}
+                  </td>
+                  <td>£ {price}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.floorArea")} </td>
+                  <td>
+                    {surface} m<sup>2</sup>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.levels")} </td>
+                  <td>{levels}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.bedrooms")} </td>
+                  <td>{bedrooms}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.floorLevel")} </td>
+                  <td>{floorValue}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.kitchens")} </td>
+                  <td>{kitchens}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.bathrooms")} </td>
+
+                  <td>{bathrooms}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.livingRooms")} </td>
+                  <td>{living_rooms}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.heating")} </td>
+                  <td>{heating_system}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.energyClass")} </td>
+                  <td>{energy_class}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.yearBuilt")} </td>
+                  <td>{construction_year}</td>
+                </tr>
+                <tr>
+                  <td>{t("propertyDetails.availability")} </td>
+                  <td>{availability}</td>
+                </tr>
+                <tr>
+                  <td>Listing id</td>
+                  <td>{id}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+          <Col md={8} lg={8} className="mb-3">
+            {mapReady && <MapMarker {...props} />}
+          </Col>
         </Col>
-        <Col md={4}>
+        <Col md={8} lg={4} className="my-4 my-lg-0">
           <ContactForm listing_id={id} />
         </Col>
       </Row>
-      <Row>
-        <Col md={4}>{userStatus && staffCard}</Col>
-        <Col md={4} className="d-flex mt-4">
-          {userStatus && (
-            <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
-          )}
-        </Col>
-        <ListingHeader {...props} listingPage={listingPage} />
-        <h5>{t("propertyDetails.description")}</h5>
-        <p>
-          {props.description}
-        </p>
 
-
-        <Col lg={4} className="">
-          <h5>Features</h5>
-          <Table className={styles.Listing__table}>
-            <tbody>
-              <tr>
-                <td className={styles.tdWidth}>
-                  {t("propertyDetails.price")}{" "}
-                </td>
-                <td>£ {price}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.floorArea")} </td>
-                <td>
-                  {surface} m<sup>2</sup>
-                </td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.levels")} </td>
-                <td>{levels}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.bedrooms")} </td>
-                <td>{bedrooms}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.floorLevel")} </td>
-                <td>{floorValue}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.kitchens")} </td>
-                <td>{kitchens}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.bathrooms")} </td>
-
-                <td>{bathrooms}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.livingRooms")} </td>
-                <td>{living_rooms}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.heating")} </td>
-                <td>{heating_system}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.energyClass")} </td>
-                <td>{energy_class}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.yearBuilt")} </td>
-                <td>{construction_year}</td>
-              </tr>
-              <tr>
-                <td>{t("propertyDetails.availability")} </td>
-                <td>{availability}</td>
-              </tr>
-              <tr>
-                <td>Listing id</td>
-                <td>{id}</td>
-              </tr>
-            </tbody>
-          </Table>
-
-        </Col>
-      </Row>
-      <Row className="justify-content-between">
-        <Col md={6}>
-          {mapReady && <MapMarker {...props} />}
-        </Col>
-
-      </Row >
     </>
   );
 };

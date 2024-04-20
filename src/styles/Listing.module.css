@@ -18,11 +18,11 @@
 /* Features table */
 
 .Listing__table {
-  border: 1px solid #b0b000;
+  border: 1px solid #847c3d;
 }
 
 .Listing__table td {
-  border: 1px solid rgba(176, 176, 0, 0.5);
+  border: 1px solid #847c3d;
   padding: 5px;
 }
 
@@ -46,7 +46,7 @@
   max-width: 100%;
   max-height: 100%;
   width: auto;
-  height: auto;
+  height: 100%;
   /* overflow: hidden; */
 }
 
@@ -54,7 +54,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 12rem;
+}
+
+.Listings__Card {
+  width: 18rem;
+  height: 100%;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive */
@@ -62,4 +68,21 @@
   .Listing__table {
     width: 100%;
   }
+
+  .Listings__Card {
+    margin: auto;
+  }
 }
+
+/* Responsive screen size 991px to 1399px  */
+
+/* @media screen and (min-width: 767px) and (max-width: 1399px) {
+  .Listings__Card {
+    width: 18rem;
+    height: 100%;
+
+    margin: 0;
+
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  }
+} */
