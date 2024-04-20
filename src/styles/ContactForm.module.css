@@ -6,8 +6,8 @@
   border: 1px solid #aeaeb9;
   box-sizing: border-box;
   border-radius: 5px;
-  color: #5c5f72;
-  padding: 10px;
+  color: #4d6765;
+  padding: 5px;
 }
 
 .Header {
@@ -18,7 +18,7 @@
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #797742;
+  color: #847c3d;
 }
 
 .Link {
@@ -29,11 +29,11 @@
 }
 
 .Link:hover {
-  color: #797742;
+  color: #847c3d;
 }
 
 .Link span {
-  color: #797742;
+  color: #847c3d;
   font-weight: 500;
 }
 
@@ -51,10 +51,10 @@
 
 .FormLabel {
   /* font-weight: bold; */
-  font-size: 16px;
-  line-height: 12px;
+  font-size: 14px;
+  line-height: 10px;
   padding-left: 3px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .ErrorMessage {

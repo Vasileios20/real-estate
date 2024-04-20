@@ -124,7 +124,8 @@ function ContactForm({ listing_id }) {
         className={
           path === `/listings/${listing_id}` ? "m-auto pt-0 mt-0" : `m-auto`
         }
-        md={path === `/listings/${listing_id}` ? 12 : 5}
+        md={path === `/listings/${listing_id}` ? 12 : 4}
+
       >
         <Container className={`${appStyles.Content} p-4 rounded shadow`}>
           <h1 className={styles.Header}>contact form</h1>
@@ -207,7 +208,7 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               /> */}
               <PhoneInput
-                style={{ paddingLeft: "0.3rem"}}
+                style={{ paddingLeft: "0.3rem" }}
                 className={`${styles.Input} text-start`}
                 international
                 defaultCountry="GR"

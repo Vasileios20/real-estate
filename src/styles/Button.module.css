@@ -52,43 +52,42 @@
 
 .Black,
 .BlackOutline:hover {
-  background-color: #242a3d;
+  background-color: #4d6765;
   color: aliceblue;
 }
 
 .Black:hover,
 .BlackOutline {
   background-color: transparent;
-  color: #242a3d;
+  color: #4d6765;
   border: 1px solid rgb(0, 0, 0);
 }
 
 .Black:active,
 .BlackOutline:active {
-  background-color: #242a3d !important;
+  background-color: #4d6765 !important;
   color: aliceblue;
 }
 
 .Black:focus {
-  background-color: #242a3d !important;
+  background-color: #4d6765 !important;
   color: aliceblue;
 }
 
 .BlackSearch {
-  background-color: #242a3d;
+  background-color: #4d6765;
   color: aliceblue;
   border: 1px solid rgb(0, 0, 0);
-
 }
 
 .BlackSearch:hover {
-  background-color: #242a3d;
+  background-color: #4d6765;
   color: aliceblue;
   border: 1px solid rgb(0, 0, 0);
 }
 
 .Bright {
-  background-color: #b0b000;
+  background-color: #847c3d;
   color: #000;
 }
 

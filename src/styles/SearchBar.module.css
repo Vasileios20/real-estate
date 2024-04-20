@@ -1,5 +1,5 @@
 .SearchBar {
-  color: #242a3d;
+  color: rgb(77, 103, 101);
 }
 
 .SearchIcon:hover {
@@ -21,11 +21,11 @@
   color: #000;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 0.5rem;
-  border: 1px solid rgba(27, 27, 27, 0.7);
+  border: 1px solid rgba(77, 103, 101, 1);
 }
 
 .SearchInput {
-  border: 1px solid rgba(27, 27, 27, 0.7);
+  border: 1px solid rgba(77, 103, 101, 1);
 }
 
 /* Responsive design */
