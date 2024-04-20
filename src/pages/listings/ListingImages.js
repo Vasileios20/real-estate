@@ -9,7 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-const ListingImages = ({ images = [{}] }) => {
+const ListingImages = ({ images = [{}], listing_id }) => {
   // The ListingImages component is a functional component that renders the images of a listing.
   // It uses the Carousel component from react-bootstrap to display the images in a carousel.
   // The component also uses the Modal component from react-bootstrap to display the images in a modal when clicked.
@@ -20,6 +20,8 @@ const ListingImages = ({ images = [{}] }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const path = window.location.pathname;
+  console.log("path", path);
   const nextIcon = (
     <i className={`fa-solid fa-arrow-right ${styles.NextIcon}`}> </i>
   );
@@ -39,63 +41,68 @@ const ListingImages = ({ images = [{}] }) => {
   );
 
   return (
-    <Container>
+    <Container className="mb-4 ps-0">
       <Row>
-        <Container style={{ height: "20vh" }}>
-          <Row>
-            <Col xs={12} md={6} lg={4} className="p-1 py-md-3 py-lg-0">
-              <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
-                {images.map((image, id) => (
-                  <Carousel.Item key={id}>
-                    <OverlayTrigger
-                      placement="auto"
-                      delay={{ show: 250, hide: 400 }}
-                      overlay={renderTooltip}
-                      trigger={["hover", "focus"]}
-                    >
-                      <Image
-                        src={image.url}
-                        alt={image.id}
-                        fluid
-                        className={styles.Image}
-                        onClick={handleShow}
-                      />
-                    </OverlayTrigger>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </Col>
-          </Row>
-        </Container>
+        <Carousel nextIcon={nextIcon} prevIcon={prevIcon}  >
+          {images.map((image, id) => (
+            <Carousel.Item key={id}>
+              <OverlayTrigger
+                placement="bottom"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+                trigger={["hover", "focus"]}
+              >
+                <div className={styles.ImageWrapper}>
+                  <Image
+                    src={image.url}
+                    alt={image.id}
+                    className={path === `/listings/${listing_id}` ? styles.Image : styles.ImagesListings}
+                    onClick={handleShow}
+                    rounded
+                  />
+                </div>
+              </OverlayTrigger>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+
+
       </Row>
       <Modal
         show={show}
         onHide={handleClose}
-        dialogClassName={styles.Modal}
+        dialogClassName={`${styles.Modal}`}
         centered
-        variant="dark"
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Row>
-            <Container style={{ height: "80vh" }}>
-              <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
-                {images.map((image, id) => (
-                  <Carousel.Item key={id}>
+
+            <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
+              {images.map((image, id) => (
+                <Carousel.Item key={id}>
+                  <div className={styles.ModalImageWrapper}>
                     <Image
                       src={image.url}
                       alt={image.id}
                       fluid
                       className={styles.ImagesModal}
                     />
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </Container>
+                  </div>
+                  {/* <Image
+                      src={image.url}
+                      alt={image.id}
+                      fluid
+                      className={styles.ImagesModal}
+                    /> */}
+                </Carousel.Item>
+              ))}
+            </Carousel>
+
           </Row>
         </Modal.Body>
       </Modal>
-    </Container>
+    </Container >
   );
 };
 

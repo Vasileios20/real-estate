@@ -2,7 +2,7 @@
 .Listing__fontawsome {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 0;
 }
 
 .Listing__fontawsome i {
@@ -11,7 +11,7 @@
 
 /* Listing Header */
 .Listing__header {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   font-size: 1rem;
 }
 
@@ -39,11 +39,22 @@
   font-weight: 500;
 }
 
-/* ListingsWishlistPage Image */
-.Listingswishlist__Image {
-  border-radius: 4rem 0.5rem 0 0;
-  padding: 0 10px;
-  max-height: 25vh;
+/* ListingsPage Image */
+.Listings__Image {
+  border-radius: 0.3rem 0.3rem 0 0;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  /* overflow: hidden; */
+}
+
+.Listings__ImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
 }
 
 /* Responsive */

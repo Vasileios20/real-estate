@@ -31,11 +31,11 @@ const Footer = () => {
   };
 
   return (
-    <Container fluid className={`${styles.Footer} mt-4`}>
+    <Container fluid className={`${styles.Footer}`}>
       <Container>
         <Row className="pt-3">
-          <Col className="">
-            <h5>Acropolis Real Estate</h5>
+          <Col sm={6}>
+            <h5>Acropolis Estates</h5>
             <Link to="/about" className={`${styles.link}`}>
               About Us |
             </Link>
@@ -49,31 +49,31 @@ const Footer = () => {
 
           <Col className="d-flex flex-column">
             <Row>
-              <Col>
+              <Col className="pt-2 pt-md-0">
                 <h5>Properties</h5>
               </Col>
             </Row>
-            <Row className="justify-content-end">
+            <Row>
               <Col className="d-flex">
                 <Form.Label
                   className={`${styles.pointer} ${styles.link}`}
                   onClick={() => handleSubmit("apartment")}
                 >
-                  Apartment |{" "}
+                  Apartment<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
                   className={`${styles.pointer} ${styles.link} ps-1`}
                   onClick={() => handleSubmit("house")}
                 >
-                  House |{" "}
+                  House<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
                   className={`${styles.pointer} ${styles.link} ps-1`}
                   onClick={() => handleSubmit("land")}
                 >
-                  Land |{" "}
+                  Land<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
@@ -91,7 +91,7 @@ const Footer = () => {
           <hr />
           <Col sm={4}>
             <p className="text-muted">
-              &copy; 2021 Acropolis Real Estate. All rights reserved.
+              &copy; 2024 Acropolis Estates. All rights reserved.
             </p>
           </Col>
           <Col sm={4} className="">

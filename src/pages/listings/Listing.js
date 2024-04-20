@@ -120,33 +120,40 @@ const Listing = (props) => {
     floor < 0
       ? "Basement"
       : floor === 0
-      ? "Ground floor"
-      : floor === 1
-      ? `${floor}st `
-      : floor === 2
-      ? `${floor}nd `
-      : floor === 3
-      ? `${floor}rd `
-      : `${floor}th `;
+        ? "Ground floor"
+        : floor === 1
+          ? `${floor}st `
+          : floor === 2
+            ? `${floor}nd `
+            : floor === 3
+              ? `${floor}rd `
+              : `${floor}th `;
 
   return (
     <>
-      <Row>
-        <ListingImages images={images} />
-
-        <Col md={4} className="ml-5">
-          <ListingHeader {...props} listingPage={listingPage} />
+      <Row className="align-items-center">
+        <Col lg={8}>
+          <ListingImages images={images} listing_id={id} />
         </Col>
+        <Col md={4}>
+          <ContactForm listing_id={id} />
+        </Col>
+      </Row>
+      <Row>
         <Col md={4}>{userStatus && staffCard}</Col>
         <Col md={4} className="d-flex mt-4">
           {userStatus && (
             <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
           )}
         </Col>
-      </Row>
+        <ListingHeader {...props} listingPage={listingPage} />
+        <h5>{t("propertyDetails.description")}</h5>
+        <p>
+          {props.description}
+        </p>
 
-      <Row className={`justify-content-between`}>
-        <Col md={6} lg={5} className="">
+
+        <Col lg={4} className="">
           <h5>Features</h5>
           <Table className={styles.Listing__table}>
             <tbody>
@@ -209,13 +216,15 @@ const Listing = (props) => {
               </tr>
             </tbody>
           </Table>
-          {mapReady && <MapMarker {...props} />}
-        </Col>
-        <Col md={6} lg={3} className="my-4 py-2"></Col>
-        <Col md={6} lg={4}>
-          <ContactForm listing_id={id} />
+
         </Col>
       </Row>
+      <Row className="justify-content-between">
+        <Col md={6}>
+          {mapReady && <MapMarker {...props} />}
+        </Col>
+
+      </Row >
     </>
   );
 };

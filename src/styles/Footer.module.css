@@ -1,5 +1,5 @@
 .Footer {
-  background-color: rgba(121, 119, 66, 0.8);
+  background-color: rgba(133, 124, 61, 1);
   font-size: 14px;
 }
 
@@ -7,8 +7,14 @@
   cursor: pointer;
 } */
 
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .link {
-  color: #555555;
+  color: #3f3f3f;
   transition: color ease-in-out 0.2s;
   text-decoration: none;
   cursor: pointer;

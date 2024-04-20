@@ -17,6 +17,7 @@ function ListingsPage() {
   // Get the state from the location object.
   const { state } = useLocation();
   const message = "No results";
+  console.log("state", state);
 
   // If the state is present, set the listings to the state data.
   useEffect(() => {

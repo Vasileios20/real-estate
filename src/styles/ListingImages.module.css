@@ -1,40 +1,60 @@
-.Image,
+.ModalImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .ImagesModal {
-  max-width: 100%;
-  border-radius: 5px;
-  margin: auto;
+  width: auto;
+  border-radius: 0.3rem;
+  height: 80vh;
+  display: block;
+}
+
+.ImageWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .Image {
-  max-height: 20vh;
+  width: auto;
+  max-height: 50vh;
+  margin: 0 auto;
+  display: block;
+}
+
+.ImagesListings {
+  /* max-width: 100%; */
+  width: 100%;
+  height: 150px;
+  margin: auto;
+  padding: 0;
+  display: flex;
+  object-fit: contain;
 }
 
 .NextIcon,
 .PrevIcon {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   padding: 10px;
   color: white;
-  transform: translateY(-50%);
   z-index: 1;
-  position: absolute;
-  top: 50%;
   cursor: pointer;
+}
+
+.NextIcon {
+  right: 15px;
+}
+
+.PrevIcon {
+  left: 15px;
 }
 
 .Image:hover {
   cursor: pointer;
-}
-
-.ImagesModal {
-  max-height: 80vh;
-}
-
-.Modal {
-  height: 100vh;
 }
 
 @media screen and (min-width: 576px) {
