@@ -20,8 +20,8 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import AboutPage from "./pages/home/AboutPage";
-import FinancialAdvicePage from "./pages/home/FinancialAdvicePage";
-import PropertyMgm from "./pages/home/PropertyManagementPage";
+import FinancialAdvicePage from "./pages/home/AdvisoryPage";
+import AssetMgm from "./pages/home/AssetManagementPage";
 import TransacionsPage from "./pages/home/TransactionsPage";
 import ValuationPage from "./pages/home/ValuationPage";
 import Footer from "./components/Footer";
@@ -36,11 +36,11 @@ function App() {
   if (
     path === "/" ||
     path === "/contact" ||
-    path === "/about   " ||
+    path === "/about" ||
     path === "/advisory" ||
-    path === "/propertyManagement" ||
+    path === "/assetManagement" ||
     path === "/transactions" ||
-    path === "/evaluation"
+    path === "/valuation"
   ) {
     styles.Main = styles.MainHome;
   } else {
@@ -63,8 +63,8 @@ function App() {
             />
             <Route
               exact
-              path="/propertyManagement"
-              render={() => <PropertyMgm />}
+              path="/assetManagement"
+              render={() => <AssetMgm />}
             />
             <Route
               exact
