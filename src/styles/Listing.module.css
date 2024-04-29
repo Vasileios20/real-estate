@@ -11,7 +11,6 @@
 
 /* Listing Header */
 .Listing__header {
-  /* margin-top: 10px; */
   font-size: 1rem;
 }
 
@@ -71,18 +70,6 @@
 
   .Listings__Card {
     margin: auto;
+    width: 15rem;
   }
 }
-
-/* Responsive screen size 991px to 1399px  */
-
-/* @media screen and (min-width: 767px) and (max-width: 1399px) {
-  .Listings__Card {
-    width: 18rem;
-    height: 100%;
-
-    margin: 0;
-
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  }
-} */
