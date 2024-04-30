@@ -42,7 +42,7 @@ const ListingImages = ({ images = [{}], listing_id }) => {
   return (
     <Container className="mb-4 ps-0">
       <Row>
-        <Carousel nextIcon={nextIcon} prevIcon={prevIcon}  >
+        <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
           {images.map((image, id) => (
             <Carousel.Item key={id}>
               <OverlayTrigger
@@ -52,10 +52,10 @@ const ListingImages = ({ images = [{}], listing_id }) => {
                 trigger={["hover", "focus"]}
               >
                 <div className={styles.ImageWrapper}>
-                  <Image
+                  <img
                     src={image.url}
                     alt={image.id}
-                    className={path === `/listings/${listing_id}` ? styles.Image : styles.ImagesListings}
+                    className={styles.Image}
                     onClick={handleShow}
                     rounded
                   />
