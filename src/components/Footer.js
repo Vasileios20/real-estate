@@ -33,8 +33,8 @@ const Footer = () => {
   return (
     <Container fluid className={`${styles.Footer}`}>
       <Container>
-        <Row className="pt-3">
-          <Col sm={6}>
+        <Row className="pt-3 justify-content-between">
+          <Col sm={3}>
             <h5>Acropolis Estates</h5>
             <Link to="/about" className={`${styles.link}`}>
               About Us |
@@ -47,14 +47,14 @@ const Footer = () => {
             </Link>
           </Col>
 
-          <Col className="d-flex flex-column">
+          <Col sm={3} className="d-flex flex-column">
             <Row>
               <Col className="pt-2 pt-md-0">
                 <h5>Properties</h5>
               </Col>
             </Row>
             <Row>
-              <Col className="d-flex">
+              <Col>
                 <Form.Label
                   className={`${styles.pointer} ${styles.link}`}
                   onClick={() => handleSubmit("apartment")}
@@ -87,7 +87,7 @@ const Footer = () => {
           </Col>
 
         </Row>
-        <Row className="text-start mt-2">
+        <Row className="text-center mt-2">
           <hr />
           <Col sm={4}>
             <p className="text-muted">

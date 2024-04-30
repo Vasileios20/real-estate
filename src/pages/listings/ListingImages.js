@@ -19,8 +19,7 @@ const ListingImages = ({ images = [{}], listing_id }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const path = window.location.pathname;
-  console.log("path", path);
+
   const nextIcon = (
     <i className={`fa-solid fa-arrow-right ${styles.NextIcon}`}> </i>
   );
@@ -57,7 +56,6 @@ const ListingImages = ({ images = [{}], listing_id }) => {
                     alt={image.id}
                     className={styles.Image}
                     onClick={handleShow}
-                    rounded
                   />
                 </div>
               </OverlayTrigger>
