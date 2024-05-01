@@ -38,6 +38,19 @@
   font-weight: 500;
 }
 
+.AmenitiesBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.Amenity {
+  border: 1px solid #847c3d;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
 /* ListingsPage Image */
 .Listings__Image {
   border-radius: 0.3rem 0.3rem 0 0;
@@ -71,5 +84,13 @@
   .Listings__Card {
     margin: auto;
     width: 15rem;
+  }
+}
+
+/* Responsive screen size 991px to 1399px  */
+
+@media screen and (min-width: 990px) and (max-width: 1399px) {
+  .Listings__Card {
+    width: 14rem;
   }
 }
