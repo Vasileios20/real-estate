@@ -27,11 +27,15 @@ import ValuationPage from "./pages/home/ValuationPage";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
 import ContactPage from "./pages/contact/ContactPage";
+import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
 
 function App() {
   useUserStatus();
   const location = useLocation();
   const path = location.pathname;
+  console.log("cookies", getCookieConsentValue("myAwesomeCookieName2"));
+  console.log('location', location);
+  
 
   if (
     path === "/" ||
@@ -117,6 +121,23 @@ function App() {
           </Switch>
         </Container>
         <Footer />
+        <CookieConsent
+          onAccept={() => {
+            console.log("Accepted");
+
+          }}
+          location="bottom"
+          buttonText="Accept"
+          cookieName="myAwesomeCookieName2"
+          style={{ background: "#2B373B" }}
+          buttonStyle={{ color: "#ffffff", fontSize: "15px", background: "#4d6765" }}
+          expires={150}
+          // debug={true}
+          visible="byCookieValue"
+        >
+          This website uses cookies to enhance the user experience.{" "}
+          <span style={{ fontSize: "10px" }}></span>
+        </CookieConsent>
       </div>
     </Suspense>
   );
