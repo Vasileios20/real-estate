@@ -147,8 +147,7 @@ const NavBar = () => {
             <img
               src={logo}
               alt="logo"
-              height={45}
-              style={{ borderRadius: "50%" }}
+              style={{ width: "150px" }}
             ></img>
           </Navbar.Brand>
         </NavLink>
