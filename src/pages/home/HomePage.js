@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import React, { useEffect } from "react";
-
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,7 +9,6 @@ import property_management from "../../assets/hero1.jpg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../../components/SearchBar";
-import useFetchListings from "../../hooks/useFetchListings";
 
 export default function HomePage() {
   /**
@@ -22,40 +19,15 @@ export default function HomePage() {
 
   const { t, i18n } = useTranslation();
 
-  const { listings } = useFetchListings();
-
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
   }, [i18n]);
-  // const lng = navigator.language || navigator.userLanguage;
-
-  // const renderFeaturedListings = () => {
-  //   return listings.map((listing) => {
-  //     return (
-  //       <Col key={listing.id} xs={12} md={4} className="my-2">
-  //         <Card className="h-100">
-  //           <Card.Img
-  //             variant="top"
-
-  //           />
-  //           <Card.Body>
-  //             <Card.Title>{listing.title}</Card.Title>
-  //             <Card.Text>{listing.description}</Card.Text>
-  //             <Link to={`/listings/${listing.id}`}>View Listing</Link>
-  //           </Card.Body>
-  //         </Card>
-  //       </Col>
-  //     );
-  //   });
-  // }
-
-
 
   return (
     <>
       <div className={`d-flex flex-column justify-content-around ${styles.HeroImage}`}>
-        <p className={`h1  ${styles.Welcome}`}>Welcome to Acropolis Estates</p>
+        <p className={`h1 ${styles.Welcome}`}>Welcome to Acropolis Estates</p>
         <SearchBar />
       </div>
 

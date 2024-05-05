@@ -1,24 +1,5 @@
 .HeroImage {
-  background-image: url("../assets/hero2.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.HeroImageCon {
-  background-image: url("../assets/cont.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.HeroImageAssetMgmt {
-  background-image: url("../assets/assetMgmt.jpg");
+  background-image: url("../assets/properties.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -43,18 +24,18 @@
   margin: 8rem 0 0 0;
   padding: 0;
   color: #ffffff;
-  /* top: 350px;
-  left: 20px;
+  top: 150px;
+  left: 200px;
   position: absolute;
   animation-name: hero-zoom;
   animation-duration: 5s;
-  animation-fill-mode: forwards; */
+  animation-fill-mode: forwards;
 }
 
 /* creates the level of zoom for hero image */
 @keyframes hero-zoom {
   from {
-    transform: scale(0.9);
+    transform: scale(0.7);
   }
   to {
     transform: scale(1);

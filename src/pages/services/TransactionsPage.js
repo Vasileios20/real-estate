@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import styles from "../../styles/ServicesPages.module.css";
 
 export default function TransacionsPage() {
   /**
@@ -9,10 +10,15 @@ export default function TransacionsPage() {
    */
 
   return (
-    <Container>
-      <Row className="mt-3 flex-column">
-        <Col className="mt-4 mb-2">Transactions</Col>
-      </Row>
-    </Container>
+    <>
+      <div className={styles.HeroImage}>
+
+      </div>
+      <Container>
+        <Row className="mt-3 flex-column">
+          <Col className="mt-4 mb-2">Transactions</Col>
+        </Row>
+      </Container>
+    </>
   );
 }

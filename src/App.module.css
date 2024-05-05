@@ -6,12 +6,16 @@
   flex-direction: column;
 }
 
-.MainListings {
-  padding-top: 100px;
+.MainHome {
+  /* padding-top: 81px; */
   margin-bottom: auto;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  max-width: 100vw;
 }
 
-.MainHome {
+.MainListings {
   padding-top: 62px;
   margin-bottom: auto;
   padding-left: 0;

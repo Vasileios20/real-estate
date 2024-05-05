@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import styles from "../../styles/HomePage.module.css";
+import styles from "../../styles/ServicesPages.module.css";
 
-import { Col, Container, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import { useTranslation } from "react-i18next";
 
 export default function AssetManagementPage() {
@@ -18,14 +19,26 @@ export default function AssetManagementPage() {
 
   return (
     <>
-      <div className={styles.HeroImage}>
-        <h1 className={styles.Welcome}> {t("services.assetManagement")}</h1>
+      <div className={styles.HeroImageAssetMgmt}>
+        <h1 className={styles.Welcome}>{t("services.assetManagement")}</h1>
       </div>
       <Container>
-        <Row className="mt-3 flex-column">
-          <Col className="mt-4 mb-2">
+        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
+          <div className="my-5 col-md-8 mx-auto">
+            We specialize in real estate asset management, offering tailored solutions to maximize returns and minimize risks for our clients.
+            With years of industry experience and a dedicated team of experts, we are committed to delivering exceptional results and unparalleled service.
+          </div>
+          <hr />
+          <div className="my-5 col-md-8 mx-auto">
+            Our approach to real estate asset management is strategic and client-focused. We employ a comprehensive framework that emphasizes value creation,
+            risk mitigation, and customized solutions tailored to our clients' unique objectives.
+            By leveraging our deep industry knowledge and analytical capabilities, we ensure that every decision is informed and aligned with our clients' goals.
+          </div>
+        </Row>
 
-            <ul>
+        <Row className="m-lg-5 mb-5 mx-3">
+          <div className={styles.PageList}>
+            <ul className={styles.List}>
               <li><strong>Property Performance Monitoring:</strong> Regularly monitoring the performance of properties to ensure they meet financial goals and operational standards.</li>
               <li><strong>Lease Management:</strong> Negotiating leases, renewals, and terminations to optimize rental income and occupancy rates.</li>
               <li><strong>Financial Analysis:</strong> Conducting financial analysis, including budgeting, forecasting, and variance analysis, to evaluate property performance and identify opportunities for improvement.</li>
@@ -41,7 +54,7 @@ export default function AssetManagementPage() {
               <li><strong>Asset Valuation:</strong> Conducting periodic valuations of properties to assess their current market value and potential for appreciation.</li>
               <li><strong>Stakeholder Communication:</strong> Communicating regularly with property owners, investors, lenders, and other stakeholders to provide updates and address concerns.</li>
             </ul>
-          </Col>
+          </div>
         </Row>
       </Container>
     </>

@@ -1,0 +1,110 @@
+.HeroImageAdv {
+  background-image: url("../assets/advisory.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroImageCon {
+  background-image: url("../assets/cont.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroImageAssetMgmt {
+  background-image: url("../assets/assetMgmt.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroImageVal {
+  background-image: url("../assets/valuation.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroImageListings {
+  background-image: url("../assets/properties.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Welcome {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  top: 350px;
+  left: 20px;
+  position: absolute;
+  animation-name: hero-zoom;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+.ContactPageContent {
+  background-color: rgba(132, 124, 61, 0.4);
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 6rem;
+  padding: 2rem;
+}
+
+.PageContent {
+  background-color: rgba(132, 124, 61, 0.4);
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.PageList {
+  background-color: rgba(132, 124, 61, 0);
+  border: 1px solid #847c3d;
+  border-radius: 0.3rem;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+@counter-style List {
+  color: #000000 !important;
+  system: cyclic;
+  symbols: "◈";
+  suffix: " ";
+}
+
+.List li {
+  margin: 15px 0;
+  list-style: List;
+  padding: 5px;
+}
+
+/* creates the level of zoom for hero image */
+@keyframes hero-zoom {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}

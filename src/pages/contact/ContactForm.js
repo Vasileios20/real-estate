@@ -122,7 +122,7 @@ function ContactForm({ listing_id }) {
     <Row>
       <Col
         className={
-          path === `/listings/${listing_id}` ? "m-auto pt-0 mt-0" : `m-auto`
+          path === `/listings/${listing_id}` ? "m-auto pt-0 mt-1" : `m-auto`
         }
         md={path === `/listings/${listing_id}` ? 12 : 4}
 

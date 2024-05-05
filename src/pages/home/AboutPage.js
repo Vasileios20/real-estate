@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { useTranslation } from "react-i18next";
+import homeStyles from "../../styles/HomePage.module.css";
+import styles from "../../styles/ServicesPages.module.css";
 
 export default function AboutPage() {
   /**
@@ -10,86 +12,48 @@ export default function AboutPage() {
    * @returns {JSX.Element}
    */
 
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language || navigator.userLanguage;
+    i18n.changeLanguage(lng);
+  }, [i18n]);
+
   return (
     <>
+      <div className={`d-flex flex-column justify-content-around ${homeStyles.HeroImageAbout}`}>
+        <p className={`h1  ${homeStyles.Welcome} text-dark`}>About us</p>
+
+      </div>
       <Container>
-        <Row className="mt-3 flex-column">
-          <Col className="mt-4 mb-2">
-            Welcome to <strong>CB Real Estate</strong>, where we redefine your
-            real estate experience. Established with a vision to transform the
-            way people buy, sell, and invest in properties, we take pride in
-            being your trusted partner in the real estate journey.
-          </Col>
-          <Col className="my-2">
-            <h5>Our Mission</h5>
-            At <strong>CB Real Estate</strong>, our mission is to simplify the
-            real estate process, making it accessible, transparent, and
-            rewarding for everyone. We are committed to providing a platform
-            that caters to a diverse range of real estate needs, from finding
-            the perfect home to making strategic commercial investments.
-          </Col>
-          <Col className="my-4">
-            <h5>What Sets Us Apart:</h5>
-            <ol>
-              <li>
-                <strong>Expertise:</strong> Our team of seasoned real estate
-                professionals brings a wealth of knowledge and experience to the
-                table. We are dedicated to guiding you through the intricacies
-                of the real estate market, ensuring you make informed decisions.
+        <p className="h2 text-center pt-5 mt-3">{t("aboutPage.p2Title")}</p>
+        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
+          <div className="my-5 col-md-8 mx-auto">
+            <p>{t("aboutPage.p2")}</p>
+          </div>
+        </Row>
+        <p className="h2 text-center pt-3">Why Us</p>
+        <Row className="m-lg-5 mb-5 mx-3">
+
+          <div className={styles.PageList}>
+            <ul className={styles.List}>
+              <li><strong>Experience:</strong> With years of experience, our team brings a wealth of knowledge, expertise, and insight to every aspect of real estate industry.
               </li>
-              <li>
-                <strong>Diverse Listings:</strong> From cozy apartments to
-                sprawling estates, prime commercial spaces to vast lands, our
-                extensive and diverse listings cater to every taste and
-                requirement. We understand that each property is unique, and so
-                are the needs of our clients.
+              <li><strong>Integrity:</strong> We conduct our business with the highest standards of integrity, honesty, and transparency, earning the trust and respect of our clients and partners.
               </li>
-              <li>
-                <strong>Client-Centric Approach:</strong> Your satisfaction is
-                our priority. We pride ourselves on our client-centric approach,
-                ensuring that your real estate journey is not only successful
-                but also enjoyable. From the initial search to closing the deal,
-                we are with you every step of the way.
+              <li><strong>Customer Focus:</strong> Our clients are our top priority, and we are dedicated to providing personalized attention, tailored solutions, and exceptional service to meet their unique needs.</li>
+              <li><strong>Commitment to Excellence:</strong> We are committed to excellence in everything we act, continuously striving to exceed expectations and deliver outstanding results for our clients.
               </li>
-            </ol>
-          </Col>
-          <Col className="my-4">
-            <h5>Our Values:</h5>
-            <ol>
-              <li>
-                <strong>Integrity:</strong> We uphold the highest standards of
-                integrity in all our interactions. Trust is the foundation of
-                any successful real estate partnership, and we are committed to
-                earning and maintaining your trust.
+              <li><strong>Expertise:</strong> Highly educated professionals with years of experience in the real estate sector.
               </li>
-              <li>
-                <strong>Transparency: </strong> Transparency is key to a smooth
-                real estate experience. We believe in open communication,
-                providing you with all the information you need to make
-                confident decisions.
-              </li>
-              <li>
-                <strong>Innovation:</strong> The real estate landscape is
-                dynamic, and we embrace innovation to stay ahead of the curve.
-                Our tech-savvy approach ensures that you have access to the
-                latest tools and resources to enhance your real estate journey.
-              </li>
-            </ol>
-          </Col>
-          <Col className="my-4">
-            <h5>Why Choose CB Real Estate:</h5>
-            <ul>
-              <li>Comprehensive Listings</li>
-              <li>Professional Guidance</li>
-              <li>Tailored Financial Advice</li>
-              <li>Transparent Transactions</li>
             </ul>
-          </Col>
-          <Col className="mb-4">
-            Thank you for considering CB Real Estate as your real estate
-            partner. We look forward to helping you achieve your real estate
-            goals and turning your dreams into reality.
-          </Col>
+          </div>
+        </Row>
+        <p className="h2 text-center pt-3">Our Team</p>
+        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
+          <div className="my-5 col-md-8 mx-auto">
+            At Acropolis Estates, we have assembled a team of highly skilled and dedicated professionals who are passionate about real estate and dedicated to helping our clients succeed. From our experienced agents to our dedicated support staff, each member of our team is committed to providing exceptional service and unparalleled expertise. We are committed to providing personalized attention, expert advice, and unparalleled customer service to ensure a seamless and stress-free experience.
+          </div>
         </Row>
       </Container>
     </>
