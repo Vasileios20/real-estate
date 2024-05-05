@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "../styles/Listing.module.css";
+import heroStyles from "../styles/ServicesPages.module.css";
 
 import Asset from "./Asset";
 import ListingHeader from "./ListingHeader";
@@ -26,49 +27,6 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
     lng: listing.longitude,
   }));
 
-  const renderCardRow = () => {
-    const cardRow = [];
-
-    for (let i = 0; i < array.length; i += 2) {
-      const cardsInRow = array.slice(i, i + 2).map((listing) => (
-        <Col key={listing.id} className={`my-2 ${styles.colCard}`}>
-          <Card
-            className={`rounded p-0 ${styles.Listings__Card}`}
-          >
-            <Link to={`/listings/${listing.id}`}>
-              <Carousel indicators={false}>
-                {listing.images.map((image, index) => (
-                  <Carousel.Item key={index}>
-                    <div className={styles.Listings__ImageWrapper}>
-                      <img
-                        className={`${styles.Listings__Image}`}
-                        src={image.url}
-                        alt={image.id}
-                      />
-                    </div>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-              <div style={{ marginLeft: "10px" }}>
-                <ListingHeader
-                  {...listing}
-                  listingPage={true}
-                  setListings={setListings}
-                />
-              </div>
-            </Link>
-          </Card>
-        </Col>
-      ));
-      cardRow.push(
-        <Row key={i} className="mx-0">
-          {cardsInRow}
-        </Row>
-      );
-    }
-
-    return cardRow;
-  };
 
 
   const listingMapMarkers = latLng.map((listing, index) => (
@@ -80,26 +38,64 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
 
   return (
     <>
-
-      <Container fluid style={{ marginTop: "20px" }}>
+      {/* <div className={` d-flex flex-column ${heroStyles.HeroImageListings}`}>
+        <h1 className={styles.Welcome} style={{ color: "#fff" }}>Properties</h1>
         <SearchBar />
-        <Row className="mt-3">
-          <Col xs={12} lg={7}>
+      </div> */}
+      <Container fluid className="px-5 pt-5 " style={{ Height: "100vh" }}>
+        <SearchBar />
+        <Row className="mt-1 justify-content-around">
+          <Col xs={12} lg={12} xl={7}>
             <Container
               id="scrollableDiv"
-              style={{ height: 500, overflow: "auto" }}
-              className="border shadow-sm p-3 rounded"
+              style={{ height: 400, overflow: "auto" }}
+              className=""
             >
               {hasLoaded ? (
                 <>
                   {array.length ? (
                     <InfiniteScroll
-                      children={renderCardRow()}
+
                       dataLength={array.length}
                       loader={<Asset spinner />}
                       hasMore={!!listings.next}
                       next={() => fetchMoreData(listings, setListings)}
-                    />
+                      scrollableTarget="scrollableDiv"
+                    >
+                      <Row className="mx-0">
+                        {array.map((listing) => (
+                          <>
+                            <Col key={listing.id} xs={12} md={6} lg={4} xl={4} className="mb-3 gx-1">
+                              <Card style={{ height: "100%" }}>
+                                <Link to={`/listings/${listing.id}`}>
+                                  <Carousel>
+                                    {listing.images.map((image, id) => (
+                                      <Carousel.Item key={id}>
+                                        <div className={styles.Listings__ImageWrapper}>
+                                          <img
+                                            src={image?.url}
+                                            alt={image?.id}
+                                            className={`img-fluid ${styles.Listings__Image}`}
+                                          />
+                                        </div>
+                                      </Carousel.Item>
+                                    ))}
+                                  </Carousel>
+
+                                  <ListingHeader
+                                    {...listing}
+                                    listingPage={true}
+                                    setListings={setListings}
+                                  />
+                                </Link>
+                              </Card>
+
+                            </Col >
+                          </>
+
+                        ))}
+                      </Row>
+                    </InfiniteScroll>
                   ) : (
                     <Container>
                       <Asset text="No results" />
@@ -112,26 +108,26 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
                 </Container>
               )}
             </Container>
-            <hr className="" />
+            {/* <hr className="" /> */}
           </Col>
-          <Col sm={12} lg={5} className="d-none d-lg-block">
+          <Col sm={12} lg={5} className="d-none d-xl-block">
             <APIProvider apiKey={API_KEY}>
               <Map
                 mapId={"bf51a910020fa25a"}
-                defaultZoom={8}
+                defaultZoom={10}
                 defaultCenter={{
                   lat: 51.50898721256282,
                   lng: -0.11773481844149021,
                 }}
                 gestureHandling={"greedy"}
-                style={{ width: "100%", height: "500px" }}
+                style={{ width: "100%", height: "400px" }}
               >
                 {listingMapMarkers}
               </Map>
             </APIProvider>
           </Col>
         </Row>
-      </Container>
+      </Container >
     </>
   );
 };
