@@ -119,7 +119,7 @@ const SearchBar = () => {
   ]);
 
   return (
-    <Container>
+    <Container className="mb-5">
       <Form
         className={`p-3 ${styles.HomeBar}`}
         onSubmit={handleSubmit}
@@ -168,7 +168,7 @@ const SearchBar = () => {
               value={type ? type : ""}
               onChange={(e) => setType(e.target.value)}
             >
-              
+
               <option value="apartment">Apartment</option>
               <option value="house">House</option>
               <option value="land">Land</option>
@@ -231,7 +231,7 @@ const SearchBar = () => {
           </Col>
 
 
-          <Col sm={2} className="mt-0 mt-md-1 mt-lg-4">
+          <Col xs={8} lg={3} className="mt-0 mt-md-1 mt-lg-4">
             {!saleType ? (
               <OverlayTrigger
                 placement="bottom"
@@ -240,24 +240,45 @@ const SearchBar = () => {
               >
                 <span className="d-inline-block">
                   <Button
-                    className={`${btnStyles.Button} ${btnStyles.Black}`}
+                    className={`${btnStyles.Button} ${btnStyles.Black} me-2`}
                     type="submit"
-                    variant="dark"
-                    // disabled={saleType ? false : true}
                     style={{ pointerEvents: 'none' }}
                   >
                     {update ? "Update" : "Search"}
                   </Button>
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Remove}`}
+                    onClick={() => {
+                      setQuery("");
+                      setSaleType("");
+                      setType("");
+                      setPrice({ min: "", max: "" });
+                      setSurface({ min: "", max: "" });
+                    }}>
+                    Clear
+                  </Button>
                 </span>
               </OverlayTrigger>
             ) : (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackSearch}`}
-                type="submit"
-                variant="secondary"
-              >
-                {update ? "Update" : "Search"}
-              </Button>
+              <>
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.BlackSearch} me-2`}
+                  type="submit"
+                >
+                  {update ? "Update" : "Search"}
+                </Button>
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Remove}`}
+                  onClick={() => {
+                    setQuery("");
+                    setSaleType("");
+                    setType("");
+                    setPrice({ min: "", max: "" });
+                    setSurface({ min: "", max: "" });
+                  }}>
+                  Clear
+                </Button>
+              </>
             )}
           </Col>
         </Row>

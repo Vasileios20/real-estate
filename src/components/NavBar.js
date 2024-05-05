@@ -29,6 +29,7 @@ const NavBar = () => {
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
   const [servicesExpanded, setServicesExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [scroll, setScroll] = useState(false);
 
   const { t, i18n } = useTranslation();
 
@@ -38,6 +39,17 @@ const NavBar = () => {
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
     setIsMobile(isMobileDevice);
   }, [i18n]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      // setScroll(true);
+      if (window.scrollY > 10) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    });
+  }, []);
 
   const hanleServicesClick = () => {
     if (isMobile) {
@@ -137,7 +149,7 @@ const NavBar = () => {
   return (
     <Navbar
       expanded={expanded}
-      className={`${styles.NavBar}`}
+      className={scroll ? `${styles.NavBarScroll}` : `${styles.NavBar}`}
       expand="md"
       fixed="top"
     >

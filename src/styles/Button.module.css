@@ -106,6 +106,12 @@
   background-color: #920000;
   color: #fff;
   border: transparent;
+  --bs-btn-active-bg: #a35252;
+}
+
+.Remove:focus {
+  background-color: #920000;
+  color: #fff;
 }
 
 .Remove:hover {

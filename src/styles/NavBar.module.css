@@ -1,6 +1,11 @@
 .NavBar {
-  background-color: #ffffff;
-  border: 1px solid #dadadf;
+  background-color: rgba(215, 223, 231), 0;
+  /* border: 1px solid #dadadf; */
+}
+
+.NavBarScroll {
+  background-color: #f3f3f3;
+  /* box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1); */
 }
 
 .NavLink {
