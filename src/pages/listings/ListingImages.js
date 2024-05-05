@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { Col } from "react-bootstrap";
 
 const ListingImages = ({ images = [{}], listing_id }) => {
   // The ListingImages component is a functional component that renders the images of a listing.
@@ -40,8 +41,14 @@ const ListingImages = ({ images = [{}], listing_id }) => {
 
   return (
     <Container className="mb-4 ps-0">
-      <Row>
-        <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
+      <OverlayTrigger
+        placement="bottom"
+        delay={{ show: 250, hide: 200 }}
+        overlay={renderTooltip}
+        trigger={["hover", "focus"]}
+      >
+        <Row className="gx-1">
+          {/* <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
           {images.map((image, id) => (
             <Carousel.Item key={id}>
               <OverlayTrigger
@@ -61,10 +68,42 @@ const ListingImages = ({ images = [{}], listing_id }) => {
               </OverlayTrigger>
             </Carousel.Item>
           ))}
-        </Carousel>
+        </Carousel> */}
+
+          <Col xs={12} md={6} className="">
+            <div className={styles.ImageWrapper}>
+              <img
+                src={images[0]?.url}
+                alt={images[0]?.id}
+                className={`img-fluid ${styles.Image}`}
+                onClick={handleShow}
+              />
+            </div>
+          </Col>
+          <Col>
+            <Row className="justify-content-start d-none d-md-flex gx-1">
+              {/* Map the images and Display 4 images , 2 on top 2 bellow */}
+
+              {images?.slice(-4).map((image, id) => (
+                <Col key={id} xs={6} md={6} lg={6} xl={6} style={{ paddingBottom: "3px" }}>
+                  <div className={styles.ImageWrapper}>
+                    <img
+                      src={image.url}
+                      alt={image.id}
+                      className={`img-fluid ${styles.Image}`}
+                      onClick={handleShow}
+                    />
+                  </div>
+                </Col>
+              ))}
 
 
-      </Row>
+            </Row>
+          </Col>
+
+
+        </Row>
+      </OverlayTrigger>
       <Modal
         show={show}
         onHide={handleClose}

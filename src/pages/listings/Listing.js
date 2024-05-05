@@ -15,6 +15,7 @@ import useUserStatus from "../../hooks/useUserStatus";
 import ContactForm from "../contact/ContactForm";
 import { useTranslation } from "react-i18next";
 import MapMarker from "../../components/MapMarker";
+import { Container } from "react-bootstrap";
 
 const Listing = (props) => {
   /**
@@ -74,7 +75,32 @@ const Listing = (props) => {
     images,
     longitude,
     latitude,
+    amenities,
   } = props;
+
+  const amenitiesArray = [];
+  if (amenities) {
+    Object.entries(amenities).forEach(([key, value]) => {
+      if (value) {
+        Object.entries(value).forEach(([key, value]) => {
+          if (value === true) {
+            amenitiesArray.push(key);
+          }
+        });
+      }
+    }
+    );
+  }
+
+
+  const amenitiesList = amenitiesArray.map((amenity, id) => (
+    <div key={id} className={styles.Amenity}>
+      <span>{amenity.replace(/_/g, " ")} </span>
+      <i className="fas fa-check"></i>
+    </div>
+  ));
+
+
 
   const [mapReady, setMapReady] = useState(false);
 
@@ -131,25 +157,31 @@ const Listing = (props) => {
 
   return (
     <>
-      <Row className="justify-content-start">
-        <Col lg={8}>
+      <Container className="mt-5">
+        <ListingImages images={images} listing_id={id} />
 
-          <ListingImages images={images} listing_id={id} />
-          <Col md={4} className="d-flex mt-4">
-            {userStatus && staffCard}
-            {userStatus && (
-              <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
-            )}
+        <Row className="justify-content-start">
+          <Col lg={8}>
+
+
+            <Col md={4} className="d-flex mt-4">
+              {userStatus && staffCard}
+              {userStatus && (
+                <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
+              )}
+            </Col>
+
+            <ListingHeader {...props} listingPage={listingPage} />
+            <h5>{t("propertyDetails.description")}</h5>
+            <p>
+              {props.description}
+            </p>
           </Col>
-
-          <ListingHeader {...props} listingPage={listingPage} />
-          <h5>{t("propertyDetails.description")}</h5>
-          <p>
-            {props.description}
-          </p>
+        </Row>
+        <Row>
 
           <h5>Features</h5>
-          <Col md={8} lg={6}>
+          <Col md={8} lg={4}>
             <Table className={styles.Listing__table}>
               <tbody>
                 <tr>
@@ -209,18 +241,30 @@ const Listing = (props) => {
                   <td>Listing id</td>
                   <td>{id}</td>
                 </tr>
+                <tr>
+                  <td>amenities</td>
+
+                </tr>
               </tbody>
             </Table>
+            <Col className="mb-3">
+              {mapReady && <MapMarker {...props} />}
+            </Col>
           </Col>
-          <Col md={8} lg={8} className="mb-3">
-            {mapReady && <MapMarker {...props} />}
-          </Col>
-        </Col>
-        <Col md={8} lg={4} className="my-4 my-lg-0">
-          <ContactForm listing_id={id} />
-        </Col>
-      </Row>
+          <Col sm={4}>
+            <div className={styles.AmenitiesBox}>
+              {amenitiesList}
 
+            </div>
+          </Col>
+          <Col md={8} lg={4} className="">
+            <ContactForm listing_id={id} />
+          </Col>
+
+
+
+        </Row>
+      </Container >
     </>
   );
 };
