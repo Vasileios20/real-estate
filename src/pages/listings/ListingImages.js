@@ -27,28 +27,24 @@ const ListingImages = ({ images = [{}], listing_id }) => {
   const prevIcon = (
     <i className={`fa-solid fa-arrow-left ${styles.PrevIcon}`}> </i>
   );
-  const windowWidth = window.innerWidth;
+
 
   const renderTooltip = (props) => (
     <Tooltip
       id="button-tooltip"
       {...props}
-      className={windowWidth < 769 ? "d-none" : "d-block"}
+      className="d-none d-md-block"
     >
       Click for larger view
     </Tooltip>
   );
 
-  return (
-    <Container className="mb-4 ps-0">
-      <OverlayTrigger
-        placement="bottom"
-        delay={{ show: 250, hide: 200 }}
-        overlay={renderTooltip}
-        trigger={["hover", "focus"]}
-      >
-        <Row className="gx-1">
-          {/* <Carousel nextIcon={nextIcon} prevIcon={prevIcon}>
+  // When the window width is less than 769px, the component renders the images in a carousel.
+
+  const isMobile = () => {
+    return (
+      <Col xs={12} className="mx-auto m-0">
+        <Carousel nextIcon={nextIcon} prevIcon={prevIcon} className="d-md-none mx-auto">
           {images.map((image, id) => (
             <Carousel.Item key={id}>
               <OverlayTrigger
@@ -68,40 +64,59 @@ const ListingImages = ({ images = [{}], listing_id }) => {
               </OverlayTrigger>
             </Carousel.Item>
           ))}
-        </Carousel> */}
+        </Carousel>
+      </Col>
+    );
+  };
 
-          <Col xs={12} md={6} className="">
-            <div className={styles.ImageWrapper}>
-              <img
-                src={images[0]?.url}
-                alt={images[0]?.id}
-                className={`img-fluid ${styles.Image}`}
-                onClick={handleShow}
-              />
-            </div>
-          </Col>
-          <Col>
-            <Row className="justify-content-start d-none d-md-flex gx-1">
-              {/* Map the images and Display 4 images , 2 on top 2 bellow */}
+  // When the window width is greater than 768px, the component renders the images in a grid.
 
-              {images?.slice(-4).map((image, id) => (
-                <Col key={id} xs={6} md={6} lg={6} xl={6} style={{ paddingBottom: "3px" }}>
-                  <div className={styles.ImageWrapper}>
-                    <img
-                      src={image.url}
-                      alt={image.id}
-                      className={`img-fluid ${styles.Image}`}
-                      onClick={handleShow}
-                    />
-                  </div>
-                </Col>
-              ))}
+  const isDesktop = () => {
+    return (
+      <>
+        <Col xs={12} md={6} className="d-none d-md-block">
+          <div className={styles.ImageWrapper}>
+            <img
+              src={images[0]?.url}
+              alt={images[0]?.id}
+              className={`img-fluid ${styles.Image}`}
+              onClick={handleShow}
+            />
+          </div>
+        </Col>
+        <Col>
+          <Row className="justify-content-start d-none d-md-flex gx-1">
+            {/* Map the images and Display 4 images , 2 on top 2 bellow */}
+            {images?.slice(1, 3).map((image, id) => (
+              <Col key={id} xs={6} md={6} lg={6} xl={6} style={{ paddingBottom: "3px" }}>
+                <div className={styles.ImageWrapper}>
+                  <img
+                    src={image.url}
+                    alt={image.id}
+                    className={`img-fluid ${styles.Image}`}
+                    onClick={handleShow}
+                  />
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </>
+    );
+  }
 
 
-            </Row>
-          </Col>
-
-
+  return (
+    <Container className="mb-4 px-0">
+      <OverlayTrigger
+        placement="bottom"
+        delay={{ show: 250, hide: 200 }}
+        overlay={renderTooltip}
+        trigger={["hover", "focus"]}
+      >
+        <Row className="gx-1">
+          {isMobile()}
+          {isDesktop()}
         </Row>
       </OverlayTrigger>
       <Modal
