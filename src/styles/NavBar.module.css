@@ -1,11 +1,15 @@
 .NavBar {
-  background-color: rgba(215, 223, 231), 0;
-  /* border: 1px solid #dadadf; */
+  background-color: rgba(215, 223, 231, 0);
+  max-width: 100vw;
+}
+
+.NavBar navbar-toggler {
+  background-color: rgba(215, 223, 231, 0.1);
 }
 
 .NavBarScroll {
   background-color: #f3f3f3;
-  /* box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1); */
+  max-width: 100vw;
 }
 
 .NavLink {
@@ -29,6 +33,11 @@
 
 .flecGrow {
   flex-grow: 0;
+}
+
+.NavBarMobile {
+  background-color: rgba(243, 243, 243, 1);
+  max-width: 100vw;
 }
 
 /*Responsive*/

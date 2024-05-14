@@ -43,7 +43,7 @@ const NavBar = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       // setScroll(true);
-      if (window.scrollY > 10) {
+      if (window.scrollY > 1) {
         setScroll(true);
       } else {
         setScroll(false);
@@ -152,6 +152,7 @@ const NavBar = () => {
       className={scroll ? `${styles.NavBarScroll}` : `${styles.NavBar}`}
       expand="md"
       fixed="top"
+      id="navBar"
     >
       <Container>
         <NavLink to="/">
@@ -166,7 +167,10 @@ const NavBar = () => {
 
         <Navbar.Toggle
           ref={ref}
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => {
+            setExpanded(!expanded)
+            document.getElementById("navBar").classList.add(`${styles.NavBarMobile}`);
+          }}
           aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav" className={styles.flecGrow}>
