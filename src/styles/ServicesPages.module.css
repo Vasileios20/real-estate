@@ -49,14 +49,9 @@
 }
 
 .Welcome {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
-  margin: 0;
-  padding: 0;
   color: #ffffff;
-  top: 350px;
-  left: 20px;
-  position: absolute;
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;

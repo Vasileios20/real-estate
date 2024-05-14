@@ -19,14 +19,9 @@
 }
 
 .Welcome {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
-  margin: 8rem 0 0 0;
-  padding: 0;
   color: #ffffff;
-  top: 150px;
-  left: 200px;
-  position: absolute;
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
@@ -39,5 +34,23 @@
   }
   to {
     transform: scale(1);
+  }
+}
+
+/* responsive < 768px */
+
+@media screen and (max-width: 832px) {
+  .Welcome {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .Welcome {
+    /* margin: 84px 0 0 0;
+    font-size: 2rem;
+    left: 0;
+    top: 0; */
+    display: none;
   }
 }
