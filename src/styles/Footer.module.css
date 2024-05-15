@@ -1,16 +1,16 @@
 .Footer {
-  background-color: rgba(133, 124, 61, 1);
+  background-color: rgba(132, 124, 61, 1);
   font-size: 14px;
 }
-
-/* .pointer {
-  cursor: pointer;
-} */
 
 .centerContent {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.FitContent > * {
+  flex: 1;
 }
 
 .link {

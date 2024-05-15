@@ -34,7 +34,7 @@ const Footer = () => {
     <Container fluid className={`${styles.Footer}`}>
       <Container>
         <Row className="pt-3 justify-content-between">
-          <Col sm={3}>
+          <Col sm={6} lg={4}>
             <h5>Acropolis Estates</h5>
             <Link to="/about" className={`${styles.link}`}>
               About Us |
@@ -47,37 +47,35 @@ const Footer = () => {
             </Link>
           </Col>
 
-          <Col sm={3} className="d-flex flex-column">
+          <Col sm={6} lg={4} xl={3} className="d-flex flex-column">
             <Row>
-              <Col className="pt-2 pt-md-0">
+              <Col sm={12} className="pt-2 pt-md-0">
                 <h5>Properties</h5>
               </Col>
-            </Row>
-            <Row>
-              <Col>
+              <Col className={styles.FitContent}>
                 <Form.Label
-                  className={`${styles.pointer} ${styles.link}`}
+                  className={`${styles.link}`}
                   onClick={() => handleSubmit("apartment")}
                 >
                   Apartment<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
-                  className={`${styles.pointer} ${styles.link} ps-1`}
+                  className={`${styles.link} ps-1`}
                   onClick={() => handleSubmit("house")}
                 >
                   House<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
-                  className={`${styles.pointer} ${styles.link} ps-1`}
+                  className={`${styles.link} ps-1`}
                   onClick={() => handleSubmit("land")}
                 >
                   Land<span style={{ paddingLeft: "3px" }}>|</span>
                 </Form.Label>
 
                 <Form.Label
-                  className={`${styles.pointer} ${styles.link} ps-1`}
+                  className={`${styles.link} ps-1`}
                   onClick={() => handleSubmit("commercial")}
                 >
                   Commercial
@@ -87,22 +85,21 @@ const Footer = () => {
           </Col>
 
         </Row>
-        <Row className="text-center mt-2">
+        <Row className={`text-center mt-2 align-items-center`}>
           <hr />
           <Col sm={4}>
             <p className="text-muted">
               &copy; 2024 Acropolis Estates. All rights reserved.
             </p>
           </Col>
-          <Col sm={4} className="">
+          <Col sm={4}>
             <p className="text-muted">
-              <Link to="/cookies">Cookies </Link> | <Link to="/privacyPolicy">Privacy policy</Link> | <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/cookies" className={`${styles.link}`}>Cookies </Link> | <Link to="/privacyPolicy" className={`${styles.link}`}>Privacy policy</Link> | <Link to="/terms" className={`${styles.link}`}>Terms & Conditions</Link>
             </p>
           </Col>
-
-          <Col >
+          <Col sm={4}>
             <>
-              <p className="text-muted" style={{ fontSize: "12px" }}>Developed by
+              <p className="text-muted">Developed by <a href="https://github.com/Vasileios20" target="_blank" rel="noreferrer" className={`${styles.link}`}>VasileiosT</a>
               </p>
             </>
           </Col>
