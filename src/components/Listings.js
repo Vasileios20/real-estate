@@ -42,7 +42,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message }) => {
         <h1 className={styles.Welcome} style={{ color: "#fff" }}>Properties</h1>
         <SearchBar />
       </div> */}
-      <Container fluid className="px-5 pt-5 " style={{ Height: "100vh" }}>
+      <Container fluid className="px-lg-5 pt-5">
         <SearchBar />
         <Row className="mt-1 justify-content-around">
           <Col xs={12} lg={12} xl={7}>

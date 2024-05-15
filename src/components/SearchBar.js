@@ -32,7 +32,7 @@ const SearchBar = () => {
   const [errors, setErrors] = useState("");
   const renderTooltip = (props) => (
     <Tooltip id="tooltip-disabled" {...props}>
-      To search please choose rent or buy.
+      Please choose rent or buy.
     </Tooltip>
   );
 
@@ -125,7 +125,7 @@ const SearchBar = () => {
         onSubmit={handleSubmit}
       >
         <Row className="align-items-center justify-content-between ms-lg-5 mb-lg-0">
-          <Col sm={12}>
+          <Col sm={12} className="mb-1">
             {errors &&
               (setTimeout(() => setErrors(""), 3000),
                 (
@@ -148,7 +148,7 @@ const SearchBar = () => {
           </Col>
 
           <Col sm={6} md={3}>
-            <Form.Label className="">Location</Form.Label>
+            <Form.Label style={{ fontWeight: "500" }}>Location</Form.Label>
             <Form.Control
               value={query ? query : ""}
               onChange={(e) => setQuery(e.target.value)}
@@ -159,7 +159,7 @@ const SearchBar = () => {
             />
           </Col>
           <Col sm={6} md={2}>
-            <Form.Label>Type</Form.Label>
+            <Form.Label style={{ fontWeight: "500" }}>Type</Form.Label>
             <Form.Select
               className={styles.SearchInput}
               aria-label="type"
@@ -175,7 +175,7 @@ const SearchBar = () => {
               <option value="commercial">Commercial</option>
             </Form.Select>
           </Col>
-          <Col lg={2} md={3} sm={6} className="mb-3">
+          <Col lg={2} md={3} sm={6} className="mb-2">
             <Form.Group as={Row} controlId="formGroupPrice">
               <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>Price</Form.Label>
               <Col sm={12} className="d-flex align-items-center">
@@ -201,7 +201,7 @@ const SearchBar = () => {
               </Col>
             </Form.Group>
           </Col>
-          <Col lg={2} md={3} sm={6} className="mb-3">
+          <Col lg={2} md={3} sm={6} className="mb-2">
             <Form.Group as={Row} controlId="formGroupSurface">
               <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>
                 {type === "land" ? "Land Area" : "Floor Area"}
@@ -230,35 +230,36 @@ const SearchBar = () => {
             </Form.Group>
           </Col>
 
-
-          <Col xs={8} lg={3} className="mt-0 mt-md-1 mt-lg-4">
+          <Col xs={12} lg={3} className="mt-0 mt-md-1 mt-lg-4">
             {!saleType ? (
-              <OverlayTrigger
-                placement="bottom"
-                delay={{ show: 50, hide: 300 }}
-                overlay={renderTooltip}
-              >
-                <span className="d-inline-block">
-                  <Button
-                    className={`${btnStyles.Button} ${btnStyles.Black} me-2`}
-                    type="submit"
-                    style={{ pointerEvents: 'none' }}
-                  >
-                    {update ? "Update" : "Search"}
-                  </Button>
-                  <Button
-                    className={`${btnStyles.Button} ${btnStyles.Remove}`}
-                    onClick={() => {
-                      setQuery("");
-                      setSaleType("");
-                      setType("");
-                      setPrice({ min: "", max: "" });
-                      setSurface({ min: "", max: "" });
-                    }}>
-                    Clear
-                  </Button>
-                </span>
-              </OverlayTrigger>
+              <>
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 50, hide: 300 }}
+                  overlay={renderTooltip}
+                >
+                  <span className="d-inline-block">
+                    <Button
+                      className={`${btnStyles.Button} ${btnStyles.Black} me-2`}
+                      type="submit"
+                      style={{ pointerEvents: 'none' }}
+                    >
+                      {update ? "Update" : "Search"}
+                    </Button>
+                  </span>
+                </OverlayTrigger>
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Remove}`}
+                  onClick={() => {
+                    setQuery("");
+                    setSaleType("");
+                    setType("");
+                    setPrice({ min: "", max: "" });
+                    setSurface({ min: "", max: "" });
+                  }}>
+                  Clear
+                </Button>
+              </>
             ) : (
               <>
                 <Button
