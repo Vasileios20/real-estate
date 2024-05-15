@@ -27,7 +27,7 @@ export default function HomePage() {
   return (
     <>
       <div className={`d-flex flex-column justify-content-evenly ${styles.HeroImage}`}>
-        <p className={`h1 mx-5 ${styles.Welcome}`}>Welcome to Acropolis Estates</p>
+        <h1 className={`mx-5 ${styles.Welcome}`}>Welcome to Acropolis Estates</h1>
         <SearchBar />
       </div>
 
