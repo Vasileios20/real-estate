@@ -20,19 +20,19 @@ export default function ValuationPage() {
   return (
     <>
       <div className={styles.HeroImageVal}>
-        <h1 className={styles.Welcome} style={{ color: "#000" }}>{t("services.valuation")}</h1>
+        <h1 className={styles.Header} style={{ color: "#000" }}>{t("services.valuation")}</h1>
       </div>
       <Container>
-        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
-
-
-          <div className="my-5 col-md-8 mx-auto">
-            Real estate valuation involves assessing the current market value of a property, which is crucial for various purposes such as investment analysis,
-            financing, insurance, taxation, and financial reporting.
-          </div>
+        <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
+          <Row className={`m-0 p-0 ${styles.PageContent}`}>
+            <div className="my-5 col-md-8 mx-auto">
+              Real estate valuation involves assessing the current market value of a property, which is crucial for various purposes such as investment analysis,
+              financing, insurance, taxation, and financial reporting.
+            </div>
+          </Row>
         </Row>
 
-        <Row className="m-lg-5 mb-5 mx-3">
+        <Row className="mx-auto mb-5 shadow">
           <div className={styles.PageList}>
             <ul className={styles.List}>
               <li><strong>Property Inspection:</strong> Conducting a thorough inspection of the property to assess its physical condition, including the building structure, interior and exterior features, amenities, and any visible defects or maintenance issues.</li>

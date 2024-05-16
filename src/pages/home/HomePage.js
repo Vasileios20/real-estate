@@ -3,12 +3,13 @@ import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import styles from "../../styles/HomePage.module.css";
+import homeStyles from "../../styles/HomePage.module.css";
 import Card from "react-bootstrap/Card";
 import property_management from "../../assets/hero1.jpg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../../components/SearchBar";
+import styles from "../../styles/ServicesPages.module.css";
 
 export default function HomePage() {
   /**
@@ -26,16 +27,16 @@ export default function HomePage() {
 
   return (
     <>
-      <div className={`d-flex flex-column justify-content-evenly ${styles.HeroImage}`}>
-        <h1 className={`mx-5 ${styles.Welcome}`}>Welcome to Acropolis Estates</h1>
+      <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage}`}>
+        <h1 className={`mx-5 ${homeStyles.Welcome}`}>Welcome to Acropolis Estates</h1>
         <SearchBar />
       </div>
 
       <Container className="mb-4">
-        <Row className="mt-3">
-          <Col className="mt-4">
-            <p style={{ fontSize: "1.8rem" }}>{t("homePage.description")}</p>
-          </Col>
+        <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
+          <Row className={`m-0 p-5 ${styles.PageContent}`}>
+            <p style={{ fontSize: "1.5rem" }}>{t("homePage.description")}</p>
+          </Row>
         </Row>
         <Row>
           <h2 className="my-4 text-center w-100">Our Services</h2>

@@ -1,5 +1,5 @@
 .HeroImage {
-  background-image: url("../assets/properties.jpg");
+  background-image: url("../assets/hero2.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -21,7 +21,7 @@
 .Welcome {
   font-size: 3rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #847c3d;
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
@@ -47,10 +47,7 @@
 
 @media screen and (max-width: 575px) {
   .Welcome {
-    /* margin: 84px 0 0 0;
-    font-size: 2rem;
-    left: 0;
-    top: 0; */
-    display: none;
+    margin: 60px 0 0 0;
+    font-size: 1.9rem;
   }
 }

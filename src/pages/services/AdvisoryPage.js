@@ -20,17 +20,18 @@ export default function FinancialAdvicePage() {
   return (
     <>
       <div className={styles.HeroImageAdv}>
-        <h1 className={styles.Welcome}>{t("services.financialAdvice")}</h1>
+        <h1 className={styles.Header}>{t("services.financialAdvice")}</h1>
       </div>
       <Container>
-        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
-          <div className="my-5 col-md-8 mx-auto">
-            Our dedicated team is involved with advisory to provide guidance, expertise, and strategic advice to our clients to help them make informed decisions regarding their real estate investments.
-          </div>
-
+        <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
+          <Row className={`m-0 p-0 ${styles.PageContent}`}>
+            <div className="my-5 col-11 mx-auto">
+              Our dedicated team is involved with advisory to provide guidance, expertise, and strategic advice to our clients to help them make informed decisions regarding their real estate investments.
+            </div>
+          </Row>
         </Row>
 
-        <Row className="m-lg-5 mb-5 mx-3">
+        <Row className="mb-5 mx-auto shadow">
           <div className={styles.PageList}>
             <ul className={styles.List}>
               <li><strong>Market Analysis:</strong> Conducting thorough market research and analysis to assess current trends, property values, and investment opportunities in specific geographic areas or sectors.</li>

@@ -22,18 +22,20 @@ export default function AboutPage() {
   return (
     <>
       <div className={`d-flex flex-column justify-content-around ${homeStyles.HeroImageAbout}`}>
-        <p className={`h1  ${homeStyles.Welcome} text-dark`}>About us</p>
+        <h1 className={`${styles.Header}`}>About us</h1>
 
       </div>
       <Container>
         <p className="h2 text-center pt-5 mt-3">{t("aboutPage.p2Title")}</p>
-        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
-          <div className="my-5 col-md-8 mx-auto">
-            <p>{t("aboutPage.p2")}</p>
-          </div>
+        <Row className={`shadow mx-auto ${styles.PageContentWrapper}`}>
+          <Row className={`m-0 p-0 ${styles.PageContent}`}>
+            <div className="my-5 col-11 mx-auto">
+              <p>{t("aboutPage.p2")}</p>
+            </div>
+          </Row>
         </Row>
         <p className="h2 text-center pt-3">Why Us</p>
-        <Row className="m-lg-5 mb-5 mx-3">
+        <Row className="mx-auto mb-5 shadow">
 
           <div className={styles.PageList}>
             <ul className={styles.List}>
@@ -49,11 +51,14 @@ export default function AboutPage() {
             </ul>
           </div>
         </Row>
+
         <p className="h2 text-center pt-3">Our Team</p>
-        <Row className={`mx-auto my-5 shadow w-75 ${styles.PageContent}`}>
-          <div className="my-5 col-md-8 mx-auto">
-            At Acropolis Estates, we have assembled a team of highly skilled and dedicated professionals who are passionate about real estate and dedicated to helping our clients succeed. From our experienced agents to our dedicated support staff, each member of our team is committed to providing exceptional service and unparalleled expertise. We are committed to providing personalized attention, expert advice, and unparalleled customer service to ensure a seamless and stress-free experience.
-          </div>
+        <Row className={`shadow ${styles.PageContentWrapper}`}>
+          <Row className={`mx-auto ${styles.PageContent}`}>
+            <div className="my-5 col-11 mx-auto">
+              At Acropolis Estates, we have assembled a team of highly skilled and dedicated professionals who are passionate about real estate and dedicated to helping our clients succeed. From our experienced agents to our dedicated support staff, each member of our team is committed to providing exceptional service and unparalleled expertise. We are committed to providing personalized attention, expert advice, and unparalleled customer service to ensure a seamless and stress-free experience.
+            </div>
+          </Row>
         </Row>
       </Container>
     </>

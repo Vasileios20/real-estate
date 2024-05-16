@@ -48,22 +48,29 @@
   align-items: center;
 }
 
-.Welcome {
+.Header {
   font-size: 3rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #847c3d;
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
 }
 
 .ContactPageContent {
-  background-color: rgba(132, 124, 61, 0.4);
+  background-color: rgba(132, 124, 61, 0);
   border-radius: 0.3rem;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 500;
   margin-top: 6rem;
   padding: 2rem;
+}
+
+.PageContentWrapper {
+  border: 1px solid rgba(132, 124, 61, 1);
+  border-radius: 0.3rem;
+  margin-bottom: 3rem;
+  padding: 0.5rem;
 }
 
 .PageContent {
@@ -76,22 +83,21 @@
   background-color: rgba(132, 124, 61, 0);
   border: 1px solid #847c3d;
   border-radius: 0.3rem;
-  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
   font-size: 1rem;
-  padding: 10px 0;
+  padding: 10px 32px 0 0;
 }
 
-@counter-style List {
+/* @counter-style List {
   color: #000000 !important;
   system: cyclic;
   symbols: "◈";
   suffix: " ";
-}
+} */
 
 .List li {
-  margin: 15px 0;
-  list-style: List;
-  padding: 5px;
+  margin: 10px 0 0 0;
+  list-style: none;
+  padding: 15px 0 0 0;
 }
 
 /* creates the level of zoom for hero image */
