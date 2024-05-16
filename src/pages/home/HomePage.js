@@ -10,6 +10,10 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../../components/SearchBar";
 import styles from "../../styles/ServicesPages.module.css";
+import useFetchListings from "../../hooks/useFetchListings";
+import Asset from "../../components/Asset";
+import { Carousel } from "react-bootstrap";
+import imageStyles from "../../styles/Listing.module.css";
 
 export default function HomePage() {
   /**
@@ -19,6 +23,13 @@ export default function HomePage() {
    */
 
   const { t, i18n } = useTranslation();
+
+  const fetchedFeaturedListings = useFetchListings({ featured: true });
+
+  const { hasLoaded } = useFetchListings();
+
+  const featuredListings = fetchedFeaturedListings.listings.results;
+
 
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
@@ -108,8 +119,73 @@ export default function HomePage() {
             </Link>
           </Col>
         </Row>
-        <Row>
-          {/* {renderFeaturedListings()} */}
+        <Row className="my-5">
+          <h2 className="my-4 text-center w-100">Featured Listings</h2>
+          <Container>
+            <Row className="mx-0">
+              {hasLoaded ? (
+                <>
+                  {featuredListings.length ? (
+                    <Row className="mx-0">
+                      {featuredListings
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 4)
+                        .map((listing) => (
+                          <Col key={listing.id} xs={12} md={6} lg={3} className="mb-3">
+                            <Card style={{ height: "100%" }}>
+                              <Link to={`/listings/${listing.id}`}>
+                                <Carousel>
+                                  {listing.images.map((image, id) => (
+                                    <Carousel.Item key={id}>
+                                      <div className={imageStyles.Listings__ImageWrapper}>
+                                        <img
+                                          src={image?.url}
+                                          alt={image?.id}
+                                          className={`img-fluid ${imageStyles.Listings__Image}`}
+                                        />
+                                        <div className={imageStyles.FeaturedLabel}>Featured</div>
+                                      </div>
+                                    </Carousel.Item>
+                                  ))}
+                                </Carousel>
+
+                                {/* <div className={imageStyles.Listings__ImageWrapper}>
+                                  <div className={`d-flex flex-column justify-content-evenly`}>
+                                    <img
+                                      src={listing.images[0]?.url}
+                                      alt={listing.images[0]?.id}
+                                      className={`img-fluid ${imageStyles.Listings__Image}`}
+                                    />
+                                    <div className={imageStyles.FeaturedLabel}>Featured</div>
+                                  </div>
+                                </div> */}
+                                <Card.Body>
+                                  <Card.Title style={{ textTransform: "capitalize" }}>
+                                    {t("propertyDetails.title", {
+                                      type: `${listing.type}`,
+                                      sale_type: `${listing.sale_type}`,
+                                    })}
+                                  </Card.Title>
+                                  <Card.Text>£ {listing.price}</Card.Text>
+                                </Card.Body>
+                              </Link>
+                            </Card>
+                          </Col>
+                        ))}
+                    </Row>
+                  ) : (
+                    <Container>
+                      <Asset text="No results" />
+                    </Container>
+                  )}
+                </>
+              ) : (
+                <Container>
+                  <Asset spinner />
+                </Container>
+              )}
+            </Row>
+          </Container>
         </Row>
       </Container>
     </>
