@@ -87,7 +87,7 @@ const ListingImages = ({ images = [{}], listing_id }) => {
         <Col>
           <Row className="justify-content-start d-none d-md-flex gx-1">
             {/* Map the images and Display 4 images , 2 on top 2 bellow */}
-            {images?.slice(1, 3).map((image, id) => (
+            {images?.slice(1, 5).map((image, id) => (
               <Col key={id} xs={6} md={6} lg={6} xl={6} style={{ paddingBottom: "3px" }}>
                 <div className={styles.ImageWrapper}>
                   <img
