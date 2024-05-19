@@ -21,7 +21,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <div className={`d-flex flex-column justify-content-around ${homeStyles.HeroImageAbout}`}>
+      <div className={`${homeStyles.HeroImageAbout}`}>
         <h1 className={`${styles.Header}`}>About us</h1>
 
       </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
         </Row>
 
         <p className="h2 text-center pt-3">Our Team</p>
-        <Row className={`shadow ${styles.PageContentWrapper}`}>
+        <Row className={`shadow mx-auto ${styles.PageContentWrapper}`}>
           <Row className={`mx-auto ${styles.PageContent}`}>
             <div className="my-5 col-11 mx-auto">
               At Acropolis Estates, we have assembled a team of highly skilled and dedicated professionals who are passionate about real estate and dedicated to helping our clients succeed. From our experienced agents to our dedicated support staff, each member of our team is committed to providing exceptional service and unparalleled expertise. We are committed to providing personalized attention, expert advice, and unparalleled customer service to ensure a seamless and stress-free experience.

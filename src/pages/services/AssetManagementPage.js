@@ -25,14 +25,14 @@ export default function AssetManagementPage() {
       </div>
       <Container>
         <Row className={`my-5 flex-wrap mx-auto justify-content-between`}>
-          <Col lg={5} className={`shadow mb-0 ${styles.PageContentWrapper}`}>
+          <Col lg={6} className={`shadow mb-0 me-lg-3 ${styles.PageContentWrapper}`}>
             <div className={`p-4 h-100 ${styles.PageContent}`}>
               We specialize in real estate asset management, offering tailored solutions to maximize returns and minimize risks for our clients.
               With years of industry experience and a dedicated team of experts, we are committed to delivering exceptional results and unparalleled service.
             </div>
           </Col>
 
-          <Col lg={5} className={`shadow mb-0 mt-5 mt-lg-0 ${styles.PageContentWrapper}`}>
+          <Col className={`shadow mb-0 mt-5 mt-lg-0 ${styles.PageContentWrapper}`}>
             <div className={`p-4 h-100 ${styles.PageContent}`}>
               Our approach to real estate asset management is strategic and client-focused. We employ a comprehensive framework that emphasizes value creation,
               risk mitigation, and customized solutions tailored to our clients' unique objectives.
