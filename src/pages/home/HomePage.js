@@ -38,9 +38,25 @@ export default function HomePage() {
 
   return (
     <>
-      <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage}`}>
-        <h1 className={`mx-5 ${homeStyles.Welcome}`}>Welcome to Acropolis Estates</h1>
-        <SearchBar />
+      <div className={`${homeStyles.CaruselContainer}`}>
+        <div className={homeStyles.SearchBar}>
+          <h1 className={`text-center ${homeStyles.Welcome}`}>Welcome to Acropolis Estates</h1>
+          <SearchBar />
+        </div>
+        <Carousel prevIcon={false} nextIcon={false}>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage}`}>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage2}`}>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage3}`}>
+            </div>
+          </Carousel.Item>
+        </Carousel>
       </div>
 
       <Container className="mb-4">

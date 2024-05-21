@@ -8,6 +8,26 @@
   align-items: center;
 }
 
+.HeroImage2 {
+  background-image: url("../assets/hero1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroImage3 {
+  background-image: url("../assets/hero3.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .HeroImageAbout {
   background-image: url("../assets/about.jpg");
   background-size: cover;
@@ -25,6 +45,21 @@
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
+  width: 100%;
+}
+
+.CaruselContainer {
+  position: relative;
+  background-color: rgba(77, 103, 101, 0.4);
+}
+
+.SearchBar {
+  position: absolute;
+  top: 40%;
+  /* left: 50%;
+  transform: translateX(-50%); */
+  width: 100%;
+  z-index: 10;
 }
 
 .FeaturedLabel {
@@ -54,11 +89,28 @@
   .Welcome {
     font-size: 2.5rem;
   }
+
+  .SearchBar {
+    top: 30%;
+  }
 }
 
 @media screen and (max-width: 575px) {
   .Welcome {
     margin: 60px 0 0 0;
     font-size: 1.9rem;
+  }
+
+  .SearchBar {
+    top: 10%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  /* .Welcome {
+    font-size: 1.8rem;
+  } */
+  .SearchBar {
+    top: 5%;
   }
 }
