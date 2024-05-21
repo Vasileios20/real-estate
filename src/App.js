@@ -34,18 +34,13 @@ function App() {
   const path = location.pathname;
 
   if (
-    path === "/" ||
-    path === "/contact" ||
-    path === "/about" ||
-    path === "/advisory" ||
-    path === "/assetManagement" ||
-    path === "/transactions" ||
-    path === "/valuation"
+    path === "/listings/"
   ) {
-    styles.Main = styles.MainHome;
-  } else {
     styles.Main = styles.MainListings;
+  } else {
+    styles.Main = styles.MainHome;
   }
+
   return (
     <Suspense fallback="loading">
       <div className={styles.App}>
