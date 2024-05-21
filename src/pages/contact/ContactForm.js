@@ -51,16 +51,12 @@ function ContactForm({ listing_id }) {
   const message_form = `I am interested in the listing with id ${listing_id}`;
   const path = useLocation().pathname;
 
-  const [value, setValue] = useState();
+  const [phoneValue, setPhoneValue] = useState();
 
-
-
-  // Phone number gets the value to pass it to contactData
-
-
+  const listingPagePath = path === `/listings/${listing_id}`;
 
   contactData.message =
-    path === `/listings/${listing_id}` && !messageDeleted
+    listingPagePath && !messageDeleted
       ? message_form
       : contactData.message;
 
@@ -75,6 +71,7 @@ function ContactForm({ listing_id }) {
   //           ...contactData,
   //           first_name: currentUser.username,
   //           email: data.email_address,
+  //           phone_number: data.phone_number,
   //         });
   //       } catch (err) {
   //         // console.log(err);
@@ -99,7 +96,7 @@ function ContactForm({ listing_id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    contactData.phone_number = value;
+    contactData.phone_number = phoneValue;
     try {
       await axios.post("/contact/", contactData);
       setSuccess(true);
@@ -120,14 +117,12 @@ function ContactForm({ listing_id }) {
 
   return (
     <Row>
-      <Col
-        className={
-          path === `/listings/${listing_id}` ? "m-auto pt-0 mt-1" : `m-auto`
-        }
-        md={path === `/listings/${listing_id}` ? 12 : 4}
-
+      <Col className="m-auto"
+        md={listingPagePath ? 12 : 8}
+        lg={listingPagePath ? 12 : 6}
+        xl={listingPagePath ? 12 : 4}
       >
-        <Container className={`${appStyles.Content} p-4 rounded shadow`}>
+        <Container className={`${appStyles.Content} p-3 p-md-4 rounded shadow`}>
           <h1 className={styles.Header}>contact form</h1>
           <Form
             onSubmit={handleSubmit}
@@ -198,23 +193,14 @@ function ContactForm({ listing_id }) {
                   {message}
                 </span>
               ))}</span></Form.Label>
-              {/* <Form.Control
-                className={`${styles.Input} text-start`}
-                type="text"
-                placeholder={"Your phone number"}
-                name="phone_number"
-                value={phone_number}
-                onChange={handleChange}
-                disabled={success ? true : false}
-              /> */}
               <PhoneInput
-                style={{ paddingLeft: "0.3rem" }}
+                style={{ paddingLeft: "0.5rem" }}
                 className={`${styles.Input} text-start`}
                 international
                 defaultCountry="GR"
                 placeholder="Enter phone number"
-                value={value}
-                onChange={setValue}
+                value={phoneValue}
+                onChange={setPhoneValue}
                 inputComponent={Form.Control}
                 containerComponent={Form.Group}
                 disabled={success ? true : false} />
@@ -254,7 +240,7 @@ function ContactForm({ listing_id }) {
                 as="textarea"
                 rows={6}
                 placeholder={
-                  path === `/listings/${listing_id}` && !messageDeleted
+                  listingPagePath && !messageDeleted
                     ? message_form
                     : "Your message"
                 }

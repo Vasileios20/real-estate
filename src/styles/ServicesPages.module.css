@@ -12,10 +12,8 @@
   background-image: url("../assets/cont.jpg");
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: auto;
+  min-height: 100vh;
 }
 
 .HeroImageAssetMgmt {
@@ -57,13 +55,22 @@
   animation-fill-mode: forwards;
 }
 
+.ContactPageContainer {
+  min-height: 100vh; /* Ensures the container takes up the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactFormCol {
+  margin-bottom: 3rem;
+}
+
 .ContactPageContent {
   background-color: rgba(132, 124, 61, 0);
   border-radius: 0.3rem;
   font-size: 1.4rem;
   font-weight: 500;
-  margin-top: 6rem;
-  padding: 2rem;
+  margin: 7rem 0 2rem;
 }
 
 .PageContentWrapper {
@@ -109,3 +116,15 @@
     transform: scale(1);
   }
 }
+
+/* Additional media queries for landscape orientation on mobile devices */
+@media (max-width: 576px) and (orientation: landscape) {
+  .ContactPageContainer {
+    min-height: calc(100vh - 60px);
+  }
+
+  .ContactFormCol {
+    padding-bottom: 20px;
+  }
+}
+
