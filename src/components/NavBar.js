@@ -149,18 +149,18 @@ const NavBar = () => {
   return (
     <Navbar
       expanded={expanded}
-      className={scroll ? `${styles.NavBarScroll}` : `${styles.NavBar}`}
+      className={scroll ? `${styles.NavBarScroll}` : expanded ? `${styles.NavBarMobile}` : `${styles.NavBar}`}
       expand="md"
       fixed="top"
       id="navBar"
     >
-      <Container style={{ marginTop: "-35px" }}>
+      <Container>
         <NavLink to="/">
           <Navbar.Brand>
             <img
               src={logo}
               alt="logo"
-              style={{ width: "150px" }}
+              className={styles.NavLogo}
             ></img>
           </Navbar.Brand>
         </NavLink>
