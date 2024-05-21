@@ -56,8 +56,6 @@
 .SearchBar {
   position: absolute;
   top: 40%;
-  /* left: 50%;
-  transform: translateX(-50%); */
   width: 100%;
   z-index: 10;
 }
@@ -83,7 +81,7 @@
   }
 }
 
-/* responsive < 768px */
+/*Responsive*/
 
 @media screen and (max-width: 832px) {
   .Welcome {
@@ -97,7 +95,7 @@
 
 @media screen and (max-width: 575px) {
   .Welcome {
-    margin: 60px 0 0 0;
+    margin: 20px 0 0 0;
     font-size: 1.9rem;
   }
 
@@ -107,9 +105,9 @@
 }
 
 @media screen and (max-width: 375px) {
-  /* .Welcome {
-    font-size: 1.8rem;
-  } */
+  .Welcome {
+    margin: 60px 0 0 0;
+  }
   .SearchBar {
     top: 5%;
   }
