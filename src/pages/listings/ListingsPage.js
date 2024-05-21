@@ -1,6 +1,6 @@
 import useFetchListings from "../../hooks/useFetchListings";
 import ListingsComponent from "../../components/Listings";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function ListingsPage() {
@@ -14,17 +14,29 @@ function ListingsPage() {
 
   // Fetch the listings from the API.
   const { listings, setListings, hasLoaded } = useFetchListings();
+
   // Get the state from the location object.
   const { state } = useLocation();
+
+  // Message to display when there are no results.
   const message = "No results";
-  console.log("state", state);
+
+  // Variable to check if the search results are present.
+  const [searchResults, setSearchResults] = useState(false);
 
   // If the state is present, set the listings to the state data.
   useEffect(() => {
     if (state && state.data) {
+      // If the state is present, set the search results to true.
+      setSearchResults(true);
+
+      // If there are no results, set the listings to an empty array with the message.
       if (state.data.results.length === 0) {
         setListings({ results: [], message });
-      } else setListings(state.data);
+      } else {
+        // Otherwise, set the listings to the state data.
+        setListings(state.data);
+      }
     }
   }, [setListings, state]);
 
@@ -39,6 +51,7 @@ function ListingsPage() {
         setListings={setListings}
         listings={listings}
         message={message}
+        searchResults={searchResults}
       />
     </>
   );
