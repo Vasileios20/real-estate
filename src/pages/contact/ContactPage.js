@@ -9,7 +9,7 @@ const ContactPage = () => {
   return (
      <Container fluid className={`${styles.ContactPageContainer}`}>
       <Row className={`${styles.HeroImageCon}`}>
-        <Col sm={10} className={`${styles.ContactPageContent} text-center`}>
+        <Col md={10} lg={8} className={`${styles.ContactPageContent} text-center`}>
           Whether you're buying, selling, or investing in real estate, Acropolis Estates is here to assist.
           Contact us today to learn more about our services and how we can assist you in achieving your real estate goals.
         </Col>

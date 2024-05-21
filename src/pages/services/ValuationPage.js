@@ -25,7 +25,7 @@ export default function ValuationPage() {
       <Container>
         <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
           <Row className={`m-0 p-0 ${styles.PageContent}`}>
-            <div className="my-5 col-md-8 mx-auto">
+            <div className="my-5 col-11 mx-auto">
               Real estate valuation involves assessing the current market value of a property, which is crucial for various purposes such as investment analysis,
               financing, insurance, taxation, and financial reporting.
             </div>
