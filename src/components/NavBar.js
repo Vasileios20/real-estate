@@ -12,7 +12,7 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import useUserStatus from "../hooks/useUserStatus";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo512.png";
 import { removeTokenTimestamp } from "../utils/utils";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useTranslation } from "react-i18next";
@@ -154,7 +154,7 @@ const NavBar = () => {
       fixed="top"
       id="navBar"
     >
-      <Container>
+      <Container style={{ marginTop: "-35px" }}>
         <NavLink to="/">
           <Navbar.Brand>
             <img
