@@ -61,8 +61,8 @@ export default function HomePage() {
 
       <Container className="mb-4">
         <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
-          <Row className={`m-0 p-5 ${styles.PageContent}`}>
-            <p style={{ fontSize: "1.5rem" }}>{t("homePage.description")}</p>
+          <Row className={`m-0 ${styles.PageContent}`}>
+            <p className="col-md-11 mx-auto py-5">{t("homePage.description")}</p>
           </Row>
         </Row>
         <Row>
