@@ -59,6 +59,10 @@
   cursor: pointer;
 }
 
+.ImagesContainer {
+  padding-top: 3.2rem;
+}
+
 @media screen and (min-width: 576px) {
   .Modal {
     max-width: 90%;

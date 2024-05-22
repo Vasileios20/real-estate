@@ -107,7 +107,7 @@ const ListingImages = ({ images = [{}], listing_id }) => {
 
 
   return (
-    <Container className="mb-4 px-0">
+    <Container className={`mb-4 px-0 ${styles.ImagesContainer}`}>
       <OverlayTrigger
         placement="bottom"
         delay={{ show: 250, hide: 200 }}
