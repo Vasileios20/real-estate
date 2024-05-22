@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 
 import Container from "react-bootstrap/Container";
 
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import styles from "../../styles/ContactForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -45,7 +45,7 @@ function ContactForm({ listing_id }) {
   const { first_name, last_name, phone_number, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
   const [messageDeleted, setMessageDeleted] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false);
   const history = useHistory();
 
   const message_form = `I am interested in the listing with id ${listing_id}`;
@@ -94,8 +94,16 @@ function ContactForm({ listing_id }) {
     }
   };
 
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isChecked) {
+      setErrors({ ...errors, checkbox: ["You must accept the terms of use and privacy policy."] });
+      return;
+    }
     contactData.phone_number = phoneValue;
     try {
       await axios.post("/contact/", contactData);
@@ -250,7 +258,21 @@ function ContactForm({ listing_id }) {
                 disabled={success ? true : false}
               />
             </Form.Group>
-
+            <Form.Group controlId="checkbox">
+              <Form.Check
+                className={`${styles.Checkbox}`}
+                type="checkbox"
+                label={<div>I have read and accept the <Link to="/terms" style={{ textDecoration: "underline" }}>terms of use</Link> and <Link to="/privacyPolicy" style={{ textDecoration: "underline" }}>privacy policy</Link> of Acropolis Estates</div>}
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                disabled={success ? true : false}
+              />
+              {errors.checkbox && (
+                <span className={styles.ErrorMessage}>
+                  {errors.checkbox[0]}
+                </span>
+              )}
+            </Form.Group>
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black} mt-3`}
