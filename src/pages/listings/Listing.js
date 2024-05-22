@@ -69,8 +69,8 @@ const Listing = (props) => {
     energy_class,
     construction_year,
     availability,
-    created_at,
-    updated_at,
+    created_on,
+    updated_on,
     listingPage,
     images,
     longitude,
@@ -94,9 +94,9 @@ const Listing = (props) => {
 
 
   const amenitiesList = amenitiesArray.map((amenity, id) => (
-    <div key={id} className={styles.Amenity}>
+    <div key={id} className={`${styles.Amenity}`}>
       <span>{amenity.replace(/_/g, " ")} </span>
-      <i className="fas fa-check"></i>
+      <i className={`fa-solid fa-square-check ${styles.AmenityChecked}`}></i>
     </div>
   ));
 
@@ -136,8 +136,8 @@ const Listing = (props) => {
           <Link to={`/profiles/${profile_id}`}>Owner: {owner}</Link>
         </Card.Text>
 
-        <Card.Text>Created at: {created_at}</Card.Text>
-        <Card.Text>Updated at: {updated_at}</Card.Text>
+        <Card.Text>Created on: {created_on}</Card.Text>
+        <Card.Text>Updated on: {updated_on}</Card.Text>
       </Card.Body>
     </>
   );
@@ -161,7 +161,7 @@ const Listing = (props) => {
         <ListingImages images={images} listing_id={id} />
 
         <Row className="justify-content-start">
-          <Col lg={8}>
+          <Col>
 
 
             <Col md={4} className="d-flex mt-4">
@@ -172,17 +172,18 @@ const Listing = (props) => {
             </Col>
 
             <ListingHeader {...props} listingPage={listingPage} />
-            <h5>{t("propertyDetails.description")}</h5>
-            <p>
-              {props.description}
-            </p>
+            <div className="my-4">
+              <h5>{t("propertyDetails.description")}</h5>
+              <p>
+                {props.description}
+              </p>
+            </div>
           </Col>
-        </Row>
-        <Row>
+
 
           <h5>Features</h5>
-          <Col md={8} lg={4}>
-            <Table className={styles.Listing__table}>
+          <Col md={8} lg={8}>
+            <Table className={`${styles.Listing__table} shadow`}>
               <tbody>
                 <tr>
                   <td className={styles.tdWidth}>
@@ -241,22 +242,20 @@ const Listing = (props) => {
                   <td>Listing id</td>
                   <td>{id}</td>
                 </tr>
-                <tr>
-                  <td>amenities</td>
-
-                </tr>
               </tbody>
             </Table>
-            <Col className="mb-3">
+            <Col className="my-5">
+              <h5 className="ps-2 pb-1">Amenities</h5>
+              <div className={`${styles.AmenitiesBox}`}>
+                {amenitiesList}
+
+              </div>
+            </Col>
+            <Col className="mx-auto my-5">
               {mapReady && <MapMarker {...props} />}
             </Col>
           </Col>
-          <Col sm={4}>
-            <div className={styles.AmenitiesBox}>
-              {amenitiesList}
 
-            </div>
-          </Col>
           <Col md={8} lg={4} className="">
             <ContactForm listing_id={id} />
           </Col>
