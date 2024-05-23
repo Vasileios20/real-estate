@@ -34,54 +34,65 @@ const Footer = () => {
     <Container fluid className={`${styles.Footer}`}>
       <Container>
         <Row className="pt-3 justify-content-between">
-          <Col sm={6} lg={4}>
+          <Col sm={3} className="d-flex flex-column">
             <h5>Acropolis Estates</h5>
             <Link to="/about" className={`${styles.link}`}>
-              About Us |
+              About Us
             </Link>
-            <Link to="/contact" className={`${styles.link} ps-1`}>
-              Contact |
-            </Link>
-            <Link to="/faq" className={`${styles.link} ps-1`}>
+            <Link to="/faq" className={`${styles.link} `}>
               FAQ
             </Link>
+            <div className={styles.Social}>
+              <a href="https://www.facebook.com/profile.php?id=100087858451493" target="_blank"
+                aria-label="Visit our Facebook page" rel="noreferrer"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page" rel="noreferrer"><i
+                class="fa-brands fa-instagram"></i></a>
+              <a href="https://linkedin.com" target="_blank" aria-label="Visit our Youtube page" rel="noreferrer"><i
+                class="fa-brands fa-linkedin"></i></a>
+            </div>
           </Col>
 
-          <Col sm={6} lg={4} xl={3} className="d-flex flex-column">
-            <Row>
-              <Col sm={12} className="pt-2 pt-md-0">
-                <h5>Properties</h5>
-              </Col>
-              <Col className={styles.FitContent}>
-                <Form.Label
-                  className={`${styles.link}`}
-                  onClick={() => handleSubmit("apartment")}
-                >
-                  Apartment<span style={{ paddingLeft: "3px" }}>|</span>
-                </Form.Label>
+          <Col sm={3} className={`d-flex flex-column ${styles.MobileMarginTop}`}>
+            <h5>Properties</h5>
+            <Form.Label
+              className={`${styles.link}`}
+              onClick={() => handleSubmit("apartment")}
+            >
+              Apartment
+            </Form.Label>
 
-                <Form.Label
-                  className={`${styles.link} ps-1`}
-                  onClick={() => handleSubmit("house")}
-                >
-                  House<span style={{ paddingLeft: "3px" }}>|</span>
-                </Form.Label>
+            <Form.Label
+              className={`${styles.link}`}
+              onClick={() => handleSubmit("house")}
+            >
+              House
+            </Form.Label>
 
-                <Form.Label
-                  className={`${styles.link} ps-1`}
-                  onClick={() => handleSubmit("land")}
-                >
-                  Land<span style={{ paddingLeft: "3px" }}>|</span>
-                </Form.Label>
+            <Form.Label
+              className={`${styles.link}`}
+              onClick={() => handleSubmit("land")}
+            >
+              Land
+            </Form.Label>
 
-                <Form.Label
-                  className={`${styles.link} ps-1`}
-                  onClick={() => handleSubmit("commercial")}
-                >
-                  Commercial
-                </Form.Label>
-              </Col>
-            </Row>
+            <Form.Label
+              className={`${styles.link}`}
+              onClick={() => handleSubmit("commercial")}
+            >
+              Commercial
+            </Form.Label>
+
+
+          </Col>
+          <Col sm={3} className={`${styles.MobileMarginTop}`}>
+            <h5 className="">Contact</h5>
+            <div className="">
+
+              <p className="m-0">Office Address: 28is Octovriou, 211</p>
+              <p className="m-0">City: Nea Peramos, Attikis</p>
+              <p className="m-0">Email: info@acropolisestates.com</p>
+              <p className="m-0">Phone Number: +30 229 640 0420</p>
+            </div>
           </Col>
 
         </Row>

@@ -3,7 +3,7 @@
   font-size: 14px;
 }
 
-.centerContent {
+/* .centerContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,13 +11,25 @@
 
 .FitContent > * {
   flex: 1;
+} */
+
+.Social {
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.Social > * {
+  color: rgba(12, 12, 12, 0.9);
+  padding-right: 1rem;
 }
 
 .link {
-  color: #3f3f3f;
+  color: #131313;
   transition: color ease-in-out 0.2s;
   text-decoration: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
 .link:hover {
@@ -27,4 +39,12 @@
 
 .ServiceImage {
   border-radius: 0.5rem 0.5rem 0 0;
+}
+
+
+@media screen and (max-width: 576px) {
+  .MobileMarginTop {
+    margin-top: 1rem;
+  }
+  
 }
