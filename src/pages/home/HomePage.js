@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import homeStyles from "../../styles/HomePage.module.css";
 import Card from "react-bootstrap/Card";
-import property_management from "../../assets/hero1.jpg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../../components/SearchBar";
@@ -40,7 +39,8 @@ export default function HomePage() {
     <>
       <div className={`${homeStyles.CaruselContainer}`}>
         <div className={homeStyles.SearchBar}>
-          <h1 className={`text-center ${homeStyles.Welcome}`}>Welcome to Acropolis Estates</h1>
+          <h1 className={`text-center ${homeStyles.Welcome}`}>Acropolis Estates</h1>
+          <p className={`text-center ${homeStyles.Welcome}`} style={{ fontSize: "1rem" }}>Real estate reimagined</p>
           <SearchBar />
         </div>
         <Carousel prevIcon={false} nextIcon={false}>
@@ -61,19 +61,17 @@ export default function HomePage() {
 
       <Container className="mb-4">
         <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
-          <Row className={`m-0 ${styles.PageContent}`}>
+          <Row className={`m-0 ${styles.PageContent} ${homeStyles.HomePageContent}`}>
             <p className="col-md-11 mx-auto py-5">{t("homePage.description")}</p>
           </Row>
         </Row>
-        <Row>
+        <Row className="gx-2">
           <h2 className="my-4 text-center w-100">Our Services</h2>
-          <Col xs={12} md={3} className="mt-1">
+          <Col xs={12} md={6} className="mt-1">
             <Link to="/assetManagement">
               <Card className="h-100">
-                <img
-                  src={property_management}
-                  alt="Property Management"
-                  className={styles.ServiceImage}
+                <div
+                  className={`${styles.ServiceImage1} ${styles.ServiceImageHeight}`}
                 />
                 <Card.Body>
                   <Card.Title>
@@ -83,13 +81,11 @@ export default function HomePage() {
               </Card>
             </Link>
           </Col>
-          <Col xs={12} md={3} className="mt-1">
+          <Col xs={12} md={6} className="mt-1">
             <Link to="/advisory">
               <Card className="h-100">
-                <img
-                  src={property_management}
-                  alt="Property Management"
-                  className={styles.ServiceImage}
+                <div
+                  className={`${styles.ServiceImage2} ${styles.ServiceImageHeight}`}
                 />
                 <Card.Body>
                   <Card.Title>
@@ -100,13 +96,11 @@ export default function HomePage() {
             </Link>
           </Col>
           {/* Valuation */}
-          <Col xs={12} md={3} className="mt-1">
+          <Col xs={12} md={6} className="mt-1 mt-md-2">
             <Link to="/valuation">
               <Card className="h-100">
-                <img
-                  src={property_management}
-                  alt="Property Management"
-                  className={styles.ServiceImage}
+                <div
+                  className={`${styles.ServiceImage3} ${styles.ServiceImageHeight}`}
                 />
                 <Card.Body>
                   <Card.Title>
@@ -118,13 +112,13 @@ export default function HomePage() {
             </Link>
           </Col>
 
-          <Col xs={12} md={3} className="mt-1">
+          <Col xs={12} md={6} className="mt-1 mt-md-2">
             <Link to="/listings">
-              <Card className="h-100">
-                <img
-                  src={property_management}
+              <Card className="h-100 rounded">
+                <div
+                  // src={propertiesImage}
                   alt="Property Management"
-                  className={styles.ServiceImage}
+                  className={`${styles.ServiceImage4} ${styles.ServiceImageHeight}`}
                 />
                 <Card.Body>
                   <Card.Title>
@@ -159,22 +153,12 @@ export default function HomePage() {
                                           alt={image?.id}
                                           className={`img-fluid ${imageStyles.Listings__Image}`}
                                         />
-                                        <div className={imageStyles.FeaturedLabel}>Featured</div>
+                                        <div className={homeStyles.FeaturedLabel}>Featured</div>
                                       </div>
                                     </Carousel.Item>
                                   ))}
                                 </Carousel>
 
-                                {/* <div className={imageStyles.Listings__ImageWrapper}>
-                                  <div className={`d-flex flex-column justify-content-evenly`}>
-                                    <img
-                                      src={listing.images[0]?.url}
-                                      alt={listing.images[0]?.id}
-                                      className={`img-fluid ${imageStyles.Listings__Image}`}
-                                    />
-                                    <div className={imageStyles.FeaturedLabel}>Featured</div>
-                                  </div>
-                                </div> */}
                                 <Card.Body>
                                   <Card.Title style={{ textTransform: "capitalize" }}>
                                     {t("propertyDetails.title", {
@@ -203,7 +187,7 @@ export default function HomePage() {
             </Row>
           </Container>
         </Row>
-      </Container>
+      </Container >
     </>
   );
 }
