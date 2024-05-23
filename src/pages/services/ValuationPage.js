@@ -20,7 +20,7 @@ export default function ValuationPage() {
   return (
     <>
       <div className={styles.HeroImageVal}>
-        <h1 className={styles.Header} style={{ color: "#000" }}>{t("services.valuation")}</h1>
+        <h1 className={styles.Header}>{t("services.valuation")}</h1>
       </div>
       <Container>
         <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
