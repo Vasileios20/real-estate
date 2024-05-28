@@ -1,5 +1,23 @@
 .HeroImageAdv {
   background-image: url("../assets/img12.jpg");
+}
+
+.HeroImageAssetMgmt {
+  background-image: url("../assets/img21.jpg");
+}
+
+.HeroImageVal {
+  background-image: url("../assets/img2.jpg");
+}
+
+.HeroImageListings {
+  background-image: url("../assets/properties.jpg");
+}
+
+.HeroImageAdv,
+.HeroImageAssetMgmt,
+.HeroImageVal,
+.HeroImageListings {
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -16,36 +34,6 @@
   min-height: 100vh;
 }
 
-.HeroImageAssetMgmt {
-  background-image: url("../assets/img21.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.HeroImageVal {
-  background-image: url("../assets/img2.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.HeroImageListings {
-  background-image: url("../assets/properties.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .Header {
   font-size: 6rem;
   font-weight: 600;
@@ -53,11 +41,19 @@
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
+  width: 100%;
+  max-width: 90vw;
+  word-wrap: break-word;
+  text-align: center;
 }
 
 .ImageOverlay {
   border-image: fill 1
-    linear-gradient(to right, rgba(243, 243, 243, 0.1), rgba(200, 243, 237, 0.3));
+    linear-gradient(
+      to right,
+      rgba(243, 243, 243, 0.1),
+      rgba(200, 243, 237, 0.3)
+    );
 }
 
 /* Home Page */
@@ -160,6 +156,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .Header {
+    font-size: 4rem;
+  }
+}
+
 @media screen and (min-width: 425px) and (max-width: 768px) {
   .ServiceImageHeight {
     height: 200px;
@@ -169,5 +171,9 @@
 @media screen and (max-width: 425px) {
   .ServiceImageHeight {
     height: 175px;
+  }
+
+  .Header {
+    font-size: 3rem;
   }
 }
