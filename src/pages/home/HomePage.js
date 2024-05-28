@@ -40,7 +40,7 @@ export default function HomePage() {
       <div className={`${homeStyles.CaruselContainer}`}>
         <div className={homeStyles.SearchBar}>
           <h1 className={`text-center ${homeStyles.Welcome}`}>Acropolis Estates</h1>
-          <p className={`text-center ${homeStyles.Welcome}`} style={{ fontSize: "1rem" }}>Real estate reimagined</p>
+          <p className={`text-center ${homeStyles.WelcomeTagLine}`}>Real estate reimagined</p>
           <SearchBar />
         </div>
         <Carousel prevIcon={false} nextIcon={false}>

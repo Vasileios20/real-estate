@@ -1,51 +1,51 @@
-.HeroImage {
-  background-image: url("../assets/img8.jpg");
+.HeroImage,
+.HeroImage2,
+.HeroImage3,
+.HeroImageAbout {
   background-size: cover;
   background-position: center;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.HeroImage {
+  background-image: url("../assets/img8.jpg");
 }
 
 .HeroImage2 {
   background-image: url("../assets/img13.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .HeroImage3 {
   background-image: url("../assets/img16.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .HeroImageAbout {
   background-image: url("../assets/img26.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .Welcome {
   font-size: 3rem;
   font-weight: 600;
+}
+
+.Welcome,
+.WelcomeTagLine {
   color: #fff;
   animation-name: hero-zoom;
   animation-duration: 5s;
   animation-fill-mode: forwards;
+  margin: 0;
   width: 100%;
+}
+
+.WelcomeTagLine {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 .CaruselContainer {
@@ -55,7 +55,7 @@
 
 .SearchBar {
   position: absolute;
-  top: 40%;
+  top: 30%;
   width: 100%;
   z-index: 10;
 }
@@ -92,20 +92,15 @@
   .Welcome {
     font-size: 2.5rem;
   }
-
-  .SearchBar {
-    top: 30%;
-  }
 }
 
 @media screen and (max-width: 575px) {
   .Welcome {
-    margin: 20px 0 0 0;
     font-size: 1.9rem;
   }
 
   .SearchBar {
-    top: 10%;
+    top: 18%;
   }
 
   .HomePageContent {
@@ -113,11 +108,9 @@
   }
 }
 
-@media screen and (max-width: 375px) {
-  .Welcome {
-    margin: 60px 0 0 0;
-  }
-  .SearchBar {
-    top: 5%;
+@media screen and (max-height: 426px) and (orientation: landscape) {
+  .Welcome,
+  .WelcomeTagLine {
+    display: none;
   }
 }
