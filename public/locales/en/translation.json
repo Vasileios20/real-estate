@@ -72,7 +72,7 @@
         "btnUpdate": "Update"
     },
     "propertyDetails": {
-        "title": "{{type}} to {{sale_type}}",
+        "title": "{{type}} {{sale_type}}",
         "description": "Description",
         "address": "Address",
         "price": "Price",
