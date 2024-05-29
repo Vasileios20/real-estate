@@ -103,5 +103,89 @@
         "services": "Services",
         "properties": "Properties",
         "contact": "Contact us"
+    },
+    "terms": {
+        "title": "Terms and Conditions",
+        "description": "These Terms and Conditions ('Terms') govern your use of Acropolis Estates website acropolisestates.com (the 'Site') and the services provided through the Site. By accessing or using the Site, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the Site.",
+        "section1": {
+            "title": "Use of the Site",
+            "content": "You must be at least 18 years old to use the Site. You agree to use the Site only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of any account credentials and for all activities that occur under your account."
+        },
+        "section2": {
+            "title": "Intellectual Property Rights",
+            "content": "All content on the Site, including text, graphics, logos, images, and software, is the property of Acropolis Estates or its licensors and is protected by copyright and other intellectual property laws. You may not reproduce, modify, distribute, or display any content from the Site without our prior written consent."
+        },
+        "section3": {
+            "title": "User Contribution",
+            "content": "You may submit information, messages, or other content through the Site, such as through contact forms. By submitting such content, you grant Acropolis Estates a perpetual, irrevocable, worldwide, royalty-free, and non-exclusive license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content."
+        },
+        "section4": {
+            "title": "Disclaimer of Warranties",
+            "content": "The Site and its content are provided on an 'as is' and 'as available' basis. We make no representations or warranties of any kind, express or implied, regarding the accuracy, reliability, or completeness of the Site or its content. We disclaim all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement."
+        },
+        "section5": {
+            "title": "Limitation of Liability",
+            "content": " In no event shall Acropolis Estates, its officers, directors, employees, or agents be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to lost profits, lost revenue, or lost data, arising out of or in connection with your use of the Site or its content."
+        },
+        "section6": {
+            "title": "Indemnification",
+            "content": "You agree to indemnify and hold harmless Acropolis Estates, its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in connection with your use of the Site or any violation of these Terms."
+        },
+        "section7": {
+            "title": "Governing Law",
+            "content": "These Terms shall be governed by and construed in accordance with the laws of the United Kingdom/European Union, without regard to its conflicts of law principles."
+        },
+        "section8": {
+            "title": "Changes to the Terms",
+            "content": "We reserve the right to modify or revise these Terms at any time. Any changes will be effective immediately upon posting on the Site. Your continued use of the Site after the posting of changes constitutes your acceptance of such changes."
+        },
+        "section9": {
+            "title": "Contact Us",
+            "content": "If you have any questions about these Terms, please contact us at info@acropolisestates.com."
+        }
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "description": "This Privacy Policy describes how Acropolis Estates ('we', 'us', 'our') collects, uses, and shares information about you when you use our website acropolisestates.com (the 'Site'). By using the Site, you agree to the collection and use of information in accordance with this Privacy Policy.",
+        "section1": {
+            "title": "Information We Collect",
+            "content": "When you fill out our contact form, we collect your first and last name, email address, phone number, and any other information you provide in the message."
+        },
+        "section2": {
+            "title": "Usage of Information",
+            "content": "We may collect information about how you interact with our Site, such as your IP address, browser type, pages visited, and referring website."
+        },
+        "section3": {
+            "title": "How We Use Your Information",
+            "content": "We use the personal information you provide to respond to your inquiries, communicate with you, and provide the services you request. We may use usage information to analyze trends, administer the Site, and gather demographic information about our user base."
+        },
+        "section4": {
+            "title": "Information Sharing",
+            "content": "We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this Privacy Policy. We may share your information with trusted third-party service providers who assist us in operating our website, conducting our business, or servicing you. We may also disclose your information when we believe disclosure is appropriate to comply with the law, enforce our site policies, or protect our or others' rights, property, or safety. We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law."
+        },
+        "section5": {
+            "title": "Data Retention",
+            "content": "We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law."
+        },
+        "section6": {
+            "title": "Your Rights",
+            "content": "You have the right to request access to, correction of, or deletion of your personal information. You may also have the right to restrict or object to the processing of your personal information."
+        },
+        "section7": {
+            "title": "Security",
+            "content": "We take reasonable measures to protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction. However, no method of transmission over the internet or electronic storage is 100% secure, so we cannot guarantee absolute security."
+        },
+        "section8": {
+            "title": "Third-Party Links",
+            "content": "Our Site may contain links to third-party websites, which have their own privacy policies. We are not responsible for the privacy practices or content of these third-party sites."
+        },
+        "section9": {
+            "title": "Cookies",
+            "content": "We use cookies to improve your experience on our Site. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your web browser (if you allow) that enables the site's or service provider's systems to recognize your browser and capture and remember certain information."
+        },
+        "section10": {
+            "title": "Changes to the Privacy Policy",
+            "content": "We reserve the right to modify or revise this Privacy Policy at any time. Any changes will be effective immediately upon posting on the Site. Your continued use of the Site after the posting of changes constitutes your acceptance of such changes."
+        }
     }
 }
