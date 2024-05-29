@@ -25,16 +25,29 @@ import AssetMgm from "./pages/services/AssetManagementPage";
 import TransacionsPage from "./pages/services/TransactionsPage";
 import ValuationPage from "./pages/services/ValuationPage";
 import Footer from "./components/Footer";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import ContactPage from "./pages/contact/ContactPage";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import Terms from "./pages/legal/Terms";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 
 function App() {
   useUserStatus();
   const location = useLocation();
   const path = location.pathname;
+  const [cookieConsent, setCookieConsent] = useState(getCookieConsentValue("cookieConsent"));
+  const [showCookieBanner, setShowCookieBanner] = useState("byCookieValue");
+  const [nonEssentialConsent, setNonEssentialConsent] = useState(getCookieConsentValue("nonEssentialCookies") === "true");
+
+
+  if (cookieConsent === "false") {
+    setCookieConsent(false);
+  }
 
   if (
-    path === "/listings/"
+    path === "/listings/" ||
+    path === "/privacyPolicy" ||
+    path === "/terms"
   ) {
     styles.Main = styles.MainListings;
   } else {
@@ -78,7 +91,7 @@ function App() {
               path="/contact_list/:id"
               render={() => <ContactMessage />}
             />
-            <Route exact path="/listings" render={() => <ListingsPage />} />
+            <Route exact path="/listings" render={() => <ListingsPage nonEssentialConsent={nonEssentialConsent} />} />
             <Route
               exact
               path="/listings/create"
@@ -106,12 +119,45 @@ function App() {
               path="/profiles/:id/edit/password"
               render={() => <UserPasswordForm />}
             />
+            <Route exact path="/privacyPolicy" render={() => <PrivacyPolicy />} />
+            <Route exact path="/terms" render={() => <Terms />} />
             <Route exact path="/forbidden" render={() => <Forbidden403 />} />
             <Route exact path="/notfound" render={() => <NotFound />} />
             <Route render={() => <NotFound />} />
           </Switch>
         </Container>
         <Footer />
+        <>
+          <CookieConsent
+            location="bottom"
+            buttonText="Accept All Cookies"
+            declineButtonText="Decline Non-Essential Cookies"
+            enableDeclineButton
+            disableStyles={true}
+            visible={showCookieBanner}
+            onAccept={() => {
+              setNonEssentialConsent(true);
+              setShowCookieBanner("hidden");
+              document.cookie = "nonEssentialCookies=true; path=/; max-age=31536000";
+            }}
+            onDecline={() => {
+              setNonEssentialConsent(false);
+              setShowCookieBanner("hidden");
+              document.cookie = "nonEssentialCookies=false; path=/; max-age=31536000";
+            }}
+            cookieName="nonEssentialCookies"
+            containerClasses={styles.CookieBanner}
+            contentClasses={`${styles.CookieBannerContent} col-10 col-lg-5 col-xl-3`}
+            buttonClasses={styles.CookieBannerButton}
+            declineButtonClasses={styles.CookieBannerDeclineButton}
+          >
+            This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking "Accept All Cookies", you consent to our use of all cookies. If you choose to "Decline Non-Essential Cookies", Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set. <a href="/privacyPolicy" style={{ color: '#000', textDecoration: 'underline' }}>Learn more</a>.
+          </CookieConsent>
+          <div className={styles.CookieReset}><i onClick={() => {
+            setShowCookieBanner("show");
+          }} className="fa-solid fa-link"></i>
+          </div>
+        </>
       </div>
     </Suspense>
   );
