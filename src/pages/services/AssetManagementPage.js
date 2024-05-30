@@ -21,7 +21,9 @@ export default function AssetManagementPage() {
   return (
     <>
       <div className={styles.HeroImageAssetMgmt}>
-        <h1 className={styles.Header}>{t("services.assetManagement")}</h1>
+        <div className={`col-6 ${styles.HeaderContainer}`}>
+          <h1 className={styles.Header}>{t("services.assetManagement")}</h1>
+        </div>
       </div>
       <Container>
         <Row className={`my-5 flex-wrap mx-auto justify-content-between`}>

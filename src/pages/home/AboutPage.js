@@ -21,8 +21,10 @@ export default function AboutPage() {
 
   return (
     <>
-      <div className={`${homeStyles.HeroImageAbout} ${styles.ImageOverlay}`}>
-        <h1 className={`${styles.Header}`}>About us</h1>
+      <div className={`${homeStyles.HeroImageAbout}`}>
+        <div className={`col-6 ${styles.HeaderContainer}`}>
+          <h1 className={`${styles.Header}`}>About us</h1>
+        </div>
 
       </div>
       <Container>
