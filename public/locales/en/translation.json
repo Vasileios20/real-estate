@@ -72,6 +72,8 @@
         "btnUpdate": "Update"
     },
     "propertyDetails": {
+        "typeRent": "To Rent",
+        "typeSale": "For Sale",
         "title": "{{type}} {{sale_type}}",
         "description": "Description",
         "address": "Address",
@@ -98,7 +100,7 @@
         "btnSend": "Send"
     },
     "footer": {
-        "title": "CB Real Estate",
+        "title": "Acropolis Estate",
         "about": "About us",
         "services": "Services",
         "properties": "Properties",

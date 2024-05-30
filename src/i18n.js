@@ -23,28 +23,12 @@ i18n
     caches: [],
     fallbackLng: "en",
     debug: true,
-    supportedLngs: ["en", "el"],
+    supportedLngs: ["en"],
     ns: ["translation"],
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
-    // resources: {
-    //   en: {
-    //     translation: {
-    //       greeting: {
-    //         hello: "Hello World!!",
-    //       },
-    //     },
-    //   },
-    //   el: {
-    //     translation: {
-    //       greeting: {
-    //         hello: "Γειά σου Κόσμε",
-    //       },
-    //     },
-    //   },
-    // },
   });
 
 export default i18n;
