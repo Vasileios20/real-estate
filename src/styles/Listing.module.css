@@ -2,16 +2,35 @@
 .Listing__fontawsome {
   display: flex;
   align-items: center;
-  margin: 0;
-}
-
-.Listing__fontawsome i {
-  margin-right: 10px;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 2px;
 }
 
 /* Listing Header */
+.Listing__cardBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 5px 10px;
+}
+
+.Listing__cardBodyListing * {
+  padding: 0;
+}
+
 .Listing__header {
-  font-size: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Listing__headerListingDetails {
+  flex: 1;
 }
 
 /* Features table */
@@ -36,7 +55,7 @@
   width: 30%;
   border-left: none;
   border-bottom: none;
-  border-right: none ;
+  border-right: none;
 }
 
 .Listing__table th:last-child,
@@ -49,15 +68,11 @@
 .Listing__table tr:first-child th,
 .Listing__table tr:first-child td {
   border-top: none;
-  
 }
 
 .Listing__table tr:last-child th,
 .Listing__table tr:last-child td {
   border-bottom: none;
-}
-
-.Listing__table td:nth-child(2) {
 }
 
 /* Amenities */
@@ -104,23 +119,6 @@
   position: absolute;
   top: 0;
   left: 0;
-
-  /* overflow: hidden; */
-}
-
-/* .Listings__ImageWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 12rem;
-} */
-
-.Listings__Card {
-  width: 11rem;
-  /* height: 100%; */
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  padding: 0;
-  margin: 0;
 }
 
 /* Responsive */
