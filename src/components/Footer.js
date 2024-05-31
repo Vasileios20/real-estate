@@ -39,15 +39,15 @@ const Footer = () => {
             <Link to="/about" className={`${styles.link}`}>
               About Us
             </Link>
-            <Link to="/faq" className={`${styles.link} `}>
+            {/* <Link to="/faq" className={`${styles.link} `}>
               FAQ
-            </Link>
+            </Link> */}
             <div className={styles.Social}>
-              <a href="https://www.facebook.com/profile.php?id=100087858451493" target="_blank"
+              <a href="https://www.facebook.com/profile.php?id=100063495071258" target="_blank"
                 aria-label="Visit our Facebook page" rel="noreferrer"><i class="fa-brands fa-facebook"></i></a>
-              <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page" rel="noreferrer"><i
+              <a href="https://www.instagram.com/acropolis_estates/" target="_blank" aria-label="Visit our Instagram page" rel="noreferrer"><i
                 class="fa-brands fa-instagram"></i></a>
-              <a href="https://linkedin.com" target="_blank" aria-label="Visit our Youtube page" rel="noreferrer"><i
+              <a href="https://www.linkedin.com/company/acropolis-estates/about/?viewAsMember=true" target="_blank" aria-label="Visit our LinkedIn page" rel="noreferrer"><i
                 class="fa-brands fa-linkedin"></i></a>
             </div>
           </Col>
@@ -56,16 +56,9 @@ const Footer = () => {
             <h5>Properties</h5>
             <Form.Label
               className={`${styles.link}`}
-              onClick={() => handleSubmit("apartment")}
+              onClick={() => handleSubmit("residential")}
             >
-              Apartment
-            </Form.Label>
-
-            <Form.Label
-              className={`${styles.link}`}
-              onClick={() => handleSubmit("house")}
-            >
-              House
+              Residential
             </Form.Label>
 
             <Form.Label
@@ -90,7 +83,7 @@ const Footer = () => {
 
               <p className="m-0">Office Address: 28is Octovriou, 211</p>
               <p className="m-0">City: Nea Peramos, Attikis</p>
-              <p className="m-0">Email: info@acropolisestates.com</p>
+              <p className="m-0">Email: <Link to="/contact" className={`${styles.link}`}>info@acropolisestates.com</Link></p>
               <p className="m-0">Phone Number: +30 229 640 0420</p>
             </div>
           </Col>
@@ -110,7 +103,7 @@ const Footer = () => {
           </Col>
           <Col sm={4}>
             <>
-              <p className="text-muted">Developed by <a href="https://github.com/Vasileios20" target="_blank" rel="noreferrer" className={`${styles.link}`}>VasileiosT</a>
+              <p className="text-muted">Developed by <a href="https://www.linkedin.com/in/vasileios-tsimourdagkas/" target="_blank" rel="noreferrer" className={`${styles.link}`}>VasileiosT</a>
               </p>
             </>
           </Col>
