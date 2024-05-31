@@ -14,13 +14,12 @@ import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import { APIProvider, AdvancedMarker, Map } from "@vis.gl/react-google-maps";
 
-const ListingsPage = ({ array, hasLoaded, setListings, listings, message, searchResults }) => {
+const ListingsPage = ({ array, hasLoaded, setListings, listings, message, searchResults, setShowCookieBanner }) => {
   // The ListingsPage component is a functional component that renders the listings from the database.
   // It also renders the results of the search bar. The component uses the InfiniteScroll component to
   //  display the listings in an infinite scroll.
   // If the listings are not loaded, the component displays a spinner. If there are no results, the component displays a message.
   // The component also uses the SearchBar component to display the search bar at the top of the page.
-
 
   const approvedListings = listings.results.filter((listing) => listing.approved === true);
   // Get the lat and lng from the listings and push it in the array.
@@ -36,6 +35,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
     return approvedMoreData;
   };
 
+  const hasCookieConsent = () => {
+    const cookieConsent = document.cookie;
+    if (cookieConsent === "nonEssentialCookies=true") {
+      return true;
+    }
+    return false;
+  };
 
   const listingMapMarkers = latLng.map((listing, index) => (
     <AdvancedMarker key={index} position={listing} />
@@ -47,13 +53,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
     <>
       {!searchResults && <div className={` d-flex flex-column ${heroStyles.HeroImageListings}`}>
 
-        <h1 className={styles.Welcome} style={{ color: "#fff" }}>Properties</h1>
+        <h1 className={heroStyles.Header} style={{ color: "#f3f3f3", padding: 0, backgroundColor: "transparent" }}>Properties</h1>
         <SearchBar />
       </div>}
       <Container fluid className="px-lg-5 pt-5">
         {searchResults && <SearchBar />}
-        <Row className="mt-1 justify-content-around">
-          <Col xs={12} lg={12} xl={7}>
+        <Row className="mt-1 justify-content-around gx-0">
+          <Col xs={12} lg={12} xl={8}>
             <Container
               id="scrollableDiv"
               style={{ height: 800, overflow: "auto" }}
@@ -71,11 +77,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                       scrollableTarget="scrollableDiv"
                     >
                       <Row className="mx-0">
-                        {approvedListings.map((listing) => (
+                        {array.map((listing) => (
                           <>
+
                             <Col key={listing.id} xs={12} md={6} lg={4} xl={4} className="mb-3 gx-1">
-                              <Card style={{ height: "100%" }}>
-                                <Link to={`/listings/${listing.id}`}>
+                              <Link to={`/listings/${listing.id}`}>
+                                <Card style={{ height: "100%" }}>
+
                                   <Carousel>
                                     {listing.images.map((image, id) => (
                                       <Carousel.Item key={id}>
@@ -95,9 +103,9 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                                     listingPage={true}
                                     setListings={setListings}
                                   />
-                                </Link>
-                              </Card>
 
+                                </Card>
+                              </Link>
                             </Col >
                           </>
 
@@ -106,7 +114,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                     </InfiniteScroll>
                   ) : (
                     <Container>
-                      <Asset text="No results" />
+                      <Asset message="No results found" />
                     </Container>
                   )}
                 </>
@@ -116,9 +124,9 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                 </Container>
               )}
             </Container>
-            {/* <hr className="" /> */}
           </Col>
-          <Col sm={12} lg={5} className="d-none d-xl-block">
+          <Col sm={12} lg={4} className="d-none d-xl-block ps-1">
+            {hasCookieConsent() ? (
               <APIProvider apiKey={API_KEY}>
                 <Map
                   mapId={"bf51a910020fa25a"}
@@ -128,11 +136,18 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                     lng: -0.11773481844149021,
                   }}
                   gestureHandling={"greedy"}
-                  style={{ width: "100%", height: "400px" }}
+                  style={{ width: "100%", height: "780px" }}
                 >
                   {listingMapMarkers}
                 </Map>
               </APIProvider>
+            ) : (
+              <div className="text-center">
+                <h5>Enable cookies to view map</h5>
+                <p onClick={() => setShowCookieBanner("show")} style={{ cursor: "pointer" }}>Click here to enable cookies</p>
+              </div>
+            )
+            }
           </Col>
         </Row>
       </Container >
