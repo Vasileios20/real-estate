@@ -48,7 +48,7 @@ function ContactForm({ listing_id }) {
   const [isChecked, setIsChecked] = useState(false);
   const history = useHistory();
 
-  const message_form = `I am interested in the listing with id ${listing_id}`;
+  const message_form = `I am interested in the listing with id AE000${listing_id}`;
   const path = useLocation().pathname;
 
   const [phoneValue, setPhoneValue] = useState();
