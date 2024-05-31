@@ -22,8 +22,8 @@ const SearchBar = () => {
    */
 
   const [query, setQuery] = useState("");
-  const [saleType, setSaleType] = useState("rent");
-  const [type, setType] = useState("apartment");
+  const [saleType, setSaleType] = useState("");
+  const [type, setType] = useState("");
   const [price, setPrice] = useState({ min: "", max: "" });
   const [surface, setSurface] = useState({ min: "", max: "" });
   const history = useHistory();
@@ -91,7 +91,6 @@ const SearchBar = () => {
 
   // Update the button label if the search parameters are not empty.
   useEffect(() => {
-    setUpdate(false);
     const updateButtonLabel = () => {
       if (
         location.pathname === "/listings/" &&
@@ -104,6 +103,8 @@ const SearchBar = () => {
           surface.max)
       ) {
         setUpdate(true);
+      } else {
+        setUpdate(false);
       }
     };
     updateButtonLabel();
@@ -111,11 +112,12 @@ const SearchBar = () => {
     update,
     query,
     type,
-    price,
-    surface,
+    price.min,
+    price.max,
+    surface.min,
+    surface.max,
     saleType,
     location.pathname,
-    location.search,
   ]);
 
   return (
@@ -168,13 +170,13 @@ const SearchBar = () => {
               value={type ? type : ""}
               onChange={(e) => setType(e.target.value)}
             >
-
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
+              <option value="">Any</option>
+              <option value="residential">Residential</option>
               <option value="land">Land</option>
               <option value="commercial">Commercial</option>
             </Form.Select>
           </Col>
+
           <Col lg={2} md={3} sm={6} className="mb-2">
             <Form.Group as={Row} controlId="formGroupPrice">
               <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>Price</Form.Label>
