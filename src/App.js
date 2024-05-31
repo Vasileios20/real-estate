@@ -91,13 +91,13 @@ function App() {
               path="/contact_list/:id"
               render={() => <ContactMessage />}
             />
-            <Route exact path="/listings" render={() => <ListingsPage nonEssentialConsent={nonEssentialConsent} />} />
+            <Route exact path="/listings" render={() => <ListingsPage nonEssentialConsent={nonEssentialConsent} setShowCookieBanner={setShowCookieBanner} />} />
             <Route
               exact
               path="/listings/create"
               render={() => <ListingCreateForm />}
             />
-            <Route exact path="/listings/:id" render={() => <ListingPage />} />
+            <Route exact path="/listings/:id" render={() => <ListingPage setShowCookieBanner={setShowCookieBanner} />} />
             <Route
               exact
               path="/listings/:id/edit"
@@ -133,7 +133,6 @@ function App() {
             buttonText="Accept All Cookies"
             declineButtonText="Decline Non-Essential Cookies"
             enableDeclineButton
-            disableStyles={true}
             visible={showCookieBanner}
             onAccept={() => {
               setNonEssentialConsent(true);
@@ -146,12 +145,13 @@ function App() {
               document.cookie = "nonEssentialCookies=false; path=/; max-age=31536000";
             }}
             cookieName="nonEssentialCookies"
-            containerClasses={styles.CookieBanner}
-            contentClasses={`${styles.CookieBannerContent} col-10 col-lg-5 col-xl-3`}
-            buttonClasses={styles.CookieBannerButton}
-            declineButtonClasses={styles.CookieBannerDeclineButton}
+            containerClasses="d-flex justify-content-center align-items-center"
+            contentClasses={`${styles.CookieBannerContent} m-0 ps-1 pt-1`}
+            buttonWrapperClasses={`${styles.CookieBannerButtonWrapper} m-0`}
+            buttonClasses="m-0 me-1"
+
           >
-            This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking "Accept All Cookies", you consent to our use of all cookies. If you choose to "Decline Non-Essential Cookies", Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set. <a href="/privacyPolicy" style={{ color: '#000', textDecoration: 'underline' }}>Learn more</a>.
+            This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking "Accept All Cookies", you consent to our use of all cookies. If you choose to "Decline Non-Essential Cookies", Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set. <a href="/privacyPolicy" style={{ color: '#fefefe', textDecoration: 'underline' }}>Learn more</a>.
           </CookieConsent>
           <div className={styles.CookieReset}><i onClick={() => {
             setShowCookieBanner("show");
