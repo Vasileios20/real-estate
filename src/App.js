@@ -22,7 +22,6 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import AboutPage from "./pages/home/AboutPage";
 import FinancialAdvicePage from "./pages/services/AdvisoryPage"
 import AssetMgm from "./pages/services/AssetManagementPage";
-import TransacionsPage from "./pages/services/TransactionsPage";
 import ValuationPage from "./pages/services/ValuationPage";
 import Footer from "./components/Footer";
 import { Suspense, useState } from "react";
@@ -73,11 +72,6 @@ function App() {
               exact
               path="/assetManagement"
               render={() => <AssetMgm />}
-            />
-            <Route
-              exact
-              path="/transactions"
-              render={() => <TransacionsPage />}
             />
             <Route exact path="/valuation" render={() => <ValuationPage />} />
             <Route exact path="/contact" render={() => <ContactPage />} />
