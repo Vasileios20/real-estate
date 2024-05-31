@@ -17,34 +17,7 @@ import { useTranslation } from "react-i18next";
 import MapMarker from "../../components/MapMarker";
 import { Container } from "react-bootstrap";
 
-const Listing = (props) => {
-  /**
-   * The Listing component is a functional component that renders the details of a listing.
-   * It receives the following props:
-   * - id: number
-   * - owner: string
-   * - profile_id: number
-   * - price: number
-   * - surface: number
-   * - levels: number
-   * - bedrooms: number
-   * - floor: number
-   * - kitchens: number
-   * - bathrooms: number
-   * - living_rooms: number
-   * - heating_system: string
-   * - energy_class: string
-   * - construction_year: number
-   * - availability: string
-   * - created_at: string
-   * - updated_at: string
-   * - listingPage: boolean
-   * - images: array
-   * - setListings: function
-   * - longitude: number
-   * - latitude: number
-   * @returns {JSX.Element} - The JSX for the component.
-   */
+const Listing = ({ setShowCookieBanner, ...props }) => {
 
   const { t, i18n } = useTranslation();
 
@@ -58,12 +31,13 @@ const Listing = (props) => {
     owner,
     profile_id,
     price,
-    surface,
+    floor_area,
     levels,
     bedrooms,
     floor,
     kitchens,
     bathrooms,
+    wc,
     living_rooms,
     heating_system,
     energy_class,
@@ -76,7 +50,23 @@ const Listing = (props) => {
     longitude,
     latitude,
     amenities,
+    view,
+    orientation,
+    length_of_facade,
+    distance_from_sea,
+    cover_coefficient,
+    building_coefficient,
+    zone,
+    slope,
+    service_charge,
+    currency,
+    land_area,
+    rooms,
+    storage,
+    power_type,
   } = props;
+
+  console.log(props);
 
   const amenitiesArray = [];
   if (amenities) {
@@ -100,7 +90,7 @@ const Listing = (props) => {
     </div>
   ));
 
-
+  console.log(amenitiesList);
 
   const [mapReady, setMapReady] = useState(false);
 
@@ -142,6 +132,8 @@ const Listing = (props) => {
     </>
   );
 
+
+
   const floorValue =
     floor < 0
       ? "Basement"
@@ -155,115 +147,130 @@ const Listing = (props) => {
               ? `${floor}rd `
               : `${floor}th `;
 
+  const residentialTableData = <Table className={`${styles.Listing__table} shadow`}>
+    <tbody>
+      {[
+        { label: t("propertyDetails.price"), value: `${currency} ${price}` },
+        { label: t("propertyDetails.floorArea"), value: `${floor_area} m²` },
+        { label: t("propertyDetails.landArea"), value: props.type !== "residential" && props.type !== "apartment" ? land_area : "N/A" },
+        { label: t("propertyDetails.bedrooms"), value: bedrooms },
+        { label: t("propertyDetails.kitchens"), value: kitchens },
+        { label: t("propertyDetails.bathrooms"), value: bathrooms },
+        { label: t("propertyDetails.wc"), value: wc },
+        { label: t("propertyDetails.livingRooms"), value: living_rooms },
+        { label: t("propertyDetails.floorLevel"), value: floorValue },
+        { label: t("propertyDetails.levels"), value: levels },
+        { label: t("propertyDetails.heating"), value: heating_system },
+        { label: t("propertyDetails.energyClass"), value: energy_class },
+        { label: t("propertyDetails.yearBuilt"), value: construction_year },
+        { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
+        { label: t("propertyDetails.availability"), value: availability },
+        { label: "Listing id", value: `AE000${id}` },
+      ].map((feature, index) => (
+        <tr key={index}>
+          <td className={styles.tdWidth}>{feature.label}</td>
+          <td>{feature.value}</td>
+        </tr>
+      ))}
+    </tbody>
+  </Table>
+
+  const landTableData = (
+    <Table className={`${styles.Listing__table} shadow`}>
+      <tbody>
+        {[
+          { label: t("propertyDetails.price"), value: `£ ${price}` },
+          { label: t("propertyDetails.landArea"), value: `${land_area} m²` },
+          { label: t("propertyDetails.coverCoefficient"), value: cover_coefficient },
+          { label: t("propertyDetails.buildingCoefficient"), value: building_coefficient },
+          { label: t("propertyDetails.lengthOfFacade"), value: length_of_facade },
+          { label: t("propertyDetails.orientation"), value: orientation },
+          { label: t("propertyDetails.view"), value: view },
+          { label: t("propertyDetails.zone"), value: zone },
+          { label: t("propertyDetails.slope"), value: slope },
+          { label: t("propertyDetails.distanceFromSea"), value: distance_from_sea },
+          { label: t("propertyDetails.availability"), value: availability },
+          { label: "Listing id", value: `AE000${id}` },
+        ].map((feature, index) => (
+          <tr key={index}>
+            <td className={styles.tdWidth}>{feature.label}</td>
+            <td>{feature.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+
+  const commercialTableData = (
+    <Table className={`${styles.Listing__table} shadow`}>
+      <tbody>
+        {[
+          { label: t("propertyDetails.price"), value: `£ ${price}` },
+          { label: t("propertyDetails.floorArea"), value: `${floor_area} m²` },
+          { label: t("propertyDetails.landArea"), value: land_area },// not on Arartments
+          { label: t("propertyDetails.levels"), value: levels },
+          { label: t("propertyDetails.floorLevel"), value: floorValue },
+          { label: t("propertyDetails.rooms"), value: rooms },
+          { label: t("propertyDetails.bathrooms"), value: bathrooms },
+          { label: t("propertyDetails.wc"), value: wc },
+          { label: t("propertyDetails.storage"), value: storage },
+          { label: t("propertyDetails.heating"), value: heating_system },
+          { label: t("propertyDetails.energyClass"), value: energy_class },
+          { label: t("propertyDetails.powerType"), value: power_type },
+          { label: t("propertyDetails.yearBuilt"), value: construction_year },
+          { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
+          { label: t("propertyDetails.availability"), value: availability },
+          { label: "Listing id", value: `AE000${id}` },
+        ].map((feature, index) => (
+          <tr key={index}>
+            <td className={styles.tdWidth}>{feature.label}</td>
+            <td>{feature.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+
   return (
     <>
-      <Container className="mt-5">
+      <Container className="mt-5 pt-2">
         <ListingImages images={images} listing_id={id} />
 
         <Row className="justify-content-start">
           <Col>
-
-
             <Col md={4} className="d-flex mt-4">
               {userStatus && staffCard}
               {userStatus && (
                 <MoreDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
               )}
             </Col>
-
-            <ListingHeader {...props} listingPage={listingPage} />
+            <div className={styles.Listing__cardBodyListing}>
+              <ListingHeader {...props} listingPage={listingPage} />
+            </div>
             <div className="my-4">
               <h5>{t("propertyDetails.description")}</h5>
-              <p>
-                {props.description}
-              </p>
+              <p>{props.description}</p>
             </div>
           </Col>
 
-
           <h5>Features</h5>
           <Col md={8} lg={8}>
-            <Table className={`${styles.Listing__table} shadow`}>
-              <tbody>
-                <tr>
-                  <td className={styles.tdWidth}>
-                    {t("propertyDetails.price")}{" "}
-                  </td>
-                  <td>£ {price}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.floorArea")} </td>
-                  <td>
-                    {surface} m<sup>2</sup>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.levels")} </td>
-                  <td>{levels}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.bedrooms")} </td>
-                  <td>{bedrooms}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.floorLevel")} </td>
-                  <td>{floorValue}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.kitchens")} </td>
-                  <td>{kitchens}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.bathrooms")} </td>
+            {props.type === "residential" && residentialTableData}
+            {props.type === "commercial" && commercialTableData}
+            {props.type === "land" && landTableData}
 
-                  <td>{bathrooms}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.livingRooms")} </td>
-                  <td>{living_rooms}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.heating")} </td>
-                  <td>{heating_system}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.energyClass")} </td>
-                  <td>{energy_class}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.yearBuilt")} </td>
-                  <td>{construction_year}</td>
-                </tr>
-                <tr>
-                  <td>{t("propertyDetails.availability")} </td>
-                  <td>{availability}</td>
-                </tr>
-                <tr>
-                  <td>Listing id</td>
-                  <td>{id}</td>
-                </tr>
-              </tbody>
-            </Table>
             <Col className="my-5">
               <h5 className="ps-2 pb-1">Amenities</h5>
-              <div className={`${styles.AmenitiesBox}`}>
-                {amenitiesList}
-
-              </div>
+              <div className={`${styles.AmenitiesBox}`}>{amenitiesList}</div>
             </Col>
-            <Col className="mx-auto my-5">
-              {mapReady && <MapMarker {...props} />}
-            </Col>
+            <Col className="mx-auto my-5">{mapReady && <MapMarker {...props} setShowCookieBanner={setShowCookieBanner} />}</Col>
           </Col>
 
           <Col md={8} lg={4} className="">
             <ContactForm listing_id={id} />
           </Col>
-
-
-
         </Row>
-      </Container >
+      </Container>
     </>
   );
 };
