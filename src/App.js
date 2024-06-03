@@ -9,8 +9,6 @@ import ListingCreateForm from "./pages/listings/ListingCreateForm";
 import ListingPage from "./pages/listings/ListingPage";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import ListingsPage from "./pages/listings/ListingsPage";
-import ContactForm from "./pages/contact/ContactForm";
-import Wishlist from "./pages/wishlist/Wishlist";
 import HomePage from "./pages/home/HomePage";
 import useUserStatus from "./hooks/useUserStatus";
 import NotFound from "./pages/errors/NotFound";
@@ -22,29 +20,44 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import AboutPage from "./pages/home/AboutPage";
-import FinancialAdvicePage from "./pages/home/FinancialAdvicePage";
-import PropertyMgm from "./pages/home/PropertyManagementPage";
-import TransacionsPage from "./pages/home/TransactionsPage";
-import EvaluationPage from "./pages/home/EvaluationPage";
+import FinancialAdvicePage from "./pages/services/AdvisoryPage"
+import AssetMgm from "./pages/services/AssetManagementPage";
+import ValuationPage from "./pages/services/ValuationPage";
 import Footer from "./components/Footer";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import ContactPage from "./pages/contact/ContactPage";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import Terms from "./pages/legal/Terms";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 
 function App() {
   useUserStatus();
   const location = useLocation();
   const path = location.pathname;
+  const [cookieConsent, setCookieConsent] = useState(getCookieConsentValue("cookieConsent"));
+  const [showCookieBanner, setShowCookieBanner] = useState("byCookieValue");
+  const [nonEssentialConsent, setNonEssentialConsent] = useState(getCookieConsentValue("nonEssentialCookies") === "true");
 
-  console.log(path);
-  if (path === "/") {
-    styles.Main = styles.MainHome;
-  } else {
-    styles.Main = styles.MainListings;
+
+  if (cookieConsent === "false") {
+    setCookieConsent(false);
   }
+
+  if (
+    path === "/listings/" ||
+    path === "/privacyPolicy" ||
+    path === "/terms"
+  ) {
+    styles.Main = styles.MainListings;
+  } else {
+    styles.Main = styles.MainHome;
+  }
+
   return (
     <Suspense fallback="loading">
       <div className={styles.App}>
         <NavBar />
-        <Container className={styles.Main}>
+        <Container fluid className={styles.Main}>
           <Switch>
             <Route exact path="/" render={() => <HomePage />} />
             <Route exact path="/signin" render={() => <SignInForm />} />
@@ -57,16 +70,11 @@ function App() {
             />
             <Route
               exact
-              path="/propertyManagement"
-              render={() => <PropertyMgm />}
+              path="/assetManagement"
+              render={() => <AssetMgm />}
             />
-            <Route
-              exact
-              path="/transactions"
-              render={() => <TransacionsPage />}
-            />
-            <Route exact path="/evaluation" render={() => <EvaluationPage />} />
-            <Route exact path="/contact" render={() => <ContactForm />} />
+            <Route exact path="/valuation" render={() => <ValuationPage />} />
+            <Route exact path="/contact" render={() => <ContactPage />} />
             <Route
               exact
               path="/contact_list"
@@ -77,19 +85,18 @@ function App() {
               path="/contact_list/:id"
               render={() => <ContactMessage />}
             />
-            <Route exact path="/listings" render={() => <ListingsPage />} />
+            <Route exact path="/listings" render={() => <ListingsPage nonEssentialConsent={nonEssentialConsent} setShowCookieBanner={setShowCookieBanner} />} />
             <Route
               exact
               path="/listings/create"
               render={() => <ListingCreateForm />}
             />
-            <Route exact path="/listings/:id" render={() => <ListingPage />} />
+            <Route exact path="/listings/:id" render={() => <ListingPage setShowCookieBanner={setShowCookieBanner} />} />
             <Route
               exact
               path="/listings/:id/edit"
               render={() => <ListingEditForm />}
             />
-            <Route exact path="/wishlist" render={() => <Wishlist />} />
             <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
             <Route
               exact
@@ -106,12 +113,45 @@ function App() {
               path="/profiles/:id/edit/password"
               render={() => <UserPasswordForm />}
             />
+            <Route exact path="/privacyPolicy" render={() => <PrivacyPolicy />} />
+            <Route exact path="/terms" render={() => <Terms />} />
             <Route exact path="/forbidden" render={() => <Forbidden403 />} />
             <Route exact path="/notfound" render={() => <NotFound />} />
             <Route render={() => <NotFound />} />
           </Switch>
         </Container>
         <Footer />
+        <>
+          <CookieConsent
+            location="bottom"
+            buttonText="Accept All Cookies"
+            declineButtonText="Decline Non-Essential Cookies"
+            enableDeclineButton
+            visible={showCookieBanner}
+            onAccept={() => {
+              setNonEssentialConsent(true);
+              setShowCookieBanner("hidden");
+              document.cookie = "nonEssentialCookies=true; path=/; max-age=31536000";
+            }}
+            onDecline={() => {
+              setNonEssentialConsent(false);
+              setShowCookieBanner("hidden");
+              document.cookie = "nonEssentialCookies=false; path=/; max-age=31536000";
+            }}
+            cookieName="nonEssentialCookies"
+            containerClasses="d-flex justify-content-center align-items-center"
+            contentClasses={`${styles.CookieBannerContent} m-0 ps-1 pt-1`}
+            buttonWrapperClasses={`${styles.CookieBannerButtonWrapper} m-0`}
+            buttonClasses="m-0 me-1"
+
+          >
+            This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking "Accept All Cookies", you consent to our use of all cookies. If you choose to "Decline Non-Essential Cookies", Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set. <a href="/privacyPolicy" style={{ color: '#fefefe', textDecoration: 'underline' }}>Learn more</a>.
+          </CookieConsent>
+          <div className={styles.CookieReset}><i onClick={() => {
+            setShowCookieBanner("show");
+          }} className="fa-solid fa-link"></i>
+          </div>
+        </>
       </div>
     </Suspense>
   );

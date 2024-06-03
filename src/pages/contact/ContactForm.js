@@ -5,9 +5,10 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+
 import Container from "react-bootstrap/Container";
 
-import { useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import styles from "../../styles/ContactForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -16,8 +17,11 @@ import axios from "axios";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
+import { use } from "i18next";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 
-function ContactForm() {
+function ContactForm({ listing_id }) {
   /**
    * The ContactForm component is a functional component that renders a form for sending a message to the site admin.
    * It contains input fields for the name, email, subject, and message of the contact form.
@@ -29,108 +33,198 @@ function ContactForm() {
   const id = currentUser?.profile_id;
 
   const [contactData, setContactData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
+    phone_number: "",
     subject: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
 
-  const { name, email, subject, message } = contactData;
+  const { first_name, last_name, phone_number, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
-
+  const [messageDeleted, setMessageDeleted] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const history = useHistory();
 
-  useEffect(() => {
-    if (currentUser) {
-      // If the current user exists, fetch the user profile data.
-      const fetchProfileData = async () => {
-        try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
-          // Set the contactData state with the user's name and email address.
-          setContactData({
-            ...contactData,
-            name: currentUser.username,
-            email: data.email_address,
-          });
-        } catch (err) {
-          // console.log(err);
-        }
-      };
-      fetchProfileData();
-    }
-    // if contactData is included in the dependency array,
-    // the useEffect hook will run indefinitely
-    // eslint-disable-next-line
-  }, [id, history]);
+  const message_form = `I am interested in the listing with id AE000${listing_id}`;
+  const path = useLocation().pathname;
+
+  const [phoneValue, setPhoneValue] = useState();
+
+  const listingPagePath = path === `/listings/${listing_id}`;
+
+  contactData.message =
+    listingPagePath && !messageDeleted
+      ? message_form
+      : contactData.message;
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     // If the current user exists, fetch the user profile data.
+  //     const fetchProfileData = async () => {
+  //       try {
+  //         const { data } = await axiosReq.get(`/profiles/${id}/`);
+  //         // Set the contactData state with the user's name and email address.
+  //         setContactData({
+  //           ...contactData,
+  //           first_name: currentUser.username,
+  //           email: data.email_address,
+  //           phone_number: data.phone_number,
+  //         });
+  //       } catch (err) {
+  //         // console.log(err);
+  //       }
+  //     };
+  //     fetchProfileData();
+  //   }
+  //   // if contactData is included in the dependency array,
+  //   // the useEffect hook will run indefinitely
+  //   // eslint-disable-next-line
+  // }, [id, history]);
 
   const handleChange = (e) => {
     setContactData({
       ...contactData,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name === "message") {
+      setMessageDeleted(true);
+    }
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isChecked) {
+      setErrors({ ...errors, checkbox: ["You must accept the terms of use and privacy policy."] });
+      return;
+    }
+    contactData.phone_number = phoneValue;
     try {
       await axios.post("/contact/", contactData);
       setSuccess(true);
 
       setTimeout(() => {
-        history.push("/");
+        path === `/listings/${listing_id}`
+          ? window.location.reload()
+          : history.push("/");
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
+      console.log(err.response?.data);
+      setTimeout(() => {
+        setErrors({});
+      }, 2500);
     }
   };
 
   return (
-    <Row className="mt-4">
-      <Col className="m-auto" md={8}>
-        <Container className={`${appStyles.Content} p-4 `}>
+    <Row>
+      <Col className="m-auto"
+        md={listingPagePath ? 12 : 8}
+        lg={listingPagePath ? 12 : 6}
+        xl={listingPagePath ? 12 : 4}
+      >
+        <Container className={`${appStyles.Content} p-3 p-md-4 rounded shadow`}>
           <h1 className={styles.Header}>contact form</h1>
-          <Form onSubmit={handleSubmit} className="d-flex flex-column">
-            <Form.Group controlId="name">
-              <Form.Label className="d-none">name</Form.Label>
+          <Form
+            onSubmit={handleSubmit}
+            className={`d-flex flex-column ${styles.ContactForm}`}
+          >
+            <Form.Group controlId="first_name" className="">
+              <Form.Label className={styles.FormLabel}>
+                First Name<span>* {errors.first_name?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="text"
-                placeholder={"Name"}
-                name="name"
-                value={name}
+                placeholder={"Your first name"}
+                name="first_name"
+                value={first_name}
                 onChange={handleChange}
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.name?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
+
+            <Form.Group controlId="last_name">
+              <Form.Label className={styles.FormLabel}>
+                Last Name<span>* {errors.last_name?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
+              </Form.Label>
+              <Form.Control
+                className={`${styles.Input} text-start`}
+                type="text"
+                placeholder={"Your last name"}
+                name="last_name"
+                value={last_name}
+                onChange={handleChange}
+                disabled={success ? true : false}
+              />
+            </Form.Group>
+
 
             <Form.Group controlId="email">
-              <Form.Label className="d-none">email address</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Email<span>* {errors.email?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="email"
-                placeholder={"Email"}
+                placeholder={"Your email"}
                 name="email"
                 value={email}
                 onChange={handleChange}
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.email?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
+            <Form.Group controlId="phone_number">
+              <Form.Label className={styles.FormLabel}>Phone Number<span>* {errors.phone_number?.map((message, idx) => (
+                <span className={styles.ErrorMessage} key={idx}>
+                  {message}
+                </span>
+              ))}</span></Form.Label>
+              <PhoneInput
+                style={{ paddingLeft: "0.5rem" }}
+                className={`${styles.Input} text-start`}
+                international
+                defaultCountry="GR"
+                placeholder="Enter phone number"
+                value={phoneValue}
+                onChange={setPhoneValue}
+                inputComponent={Form.Control}
+                containerComponent={Form.Group}
+                disabled={success ? true : false} />
+            </Form.Group>
+
 
             <Form.Group controlId="subject">
-              <Form.Label className="d-none">subject</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Subject<span>* {errors.subject?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 type="text"
                 placeholder="Subject"
                 name="subject"
@@ -139,33 +233,49 @@ function ContactForm() {
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.subject?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+
 
             <Form.Group controlId="message">
-              <Form.Label className="d-none">message</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Message<span>* {errors.message?.map((message, idx) => (
+                  <span className={styles.ErrorMessage} key={idx}>
+                    {message}
+                  </span>
+                ))}</span>
+              </Form.Label>
               <Form.Control
-                className={`${styles.Input} text-left`}
+                className={`${styles.Input} text-start`}
                 as="textarea"
                 rows={6}
-                placeholder="Message"
+                placeholder={
+                  listingPagePath && !messageDeleted
+                    ? message_form
+                    : "Your message"
+                }
                 name="message"
                 value={message}
                 onChange={handleChange}
                 disabled={success ? true : false}
               />
             </Form.Group>
-            {errors.message?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+            <Form.Group controlId="checkbox">
+              <Form.Check
+                className={`${styles.Checkbox}`}
+                type="checkbox"
+                label={<div>I have read and accept the <Link to="/terms" style={{ textDecoration: "underline" }}>terms of use</Link> and <Link to="/privacyPolicy" style={{ textDecoration: "underline" }}>privacy policy</Link> of Acropolis Estates</div>}
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                disabled={success ? true : false}
+              />
+              {errors.checkbox && (
+                <span className={styles.ErrorMessage}>
+                  {errors.checkbox[0]}
+                </span>
+              )}
+            </Form.Group>
 
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Black}`}
+              className={`${btnStyles.Button} ${btnStyles.Black} mt-3`}
               type="submit"
             >
               Send

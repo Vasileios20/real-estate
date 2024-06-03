@@ -3,11 +3,16 @@ import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import styles from "../../styles/HomePage.module.css";
+import homeStyles from "../../styles/HomePage.module.css";
 import Card from "react-bootstrap/Card";
-import property_management from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import SearchBar from "../../components/SearchBar";
+import styles from "../../styles/ServicesPages.module.css";
+import useFetchListings from "../../hooks/useFetchListings";
+import Asset from "../../components/Asset";
+import { Carousel } from "react-bootstrap";
+import imageStyles from "../../styles/Listing.module.css";
 
 export default function HomePage() {
   /**
@@ -18,92 +23,171 @@ export default function HomePage() {
 
   const { t, i18n } = useTranslation();
 
+  const fetchedFeaturedListings = useFetchListings({ featured: true });
+
+  const { hasLoaded } = useFetchListings();
+
+  const featuredListings = fetchedFeaturedListings.listings.results;
+
+
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
   }, [i18n]);
-  // const lng = navigator.language || navigator.userLanguage;
+
   return (
     <>
-      <div className={styles.HeroImage}>
-        <h1 className={styles.Welcome}>Welcome to the Acropolis Estates</h1>
+      <div className={`${homeStyles.CaruselContainer}`}>
+        <div className={homeStyles.SearchBar}>
+          <h1 className={`text-center ${homeStyles.Welcome}`}>Acropolis Estates</h1>
+          <p className={`text-center ${homeStyles.WelcomeTagLine}`}>Real estate reimagined</p>
+          <SearchBar />
+        </div>
+        <Carousel prevIcon={false} nextIcon={false}>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage}`}>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage2}`}>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className={`d-flex flex-column justify-content-evenly ${homeStyles.HeroImage3}`}>
+            </div>
+          </Carousel.Item>
+        </Carousel>
       </div>
 
-      <Container>
-        <Row className="mt-3">
-          <Col className="my-4">
-            <p style={{ fontSize: "1.8rem" }}>
-              {t("homePage.description")}
-            </p>
-          </Col>
+      <Container className="mb-4">
+        <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
+          <Row className={`m-0 ${styles.PageContent} ${homeStyles.HomePageContent}`}>
+            <p className="col-md-11 mx-auto py-5">{t("homePage.description")}</p>
+          </Row>
         </Row>
-        <Row>
+        <Row className="gx-2">
           <h2 className="my-4 text-center w-100">Our Services</h2>
           <Col xs={12} md={6} className="mt-1">
-            <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
-
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/propertyManagement">Property Management</Link>
-                </Card.Title>
-                {/* <Card.Text>
-                  Our property management services are designed to help you
-                  maximize your property's potential. From marketing your
-                  property to handling tenant requests, we've got you covered.
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
+            <Link to="/assetManagement">
+              <Card className="h-100">
+                <div
+                  className={`${styles.ServiceImage1} ${styles.ServiceImageHeight}`}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.assetManagement")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
           <Col xs={12} md={6} className="mt-1">
-            <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
-
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/advisory">Financial Advise</Link>
-                </Card.Title>
-                {/* <Card.Text>
-                  Our team of real estate experts is here to provide you with
-                  the best advice on buying, selling, and renting properties.
-                  Let us help you make informed decisions.
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
+            <Link to="/advisory">
+              <Card className="h-100">
+                <div
+                  className={`${styles.ServiceImage2} ${styles.ServiceImageHeight}`}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.financialAdvice")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
-          {/* Evaluation */}
-          <Col xs={12} md={6} className="mt-1">
-            <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/evaluation">Evaluation</Link>
-                </Card.Title>
-                {/* <Card.Text>
-                  Our team of experts will evaluate your property and provide
-                  you with an accurate valuation. Get in touch with us today.
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
+          {/* Valuation */}
+          <Col xs={12} md={6} className="mt-1 mt-md-2">
+            <Link to="/valuation">
+              <Card className="h-100">
+                <div
+                  className={`${styles.ServiceImage3} ${styles.ServiceImageHeight}`}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.valuation")}
+                  </Card.Title>
+
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
 
-          <Col xs={12} md={6} className="mt-1">
-            <Card className="h-100">
-              <img src={property_management} alt="Property Management" />
-              <Card.Body>
-                <Card.Title>
-                  <Link to="/transactions">Transactions</Link>
-                </Card.Title>
-                {/* <Card.Text>
-                  Our analytics services help you make data-driven decisions
-                  about your real estate investments. Get in touch with us to
-                  learn more.
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
+          <Col xs={12} md={6} className="mt-1 mt-md-2">
+            <Link to="/listings">
+              <Card className="h-100 rounded">
+                <div
+                  // src={propertiesImage}
+                  alt="Property Management"
+                  className={`${styles.ServiceImage4} ${styles.ServiceImageHeight}`}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {t("services.properties")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         </Row>
-      </Container>
+        <Row className="my-5">
+          <h2 className="my-4 text-center w-100">Featured Listings</h2>
+          <Container>
+            <Row className="mx-0">
+              {hasLoaded ? (
+                <>
+                  {featuredListings.length ? (
+                    <Row className="mx-0">
+                      {featuredListings
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 4)
+                        .map((listing) => (
+                          <Col key={listing.id} xs={12} md={6} lg={3} className="mb-3">
+                            <Card style={{ height: "100%" }}>
+                              <Link to={`/listings/${listing.id}`}>
+                                <Carousel>
+                                  {listing.images.map((image, id) => (
+                                    <Carousel.Item key={id}>
+                                      <div className={imageStyles.Listings__ImageWrapper}>
+                                        <img
+                                          src={image?.url}
+                                          alt={image?.id}
+                                          className={`img-fluid ${imageStyles.Listings__Image}`}
+                                        />
+                                        <div className={homeStyles.FeaturedLabel}>Featured</div>
+                                      </div>
+                                    </Carousel.Item>
+                                  ))}
+                                </Carousel>
+
+                                <Card.Body>
+                                  <Card.Title style={{ textTransform: "capitalize" }}>
+                                    {t("propertyDetails.title", {
+                                      type: `${listing.type}`,
+                                      sale_type: `${listing.sale_type}`,
+                                    })}
+                                  </Card.Title>
+                                  <Card.Text>£ {listing.price}</Card.Text>
+                                </Card.Body>
+                              </Link>
+                            </Card>
+                          </Col>
+                        ))}
+                    </Row>
+                  ) : (
+                    <Container>
+                      <Asset text="No results" />
+                    </Container>
+                  )}
+                </>
+              ) : (
+                <Container>
+                  <Asset spinner />
+                </Container>
+              )}
+            </Row>
+          </Container>
+        </Row>
+      </Container >
     </>
   );
 }

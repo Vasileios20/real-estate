@@ -1,25 +1,21 @@
-.Row {
-  height: calc(100vh - 81px);
-}
 .Input {
   background: #ffffff;
-  border: 1px solid #f0f1f9;
+  border: 1px solid #aeaeb9;
   box-sizing: border-box;
-  border-radius: 2px;
-  color: #7177a1;
-  text-align: center;
-  padding: 10px;
+  border-radius: 5px;
+  color: #4d6765;
+  padding: 5px;
 }
 
 .Header {
   font-style: normal;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #b0b000;
+  color: #847c3d;
 }
 
 .Link {
@@ -30,16 +26,12 @@
 }
 
 .Link:hover {
-  color: #b0b000;
+  color: #847c3d;
 }
 
 .Link span {
-  color: #b0b000;
+  color: #847c3d;
   font-weight: 500;
-}
-
-.Container {
-  padding: 30px 10px;
 }
 
 .SignInCol {
@@ -48,4 +40,42 @@
 
 .SignUpCol {
   height: 375px;
+}
+
+.FormLabel {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 10px;
+  padding-left: 3px;
+  padding-top: 10px;
+}
+
+.Checkbox {
+  font-size: 12px;
+  line-height: 18px;
+  padding-top: 10px;
+}
+
+.Checkbox > input {
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid #aeaeb9;
+}
+
+.Checkbox > label {
+  padding-left: 5px;
+  padding-top: 2.5px;
+}
+
+.Checkbox > input:checked {
+  background-color: rgba(77, 103, 101, 1);
+  border-color: rgba(77, 103, 101, 1);
+}
+
+.ErrorMessage {
+  color: rgb(201, 0, 0);
+  font-size: 0.8rem;
+  padding: 2px;
+  background-color: rgba(174, 174, 185, 0.5);
+  border-radius: 5px;
 }

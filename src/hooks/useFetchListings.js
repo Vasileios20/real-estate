@@ -20,6 +20,13 @@ const useFetchListings = () => {
     const fetchListings = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/`);
+        const modifiedListings = data.results.map((listing) => {
+          if (listing.sale_type === "sale") {
+            listing.sale_type = "buy";
+          }
+          return listing;
+        });
+        data.results = modifiedListings;
         setListings(data);
         setHasLoaded(true);
       } catch (err) {
