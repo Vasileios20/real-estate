@@ -266,7 +266,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
             <Col className="mx-auto my-5">{mapReady && <MapMarker {...props} setShowCookieBanner={setShowCookieBanner} />}</Col>
           </Col>
 
-          <Col md={8} lg={4} className="">
+          <Col md={8} lg={4} className="mb-3">
             <ContactForm listing_id={id} />
           </Col>
         </Row>
