@@ -149,7 +149,7 @@ const SearchBar = () => {
             </Button>
           </Col>
 
-          <Col sm={6} md={3}>
+          <Col sm={6} md={3} className="my-1 my-md-0">
             <Form.Label style={{ fontWeight: "500" }}>Location</Form.Label>
             <Form.Control
               value={query ? query : ""}
@@ -160,7 +160,7 @@ const SearchBar = () => {
               aria-label="search"
             />
           </Col>
-          <Col sm={6} md={2}>
+          <Col sm={6} md={2} className="mt-1 mt-md-0">
             <Form.Label style={{ fontWeight: "500" }}>Type</Form.Label>
             <Form.Select
               className={styles.SearchInput}
@@ -177,7 +177,7 @@ const SearchBar = () => {
             </Form.Select>
           </Col>
 
-          <Col lg={2} md={3} sm={6} className="mb-2">
+          <Col lg={2} md={3} sm={6} className="mb-1">
             <Form.Group as={Row} controlId="formGroupPrice">
               <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>Price</Form.Label>
               <Col sm={12} className="d-flex align-items-center">
