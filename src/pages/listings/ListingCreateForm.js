@@ -1,18 +1,14 @@
 import React, { useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-
 import upload from "../../assets/upload.png";
-
 import styles from "../../styles/ListingCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
@@ -22,13 +18,6 @@ import useUserStatus from "../../hooks/useUserStatus";
 import Forbidden403 from "../errors/Forbidden403";
 
 function ListingCreateForm() {
-  /**
-   * The ListingCreateForm component is a functional component that renders a form for creating a new listing.
-   * Imports the ListingTextFields component to render the input fields for the listing data.
-   * It a form for uploading images of the listing.
-   * @returns {JSX.Element} - The JSX for the component.
-   */
-
   useRedirect("loggedOut");
   const userStatus = useUserStatus();
   const [listingData, setListingData] = useState({
@@ -51,91 +40,49 @@ function ListingCreateForm() {
     energy_class: "A",
     construction_year: "",
     availability: "",
-    images: "",
-    uploaded_images: [],
+    latitude: "",
+    longitude: "",
+    amenities: [],
   });
 
-  const {
-    type,
-    sale_type,
-    description,
-    address_number,
-    address_street,
-    postcode,
-    city,
-    price,
-    surface,
-    levels,
-    bedrooms,
-    floor,
-    kitchens,
-    bathrooms,
-    living_rooms,
-    heating_system,
-    energy_class,
-    construction_year,
-    availability,
-    images,
-  } = listingData;
-  // Set the errors state to an empty object.
+  const [images, setImages] = useState([]);
   const [errors, setErrors] = useState({});
-
-  // Create a ref for the image input field.
   const imageInput = useRef(null);
-
-  // Get the history object from the useHistory hook.
   const history = useHistory();
 
-  // Handle the change event for the input fields.
   const handleChange = (e) => {
-    setListingData({
-      ...listingData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setListingData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  // Handle the change event for the image input field.
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
-      URL.revokeObjectURL(images);
-      setListingData({
-        ...listingData,
-        images: URL.createObjectURL(e.target.files[0]),
-      });
+      const files = Array.from(e.target.files);
+      setImages(files.map((file) => URL.createObjectURL(file)));
+      setListingData((prevState) => ({
+        ...prevState,
+        uploaded_images: files,
+      }));
     }
   };
 
-  // Handle the submit event for the form.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("type", type);
-    formData.append("sale_type", sale_type);
-    formData.append("description", description);
-    formData.append("address_number", address_number);
-    formData.append("address_street", address_street);
-    formData.append("postcode", postcode);
-    formData.append("city", city);
-    formData.append("price", price);
-    formData.append("surface", surface);
-    formData.append("levels", levels);
-    formData.append("bedrooms", bedrooms);
-    formData.append("floor", floor);
-    formData.append("kitchens", kitchens);
-    formData.append("bathrooms", bathrooms);
-    formData.append("living_rooms", living_rooms);
-    formData.append("heating_system", heating_system);
-    formData.append("energy_class", energy_class);
-    formData.append("construction_year", construction_year);
-    formData.append("availability", availability);
-    formData.append("images", imageInput.current.files[0]);
-    // Loop through the files in the image input field and append them to the formData object.
-    Array.from(imageInput.current.files).forEach((file) => {
-      formData.append("uploaded_images", file);
+    Object.entries(listingData).forEach(([key, value]) => {
+      if (key === "uploaded_images") {
+        value.forEach((file) => formData.append("uploaded_images", file));
+      } else if (key === "amenities") {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, value);
+      }
     });
 
     try {
-      // Send a POST request to the API to create a new listing.
       const { data } = await axiosReq.post("/listings/", formData);
       history.push(`/listings/${data.id}`);
     } catch (err) {
@@ -159,18 +106,17 @@ function ListingCreateForm() {
                 className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
               >
                 <Form.Group className="text-center justify-content-between">
-                  {images ? (
+                  {images.length ? (
                     <>
-                      {Array.from(imageInput.current.files).map((file, idx) => (
+                      {images.map((image, idx) => (
                         <figure key={idx}>
                           <Image
                             className={`"my-2 px-2" ${styles.Image}`}
-                            src={URL.createObjectURL(file)}
+                            src={image}
                             rounded
                           />
                         </figure>
                       ))}
-
                       <div>
                         <Form.Label
                           className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
@@ -187,12 +133,12 @@ function ListingCreateForm() {
                     >
                       <Asset
                         src={upload}
-                        message="Click or tap to upload an image"
+                        message="Click or tap to upload images"
                       />
                     </Form.Label>
                   )}
-
-                  <Form.File
+                  <input
+                    type="file"
                     multiple
                     id="image-upload"
                     accept="image/*"
@@ -205,20 +151,16 @@ function ListingCreateForm() {
                     {message}
                   </Alert>
                 ))}
-
                 {errors?.uploaded_images?.map((message, idx) => (
                   <Alert variant="warning" key={idx}>
                     {message}
                   </Alert>
                 ))}
-
                 <div className="d-md-none">
                   <ListingTextFields
                     listingData={listingData}
                     handleChange={handleChange}
-                    history={history}
                     errors={errors}
-                    create={true}
                   />
                 </div>
               </Container>
@@ -230,9 +172,7 @@ function ListingCreateForm() {
                 <ListingTextFields
                   listingData={listingData}
                   handleChange={handleChange}
-                  history={history}
                   errors={errors}
-                  create={true}
                 />
               </Container>
             </Col>
