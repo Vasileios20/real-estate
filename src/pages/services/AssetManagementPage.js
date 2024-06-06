@@ -22,7 +22,7 @@ export default function AssetManagementPage() {
     <>
       <div className={styles.HeroImageAssetMgmt}>
         <div className={`col-6 ${styles.HeaderContainer}`}>
-          <h1 className={styles.Header}>{t("services.assetManagement")}</h1>
+          <h1 className={styles.Header} style={{ fontSize: "3.5rem" }}>{t("services.assetManagement")}</h1>
         </div>
       </div>
       <Container>
