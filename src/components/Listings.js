@@ -20,20 +20,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
   //  display the listings in an infinite scroll.
   // If the listings are not loaded, the component displays a spinner. If there are no results, the component displays a message.
   // The component also uses the SearchBar component to display the search bar at the top of the page.
-
-  const approvedListings = listings.results.filter((listing) => listing.approved === true);
+  // The component also uses the AdvancedMarker component to display the markers on the map.
   // Get the lat and lng from the listings and push it in the array.
-  const latLng = approvedListings.map((listing) => ({
+  const latLng = array.map((listing) => ({
     lat: listing.latitude,
     lng: listing.longitude,
   }));
 
-  const fetchMoreApprovedData = async () => {
-    // Fetch more data but only the approved listings
-    const moreData = await fetchMoreData(listings, setListings);
-    const approvedMoreData = moreData.results.filter((listing) => listing.approved === true);
-    return approvedMoreData;
-  };
 
   const hasCookieConsent = () => {
     const cookieConsent = document.cookie;
@@ -67,13 +60,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
             >
               {hasLoaded ? (
                 <>
-                  {approvedListings.length ? (
+                  {array.length ? (
                     <InfiniteScroll
 
-                      dataLength={approvedListings.length}
+                      dataLength={array.length}
                       loader={<Asset spinner />}
                       hasMore={!!listings.next}
-                      next={fetchMoreApprovedData}
+                      next={() => fetchMoreData(listings, setListings)}
                       scrollableTarget="scrollableDiv"
                     >
                       <Row className="mx-0">
