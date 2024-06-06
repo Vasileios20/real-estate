@@ -28,7 +28,7 @@
 }
 
 .Welcome {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 600;
 }
 
@@ -97,6 +97,10 @@
 @media screen and (max-width: 575px) {
   .Welcome {
     font-size: 1.9rem;
+  }
+
+  .WelcomeTagLine {
+    font-size: 1rem;
   }
 
   .SearchBar {
