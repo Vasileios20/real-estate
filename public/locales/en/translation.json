@@ -25,9 +25,14 @@
         "p1": " Welcome to <strong>CB Real Estate</strong>, where we redefine your real estate experience. Established with a vision to transform the way people buy, sell, and invest in properties, we take pride in being your trusted partner in the real estate journey.",
         "p2Title": "Our Mission",
         "p2": "Our mission is to provide turnkey solution across our clients. Our dedicated team in focus to provide the highest level of service, professionalism, and expertise in the real estate market. We strive to exceed expectations, build long-lasting relationships, and help our clients achieve their goals with confidence and peace of mind.",
-        "p3Title": "Why Choose Us?",
-        "p3": "At CB Real Estate, we're committed to delivering exceptional service that exceeds your expectations. Our team of experienced professionals is dedicated to providing personalized solutions that are tailored to your unique requirements. Whether you're looking to buy, sell, or invest in properties, we're here to help you every step of the way.",
-        "p4": "Explore our platform to discover a wide range of properties that are designed to suit your lifestyle and budget. From apartments and houses to land and commercial spaces, we have something for everyone. Get in touch with us today to find your dream property!"
+        "ListTitle": "Why Us",
+        "listItem1": "<strong>Experience:</strong> With years of experience, our team brings a wealth of knowledge, expertise, and insight to every aspect of real estate industry.",
+        "listItem2": "<strong>Integrity:</strong> We conduct our business with the highest standards of integrity, honesty, and transparency, earning the trust and respect of our clients and partners.",
+        "listItem3": "<strong>Customer Focus:</strong> Our clients are our top priority, and we are dedicated to providing personalized attention, tailored solutions, and exceptional service to meet their unique needs.",
+        "listItem4": "<strong>Commitment to Excellence:</strong> We are committed to excellence in everything we act, continuously striving to exceed expectations and deliver outstanding results for our clients.",
+        "listItem5": "<strong>Expertise:</strong> Highly educated professionals with years of experience in the real estate sector.",
+        "bottomTitle": "Our Team",
+        "bottomDescription": "At Acropolis Estates, we have assembled a team of highly skilled and dedicated professionals who are passionate about real estate and dedicated to helping our clients succeed. From our experienced agents to our dedicated support staff, each member of our team is committed to providing exceptional service and unparalleled expertise. We are committed to providing personalized attention, expert advice, and unparalleled customer service to ensure a seamless and stress-free experience."
     },
     "evaluationPage": {
         "title": "Property Evaluation",
