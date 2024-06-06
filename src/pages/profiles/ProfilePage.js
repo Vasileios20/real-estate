@@ -58,7 +58,7 @@ function ProfilePage() {
   return (
     <>
       {currentUser && (
-        <Container>
+        <Container className="mt-5 pt-5">
           <Row>
             <Col className="my-2">
               <Card className="my-2">

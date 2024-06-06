@@ -167,7 +167,7 @@ const ProfileEditForm = () => {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Bright} mr-3`}
+        className={`${btnStyles.Button} ${btnStyles.Bright} m-3`}
         onClick={() => history.goBack()}
       >
         cancel
@@ -183,7 +183,7 @@ const ProfileEditForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row style={{ marginTop: "8rem" }}>
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container className={appStyles.Content}>
             <Form.Group>
@@ -199,13 +199,14 @@ const ProfileEditForm = () => {
               ))}
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Bright} btn my-auto`}
+                  className={`${btnStyles.Button} ${btnStyles.Bright} btn my-auto mb-5`}
                   htmlFor="image-upload"
                 >
                   Change the image
                 </Form.Label>
               </div>
-              <Form.File
+              <input
+                type="file"
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
