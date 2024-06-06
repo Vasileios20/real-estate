@@ -22,8 +22,8 @@ i18n
   .init({
     caches: [],
     fallbackLng: "en",
-    debug: true,
-    supportedLngs: ["en"],
+    debug: false,
+    supportedLngs: ["en"], // add more languages when needed (e.g. "el")
     ns: ["translation"],
 
     interpolation: {
