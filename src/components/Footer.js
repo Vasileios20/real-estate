@@ -44,11 +44,11 @@ const Footer = () => {
             </Link> */}
             <div className={styles.Social}>
               <a href="https://www.facebook.com/profile.php?id=100063495071258" target="_blank"
-                aria-label="Visit our Facebook page" rel="noreferrer"><i class="fa-brands fa-facebook"></i></a>
+                aria-label="Visit our Facebook page" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a>
               <a href="https://www.instagram.com/acropolis_estates/" target="_blank" aria-label="Visit our Instagram page" rel="noreferrer"><i
-                class="fa-brands fa-instagram"></i></a>
+                className="fa-brands fa-instagram"></i></a>
               <a href="https://www.linkedin.com/company/acropolis-estates/about/?viewAsMember=true" target="_blank" aria-label="Visit our LinkedIn page" rel="noreferrer"><i
-                class="fa-brands fa-linkedin"></i></a>
+                className="fa-brands fa-linkedin"></i></a>
             </div>
           </Col>
 
