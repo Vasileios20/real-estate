@@ -9,8 +9,7 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../styles/ListingCreateEditForm.module.css";
 import btnStyles from "../styles/Button.module.css";
 
-const ListingTextFields = (
-  /**
+/**
    * This component is used to render the text fields of the listing form.
    * It receives the following props:
    * - listingData: object
@@ -19,8 +18,9 @@ const ListingTextFields = (
    * - errors: object
    * - create: boolean
    */
-  { listingData, handleChange, history, errors, create }
+const ListingTextFields = ({ listingData, handleChange, history, errors, create }
 ) => {
+
   return (
     <div className="text-center">
       <Row className="justify-content-center">
@@ -57,10 +57,10 @@ const ListingTextFields = (
               value={listingData.type}
               onChange={handleChange}
             >
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
+
               <option value="land">Land</option>
               <option value="commercial">Commercial</option>
+              <option value="residential">Residential</option>
             </Form.Control>
           </Form.Group>
           {errors?.type?.map((message, idx) => (
@@ -418,21 +418,60 @@ const ListingTextFields = (
           ))}
         </Col>
       </Row>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Form.Group controlId="latitude">
+            <Form.Label>Latitude</Form.Label>
+            <Form.Control
+              className={styles.Input}
+              type="decimal"
+              name="latitude"
+              value={listingData.latitude}
+              onChange={handleChange}
+            />
+
+            {errors?.latitude?.map((message, idx) => (
+              <Alert className={styles.Input} variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+          </Form.Group>
+
+          <Form.Group controlId="longitude">
+            <Form.Label>Longitude</Form.Label>
+            <Form.Control
+              className={styles.Input}
+              type="decimal"
+              name="longitude"
+              value={listingData.longitude}
+              onChange={handleChange}
+            />
+            {errors?.longitude?.map((message, idx) => (
+              <Alert className={styles.Input} variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+          </Form.Group>
+        </Col>
+      </Row>
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Bright} mr-3`}
+        className={`${btnStyles.Button} ${btnStyles.Remove} m-3`}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        className={`${btnStyles.Button} ${btnStyles.Black} m-3`}
         type="submit"
       >
         {create ? "Create" : "Update"}
       </Button>
     </div>
+
   );
+
+
 };
 
 export default ListingTextFields;

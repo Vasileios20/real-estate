@@ -53,6 +53,16 @@
   text-align: start;
 }
 
+.HeaderListings {
+  font-size: 4.5rem;
+  font-weight: 400;
+  color: #3e3e3e;
+  word-wrap: break-word;
+  background-color: rgba(198, 198, 198, 0.5);
+  text-align: start;
+  margin-top: 2rem;
+}
+
 /* Home Page */
 .ServiceImage1 {
   background-image: url("../assets/img4.jpg");
