@@ -71,37 +71,30 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                     >
                       <Row className="mx-0">
                         {array.map((listing) => (
-                          <>
-
-                            <Col key={listing.id} xs={12} md={6} lg={4} xl={4} className="mb-3 gx-1">
-                              <Link to={`/listings/${listing.id}`}>
-                                <Card style={{ height: "100%" }}>
-
-                                  <Carousel>
-                                    {listing.images.map((image, id) => (
-                                      <Carousel.Item key={id}>
-                                        <div className={styles.Listings__ImageWrapper}>
-                                          <img
-                                            src={image?.url}
-                                            alt={image?.id}
-                                            className={`img-fluid ${styles.Listings__Image}`}
-                                          />
-                                        </div>
-                                      </Carousel.Item>
-                                    ))}
-                                  </Carousel>
-
-                                  <ListingHeader
-                                    {...listing}
-                                    listingPage={true}
-                                    setListings={setListings}
-                                  />
-
-                                </Card>
-                              </Link>
-                            </Col >
-                          </>
-
+                          <Col key={listing.id} xs={12} md={6} lg={4} xl={4} className="mb-3 gx-1">
+                            <Link to={`/listings/${listing.id}`} className="text-decoration-none">
+                              <Card style={{ height: "100%" }}>
+                                <Carousel>
+                                  {listing.images.map((image, id) => (
+                                    <Carousel.Item key={id}>
+                                      <div className={styles.Listings__ImageWrapper}>
+                                        <img
+                                          src={image?.url}
+                                          alt={image?.id}
+                                          className={`img-fluid ${styles.Listings__Image}`}
+                                        />
+                                      </div>
+                                    </Carousel.Item>
+                                  ))}
+                                </Carousel>
+                                <ListingHeader
+                                  {...listing}
+                                  listingPage={true}
+                                  setListings={setListings}
+                                />
+                              </Card>
+                            </Link>
+                          </Col>
                         ))}
                       </Row>
                     </InfiniteScroll>
