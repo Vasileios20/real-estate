@@ -1,4 +1,5 @@
 .Container {
+  margin-top: 110px;
   min-height: 343px;
 }
 
@@ -7,4 +8,8 @@
   max-width: 100%;
   object-fit: contain;
   margin: 2px 5px;
+}
+
+.ImageUpload:hover {
+  cursor: pointer;
 }
