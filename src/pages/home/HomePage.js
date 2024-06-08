@@ -143,22 +143,22 @@ export default function HomePage() {
                         .map((listing) => (
                           <Col key={listing.id} xs={12} md={6} lg={3} className="mb-3">
                             <Card style={{ height: "100%" }}>
-                              <Link to={`/listings/${listing.id}`}>
-                                <Carousel>
-                                  {listing.images.map((image, id) => (
-                                    <Carousel.Item key={id}>
-                                      <div className={imageStyles.Listings__ImageWrapper}>
-                                        <img
-                                          src={image?.url}
-                                          alt={image?.id}
-                                          className={`img-fluid ${imageStyles.Listings__Image}`}
-                                        />
-                                        <div className={homeStyles.FeaturedLabel}>Featured</div>
-                                      </div>
-                                    </Carousel.Item>
-                                  ))}
-                                </Carousel>
 
+                              <Carousel>
+                                {listing.images.map((image, id) => (
+                                  <Carousel.Item key={id}>
+                                    <div className={imageStyles.Listings__ImageWrapper}>
+                                      <img
+                                        src={image?.url}
+                                        alt={image?.id}
+                                        className={`img-fluid ${imageStyles.Listings__Image}`}
+                                      />
+                                      <div className={homeStyles.FeaturedLabel}>Featured</div>
+                                    </div>
+                                  </Carousel.Item>
+                                ))}
+                              </Carousel>
+                              <Link to={`/listings/${listing.id}`}>
                                 <Card.Body>
                                   <Card.Title style={{ textTransform: "capitalize" }}>
                                     {t("propertyDetails.title", {
