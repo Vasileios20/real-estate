@@ -66,8 +66,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     power_type,
   } = props;
 
-  console.log(props);
-
   const amenitiesArray = [];
   if (amenities) {
     Object.entries(amenities).forEach(([key, value]) => {
@@ -89,8 +87,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
       <i className={`fa-solid fa-square-check ${styles.AmenityChecked}`}></i>
     </div>
   ));
-
-  console.log(amenitiesList);
 
   const [mapReady, setMapReady] = useState(false);
 
@@ -132,8 +128,17 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     </>
   );
 
+  let priceValue = "";
+  if (typeof price === 'number' && !isNaN(price)) {
+    priceValue = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const energy_classValue = energy_class === "to_be_issued" ? "To be issued" : energy_class; // Translate energy class
+
+  const land_areaValue = props.sub_type === "apartment" ? "N/A" : `${land_area} m²`;
 
 
+  // Translate floor value
   const floorValue =
     floor < 0
       ? "Basement"
@@ -147,39 +152,41 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
               ? `${floor}rd `
               : `${floor}th `;
 
-  const residentialTableData = <Table className={`${styles.Listing__table} shadow`}>
-    <tbody>
-      {[
-        { label: t("propertyDetails.price"), value: `${currency} ${price}` },
-        { label: t("propertyDetails.floorArea"), value: `${floor_area} m²` },
-        { label: t("propertyDetails.landArea"), value: props.type !== "residential" && props.type !== "apartment" ? land_area : "N/A" },
-        { label: t("propertyDetails.bedrooms"), value: bedrooms },
-        { label: t("propertyDetails.kitchens"), value: kitchens },
-        { label: t("propertyDetails.bathrooms"), value: bathrooms },
-        { label: t("propertyDetails.wc"), value: wc },
-        { label: t("propertyDetails.livingRooms"), value: living_rooms },
-        { label: t("propertyDetails.floorLevel"), value: floorValue },
-        { label: t("propertyDetails.levels"), value: levels },
-        { label: t("propertyDetails.heating"), value: heating_system },
-        { label: t("propertyDetails.energyClass"), value: energy_class },
-        { label: t("propertyDetails.yearBuilt"), value: construction_year },
-        { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
-        { label: t("propertyDetails.availability"), value: availability },
-        { label: "Listing id", value: `AE000${id}` },
-      ].map((feature, index) => (
-        <tr key={index}>
-          <td className={styles.tdWidth}>{feature.label}</td>
-          <td>{feature.value}</td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
+  const residentialTableData = (
+    <Table className={`${styles.Listing__table} shadow`}>
+      <tbody>
+        {[
+          { label: t("propertyDetails.price"), value: `${currency} ${priceValue}` },
+          { label: t("propertyDetails.floorArea"), value: `${floor_area} m²` },
+          { label: t("propertyDetails.landArea"), value: land_areaValue },
+          { label: t("propertyDetails.bedrooms"), value: bedrooms },
+          { label: t("propertyDetails.kitchens"), value: kitchens },
+          { label: t("propertyDetails.bathrooms"), value: bathrooms },
+          { label: t("propertyDetails.wc"), value: wc },
+          { label: t("propertyDetails.livingRooms"), value: living_rooms },
+          { label: t("propertyDetails.floorLevel"), value: floorValue },
+          { label: t("propertyDetails.levels"), value: levels },
+          { label: t("propertyDetails.heating"), value: heating_system },
+          { label: t("propertyDetails.energyClass"), value: energy_classValue },
+          { label: t("propertyDetails.yearBuilt"), value: construction_year },
+          { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
+          { label: t("propertyDetails.availability"), value: availability },
+          { label: "Listing id", value: `AE000${id}` },
+        ].map((feature, index) => (
+          <tr key={index}>
+            <td className={styles.tdWidth}>{feature.label}</td>
+            <td>{feature.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
 
   const landTableData = (
     <Table className={`${styles.Listing__table} shadow`}>
       <tbody>
         {[
-          { label: t("propertyDetails.price"), value: `£ ${price}` },
+          { label: t("propertyDetails.price"), value: `${currency} ${priceValue}` },
           { label: t("propertyDetails.landArea"), value: `${land_area} m²` },
           { label: t("propertyDetails.coverCoefficient"), value: cover_coefficient },
           { label: t("propertyDetails.buildingCoefficient"), value: building_coefficient },
@@ -205,9 +212,9 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     <Table className={`${styles.Listing__table} shadow`}>
       <tbody>
         {[
-          { label: t("propertyDetails.price"), value: `£ ${price}` },
+          { label: t("propertyDetails.price"), value: `${currency} ${priceValue}` },
           { label: t("propertyDetails.floorArea"), value: `${floor_area} m²` },
-          { label: t("propertyDetails.landArea"), value: land_area },// not on Arartments
+          { label: t("propertyDetails.landArea"), value: land_area },
           { label: t("propertyDetails.levels"), value: levels },
           { label: t("propertyDetails.floorLevel"), value: floorValue },
           { label: t("propertyDetails.rooms"), value: rooms },
