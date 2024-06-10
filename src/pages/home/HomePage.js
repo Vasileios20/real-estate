@@ -29,7 +29,6 @@ export default function HomePage() {
 
   const featuredListings = fetchedFeaturedListings.listings.results;
 
-
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
@@ -166,7 +165,7 @@ export default function HomePage() {
                                       sale_type: `${listing.sale_type}`,
                                     })}
                                   </Card.Title>
-                                  <Card.Text>£ {listing.price}</Card.Text>
+                                  <Card.Text> {typeof listing.price === "number" && !isNaN(listing.price) && listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
                                 </Card.Body>
                               </Link>
                             </Card>

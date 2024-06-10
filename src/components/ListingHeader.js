@@ -14,6 +14,11 @@ const ListingHeader = (props) => {
 
   const saleType = props.sale_type === "rent" ? `${t("propertyDetails.typeRent")}` : `${t("propertyDetails.typeSale")}`;
 
+  let priceValue = "";
+  if (typeof props.price === 'number' && !isNaN(props.price)) {
+    priceValue = props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <div className={styles.Listing__cardBody}>
       <div className={styles.Listing__header}>
@@ -34,7 +39,7 @@ const ListingHeader = (props) => {
             <i className="fa-solid fa-stairs"> {props.floor}</i>
           </p>
         </div>
-        <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {props.price}</h6>
+        <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {priceValue}</h6>
       </div>
     </div>
   );
