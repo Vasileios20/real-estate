@@ -28,7 +28,7 @@ export default function FinancialAdvicePage() {
         <Row className={`shadow my-5 mx-auto ${styles.PageContentWrapper}`}>
           <Row className={`m-0 p-0 ${styles.PageContent}`}>
             <div className="my-5 col-11 mx-auto">
-              Our dedicated team is involved with advisory to provide guidance, expertise, and strategic advice to our clients to help them make informed decisions regarding their real estate investments.
+              {t("advisoryPage.p1")}
             </div>
           </Row>
         </Row>

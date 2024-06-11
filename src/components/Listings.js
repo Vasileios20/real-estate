@@ -13,6 +13,7 @@ import SearchBar from "./SearchBar";
 import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import { APIProvider, AdvancedMarker, Map } from "@vis.gl/react-google-maps";
+import { t } from "i18next";
 
 const ListingsPage = ({ array, hasLoaded, setListings, listings, message, searchResults, setShowCookieBanner }) => {
   // The ListingsPage component is a functional component that renders the listings from the database.
@@ -46,7 +47,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
     <>
       {!searchResults && <div className={` d-flex flex-column ${heroStyles.HeroImageListings}`}>
 
-        <h1 className={heroStyles.HeaderListings} style={{ color: "#f3f3f3", backgroundColor: "transparent", }}>Properties</h1>
+        <h1 className={heroStyles.HeaderListings} style={{ color: "#f3f3f3", backgroundColor: "transparent", }}>{t("propertiesPage.title") }</h1>
         <SearchBar />
       </div>}
       <Container fluid className="px-lg-5 pt-5">

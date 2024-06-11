@@ -6,6 +6,8 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
 import { axiosReq } from "../api/axiosDefaults";
 import { Form } from "react-bootstrap";
+import { Trans, useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const Footer = () => {
   /**
@@ -13,6 +15,13 @@ const Footer = () => {
    */
 
   const history = useHistory();
+  const { t, i18n } = useTranslation();
+
+  const lng = navigator.language || navigator.userLanguage;
+
+  useEffect(() => {
+    i18n.changeLanguage(lng);
+  }, [i18n, lng]);
 
   const handleSubmit = async (selectedType) => {
     // Fetch the listings from the API using the search parameters.
@@ -37,7 +46,7 @@ const Footer = () => {
           <Col sm={3} className="d-flex flex-column">
             <h5>Acropolis Estates</h5>
             <Link to="/about" className={`${styles.link}`}>
-              About Us
+              {t("footer.about")}
             </Link>
             {/* <Link to="/faq" className={`${styles.link} `}>
               FAQ
@@ -53,38 +62,47 @@ const Footer = () => {
           </Col>
 
           <Col sm={3} className={`d-flex flex-column ${styles.MobileMarginTop}`}>
-            <h5>Properties</h5>
+            <h5>{t("footer.properties")}</h5>
             <Form.Label
               className={`${styles.link}`}
               onClick={() => handleSubmit("residential")}
             >
-              Residential
+              {t("listingType.residential")}
             </Form.Label>
 
             <Form.Label
               className={`${styles.link}`}
               onClick={() => handleSubmit("land")}
             >
-              Land
+              {t("listingType.land")}
             </Form.Label>
 
             <Form.Label
               className={`${styles.link}`}
               onClick={() => handleSubmit("commercial")}
             >
-              Commercial
+              {t("listingType.commercial")}
             </Form.Label>
 
 
           </Col>
           <Col sm={3} className={`${styles.MobileMarginTop}`}>
-            <h5 className="">Contact</h5>
+            <h5 className="">{t("footer.contact.title")}</h5>
             <div className="">
 
-              <p className="m-0">Office Address: 28is Octovriou, 211</p>
-              <p className="m-0">City: Nea Peramos, Attikis</p>
-              <p className="m-0">Email: <Link to="/contact" className={`${styles.link}`}>info@acropolisestates.com</Link></p>
-              <p className="m-0">Phone Number: +30 229 640 0420</p>
+              <p className="m-0">
+                {t("footer.contact.address")}
+              </p>
+              <p className="m-0">
+                <Trans i18nKey="footer.contact.email" components={{
+                  1: <Link to="/contact" className={`${styles.link}`} />
+                }} />
+
+              </p>
+              {/* <p className="m-0">Email: <Link to="/contact" className={`${styles.link}`}>info@acropolisestates.com</Link></p> */}
+              <p className="m-0">
+                {t("footer.contact.phone")}
+              </p>
             </div>
           </Col>
 
@@ -93,12 +111,12 @@ const Footer = () => {
           <hr />
           <Col sm={4}>
             <p className="text-muted">
-              &copy; 2024 Acropolis Estates. All rights reserved.
+              &copy; {new Date().getFullYear()} {t("footer.copyRight")}
             </p>
           </Col>
           <Col sm={4}>
             <p className="text-muted">
-              <Link to="/cookies" className={`${styles.link}`}>Cookies </Link> | <Link to="/privacyPolicy" className={`${styles.link}`}>Privacy policy</Link> | <Link to="/terms" className={`${styles.link}`}>Terms & Conditions</Link>
+              <Link to="/cookies" className={`${styles.link}`}>Cookies </Link> | <Link to="/privacyPolicy" className={`${styles.link}`}>{t("footer.privacyPolicy")}</Link> | <Link to="/terms" className={`${styles.link}`}>{t("footer.terms")}</Link>
             </p>
           </Col>
           <Col sm={4}>

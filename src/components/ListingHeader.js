@@ -7,12 +7,21 @@ const ListingHeader = (props) => {
 
   const { t, i18n } = useTranslation();
 
+  const lng = navigator.language || navigator.userLanguage;
+
   useEffect(() => {
-    const lng = navigator.language || navigator.userLanguage;
+
     i18n.changeLanguage(lng);
-  }, [i18n]);
+  }, [i18n, lng]);
 
   const saleType = props.sale_type === "rent" ? `${t("propertyDetails.typeRent")}` : `${t("propertyDetails.typeSale")}`;
+
+  const translatedType = t(`propertyDetails.types.${props.type}`);
+
+  const translatedSubType = t(`propertyDetails.subTypes.${props.sub_type}`);
+  const municipality = lng === "en" ? props.municipality : props.municipality_gr;
+  const county = lng === "en" ? props.county : props.county_gr;
+  const region = lng === "en" ? props.region : props.region_gr;
 
   let priceValue = "";
   if (typeof props.price === 'number' && !isNaN(props.price)) {
@@ -24,9 +33,10 @@ const ListingHeader = (props) => {
       <div className={styles.Listing__header}>
         <div className={styles.Listing__headerListingDetails}>
           {t("propertyDetails.title", {
-            type: props.type === "residential" || props.type === "commercial" ? props.sub_type : props.type,
+
             sale_type: saleType,
-          })}, {props.municipality}, {props.county}, {props.region}
+            type: translatedType === "residential" || translatedType === "commercial" ? translatedSubType : translatedSubType,
+          })}, {municipality}, {county}, {region}
         </div>
         <div className={styles.Listing__fontawsome}>
           <p>
