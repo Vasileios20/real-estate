@@ -21,10 +21,13 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
 
   const { t, i18n } = useTranslation();
 
+  const lng = navigator.language || navigator.userLanguage;
+
   useEffect(() => {
-    const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
-  }, [i18n]);
+  }, [i18n, lng]);
+
+  console.log(lng);
 
   const {
     id,
@@ -65,6 +68,12 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     storage,
     power_type,
   } = props;
+
+  const description = lng === "en" ? props.description : props.description_gr;
+
+
+
+
 
   const amenitiesArray = [];
   if (amenities) {
@@ -133,7 +142,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     priceValue = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  const energy_classValue = energy_class === "to_be_issued" ? "To be issued" : energy_class; // Translate energy class
+  const energy_classValue = energy_class === "to_be_issued" ? t("propertyDetails.energyClassTypes.toBeIssued") : energy_class; // Translate energy class
 
   const land_areaValue = props.sub_type === "apartment" ? "N/A" : `${land_area} m²`;
 
@@ -256,7 +265,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
             </div>
             <div className="my-4">
               <h5>{t("propertyDetails.description")}</h5>
-              <p>{props.description}</p>
+              <p>{description}</p>
             </div>
           </Col>
 

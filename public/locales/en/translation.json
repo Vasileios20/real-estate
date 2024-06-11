@@ -39,7 +39,7 @@
     },
     "valuationPage": {
         "title": "Property Evaluation",
-        "description": "",
+        "p1": "Real estate valuation involves assessing the current market value of a property, which is crucial for various purposes such as investment analysis, financing, insurance, taxation, and financial reporting.",
         "listItem1": "<strong>Property Inspection:</strong> Conducting a thorough inspection of the property to assess its physical condition, including the building structure, interior and exterior features, amenities, and any visible defects or maintenance issues.",
         "listItem2": "<strong>Market Analysis:</strong> Analyzing market data and trends, including recent sales of comparable properties (comps), rental rates, vacancy rates, and economic indicators, to determine the property's value relative to market conditions.",
         "listItem3": "<strong>Market Value Assessment:</strong> Integrating the findings from the property inspection, market analysis, comparable sales analysis, and income/cost approaches to arrive at an estimate of the property's fair market value, taking into account all relevant factors influencing value.",
@@ -49,6 +49,7 @@
     },
     "advisoryPage": {
         "title": "Advisory",
+        "p1": "Our dedicated team is involved with advisory to provide guidance, expertise, and strategic advice to our clients to help them make informed decisions regarding their real estate investments.",
         "listItem1": "<strong>Market Analysis:</strong> Conducting thorough market research and analysis to assess current trends, property values, and investment opportunities in specific geographic areas or sectors.",
         "listItem2": "<strong>Investment Strategy:</strong> Developing tailored investment strategies based on clients' financial goals, risk tolerance, and investment preferences, including buy-and-hold, fix-and-flip, or development strategies.",
         "listItem3": "<strong>Financial Planning:</strong> Assisting clients with financial planning, budgeting, and cash flow analysis to ensure they have a clear understanding of the financial implications of their real estate investments.",
@@ -63,7 +64,8 @@
     },
     "assetManagementPage": {
         "title": "Asset Management",
-        "description": "Regular monitoring to ensure properties meet financial goals and operational standards.",
+        "p1": "We specialize in real estate asset management, offering tailored solutions to maximize returns and minimize risks for our clients. With years of industry experience and a dedicated team of experts, we are committed to delivering exceptional results and unparalleled service.",
+        "p2": "Our approach to real estate asset management is strategic and client-focused. We employ a comprehensive framework that emphasizes value creation, risk mitigation, and customized solutions tailored to our clients' unique objectives. By leveraging our deep industry knowledge and analytical capabilities, we ensure that every decision is informed and aligned with our clients' goals.",
         "listItem1": "<strong>Property Performance Monitoring:</strong> Regularly monitoring the performance of properties to ensure they meet financial goals and operational standards.",
         "listItem2": "<strong>Lease Management:</strong> Negotiating leases, renewals, and terminations to optimize rental income and occupancy rates.",
         "listItem3": "<strong>Financial Analysis:</strong> Conducting financial analysis, including budgeting, forecasting, and variance analysis, to evaluate property performance and identify opportunities for improvement.",
@@ -135,7 +137,92 @@
         "slope": "Slope",
         "distanceFromSea": "Distance from Sea",
         "storage": "Storage",
-        "powerType": "Power Type"
+        "powerType": "Power Type",
+        "types": {
+            "residential": "Residential",
+            "land": "Land",
+            "commercial": "Commercial"
+        },
+        "subTypes": {
+            "apartment": "Apartment",
+            "house": "House",
+            "maisonette": "Maisonette",
+            "bungalow": "Bungalow",
+            "villa": "Villa",
+            "hotel": "Hotel",
+            "office": "Office",
+            "retail": "Retail",
+            "warehouse": "Warehouse",
+            "mixed_use": "Mixed Use",
+            "industrial": "Industrial",
+            "other": "Other"
+        },
+        "openingFrames": {
+            "aluminium": "Aluminium",
+            "wooden": "Wooden",
+            "pvc": "PVC",
+            "iron": "Iron"
+        },
+        "glassType": {
+            "single": "Single",
+            "double": "Double",
+            "triple": "Triple"
+        },
+        "orientationTypes": {
+            "north": "North",
+            "northeast": "Northeast",
+            "east": "East",
+            "southeast": "Southeast",
+            "south": "South",
+            "southwest": "Southwest",
+            "west": "West",
+            "northwest": "Northwest"
+        },
+        "zoneTypes": {
+            "residential": "Residential",
+            "commercial": "Commercial",
+            "industrial": "Industrial",
+            "agricultural": "Agricultural",
+            "tourist": "Tourist",
+            "mixed": "Mixed",
+            "redevelopment": "Redevelopment",
+            "other": "Other"
+        },
+        "viewTypes": {
+            "sea": "Sea",
+            "mountain": "Mountain",
+            "city": "City",
+            "other": "Other"
+        },
+        "slopeTypes": {
+            "level": "Level",
+            "view": "View",
+            "incline": "Incline"
+        },
+        "floorTypes": {
+            "marble": "Marble",
+            "tile": "Tile",
+            "wooden": "Wooden",
+            "granite": "Granite",
+            "mosaic": "Mosaic",
+            "stone": "Stone",
+            "laminate": "Laminate",
+            "parquet": "Parquet",
+            "carpet": "Carpet",
+            "cement": "Cement",
+            "other": "Other"
+        },
+        "energyClassTypes": {
+            "a+": "A+",
+            "a": "A",
+            "b": "B",
+            "c": "C",
+            "d": "D",
+            "e": "E",
+            "f": "F",
+            "g": "G",
+            "toBeIssued": "To be issued"
+        }
     },
     "contactForm": {
         "title": "Contact Form",
