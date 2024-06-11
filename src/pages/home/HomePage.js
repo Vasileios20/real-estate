@@ -23,12 +23,12 @@ export default function HomePage() {
 
   const { t, i18n } = useTranslation();
 
-  const fetchedFeaturedListings = useFetchListings({ featured: true });
+  const fetchedFeaturedListings = useFetchListings();
 
   const { hasLoaded } = useFetchListings();
 
-  const featuredListings = fetchedFeaturedListings.listings.results;
-
+  const featuredListings = fetchedFeaturedListings.listings.results.filter((listing) => listing.featured === true)
+  
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
@@ -165,7 +165,7 @@ export default function HomePage() {
                                       sale_type: `${listing.sale_type}`,
                                     })}
                                   </Card.Title>
-                                  <Card.Text> {typeof listing.price === "number" && !isNaN(listing.price) && listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
+                                  <Card.Text>{listing.currency} {typeof listing.price === "number" && !isNaN(listing.price) && listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
                                 </Card.Body>
                               </Link>
                             </Card>
