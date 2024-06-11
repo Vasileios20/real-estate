@@ -27,8 +27,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     i18n.changeLanguage(lng);
   }, [i18n, lng]);
 
-  console.log(lng);
-
   const {
     id,
     owner,
@@ -70,10 +68,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
   } = props;
 
   const description = lng === "en" ? props.description : props.description_gr;
-
-
-
-
 
   const amenitiesArray = [];
   if (amenities) {
