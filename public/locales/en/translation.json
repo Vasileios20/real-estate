@@ -224,14 +224,29 @@
             "toBeIssued": "To be issued"
         }
     },
+    "contactFormPage": {
+        "p1": "Contact us today to learn more about our services and how we can assist you in achieving your real estate goals."
+    },
     "contactForm": {
         "title": "Contact Form",
         "name": "Name",
+        "namePlaceholder": "Enter your name",
+        "lastName": "Last Name",
+        "lastNamePlaceholder": "Enter your last name",
         "email": "Email",
+        "emailPlaceholder": "Enter your email",
         "phone": "Phone",
         "subject": "Subject",
         "message": "Message",
-        "btnSend": "Send"
+        "messagePlaceholder": "Enter your message",
+        "btnSend": "Send",
+        "acceptText": "I have read and accept the <1>terms of use </1> and <2> privacy policy</2> of Acropolis Estates",
+        "linkStyle": {
+            "textDecoration": "underline"
+        },
+        "successMessage": "Your message has been sent successfully. We will get back to you as soon as possible.",
+        "errorMessage": "You must accept the terms of use and privacy policy.",
+        "listingMessage": "I am interested in the listing with id AE000"
     },
     "footer": {
         "title": "Acropolis Estate",
