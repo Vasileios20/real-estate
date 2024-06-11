@@ -28,7 +28,7 @@ export default function HomePage() {
   const { hasLoaded } = useFetchListings();
 
   const featuredListings = fetchedFeaturedListings.listings.results.filter((listing) => listing.featured === true)
-  
+
   useEffect(() => {
     const lng = navigator.language || navigator.userLanguage;
     i18n.changeLanguage(lng);
@@ -38,8 +38,8 @@ export default function HomePage() {
     <>
       <div className={`${homeStyles.CaruselContainer}`}>
         <div className={homeStyles.SearchBar}>
-          <h1 className={`text-center ${homeStyles.Welcome}`}>Acropolis Estates</h1>
-          <p className={`text-center ${homeStyles.WelcomeTagLine}`}>Real estate reimagined</p>
+          <h1 className={`text-center ${homeStyles.Welcome}`}>{t("homePage.header") }</h1>
+          <p className={`text-center ${homeStyles.WelcomeTagLine}`}>{t("homePage.tagline")}</p>
           <SearchBar />
         </div>
         <Carousel prevIcon={false} nextIcon={false}>
@@ -65,7 +65,7 @@ export default function HomePage() {
           </Row>
         </Row>
         <Row className="gx-2">
-          <h2 className="my-4 text-center w-100">Our Services</h2>
+          <h2 className="my-4 text-center w-100">{t("homePage.header2") }</h2>
           <Col xs={12} md={6} className="mt-1">
             <Link to="/assetManagement">
               <Card className="h-100">
@@ -129,7 +129,7 @@ export default function HomePage() {
           </Col>
         </Row>
         <Row className="my-5">
-          <h2 className="my-4 text-center w-100">Featured Listings</h2>
+          <h2 className="my-4 text-center w-100">{t("homePage.header3") }</h2>
           <Container>
             <Row className="mx-0">
               {hasLoaded ? (

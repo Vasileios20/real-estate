@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import styles from "../../styles/ServicesPages.module.css";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function ValuationPage() {
   /**
@@ -37,12 +37,12 @@ export default function ValuationPage() {
         <Row className="mx-auto mb-5 shadow">
           <div className={styles.PageList}>
             <ul className={styles.List}>
-              <li><strong>Property Inspection:</strong> Conducting a thorough inspection of the property to assess its physical condition, including the building structure, interior and exterior features, amenities, and any visible defects or maintenance issues.</li>
-              <li><strong>Market Analysis:</strong> Analyzing market data and trends, including recent sales of comparable properties (comps), rental rates, vacancy rates, and economic indicators, to determine the property's value relative to market conditions.</li>
-              <li><strong>Market Value Assessment:</strong> Integrating the findings from the property inspection, market analysis, comparable sales analysis, and income/cost approaches to arrive at an estimate of the property's fair market value, taking into account all relevant factors influencing value.</li>
-              <li><strong>Report Preparation:</strong> Documenting the valuation process, methodology, assumptions, and conclusions in a formal valuation report or appraisal report, which may be used for various purposes such as investment decision-making, financing, insurance coverage, tax assessment, or financial reporting.</li>
-              <li><strong>Compliance:</strong> Ensuring compliance with professional standards, regulatory requirements, and industry best practices for real estate valuation, such as those established by professional appraisal organizations (e.g., the Appraisal Institute) and governmental agencies (e.g., the Uniform Standards of Professional Appraisal Practice, or USPAP).</li>
-              <li><strong>Client Communication:</strong> Communicating the valuation results, findings, and recommendations effectively to clients, stakeholders, or decision-makers, addressing any questions or concerns and providing clarity and confidence in the valuation process and outcomes.</li>
+              <li><Trans i18nKey="valuationPage.listItem1">{t("valuationPage.listItem1")}</Trans></li>
+              <li><Trans i18nKey="valuationPage.listItem2">{t("valuationPage.listItem2")}</Trans></li>
+              <li><Trans i18nKey="valuationPage.listItem3">{t("valuationPage.listItem3")}</Trans></li>
+              <li><Trans i18nKey="valuationPage.listItem4">{t("valuationPage.listItem4")}</Trans></li>
+              <li><Trans i18nKey="valuationPage.listItem5">{t("valuationPage.listItem5")}</Trans></li>
+              <li><Trans i18nKey="valuationPage.listItem6">{t("valuationPage.listItem6")}</Trans></li>
             </ul>
           </div>
         </Row>

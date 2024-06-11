@@ -3,7 +3,7 @@ import styles from "../../styles/ServicesPages.module.css";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { Col } from "react-bootstrap";
 
 export default function AssetManagementPage() {
@@ -46,20 +46,21 @@ export default function AssetManagementPage() {
         <Row className="shadow mx-auto mb-5">
           <div className={styles.PageList}>
             <ul className={styles.List}>
-              <li><strong>Property Performance Monitoring:</strong> Regularly monitoring the performance of properties to ensure they meet financial goals and operational standards.</li>
-              <li><strong>Lease Management:</strong> Negotiating leases, renewals, and terminations to optimize rental income and occupancy rates.</li>
-              <li><strong>Financial Analysis:</strong> Conducting financial analysis, including budgeting, forecasting, and variance analysis, to evaluate property performance and identify opportunities for improvement.</li>
-              <li><strong>Risk Management:</strong> Identifying and mitigating risks associated with property ownership, such as market fluctuations, tenant defaults, and property damage.</li>
-              <li><strong>Maintenance and Repairs:</strong> Overseeing maintenance and repair activities to ensure properties are well-maintained and meet safety and regulatory standards.</li>
-              <li><strong>Tenant Relations:</strong> Managing tenant relationships, addressing concerns, and resolving disputes to maintain tenant satisfaction and retention.</li>
-              <li><strong>Strategic Planning:</strong> Developing and implementing strategies to enhance property value, such as renovations, repositioning, or redevelopment projects.</li>
-              <li><strong>Market Research:</strong> Conducting market research and analysis to identify trends, assess competition, and inform investment decisions.</li>
-              <li><strong>Reporting:</strong> Preparing regular reports and updates for property owners or investors, including financial performance, market trends, and property management activities.</li>
-              <li><strong>Compliance:</strong> Ensuring compliance with legal and regulatory requirements, including zoning laws, building codes, and environmental regulations.</li>
-              <li><strong>Sustainability Initiatives:</strong> Implementing sustainability initiatives to reduce operating costs, improve energy efficiency, and enhance environmental stewardship.</li>
-              <li><strong>Portfolio Management:</strong> Managing a portfolio of properties, including acquisitions, dispositions, and portfolio optimization strategies.</li>
-              <li><strong>Asset Valuation:</strong> Conducting periodic valuations of properties to assess their current market value and potential for appreciation.</li>
-              <li><strong>Stakeholder Communication:</strong> Communicating regularly with property owners, investors, lenders, and other stakeholders to provide updates and address concerns.</li>
+            <li><Trans i18nKey="assetManagementPage.listItem1">{t("assetManagementPage.listItem1")}
+              </Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem2">{t("assetManagementPage.listItem2")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem3">{t("assetManagementPage.listItem3")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem4">{t("assetManagementPage.listItem4")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem5">{t("assetManagementPage.listItem5")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem6">{t("assetManagementPage.listItem6")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem7">{t("assetManagementPage.listItem7")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem8">{t("assetManagementPage.listItem8")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem9">{t("assetManagementPage.listItem9")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem10">{t("assetManagementPage.listItem10")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem11">{t("assetManagementPage.listItem11")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem12">{t("assetManagementPage.listItem12")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem13">{t("assetManagementPage.listItem13")}</Trans></li>
+              <li><Trans i18nKey="assetManagementPage.listItem14">{t("assetManagementPage.listItem14")}</Trans></li>
             </ul>
           </div>
         </Row>
