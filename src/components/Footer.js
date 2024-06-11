@@ -97,9 +97,7 @@ const Footer = () => {
                 <Trans i18nKey="footer.contact.email" components={{
                   1: <Link to="/contact" className={`${styles.link}`} />
                 }} />
-
               </p>
-              {/* <p className="m-0">Email: <Link to="/contact" className={`${styles.link}`}>info@acropolisestates.com</Link></p> */}
               <p className="m-0">
                 {t("footer.contact.phone")}
               </p>
