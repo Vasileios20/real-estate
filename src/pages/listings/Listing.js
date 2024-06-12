@@ -83,7 +83,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     );
   }
 
-
   const amenitiesList = amenitiesArray.map((amenity, id) => (
     <div key={id} className={`${styles.Amenity}`}>
       <span>{amenity.replace(/_/g, " ")} </span>
@@ -136,24 +135,22 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     priceValue = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  const energy_classValue = energy_class === "to_be_issued" ? t("propertyDetails.energyClassTypes.toBeIssued") : energy_class; // Translate energy class
+  const energy_classValue = energy_class === "to_be_issued" ? t("propertyDetails.energyClassTypes.toBeIssued") : energy_class;
 
   const land_areaValue = props.sub_type === "apartment" ? "N/A" : `${land_area} m²`;
 
-
-  // Translate floor value
   const floorValue =
     floor < 0
-      ? "Basement"
+      ? t("propertyDetails.floorValue.basement")
       : floor === 0
-        ? "Ground floor"
+        ? t("propertyDetails.floorValue.ground")
         : floor === 1
-          ? `${floor}st `
+          ? `${floor}${t("propertyDetails.floorValue.first")}`
           : floor === 2
-            ? `${floor}nd `
+            ? `${floor}${t("propertyDetails.floorValue.second")} `
             : floor === 3
-              ? `${floor}rd `
-              : `${floor}th `;
+              ? `${floor}${t("propertyDetails.floorValue.third")}`
+              : `${floor}${t("propertyDetails.floorValue.th")}`;
 
   const residentialTableData = (
     <Table className={`${styles.Listing__table} shadow`}>
