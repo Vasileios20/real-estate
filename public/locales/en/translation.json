@@ -155,7 +155,8 @@
             "warehouse": "Warehouse",
             "mixed_use": "Mixed Use",
             "industrial": "Industrial",
-            "other": "Other"
+            "other": "Other",
+            "": "N/A"
         },
         "openingFrames": {
             "aluminium": "Aluminium",
@@ -211,6 +212,14 @@
             "carpet": "Carpet",
             "cement": "Cement",
             "other": "Other"
+        },
+        "floorValue": {
+            "basement": "Basement",
+            "ground": "Ground",
+            "first": "st",
+            "second": "nd",
+            "third": "rd",
+            "th": "th"
         },
         "energyClassTypes": {
             "a+": "A+",

@@ -154,7 +154,8 @@
             "warehouse": "Αποθήκη",
             "mixed_use": "Μικτή Χρήση",
             "industrial": "Βιομηχανικό",
-            "other": "Άλλο"
+            "other": "Άλλο",
+            "" : ""
         },
         "openingFrames": {
             "aluminium": "Αλουμίνιο",
@@ -211,6 +212,15 @@
             "cement": "Τσιμέντο",
             "other": "Άλλο"
         },
+        "floorValue" : {
+            "basement": "Υπόγειο",
+            "ground": "Ισόγειο",
+            "first": "ος",
+            "second": "ος",
+            "third": "ος",
+            "th": "ος"
+        }
+        ,
         "energyClassTypes": {
             "a+": "A+",
             "a": "A",
