@@ -65,6 +65,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     rooms,
     storage,
     power_type,
+    floor_type,
+    opening_frames,
   } = props;
 
   const description = lng === "en" ? props.description : props.description_gr;
@@ -168,6 +170,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
           { label: t("propertyDetails.levels"), value: levels },
           { label: t("propertyDetails.heating"), value: heating_system },
           { label: t("propertyDetails.energyClass"), value: energy_classValue },
+          { label: t("propertyDetails.floorTypes.title"), value: t(`propertyDetails.floorTypes.${floor_type}`) },
+          { label: t("propertyDetails.openingFrames.title"), value: t(`propertyDetails.openingFrames.${opening_frames}`) },
           { label: t("propertyDetails.yearBuilt"), value: construction_year },
           { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
           { label: t("propertyDetails.availability"), value: availability },
@@ -191,8 +195,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
           { label: t("propertyDetails.coverCoefficient"), value: cover_coefficient },
           { label: t("propertyDetails.buildingCoefficient"), value: building_coefficient },
           { label: t("propertyDetails.lengthOfFacade"), value: length_of_facade },
-          { label: t("propertyDetails.orientation"), value: orientation },
-          { label: t("propertyDetails.view"), value: view },
+          { label: t("propertyDetails.orientationTypes.title"), value: t(`propertyDetails.orientationTypes.${orientation}`) },
+          { label: t("propertyDetails.viewTypes.title"), value: t(`propertyDetails.viewTypes.${view}`) },
           { label: t("propertyDetails.zone"), value: zone },
           { label: t("propertyDetails.slope"), value: slope },
           { label: t("propertyDetails.distanceFromSea"), value: distance_from_sea },
