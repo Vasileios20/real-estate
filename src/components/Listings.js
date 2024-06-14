@@ -14,6 +14,7 @@ import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import { APIProvider, AdvancedMarker, Map } from "@vis.gl/react-google-maps";
 import { t } from "i18next";
+import { Helmet } from "react-helmet-async";
 
 const ListingsPage = ({ array, hasLoaded, setListings, listings, message, searchResults, setShowCookieBanner }) => {
   // The ListingsPage component is a functional component that renders the listings from the database.
@@ -45,9 +46,13 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
 
   return (
     <>
+      <Helmet>
+        <title>{`Listings`}</title>
+        <meta name="keywords" content="real estate, Acropolis Estates, real estate properties, property location, city postcode, property address, property type, property price, minimum price, maximum price, floor area, minimum floor area, maximum floor area, properties for sale, land for sale, apartments for sale, retail properties, office properties, Athens properties, Attiki properties, Sterea Ellada properties, real estate listings, property search, property filters, real estate market" />
+      </Helmet>
       {!searchResults && <div className={` d-flex flex-column ${heroStyles.HeroImageListings}`}>
 
-        <h1 className={heroStyles.HeaderListings} style={{ color: "#f3f3f3", backgroundColor: "transparent", }}>{t("propertiesPage.title") }</h1>
+        <h1 className={heroStyles.HeaderListings} style={{ color: "#f3f3f3", backgroundColor: "transparent", }}>{t("propertiesPage.title")}</h1>
         <SearchBar />
       </div>}
       <Container fluid className="px-lg-5 pt-5">

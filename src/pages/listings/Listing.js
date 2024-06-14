@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useTranslation } from "react-i18next";
 
@@ -241,6 +242,10 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
 
   return (
     <>
+      <Helmet>
+        <title>{`Listing_AE000${props.id}`}</title>
+        <meta name="keywords" content={`${props.sale_type}, ${props.type}, ${props.sub_type}, ${props.municipality}, ${props.county}, ${props.region}, Features, amenities, real estate, Acropolis Estates, price, bedroom, apartment, name, floor, area, heating, email, acropolis, estates, london,  `} />
+      </Helmet>
       <Container className="mt-5 pt-2">
         <ListingImages images={images} listing_id={id} />
 
