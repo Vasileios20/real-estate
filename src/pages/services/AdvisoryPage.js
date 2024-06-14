@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import styles from "../../styles/ServicesPages.module.css";
 import { useTranslation, Trans } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 export default function FinancialAdvicePage() {
   /**
@@ -19,6 +20,10 @@ export default function FinancialAdvicePage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("services.financialAdvice")}</title>
+        <meta name="keywords" content="real estate, Acropolis Estates, real estate advisory, market analysis, financial planning, risk assessment, due diligence, portfolio optimization, tax planning, financing assistance, exit strategies, regulatory compliance, client education, property inspections, title searches, environmental assessments, investment viability, diversification, consolidation, disposition, tax-efficient investment, debt financing, refinancing, repositioning properties, zoning laws, building codes, landlord-tenant regulations, market updates, industry insights " />
+      </Helmet>
       <div className={styles.HeroImageAdv}>
         <div className={`col-6 ${styles.HeaderContainer}`}>
           <h1 className={styles.Header}>{t("services.financialAdvice")}</h1>
@@ -38,7 +43,7 @@ export default function FinancialAdvicePage() {
             <ul className={styles.List}>
               <li><Trans i18nKey="advisoryPage.listItem1">{t("advisoryPage.listItem1")}
               </Trans></li>
-              
+
               <li><Trans i18nKey="advisoryPage.listItem3">{t("advisoryPage.listItem3")}
               </Trans></li>
               <li><Trans i18nKey="advisoryPage.listItem4">{t("advisoryPage.listItem4")}
@@ -58,8 +63,8 @@ export default function FinancialAdvicePage() {
               <li><Trans i18nKey="advisoryPage.listItem11">{t("advisoryPage.listItem11")}
               </Trans></li>
 
-              
-              
+
+
             </ul>
           </div>
         </Row>

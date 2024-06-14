@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import { Trans, useTranslation } from "react-i18next";
 import homeStyles from "../../styles/HomePage.module.css";
 import styles from "../../styles/ServicesPages.module.css";
+import { Helmet } from "react-helmet-async";
 
 export default function AboutPage() {
   /**
@@ -21,6 +22,10 @@ export default function AboutPage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("aboutPage.title")}</title>
+        <meta name="keywords" content="acropolis estates, real estate mission, turnkey solutions, real estate service, professionalism, real estate expertise, client relationships, client goals, real estate experience, real estate integrity, business transparency, customer focus, personalized attention, tailored solutions, exceptional service, commitment to excellence, real estate knowledge, real estate industry, real estate professionals, Acropolis Estates team, experienced agents, real estate support staff, expert advice, customer service, stress-free experience" />
+      </Helmet>
       <div className={`${homeStyles.HeroImageAbout}`}>
         <div className={`col-6 ${styles.HeaderContainer}`}>
           <h1 className={`${styles.Header}`}>{t("aboutPage.title")}</h1>

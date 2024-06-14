@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
-
-import styles from "../../styles/Listing.module.css";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Table from "react-bootstrap/Table";
-import Card from "react-bootstrap/Card";
-
 import { Link, useHistory } from "react-router-dom";
-import ListingImages from "./ListingImages";
+import { Helmet } from "react-helmet-async";
 import { axiosRes } from "../../api/axiosDefaults";
+import { useTranslation } from "react-i18next";
+
 import { MoreDropdown } from "../../components/MoreDropDown";
+import ListingImages from "./ListingImages";
 import ListingHeader from "../../components/ListingHeader";
 import useUserStatus from "../../hooks/useUserStatus";
 import ContactForm from "../contact/ContactForm";
-import { useTranslation } from "react-i18next";
 import MapMarker from "../../components/MapMarker";
-import { Container } from "react-bootstrap";
+
+import styles from "../../styles/Listing.module.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+
 
 const Listing = ({ setShowCookieBanner, ...props }) => {
-
+  const history = useHistory();
+  const userStatus = useUserStatus();
   const { t, i18n } = useTranslation();
 
   const lng = navigator.language || navigator.userLanguage;
-
-  useEffect(() => {
-    i18n.changeLanguage(lng);
-  }, [i18n, lng]);
 
   const {
     id,
@@ -65,6 +64,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     rooms,
     storage,
     power_type,
+    floor_type,
+    opening_frames,
   } = props;
 
   const description = lng === "en" ? props.description : props.description_gr;
@@ -92,44 +93,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
 
   const [mapReady, setMapReady] = useState(false);
 
-  useEffect(() => {
-    // Check if latitude and longitude are defined
-    if (latitude !== undefined && longitude !== undefined) {
-      setMapReady(true);
-    }
-  }, [latitude, longitude]);
-
-  const history = useHistory();
-  const userStatus = useUserStatus();
-
-  // Delete listing
-  const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/listings/${id}/`);
-      history.push("/listings");
-    } catch (err) {
-      // console.log(err);
-    }
-  };
-
-  // Edit listing
-  const handleEdit = () => {
-    history.push(`/listings/${id}/edit`);
-  };
-
-  const staffCard = (
-    <>
-      <Card.Body>
-        <Card.Text>
-          <Link to={`/profiles/${profile_id}`}>Owner: {owner}</Link>
-        </Card.Text>
-
-        <Card.Text>Created on: {created_on}</Card.Text>
-        <Card.Text>Updated on: {updated_on}</Card.Text>
-      </Card.Body>
-    </>
-  );
-
+  // Format price value with commas
   let priceValue = "";
   if (typeof price === 'number' && !isNaN(price)) {
     priceValue = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -168,6 +132,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
           { label: t("propertyDetails.levels"), value: levels },
           { label: t("propertyDetails.heating"), value: heating_system },
           { label: t("propertyDetails.energyClass"), value: energy_classValue },
+          { label: t("propertyDetails.floorTypes.title"), value: t(`propertyDetails.floorTypes.${floor_type}`) },
+          { label: t("propertyDetails.openingFrames.title"), value: t(`propertyDetails.openingFrames.${opening_frames}`) },
           { label: t("propertyDetails.yearBuilt"), value: construction_year },
           { label: t("propertyDetails.serviceCharge"), value: `${currency} ${service_charge}` },
           { label: t("propertyDetails.availability"), value: availability },
@@ -191,10 +157,10 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
           { label: t("propertyDetails.coverCoefficient"), value: cover_coefficient },
           { label: t("propertyDetails.buildingCoefficient"), value: building_coefficient },
           { label: t("propertyDetails.lengthOfFacade"), value: length_of_facade },
-          { label: t("propertyDetails.orientation"), value: orientation },
-          { label: t("propertyDetails.view"), value: view },
-          { label: t("propertyDetails.zone"), value: zone },
-          { label: t("propertyDetails.slope"), value: slope },
+          { label: t("propertyDetails.orientationTypes.title"), value: t(`propertyDetails.orientationTypes.${orientation}`) },
+          { label: t("propertyDetails.viewTypes.title"), value: t(`propertyDetails.viewTypes.${view}`) },
+          { label: t("propertyDetails.zoneTypes.title"), value: t(`propertyDetails.zoneTypes.${zone}`) },
+          { label: t("propertyDetails.slopeTypes.title"), value: t(`propertyDetails.slopeTypes.${slope}`) },
           { label: t("propertyDetails.distanceFromSea"), value: distance_from_sea },
           { label: t("propertyDetails.availability"), value: availability },
           { label: "Listing id", value: `AE000${id}` },
@@ -238,8 +204,48 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     </Table>
   );
 
+  const staffCard = (
+    <>
+      <Card.Body>
+        <Card.Text>
+          <Link to={`/profiles/${profile_id}`}>Owner: {owner}</Link>
+        </Card.Text>
+
+        <Card.Text>Created on: {created_on}</Card.Text>
+        <Card.Text>Updated on: {updated_on}</Card.Text>
+      </Card.Body>
+    </>
+  );
+
+  // Delete listing
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/listings/${id}/`);
+      history.push("/listings");
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
+  // Edit listing
+  const handleEdit = () => {
+    history.push(`/listings/${id}/edit`);
+  };
+
+
+  useEffect(() => {
+    if (latitude !== undefined && longitude !== undefined) {
+      setMapReady(true);
+    }
+    i18n.changeLanguage(lng);
+  }, [i18n, lng, latitude, longitude]);
+
   return (
     <>
+      <Helmet>
+        <title>{`Listing_AE000${props.id}`}</title>
+        <meta name="keywords" content={`${props.sale_type}, ${props.type}, ${props.sub_type}, ${props.municipality}, ${props.county}, ${props.region}, Features, amenities, real estate, Acropolis Estates, price, bedroom, apartment, name, floor, area, heating, email, acropolis, estates, london,  `} />
+      </Helmet>
       <Container className="mt-5 pt-2">
         <ListingImages images={images} listing_id={id} />
 

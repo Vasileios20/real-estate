@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import styles from "../../styles/ServicesPages.module.css";
 import { useTranslation, Trans } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 export default function ValuationPage() {
   /**
@@ -19,6 +20,10 @@ export default function ValuationPage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("services.valuation")}</title>
+        <meta name="keywords" content="acropolis estates, eal estate valuation, property inspection, market analysis, market value assessment, comparable sales analysis, income approach, cost approach, valuation report, appraisal report, investment analysis, financing, insurance, tax assessment, financial reporting, professional standards, regulatory compliance, USPAP, Appraisal Institute, client communication, property market value, physical condition assessment, market trends, rental rates, vacancy rates, economic indicators, property amenities, visible defects, maintenance issues" />
+      </Helmet>
       <div className={`${styles.HeroImageVal}`}>
         <div className={`col-6 ${styles.HeaderContainer}`}>
           <h1 className={styles.Header}>{t("services.valuation")}</h1>

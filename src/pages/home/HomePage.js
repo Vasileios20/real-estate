@@ -13,6 +13,7 @@ import useFetchListings from "../../hooks/useFetchListings";
 import Asset from "../../components/Asset";
 import { Carousel } from "react-bootstrap";
 import imageStyles from "../../styles/Listing.module.css";
+import { Helmet } from "react-helmet-async";
 
 export default function HomePage() {
   /**
@@ -36,9 +37,16 @@ export default function HomePage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("homePage.header")}</title>
+        <meta name="keywords" content="acropolis estates, real estate advisory, real estate guidance, strategic advice,
+        real estate investments, market analysis, property values, investment opportunities, financial planning, budgeting,
+        cash flow analysis, risk assessment, market volatility, regulatory changes, property inspections, title searches, environmental assessments,
+        due diligence, portfolio optimization, investment diversification, tax planning, tax-efficient investment, financing assistance, real estate financing, debt financing, exit strategies, real estate selling, refinancing, repositioning properties, regulatory compliance, zoning laws, building codes, landlord-tenant regulations, environmental regulations, client education, market updates, industry insights" />
+      </Helmet>
       <div className={`${homeStyles.CaruselContainer}`}>
         <div className={homeStyles.SearchBar}>
-          <h1 className={`text-center ${homeStyles.Welcome}`}>{t("homePage.header") }</h1>
+          <h1 className={`text-center ${homeStyles.Welcome}`}>{t("homePage.header")}</h1>
           <p className={`text-center ${homeStyles.WelcomeTagLine}`}>{t("homePage.tagline")}</p>
           <SearchBar />
         </div>
@@ -65,7 +73,7 @@ export default function HomePage() {
           </Row>
         </Row>
         <Row className="gx-2">
-          <h2 className="my-4 text-center w-100">{t("homePage.header2") }</h2>
+          <h2 className="my-4 text-center w-100">{t("homePage.header2")}</h2>
           <Col xs={12} md={6} className="mt-1">
             <Link to="/assetManagement">
               <Card className="h-100">
@@ -129,7 +137,7 @@ export default function HomePage() {
           </Col>
         </Row>
         <Row className="my-5">
-          <h2 className="my-4 text-center w-100">{t("homePage.header3") }</h2>
+          <h2 className="my-4 text-center w-100">{t("homePage.header3")}</h2>
           <Container>
             <Row className="mx-0">
               {hasLoaded ? (

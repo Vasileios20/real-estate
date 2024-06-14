@@ -131,10 +131,6 @@
         "coverCoefficient": "Cover Coefficient",
         "buildingCoefficient": "Building Coefficient",
         "lengthOfFacade": "Length of Facade",
-        "orientation": "Orientation",
-        "view": "View",
-        "zone": "Zone",
-        "slope": "Slope",
         "distanceFromSea": "Distance from Sea",
         "storage": "Storage",
         "powerType": "Power Type",
@@ -159,17 +155,20 @@
             "": "N/A"
         },
         "openingFrames": {
+            "title": "Opening Frames",
             "aluminium": "Aluminium",
             "wooden": "Wooden",
             "pvc": "PVC",
             "iron": "Iron"
         },
         "glassType": {
+            "title": "Glass Type",
             "single": "Single",
             "double": "Double",
             "triple": "Triple"
         },
         "orientationTypes": {
+            "title": "Orientation",
             "north": "North",
             "northeast": "Northeast",
             "east": "East",
@@ -180,6 +179,7 @@
             "northwest": "Northwest"
         },
         "zoneTypes": {
+            "title": "Zone",
             "residential": "Residential",
             "commercial": "Commercial",
             "industrial": "Industrial",
@@ -190,17 +190,20 @@
             "other": "Other"
         },
         "viewTypes": {
+            "title": "View",
             "sea": "Sea",
             "mountain": "Mountain",
             "city": "City",
             "other": "Other"
         },
         "slopeTypes": {
+            "title": "Slope",
             "level": "Level",
             "view": "View",
             "incline": "Incline"
         },
         "floorTypes": {
+            "title": "Floor type",
             "marble": "Marble",
             "tile": "Tile",
             "wooden": "Wooden",
@@ -234,6 +237,7 @@
         }
     },
     "contactFormPage": {
+        "title": "Contact Us",
         "p1": "Contact us today to learn more about our services and how we can assist you in achieving your real estate goals."
     },
     "contactForm": {
