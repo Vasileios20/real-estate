@@ -22,14 +22,32 @@ const ListingHeader = (props) => {
   const translatedType = typeReady && t(`propertyDetails.types.${props.type}`);
 
   const translatedSubType = typeReady && t(`propertyDetails.subTypes.${props.sub_type}`);
-  const municipality = lng === "en" ? props.municipality : props.municipality_gr;
-  const county = lng === "en" ? props.county : props.county_gr;
-  const region = lng === "en" ? props.region : props.region_gr;
+  const municipality = lng === "el" ? props.municipality_gr : props.municipality;
+  const county = lng === "el" ? props.county_gr : props.county;
+  const region = lng === "el" ? props.region_gr : props.region;
 
   let priceValue = "";
   if (typeof props.price === 'number' && !isNaN(props.price)) {
     priceValue = props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
+  const not_land = <div className={styles.Listing__fontawsome}>
+    <p>
+      <i className="fa-solid fa-bed"> {props.bedrooms}</i>
+    </p>
+    <p>
+      <i className="fa-solid fa-bath"> {props.bathrooms}</i>
+    </p>
+    <p>
+      <i className="fa-solid fa-stairs"> {props.floor}</i>
+    </p>
+  </div>
+
+  const land = <div className={`${styles.Listing__headerLand} mt-2`}>
+    <p>
+      {props.land_area} m²
+    </p>
+  </div>
 
   return (
     <div className={styles.Listing__cardBody}>
@@ -41,17 +59,7 @@ const ListingHeader = (props) => {
             type: translatedType === "Land" ? translatedType : translatedSubType,
           })}, {municipality}, {county}, {region}
         </div>
-        <div className={styles.Listing__fontawsome}>
-          <p>
-            <i className="fa-solid fa-bed"> {props.bedrooms}</i>
-          </p>
-          <p>
-            <i className="fa-solid fa-bath"> {props.bathrooms}</i>
-          </p>
-          <p>
-            <i className="fa-solid fa-stairs"> {props.floor}</i>
-          </p>
-        </div>
+        {props.type !== "land" ? not_land : land}
         <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {priceValue}</h6>
       </div>
     </div>

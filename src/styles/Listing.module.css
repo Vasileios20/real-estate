@@ -29,6 +29,10 @@
   height: 100%;
 }
 
+.Listing__headerLand {
+  text-transform: none;
+}
+
 .Listing__headerListingDetails {
   flex: 1;
 }
