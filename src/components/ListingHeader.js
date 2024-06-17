@@ -57,7 +57,7 @@ const ListingHeader = (props) => {
 
             sale_type: saleType,
             type: translatedType === "Land" ? translatedType : translatedSubType,
-          })}, {municipality}, {county}, {region}
+          })}, {municipality}, {county}, {region}, {props.postcode}
         </div>
         {props.type !== "land" ? not_land : land}
         <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {priceValue}</h6>
