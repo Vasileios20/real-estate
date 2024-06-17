@@ -24,7 +24,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
   const userStatus = useUserStatus();
   const { t, i18n } = useTranslation();
 
-  const lng = navigator.language || navigator.userLanguage;
 
   const {
     id,
@@ -67,6 +66,16 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     floor_type,
     opening_frames,
   } = props;
+
+  useEffect(() => {
+    const lng = navigator.language || navigator.userLanguage;
+    if (latitude !== undefined && longitude !== undefined) {
+      setMapReady(true);
+    }
+    i18n.changeLanguage(lng);
+  }, [i18n, latitude, longitude]);
+
+  const lng = i18n.language;
 
   const description = lng === "en" ? props.description : props.description_gr;
 
@@ -233,12 +242,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
   };
 
 
-  useEffect(() => {
-    if (latitude !== undefined && longitude !== undefined) {
-      setMapReady(true);
-    }
-    i18n.changeLanguage(lng);
-  }, [i18n, lng, latitude, longitude]);
+
 
   return (
     <>
