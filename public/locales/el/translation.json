@@ -170,13 +170,13 @@
         "orientationTypes": {
             "title": "Προσανατολισμός",
             "north": "Βόρειος",
-            "northeast": "Βορειοανατολικός",
+            "north_east": "Βορειοανατολικός",
             "east": "Ανατολικός",
-            "southeast": "Νοτιοανατολικός",
+            "south_east": "Νοτιοανατολικός",
             "south": "Νότιος",
-            "southwest": "Νοτιοδυτικός",
+            "south_west": "Νοτιοδυτικός",
             "west": "Δυτικός",
-            "northwest": "Βορειοδυτικός"
+            "north_west": "Βορειοδυτικός"
         },
         "zoneTypes": {
             "title": "Ζώνη",

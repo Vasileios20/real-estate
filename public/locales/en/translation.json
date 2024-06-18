@@ -170,13 +170,13 @@
         "orientationTypes": {
             "title": "Orientation",
             "north": "North",
-            "northeast": "Northeast",
+            "north_east": "Northeast",
             "east": "East",
-            "southeast": "Southeast",
+            "south_east": "Southeast",
             "south": "South",
-            "southwest": "Southwest",
+            "south_west": "Southwest",
             "west": "West",
-            "northwest": "Northwest"
+            "north_west": "Northwest"
         },
         "zoneTypes": {
             "title": "Zone",
