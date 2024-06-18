@@ -163,8 +163,8 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
         {[
           { label: t("propertyDetails.price"), value: `${currency} ${priceValue}` },
           { label: t("propertyDetails.landArea"), value: `${land_area} m²` },
-          { label: t("propertyDetails.coverCoefficient"), value: cover_coefficient },
-          { label: t("propertyDetails.buildingCoefficient"), value: building_coefficient },
+          { label: t("propertyDetails.coverCoefficient"), value: `${cover_coefficient} %` },
+          { label: t("propertyDetails.buildingCoefficient"), value: `${building_coefficient} %` },
           { label: t("propertyDetails.lengthOfFacade"), value: `${length_of_facade} m` },
           { label: t("propertyDetails.orientationTypes.title"), value: t(`propertyDetails.orientationTypes.${orientation}`) },
           { label: t("propertyDetails.viewTypes.title"), value: t(`propertyDetails.viewTypes.${view}`) },
