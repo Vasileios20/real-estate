@@ -13,6 +13,8 @@ import btnStyles from "../styles/Button.module.css";
 import { axiosReq } from "../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 const SearchBar = () => {
   /**
    * The SearchBar component is a functional component that renders a search bar for the listings page.
@@ -35,6 +37,13 @@ const SearchBar = () => {
       Please choose rent or buy.
     </Tooltip>
   );
+  const lng = navigator.language || navigator.userLanguage;
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+
+    i18n.changeLanguage(lng);
+  }, [i18n, lng]);
 
   // Fetch the search parameters from the URL and set the state.
   useMemo(() => {
@@ -139,29 +148,33 @@ const SearchBar = () => {
               className={saleType === "rent" ? `${btnStyles.Black} ${btnStyles.Button} me-2` : `${btnStyles.BlackOutline} ${btnStyles.Button} me-2`}
               onClick={() => setSaleType("rent")}
             >
-              Rent
+              {t("searchBar.rent")}
             </Button>
             <Button
               className={saleType === "sale" ? `${btnStyles.Black}  ${btnStyles.Button}` : `${btnStyles.BlackOutline} ${btnStyles.Button}`}
               onClick={() => setSaleType("sale")}
             >
-              Buy
+              {t("searchBar.buy")}
             </Button>
           </Col>
 
           <Col sm={6} md={3} className="my-1 my-md-0">
-            <Form.Label style={{ fontWeight: "500" }}>Location</Form.Label>
+            <Form.Label style={{ fontWeight: "500" }}>
+              {t("searchBar.location")}
+            </Form.Label>
             <Form.Control
               value={query ? query : ""}
               onChange={(e) => setQuery(e.target.value)}
               type="text"
-              placeholder="City, postcode, address"
+              placeholder={t("searchBar.search")}
               className={styles.SearchInput}
               aria-label="search"
             />
           </Col>
           <Col sm={6} md={2} className="mt-1 mt-md-0">
-            <Form.Label style={{ fontWeight: "500" }}>Type</Form.Label>
+            <Form.Label style={{ fontWeight: "500" }}>
+              {t("searchBar.type")}
+            </Form.Label>
             <Form.Select
               className={styles.SearchInput}
               aria-label="type"
@@ -170,22 +183,32 @@ const SearchBar = () => {
               value={type ? type : ""}
               onChange={(e) => setType(e.target.value)}
             >
-              <option value="">Any</option>
-              <option value="residential">Residential</option>
-              <option value="land">Land</option>
-              <option value="commercial">Commercial</option>
+              <option value="">
+                {t("listingType.any")}
+              </option>
+              <option value="residential">
+                {t("listingType.residential")}
+              </option>
+              <option value="land">
+                {t("listingType.land")}
+              </option>
+              <option value="commercial">
+                {t("listingType.commercial")}
+              </option>
             </Form.Select>
           </Col>
 
           <Col lg={2} md={3} sm={6} className="mb-1">
             <Form.Group as={Row} controlId="formGroupPrice">
-              <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>Price</Form.Label>
+              <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>
+                {t("searchBar.price")}
+              </Form.Label>
               <Col sm={12} className="d-flex align-items-center">
                 <Form.Control
                   className={styles.SearchInput}
                   aria-label="min price"
                   type="number"
-                  placeholder="Min"
+                  placeholder={t("searchBar.minPrice")}
                   min="0"
                   value={price.min ? price.min : ""}
                   onChange={(e) => setPrice({ ...price, min: e.target.value })}
@@ -194,7 +217,7 @@ const SearchBar = () => {
                   className={styles.SearchInput}
                   aria-label="max price"
                   type="number"
-                  placeholder="Max"
+                  placeholder={t("searchBar.maxPrice")}
                   min={price.min ? price.min : "0"}
                   max="10000000"
                   value={price.max ? price.max : ""}
@@ -206,14 +229,14 @@ const SearchBar = () => {
           <Col lg={2} md={3} sm={6} className="mb-2">
             <Form.Group as={Row} controlId="formGroupSurface">
               <Form.Label column className="mb-0" style={{ fontWeight: "500" }}>
-                {type === "land" ? "Land Area" : "Floor Area"}
+                {type === "land" ? t("searchBar.landArea") : t("searchBar.floorArea")}
               </Form.Label>
               <Col sm={12} className="d-flex align-items-center">
                 <Form.Control
                   className={styles.SearchInput}
                   aria-label="min surface"
                   type="number"
-                  placeholder="Min"
+                  placeholder={t("searchBar.minFloorArea")}
                   min="0"
                   value={surface.min ? surface.min : ""}
                   onChange={(e) => setSurface({ ...surface, min: e.target.value })}
@@ -222,7 +245,7 @@ const SearchBar = () => {
                   className={styles.SearchInput}
                   aria-label="max surface"
                   type="number"
-                  placeholder="Max"
+                  placeholder={t("searchBar.maxFloorArea")}
                   min={surface.min ? surface.min : "0"}
                   max="1000000"
                   value={surface.max ? surface.max : ""}
@@ -246,7 +269,7 @@ const SearchBar = () => {
                       type="submit"
                       style={{ pointerEvents: 'none' }}
                     >
-                      {update ? "Update" : "Search"}
+                      {update ? t("searchBar.btnUpdate") : t("searchBar.btnSearch")}
                     </Button>
                   </span>
                 </OverlayTrigger>
@@ -259,7 +282,7 @@ const SearchBar = () => {
                     setPrice({ min: "", max: "" });
                     setSurface({ min: "", max: "" });
                   }}>
-                  Clear
+                  {t("searchBar.btnClear")}
                 </Button>
               </>
             ) : (
@@ -268,7 +291,7 @@ const SearchBar = () => {
                   className={`${btnStyles.Button} ${btnStyles.BlackSearch} me-2`}
                   type="submit"
                 >
-                  {update ? "Update" : "Search"}
+                  {update ? t("searchBar.btnUpdate") : t("searchBar.btnSearch")}
                 </Button>
                 <Button
                   className={`${btnStyles.Button} ${btnStyles.Remove}`}
@@ -279,7 +302,7 @@ const SearchBar = () => {
                     setPrice({ min: "", max: "" });
                     setSurface({ min: "", max: "" });
                   }}>
-                  Clear
+                  {t("searchBar.btnClear")}
                 </Button>
               </>
             )}

@@ -88,6 +88,7 @@
         "sale": "Πώληση"
     },
     "listingType": {
+        "any": "Ολα",
         "commercial": "Εμπορικό",
         "land": "Γη",
         "residential": "Κατοικία"
@@ -95,16 +96,19 @@
     "searchBar": {
         "rent": "Ενοικίαση",
         "buy": "Αγορά",
-        "search": "Πόλη, ταχυδρομικός κώδικας, διεύθυνση",
+        "search": "Πόλη, Τ.Κ., διεύθυνση",
+        "location": "Τοποθεσία",
         "type": "Τύπος",
         "price": "Τιμή",
         "minPrice": "Ελάχιστη Τιμή",
         "maxPrice": "Μέγιστη Τιμή",
         "floorArea": "Εμβαδόν Δαπέδου",
+        "landArea": "Εμβαδόν Γης",
         "minFloorArea": "Ελάχιστο m²",
         "maxFloorArea": "Μέγιστο m²",
         "btnSearch": "Αναζήτηση",
-        "btnUpdate": "Ενημέρωση"
+        "btnUpdate": "Ενημέρωση",
+        "btnClear": "Καθαρισμός"
     },
     "propertyDetails": {
         "typeRent": "Ενοικίαση",
@@ -128,8 +132,8 @@
         "serviceCharge": "Έξοδα Συντήρησης",
         "yearBuilt": "Έτος Κατασκευής",
         "availability": "Διαθεσιμότητα",
-        "coverCoefficient": "Συντελεστής Κάλυψης",
-        "buildingCoefficient": "Συντελεστής Δόμησης",
+        "cover_coefficient": "Συντελεστής Κάλυψης",
+        "building_coefficient": "Συντελεστής Δόμησης",
         "lengthOfFacade": "Μήκος Προσόψεως",
         "distanceFromSea": "Απόσταση από τη Θάλασσα",
         "storage": "Αποθήκη",
@@ -152,20 +156,22 @@
             "mixed_use": "Μικτή Χρήση",
             "industrial": "Βιομηχανικό",
             "other": "Άλλο",
-            "": ""
+            "": "N/A"
         },
         "openingFrames": {
             "title": "Κουφώματα",
             "aluminium": "Αλουμίνιο",
             "wooden": "Ξύλινο",
             "pvc": "PVC",
-            "iron": "Σίδερο"
+            "iron": "Σίδερο",
+            "": "N/A"
         },
         "glassType": {
             "title": "Τύπος Κρυστάλλου",
             "single": "Μονό",
             "double": "Διπλό",
-            "triple": "Τριπλό"
+            "triple": "Τριπλό",
+            "": "N/A"
         },
         "orientationTypes": {
             "title": "Προσανατολισμός",
@@ -176,7 +182,8 @@
             "south": "Νότιος",
             "south_west": "Νοτιοδυτικός",
             "west": "Δυτικός",
-            "north_west": "Βορειοδυτικός"
+            "north_west": "Βορειοδυτικός",
+            "": "N/A"
         },
         "zoneTypes": {
             "title": "Ζώνη",
@@ -187,20 +194,23 @@
             "tourist": "Τουριστικό",
             "mixed": "Μικτό",
             "redevelopment": "Αναπτυξιακό",
-            "other": "Άλλο"
+            "other": "Άλλο",
+            "": "N/A"
         },
         "viewTypes": {
             "title": "Θέα",
             "sea": "Θάλασσα",
             "mountain": "Βουνό",
             "city": "Πόλη",
-            "other": "Άλλο"
+            "other": "Άλλο",
+            "": "N/A"
         },
         "slopeTypes": {
             "title": "Κλίση",
             "level": "Επίπεδο",
             "view": "Θέα",
-            "incline": "Κλίση"
+            "incline": "Κλίση",
+            "": "N/A"
         },
         "floorTypes": {
             "title": "Τύπος Δαπέδου",
@@ -214,7 +224,8 @@
             "parquet": "Παρκέ",
             "carpet": "Χαλί",
             "cement": "Τσιμέντο",
-            "other": "Άλλο"
+            "other": "Άλλο",
+            "": "N/A"
         },
         "floorValue": {
             "basement": "Υπόγειο",
@@ -222,7 +233,8 @@
             "first": "ος",
             "second": "ος",
             "third": "ος",
-            "th": "ος"
+            "th": "ος",
+            "na": "N/A"
         },
         "energyClassTypes": {
             "a+": "A+",
@@ -233,7 +245,8 @@
             "e": "E",
             "f": "F",
             "g": "G",
-            "toBeIssued": "Να εκδοθεί"
+            "toBeIssued": "Να εκδοθεί",
+            "": "N/A"
         }
     },
     "contactFormPage": {

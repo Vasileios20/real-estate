@@ -88,6 +88,7 @@
         "sale": "Sale"
     },
     "listingType": {
+        "any": "Any",
         "commercial": "Commercial",
         "land": "Land",
         "residential": "Residential"
@@ -96,15 +97,18 @@
         "rent": "Rent",
         "buy": "Buy",
         "search": "City, postcode, address",
+        "location": "Location",
         "type": "Type",
         "price": "Price",
-        "minPrice": "Min Price",
-        "maxPrice": "Max Price",
+        "minPrice": "Min",
+        "maxPrice": "Max",
         "floorArea": "Floor Area",
-        "minFloorArea": "Min m²",
-        "maxFloorArea": "Max m²",
+        "landArea": "Land Area",
+        "minFloorArea": "Min",
+        "maxFloorArea": "Max",
         "btnSearch": "Search",
-        "btnUpdate": "Update"
+        "btnUpdate": "Update",
+        "btnClear": "Clear"
     },
     "propertyDetails": {
         "typeRent": "To Rent",
@@ -128,8 +132,8 @@
         "serviceCharge": "Service Charges",
         "yearBuilt": "Year Built",
         "availability": "Availability",
-        "coverCoefficient": "Cover Coefficient",
-        "buildingCoefficient": "Building Coefficient",
+        "cover_coefficient": "Cover Coefficient",
+        "building_coefficient": "Building Coefficient",
         "lengthOfFacade": "Length of Facade",
         "distanceFromSea": "Distance from Sea",
         "storage": "Storage",
@@ -159,13 +163,15 @@
             "aluminium": "Aluminium",
             "wooden": "Wooden",
             "pvc": "PVC",
-            "iron": "Iron"
+            "iron": "Iron",
+            "": "N/A"
         },
         "glassType": {
             "title": "Glass Type",
             "single": "Single",
             "double": "Double",
-            "triple": "Triple"
+            "triple": "Triple",
+            "": "N/A"
         },
         "orientationTypes": {
             "title": "Orientation",
@@ -176,7 +182,8 @@
             "south": "South",
             "south_west": "Southwest",
             "west": "West",
-            "north_west": "Northwest"
+            "north_west": "Northwest",
+            "": "N/A"
         },
         "zoneTypes": {
             "title": "Zone",
@@ -187,20 +194,23 @@
             "tourist": "Tourist",
             "mixed": "Mixed",
             "redevelopment": "Redevelopment",
-            "other": "Other"
+            "other": "Other",
+            "": "N/A"
         },
         "viewTypes": {
             "title": "View",
             "sea": "Sea",
             "mountain": "Mountain",
             "city": "City",
-            "other": "Other"
+            "other": "N/A",
+            "": "N/A"
         },
         "slopeTypes": {
             "title": "Slope",
             "level": "Level",
             "view": "View",
-            "incline": "Incline"
+            "incline": "Incline",
+            "": "N/A"
         },
         "floorTypes": {
             "title": "Floor type",
@@ -214,7 +224,8 @@
             "parquet": "Parquet",
             "carpet": "Carpet",
             "cement": "Cement",
-            "other": "Other"
+            "other": "N/A",
+            "": "N/A"
         },
         "floorValue": {
             "basement": "Basement",
@@ -222,7 +233,8 @@
             "first": "st",
             "second": "nd",
             "third": "rd",
-            "th": "th"
+            "th": "th",
+            "na": "N/A"
         },
         "energyClassTypes": {
             "a+": "A+",
@@ -233,7 +245,8 @@
             "e": "E",
             "f": "F",
             "g": "G",
-            "toBeIssued": "To be issued"
+            "toBeIssued": "To be issued",
+            "": "N/A"
         }
     },
     "contactFormPage": {
