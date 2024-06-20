@@ -123,7 +123,9 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
             ? `${floor}${t("propertyDetails.floorValue.second")} `
             : floor === 3
               ? `${floor}${t("propertyDetails.floorValue.third")}`
-              : `${floor}${t("propertyDetails.floorValue.th")}`;
+              : floor === null ?
+                t("propertyDetails.floorValue.na")
+                : `${floor}${t("propertyDetails.floorValue.th")}`;
 
   const residentialTableData = (
     <Table className={`${styles.Listing__table} shadow`}>
