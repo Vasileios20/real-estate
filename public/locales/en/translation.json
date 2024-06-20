@@ -88,6 +88,7 @@
         "sale": "Sale"
     },
     "listingType": {
+        "any": "Any",
         "commercial": "Commercial",
         "land": "Land",
         "residential": "Residential"
@@ -96,15 +97,18 @@
         "rent": "Rent",
         "buy": "Buy",
         "search": "City, postcode, address",
+        "location": "Location",
         "type": "Type",
         "price": "Price",
-        "minPrice": "Min Price",
-        "maxPrice": "Max Price",
+        "minPrice": "Min",
+        "maxPrice": "Max",
         "floorArea": "Floor Area",
-        "minFloorArea": "Min m²",
-        "maxFloorArea": "Max m²",
+        "landArea": "Land Area",
+        "minFloorArea": "Min",
+        "maxFloorArea": "Max",
         "btnSearch": "Search",
-        "btnUpdate": "Update"
+        "btnUpdate": "Update",
+        "btnClear": "Clear"
     },
     "propertyDetails": {
         "typeRent": "To Rent",

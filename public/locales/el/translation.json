@@ -88,6 +88,7 @@
         "sale": "Πώληση"
     },
     "listingType": {
+        "any": "Ολα",
         "commercial": "Εμπορικό",
         "land": "Γη",
         "residential": "Κατοικία"
@@ -95,16 +96,19 @@
     "searchBar": {
         "rent": "Ενοικίαση",
         "buy": "Αγορά",
-        "search": "Πόλη, ταχυδρομικός κώδικας, διεύθυνση",
+        "search": "Πόλη, Τ.Κ., διεύθυνση",
+        "location": "Τοποθεσία",
         "type": "Τύπος",
         "price": "Τιμή",
         "minPrice": "Ελάχιστη Τιμή",
         "maxPrice": "Μέγιστη Τιμή",
         "floorArea": "Εμβαδόν Δαπέδου",
+        "landArea": "Εμβαδόν Γης",
         "minFloorArea": "Ελάχιστο m²",
         "maxFloorArea": "Μέγιστο m²",
         "btnSearch": "Αναζήτηση",
-        "btnUpdate": "Ενημέρωση"
+        "btnUpdate": "Ενημέρωση",
+        "btnClear": "Καθαρισμός"
     },
     "propertyDetails": {
         "typeRent": "Ενοικίαση",
