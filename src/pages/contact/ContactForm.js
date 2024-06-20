@@ -15,9 +15,6 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
 
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from "../../api/axiosDefaults";
-import { use } from "i18next";
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { Trans, useTranslation } from "react-i18next";
@@ -30,8 +27,6 @@ function ContactForm({ listing_id }) {
    * @returns {JSX.Element} - The JSX for the component.
    */
 
-  const currentUser = useCurrentUser();
-  const id = currentUser?.profile_id;
 
   const { t, i18n } = useTranslation();
 
@@ -52,7 +47,7 @@ function ContactForm({ listing_id }) {
   });
   const [errors, setErrors] = useState({});
 
-  const { first_name, last_name, phone_number, email, subject, message } = contactData;
+  const { first_name, last_name, email, subject, message } = contactData;
   const [success, setSuccess] = useState(false);
   const [messageDeleted, setMessageDeleted] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -70,29 +65,6 @@ function ContactForm({ listing_id }) {
       ? message_form
       : contactData.message;
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     // If the current user exists, fetch the user profile data.
-  //     const fetchProfileData = async () => {
-  //       try {
-  //         const { data } = await axiosReq.get(`/profiles/${id}/`);
-  //         // Set the contactData state with the user's name and email address.
-  //         setContactData({
-  //           ...contactData,
-  //           first_name: currentUser.username,
-  //           email: data.email_address,
-  //           phone_number: data.phone_number,
-  //         });
-  //       } catch (err) {
-  //         // console.log(err);
-  //       }
-  //     };
-  //     fetchProfileData();
-  //   }
-  //   // if contactData is included in the dependency array,
-  //   // the useEffect hook will run indefinitely
-  //   // eslint-disable-next-line
-  // }, [id, history]);
 
   const handleChange = (e) => {
     setContactData({

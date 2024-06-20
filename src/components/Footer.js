@@ -29,8 +29,6 @@ const Footer = () => {
 
     try {
       const { data } = await axiosReq.get(`${path}`);
-      console.log(path);
-      console.log("data", data);
       history.push(`${path}`, { data: data });
     } catch (err) {
       // console.log(err);
@@ -48,9 +46,6 @@ const Footer = () => {
             <Link to="/about" className={`${styles.link}`}>
               {t("footer.about")}
             </Link>
-            {/* <Link to="/faq" className={`${styles.link} `}>
-              FAQ
-            </Link> */}
             <div className={styles.Social}>
               <a href="https://www.facebook.com/profile.php?id=100063495071258" target="_blank"
                 aria-label="Visit our Facebook page" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a>
