@@ -60,7 +60,7 @@
   word-wrap: break-word;
   background-color: rgba(198, 198, 198, 0.5);
   text-align: start;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 /* Home Page */
@@ -168,6 +168,19 @@
     font-size: 4rem;
     margin-top: 7rem;
   }
+}
+
+@media (max-width: 1025px) {
+  
+
+  .HeaderListings {
+    margin-top: 9rem;
+  }
+
+  .ServiceImageHeight {
+    height: 250px;
+  }
+  
 }
 
 @media screen and (min-width: 425px) and (max-width: 768px) {

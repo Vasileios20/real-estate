@@ -125,8 +125,8 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                   mapId={"bf51a910020fa25a"}
                   defaultZoom={10}
                   defaultCenter={{
-                    lat: 51.50898721256282,
-                    lng: -0.11773481844149021,
+                    lat: 38.069472,
+                    lng: 23.599510,
                   }}
                   gestureHandling={"greedy"}
                   style={{ width: "100%", height: "780px" }}
