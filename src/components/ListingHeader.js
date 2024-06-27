@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../styles/Listing.module.css";
 import { useTranslation } from "react-i18next";
+import area from "../assets/area.png";
 
 const ListingHeader = (props) => {
   const [typeReady, setTypeReady] = useState(false);
@@ -45,7 +46,10 @@ const ListingHeader = (props) => {
 
   const land = <div className={`${styles.Listing__headerLand} mt-2`}>
     <p>
-      {props.land_area} m²
+      <img
+        src={area}
+        height={16}
+      /> {props.land_area} m²
     </p>
   </div>
 
@@ -57,7 +61,7 @@ const ListingHeader = (props) => {
 
             sale_type: saleType,
             type: translatedType === "Land" ? translatedType : translatedSubType,
-          })}, {municipality}, {county}, {region}, {props.postcode}
+          })}, {municipality}, {county}, {props.postcode}
         </div>
         {props.type !== "land" ? not_land : land}
         <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {priceValue}</h6>
