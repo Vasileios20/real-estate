@@ -79,7 +79,7 @@ const ListingsPage = ({ array, hasLoaded, setListings, listings, message, search
                         {array.map((listing) => (
                           <Col key={listing.id} xs={12} md={6} lg={4} xl={4} className="mb-3 gx-1">
                             <Card style={{ height: "100%" }}>
-                              <Carousel>
+                              <Carousel interval={null}>
                                 {listing.images.map((image, id) => (
                                   <Carousel.Item key={id}>
                                     <div className={styles.Listings__ImageWrapper}>

@@ -151,7 +151,7 @@ export default function HomePage() {
                           <Col key={listing.id} xs={12} md={6} lg={3} className="mb-3">
                             <Card style={{ height: "100%" }}>
 
-                              <Carousel>
+                              <Carousel interval={null}>
                                 {listing.images.map((image, id) => (
                                   <Carousel.Item key={id}>
                                     <div className={imageStyles.Listings__ImageWrapper}>
