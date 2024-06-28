@@ -20,10 +20,9 @@ import Asset from "../../components/Asset";
 
 function ListingEditForm() {
   useRedirect("loggedOut");
-
   const [listingData, setListingData] = useState({
-    type: "",
-    sale_type: "",
+    type: "apartment",
+    sale_type: "rent",
     description: "",
     address_number: "",
     address_street: "",
@@ -41,12 +40,32 @@ function ListingEditForm() {
     energy_class: "A",
     construction_year: "",
     availability: "",
-    images: [],
+    images: "",
     uploaded_images: [],
-    latitude: "",
-    longitude: "",
-    amenities: [],
   });
+
+  const {
+    type,
+    sale_type,
+    description,
+    address_number,
+    address_street,
+    postcode,
+    city,
+    price,
+    floor_area,
+    levels,
+    bedrooms,
+    floor,
+    kitchens,
+    bathrooms,
+    living_rooms,
+    heating_system,
+    energy_class,
+    construction_year,
+    availability,
+    images,
+  } = listingData;
 
   const [errors, setErrors] = useState({});
   const imageInput = useRef(null);
@@ -56,21 +75,69 @@ function ListingEditForm() {
   const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {
+    // Fetch the listing data from the API.
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/${id}/`);
-        setListingData(data);
+        const {
+          type,
+          sale_type,
+          description,
+          address_number,
+          address_street,
+          postcode,
+          city,
+          price,
+          surface,
+          levels,
+          bedrooms,
+          floor,
+          kitchens,
+          bathrooms,
+          living_rooms,
+          heating_system,
+          energy_class,
+          construction_year,
+          availability,
+          images,
+          uploaded_images,
+        } = data;
+
+        // Set the listing data state to the fetched data.
+        setListingData({
+          type,
+          sale_type,
+          description,
+          address_number,
+          address_street,
+          postcode,
+          city,
+          price,
+          surface,
+          levels,
+          bedrooms,
+          floor,
+          kitchens,
+          bathrooms,
+          living_rooms,
+          heating_system,
+          energy_class,
+          construction_year,
+          availability,
+          images,
+          uploaded_images,
+        });
       } catch (err) {
         if (err.response.status === 403) {
-          history.push("/403");
-        } else {
-          setErrors(err.response?.data);
+          <Forbidden403 />;
         }
+        // console.log(err);
       }
     };
     handleMount();
   }, [id, history]);
 
+  // Function to handle the change event for the input fields.
   const handleChange = (e) => {
     setListingData({
       ...listingData,
@@ -78,64 +145,108 @@ function ListingEditForm() {
     });
   };
 
+  // Function to handle the change event for the image input field.
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
-      URL.revokeObjectURL(listingData.images);
+      URL.revokeObjectURL(images);
       setListingData({
         ...listingData,
-        images: [...listingData.images, URL.createObjectURL(e.target.files[0])],
+        image: URL.createObjectURL(e.target.files[0]),
       });
     }
   };
 
+  // Function to handle the selected images to delete
   const handleSelectedImages = (e) => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      setSelectedImages([...selectedImages, value]);
+    // Get the checked checkboxes.
+    const checkedBoxes = document.querySelectorAll(
+      "input[name=images]:checked"
+    );
+    // If there are checked checkboxes, get their values and add them to the selected images state.
+    if (checkedBoxes.length > 0) {
+      const checkedValues = Array.from(checkedBoxes).map(
+        (checkbox) => checkbox.value
+      );
+
+      setSelectedImages((prevSelectedImages) => {
+        if (e.target.checked) {
+          return [...prevSelectedImages, ...checkedValues];
+        } else {
+          return prevSelectedImages.filter(
+            (image) => !checkedValues.includes(image)
+          );
+        }
+      });
     } else {
-      setSelectedImages(selectedImages.filter((image) => image !== value));
+      setSelectedImages([]);
     }
   };
 
+  // Function to handle the delete image event.
   const handleDeleteImage = async (e) => {
     e.preventDefault();
     try {
-      await Promise.all(
-        selectedImages.map((imageId) =>
-          axiosReq.delete(`/listings/${id}/images/${imageId}/`)
-        )
-      );
-      setSelectedImages([]);
-      window.location.reload();
+      selectedImages.forEach(async (image) => {
+        await axiosReq.delete(`/listings/${id}/images/${image}/`);
+
+        setSelectedImages([]);
+        window.location.reload();
+      });
     } catch (err) {
       setErrors(err.response?.data);
     }
   };
 
+  // Function to handle the submit event for the form.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("type", type);
+    formData.append("sale_type", sale_type);
+    formData.append("description", description);
+    formData.append("address_number", address_number);
+    formData.append("address_street", address_street);
+    formData.append("postcode", postcode);
+    formData.append("city", city);
+    formData.append("price", price);
+    formData.append("surface", floor_area);
+    formData.append("levels", levels);
+    formData.append("bedrooms", bedrooms);
+    formData.append("floor", floor);
+    formData.append("kitchens", kitchens);
+    formData.append("bathrooms", bathrooms);
+    formData.append("living_rooms", living_rooms);
+    formData.append("heating_system", heating_system);
+    formData.append("energy_class", energy_class);
+    formData.append("construction_year", construction_year);
+    formData.append("availability", availability);
+    formData.append("land_area", listingData.land_area);
+    formData.append("wc", listingData.wc);
 
-    Object.entries(listingData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((item) => formData.append(key, item));
-      } else {
-        formData.append(key, value);
-      }
-    });
 
+    formData.append("images", imageInput.current.files[0]);
+    // Append the selected images to delete to the form data.
     if (imageInput.current.files.length > 0) {
       Array.from(imageInput.current.files).forEach((file) => {
         formData.append("uploaded_images", file);
       });
+    } else {
+      setErrors({ images: ["Please add an image"] });
     }
 
     try {
+      // Send a PUT request to the API to edit the listing.
       const { data } = await axiosReq.put(`/listings/${id}/`, formData);
+      // Redirect to the listing page for the edited listing.
+      window.scrollTo(0, 0);
+      window.localStorage.setItem("edited", true);
       history.push(`/listings/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
       window.scrollTo(0, 0);
+      if (err.response?.status === 403) {
+        setErrors(err.response?.data);
+      }
     }
   };
 
@@ -160,16 +271,17 @@ function ListingEditForm() {
                 and press the button below
               </Alert>
               <div>
-                {listingData.images.map((image, idx) => (
-                  <figure key={idx}>
+                {Array.from(images).map((image) => (
+                  <figure key={image.id}>
                     <input
                       type="checkbox"
                       name="images"
                       value={image.id}
+                      id={image.url}
                       onChange={handleSelectedImages}
                     />
                     <Image
-                      className={`my-2 px-2 ${styles.Image}`}
+                      className={`"my-2 px-2" ${styles.Image}`}
                       src={image.url}
                       rounded
                     />
@@ -193,6 +305,7 @@ function ListingEditForm() {
                       />
                     </figure>
                   ))}
+                
                 <Form.Label
                   htmlFor="image-upload"
                   className={styles.ImageUpload}
