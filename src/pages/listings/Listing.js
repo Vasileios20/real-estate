@@ -110,7 +110,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
 
   const energy_classValue = energy_class === "to_be_issued" ? t("propertyDetails.energyClassTypes.toBeIssued") : energy_class;
 
-  const land_areaValue = props.sub_type === "apartment" ? "N/A" : `${land_area} m²`;
+  const land_areaValue = land_area === "" || land_area === null || land_area === 0 ? "N/A" : `${land_area} m²`;
 
   const floorValue =
     floor < 0
