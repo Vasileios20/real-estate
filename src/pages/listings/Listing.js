@@ -95,7 +95,7 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
 
   const amenitiesList = amenitiesArray.map((amenity, id) => (
     <div key={id} className={`${styles.Amenity}`}>
-      <span>{amenity.replace(/_/g, " ")} </span>
+      <span>{amenity.charAt(0).toUpperCase() + amenity.replace(/_/g, " ").slice(1)} </span>
       <i className={`fa-solid fa-square-check ${styles.AmenityChecked}`}></i>
     </div>
   ));
