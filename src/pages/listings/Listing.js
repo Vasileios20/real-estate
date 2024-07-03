@@ -197,7 +197,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
           { label: t("propertyDetails.rooms"), value: rooms },
           { label: t("propertyDetails.bathrooms"), value: bathrooms },
           { label: t("propertyDetails.wc"), value: wc },
-          { label: t("propertyDetails.storage"), value: storage },
           { label: t("propertyDetails.heating"), value: heating_system },
           { label: t("propertyDetails.energyClass"), value: energy_class },
           { label: t("propertyDetails.powerType"), value: power_type },
