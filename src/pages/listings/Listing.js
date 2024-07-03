@@ -61,7 +61,6 @@ const Listing = ({ setShowCookieBanner, ...props }) => {
     currency,
     land_area,
     rooms,
-    storage,
     power_type,
     floor_type,
     opening_frames,

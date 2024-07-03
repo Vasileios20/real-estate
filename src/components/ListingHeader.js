@@ -25,7 +25,6 @@ const ListingHeader = (props) => {
   const translatedSubType = typeReady && t(`propertyDetails.subTypes.${props.sub_type}`);
   const municipality = lng === "el" ? props.municipality_gr : props.municipality;
   const county = lng === "el" ? props.county_gr : props.county;
-  const region = lng === "el" ? props.region_gr : props.region;
 
   let priceValue = "";
   if (typeof props.price === 'number' && !isNaN(props.price)) {
