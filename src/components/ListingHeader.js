@@ -48,8 +48,10 @@ const ListingHeader = (props) => {
     <p>
       <img
         src={area}
+        alt=""
         height={16}
-      /> {props.land_area} m²
+      />
+      {props.land_area} m²
     </p>
   </div>
 
@@ -63,7 +65,7 @@ const ListingHeader = (props) => {
             type: translatedType === "Land" ? translatedType : translatedSubType,
           })}, {municipality}, {county}, {props.postcode}
         </div>
-        {props.type !== "land" ? not_land : land}
+        {props.type !== "residential" ? land : not_land}
         <h6 className={styles.Listing__price}>{t("propertyDetails.price")}: {props.currency} {priceValue}</h6>
       </div>
     </div>
