@@ -50,7 +50,7 @@ const ListingHeader = (props) => {
         src={area}
         alt=""
         height={16}
-      />
+      />{" "}
       {props.land_area} m²
     </p>
   </div>
