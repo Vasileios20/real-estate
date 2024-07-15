@@ -169,8 +169,8 @@ export default function HomePage() {
                                 <Card.Body>
                                   <Card.Title style={{ textTransform: "capitalize" }}>
                                     {t("propertyDetails.title", {
-                                      type: `${listing.type}`,
-                                      sale_type: `${listing.sale_type}`,
+                                      type: listing.type === "Land" ? `${t(`propertyDetails.${listing.type}`)}` : `${t(`propertyDetails.subTypes.${listing.sub_type}`)}`,
+                                      sale_type: listing.sale_type === "rent" ? `${t("propertyDetails.typeRent")}` : `${t("propertyDetails.typeSale")}`,
                                     })}
                                   </Card.Title>
                                   <Card.Text>{listing.currency} {typeof listing.price === "number" && !isNaN(listing.price) && listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>

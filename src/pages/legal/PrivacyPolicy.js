@@ -33,6 +33,14 @@ export default function PrivacyPolicyPage() {
                     <p>{t("privacy.section4.content")}</p>
                     <h2 style={{ fontSize: "20px" }}>{t("privacy.section5.title")}</h2>
                     <p>{t("privacy.section5.content")}</p>
+                    <h2 style={{ fontSize: "20px" }}>{t("privacy.section6.title")}</h2>
+                    <p>{t("privacy.section6.content")}</p>
+                    <h2 style={{ fontSize: "20px" }}>{t("privacy.section7.title")}</h2>
+                    <p>{t("privacy.section7.content")}</p>
+                    <h2 style={{ fontSize: "20px" }}>{t("privacy.section8.title")}</h2>
+                    <p>{t("privacy.section8.content")}</p>
+                    <h2 style={{ fontSize: "20px" }}>{t("privacy.section9.title")}</h2>
+                    <p>{t("privacy.section9.content")}</p>
                 </Row>
             </Container>
         </>

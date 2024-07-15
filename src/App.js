@@ -1,7 +1,8 @@
+import { Suspense, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, Link } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
@@ -24,12 +25,13 @@ import FinancialAdvicePage from "./pages/services/AdvisoryPage"
 import AssetMgm from "./pages/services/AssetManagementPage";
 import ValuationPage from "./pages/services/ValuationPage";
 import Footer from "./components/Footer";
-import { Suspense, useState } from "react";
 import ContactPage from "./pages/contact/ContactPage";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import Terms from "./pages/legal/Terms";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import { HelmetProvider } from "react-helmet-async";
+import { useTranslation, Trans } from "react-i18next";
+
 
 function App() {
   useUserStatus();
@@ -38,6 +40,12 @@ function App() {
   const [cookieConsent, setCookieConsent] = useState(getCookieConsentValue("cookieConsent"));
   const [showCookieBanner, setShowCookieBanner] = useState("byCookieValue");
   const [nonEssentialConsent, setNonEssentialConsent] = useState(getCookieConsentValue("nonEssentialCookies") === "true");
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language || navigator.userLanguage;
+    i18n.changeLanguage(lng);
+  }, [i18n]);
 
 
   if (cookieConsent === "false") {
@@ -147,7 +155,9 @@ function App() {
               buttonClasses="m-0 me-1"
 
             >
-              This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking "Accept All Cookies", you consent to our use of all cookies. If you choose to "Decline Non-Essential Cookies", Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set. <a href="/privacyPolicy" style={{ color: '#fefefe', textDecoration: 'underline' }}>Learn more</a>.
+              {t("cookies.content")} <Trans i18nKey="cookies.learnMore" components={{
+                1: <Link to="/privacyPolicy" style={{ color: '#fefefe', textDecoration: 'underline' }} />
+              }} />
             </CookieConsent>
             <div className={styles.CookieReset}><i onClick={() => {
               setShowCookieBanner("show");

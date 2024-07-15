@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function TermsPage() {
     /**
@@ -40,7 +41,11 @@ export default function TermsPage() {
                     <h2 style={{ fontSize: "20px" }}>{t("terms.section8.title")}</h2>
                     <p>{t("terms.section8.content")}</p>
                     <h2 style={{ fontSize: "20px" }}>{t("terms.section9.title")}</h2>
-                    <p>{t("terms.section9.content")}</p>
+                    <p>{t("terms.section9.content")}
+                        <Trans i18nKey="terms.section9.email" components={{
+                            1: <Link to="/contact" />
+                        }} />
+                    </p>
                 </Row>
             </Container>
         </>

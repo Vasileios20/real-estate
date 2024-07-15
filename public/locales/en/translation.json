@@ -327,7 +327,8 @@
         },
         "section9": {
             "title": "Contact Us",
-            "content": "If you have any questions about these Terms, please contact us at info@acropolisestates.com."
+            "content": "If you have any questions about these Terms, please contact us at ",
+            "email": "<1>info@acropolisestates.com</1>."
         }
     },
     "privacy": {
@@ -373,5 +374,12 @@
             "title": "Changes to the Privacy Policy",
             "content": "We reserve the right to modify or revise this Privacy Policy at any time. Any changes will be effective immediately upon posting on the Site. Your continued use of the Site after the posting of changes constitutes your acceptance of such changes."
         }
+    },
+    "cookies": {
+        "content": "This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. We also use cookies from third-party services like Google Maps to display interactive maps. By clicking 'Accept All Cookies', you consent to our use of all cookies. If you choose to 'Decline Non-Essential Cookies', Google Maps and other third-party services will be disabled, but essential cookies for the proper functioning of the site will still be set.",
+        "acceptAll": "Accept All Cookies",
+        "decline": "Decline Non-Essential Cookies",
+        "learnMore": "<1>Learn more</1>",
+        "cookiePolicy": "Cookie Policy"
     }
 }
