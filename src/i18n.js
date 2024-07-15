@@ -23,7 +23,7 @@ i18n
     caches: [],
     fallbackLng: "en",
     debug: false,
-    supportedLngs: ["en"], // add more languages when needed (e.g. "el")
+    supportedLngs: ["en", "el"], // add more languages when needed (e.g. "el")
     ns: ["translation"],
 
     interpolation: {
