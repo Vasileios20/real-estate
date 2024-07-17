@@ -110,6 +110,7 @@ const NavBar = () => {
       >
         {t("nav.contact")}
       </NavLink>
+
     </>
   );
 
@@ -188,7 +189,12 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+      <div className={styles.LngBtnContainer}>
+        <button type="submit" onClick={() => i18n.changeLanguage('el')} className={`${styles.LngBtn} ${styles.LngBtnGR}`}></button>
+        <button type="submit" onClick={() => i18n.changeLanguage('en')} className={`${styles.LngBtn} ${styles.LngBtnEN}`}></button>
+
+      </div>
+    </Navbar >
   );
 };
 
